@@ -639,6 +639,8 @@ func (g *Generator) DomainCmd(d proto.Domain, c proto.Command, sharedTypes map[s
 }
 
 func (g *Generator) domainCmdArgs(d proto.Domain, c proto.Command, sharedTypes map[string]bool) {
+	g.Printf("const %[1]s = %[2]q\n", "Command"+d.Domain+c.NameName, d.Domain+"."+c.NameName)
+
 	g.Printf(`
 // %[1]s represents the arguments for %[2]s in the %[3]s domain.
 type %[1]s struct {
@@ -720,6 +722,8 @@ func (g *Generator) DomainEvent(d proto.Domain, e proto.Event, sharedTypes map[s
 }
 
 func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes map[string]bool) {
+	g.Printf("const %[1]s = %[2]q\n", "Event"+d.Domain+e.NameName, d.Domain+"."+e.NameName)
+
 	g.Printf(`
 // %[1]s is the reply for %[2]s events.
 type %[1]s struct {
