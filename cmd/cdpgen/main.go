@@ -651,7 +651,14 @@ type %[1]s struct {
 	g.Printf(`
 // Unmarshal the byte array into a return value for %[2]s in the %[3]s domain.
 func (a * %[1]s) UnmarshalJSON(b []byte) error {
-	return json.Unmarshal(b, a)
+	type Copy %[1]s
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = %[1]s(*c)
+	return nil
 }
 `, c.ArgsName(d), c.Name(), d.Name())
 
@@ -659,7 +666,9 @@ func (a * %[1]s) UnmarshalJSON(b []byte) error {
 // Marshall the byte array into a return value for %[2]s in the %[3]s domain.
 func (a * %[1]s) MarshalJSON() ([]byte, error) {
 	type Copy %[1]s
-	return json.Marshal(&Copy{})
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
 }
 `, c.ArgsName(d), c.Name(), d.Name())
 }
@@ -696,7 +705,14 @@ type %[1]s struct {
 	g.Printf(`
 // Unmarshal the byte array into a return value for %[2]s in the %[3]s domain.
 func (a * %[1]s) UnmarshalJSON(b []byte) error {
-	return json.Unmarshal(b, a)
+	type Copy %[1]s
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = %[1]s(*c)
+	return nil
 }
 `, c.ReplyName(d), c.Name(), d.Name())
 }
@@ -744,7 +760,14 @@ type %[1]s struct {
 	g.Printf(`
 // Unmarshal the byte array into a return value for %[2]s in the %[3]s domain.
 func (a * %[1]s) UnmarshalJSON(b []byte) error {
-	return json.Unmarshal(b, a)
+	type Copy %[1]s
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = %[1]s(*c)
+	return nil
 }
 `, e.ReplyName(d), e.Name(), d.Name())
 }
