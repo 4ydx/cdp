@@ -639,7 +639,7 @@ func (g *Generator) DomainCmd(d proto.Domain, c proto.Command, sharedTypes map[s
 }
 
 func (g *Generator) domainCmdArgs(d proto.Domain, c proto.Command, sharedTypes map[string]bool) {
-	g.Printf("const %[1]s = %[2]q\n", "Command"+d.Domain+c.NameName, d.Domain+"."+c.NameName)
+	g.Printf("const %[1]s = %[2]q\n", "Command"+d.Domain+strings.Title(c.NameName), d.Domain+"."+c.NameName)
 
 	g.Printf(`
 // %[1]s represents the arguments for %[2]s in the %[3]s domain.
@@ -648,6 +648,19 @@ type %[1]s struct {
 	g.printStructProperties(d, c.ArgsName(d), c.Parameters, true, true, sharedTypes)
 	g.Printf("}\n\n")
 
+	g.Printf(`
+// Unmarshal the byte array into a return value for %[2]s in the %[3]s domain.
+func (a * %[1]s) UnmarshalJSON(b []byte) error {
+	return json.Unmarshal(b, a)
+}
+`, c.ArgsName(d), c.Name(), d.Name())
+
+	g.Printf(`
+// Marshall the byte array into a return value for %[2]s in the %[3]s domain.
+func (a * %[1]s) MarshalJSON() ([]byte, error) {
+	return json.Marshal(a)
+}
+`, c.ArgsName(d), c.Name(), d.Name())
 }
 
 func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes map[string]bool) {
@@ -682,11 +695,7 @@ type %[1]s struct {
 	g.Printf(`
 // Unmarshal the byte array into a return value for %[2]s in the %[3]s domain.
 func (a * %[1]s) UnmarshalJSON(b []byte) error {
-	err := json.Unmarshal(b, a)
-	if err != nil {
-		return err
-	}
-	return nil
+	return json.Unmarshal(b, a)
 }
 `, c.ReplyName(d), c.Name(), d.Name())
 }
@@ -722,7 +731,7 @@ func (g *Generator) DomainEvent(d proto.Domain, e proto.Event, sharedTypes map[s
 }
 
 func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes map[string]bool) {
-	g.Printf("const %[1]s = %[2]q\n", "Event"+d.Domain+e.NameName, d.Domain+"."+e.NameName)
+	g.Printf("const %[1]s = %[2]q\n", "Event"+d.Domain+strings.Title(e.NameName), d.Domain+"."+e.NameName)
 
 	g.Printf(`
 // %[1]s is the reply for %[2]s events.
@@ -730,6 +739,13 @@ type %[1]s struct {
 `, e.ReplyName(d), e.Name())
 	g.printStructProperties(d, e.ReplyName(d), e.Parameters, true, false, sharedTypes)
 	g.Printf("}\n")
+
+	g.Printf(`
+// Unmarshal the byte array into a return value for %[2]s in the %[3]s domain.
+func (a * %[1]s) UnmarshalJSON(b []byte) error {
+	return json.Unmarshal(b, a)
+}
+`, e.ReplyName(d), e.Name(), d.Name())
 }
 
 func quotedImports(imports []string) string {
