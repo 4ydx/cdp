@@ -218,12 +218,6 @@ func (g *Generator) commitType() {
 	g.typebuf.Reset()
 }
 
-// TestPrintf prints to the Generator test buffer.
-func (g *Generator) TestPrintf(format string, args ...interface{}) {
-	// No-op
-	// fmt.Fprintf(&g.testbuf, format, args...)
-}
-
 func (g *Generator) writeFile(f string) {
 	fp := path.Join(g.path(), f)
 	if !g.hasContent {
@@ -465,38 +459,6 @@ var _ json.Marshaler = (*%[1]s)(nil)
 var _ json.Unmarshaler = (*%[1]s)(nil)
 `, t.Name(d), g.pkg)
 
-	g.TestPrintf(`
-func Test%[1]s_Marshal(t *testing.T) {
-	var v %[1]s
-
-	// Test empty.
-	b, err := json.Marshal(&v)
-	if err != nil {
-		t.Errorf("Marshal() got %%v, want no error", err)
-	}
-	if string(b) != "null" {
-		t.Errorf("Marshal() got %%s, want null", b)
-	}
-	err = json.Unmarshal(b, &v)
-	if err != nil {
-		t.Errorf("Unmarshal() got %%v, want no error", err)
-	}
-
-	// Test non-empty.
-	v = 1
-	b, err = json.Marshal(&v)
-	if err != nil {
-		t.Errorf("Marshal() got %%v, want no error", err)
-	}
-	if string(b) != "1" {
-		t.Errorf("Marshal() got %%s, want 1", b)
-	}
-	err = json.Unmarshal(b, &v)
-	if err != nil {
-		t.Errorf("Unmarshal() got %%v, want no error", err)
-	}
-}
-`, t.Name(d))
 }
 
 func (g *Generator) domainTypeRawMessage(d proto.Domain, t proto.AnyType) {
@@ -522,43 +484,6 @@ func (%[3]s *%[1]s) UnmarshalJSON(data []byte) error {
 var _ json.Marshaler = (*%[1]s)(nil)
 var _ json.Unmarshaler = (*%[1]s)(nil)
 `, t.Name(d), g.pkg, t.Recvr(d))
-
-	g.TestPrintf(`
-func Test%[1]s_Marshal(t *testing.T) {
-	var v %[1]s
-
-	// Test empty.
-	b, err := json.Marshal(&v)
-	if err != nil {
-		t.Errorf("Marshal() got %%v, want no error", err)
-	}
-	if string(b) != "null" {
-		t.Errorf("Marshal() got %%s, want null", b)
-	}
-	err = json.Unmarshal(b, &v)
-	if err != nil {
-		t.Errorf("Unmarshal() got %%v, want no error", err)
-	}
-
-	// Test non-empty.
-	v = []byte("\"test\"")
-	b, err = json.Marshal(&v)
-	if err != nil {
-		t.Errorf("Marshal() got %%v, want no error", err)
-	}
-	if !bytes.Equal(v, b) {
-		t.Errorf("Marshal() got %%s, want %%s", b, v)
-	}
-	v = nil
-	err = json.Unmarshal(b, &v)
-	if err != nil {
-		t.Errorf("Unmarshal() got %%v, want no error", err)
-	}
-	if !bytes.Equal(v, b) {
-		t.Errorf("Unmarshal() got %%s, want %%s", b, v)
-	}
-}
-`, t.Name(d))
 }
 
 func (g *Generator) domainTypeEnum(d proto.Domain, t proto.AnyType) {
@@ -720,20 +645,6 @@ type %[1]s struct {
 `, c.ArgsName(d), c.Name(), d.Name())
 	g.printStructProperties(d, c.ArgsName(d), c.Parameters, true, true, sharedTypes)
 	g.Printf("}\n\n")
-
-	// Test the new arguments.
-	testInit := ""
-	if c.ArgsSignature(d) != "" {
-		testInit = fmt.Sprintf("func() (%s) { return }()", c.ArgsSignature(d))
-	}
-	g.TestPrintf(`
-func TestNew%[1]s(t *testing.T) {
-	args := New%[1]s(%[2]s)
-	if args == nil {
-		t.Errorf("New%[1]s returned nil args")
-	}
-}
-`, c.ArgsName(d), testInit)
 
 }
 
