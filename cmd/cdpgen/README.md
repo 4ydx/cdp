@@ -1,8 +1,8 @@
 # cdpgen
 
-The cdpgen tool is used to generate the Golang API for the Chrome Debugging Protocol from the protocol definitions (JSON).
+Originally from https://github.com/mafredri/cdp but I have revised it to match my own needs.  Thanks mafredri!
 
-Beware, this tool is not a feat of engineering, it's only purpose is to generate the Golang API. It has gone thourgh many revisions while prototyping the API and might contain both messy and dead code.
+The cdpgen tool is used to generate the Golang API for the Chrome Debugging Protocol from the protocol definitions (JSON).
 
 ## Installing
 
@@ -17,9 +17,9 @@ The current protocol definitions are committed in this repository under the `pro
 ### Generating the cdp package
 
 ```console
-$ cdpgen -dest-pkg github.com/mafredri/cdp \
-    -browser-proto $GOPATH/src/github.com/mafredri/cdp/cmd/cdpgen/protodef/browser_protocol.json \
-    -js-proto $GOPATH/src/github.com/mafredri/cdp/cmd/cdpgen/protodef/js_protocol.json
+$ cdpgen -dest-pkg github.com/4ydx/cdp \
+    -browser-proto $GOPATH/src/github.com/4ydx/cdp/cmd/cdpgen/protodef/browser_protocol.json \
+    -js-proto $GOPATH/src/github.com/4ydx/cdp/cmd/cdpgen/protodef/js_protocol.json
 ```
 
 ### Updating protocol definitions
