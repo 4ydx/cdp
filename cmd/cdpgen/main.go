@@ -658,7 +658,8 @@ func (a * %[1]s) UnmarshalJSON(b []byte) error {
 	g.Printf(`
 // Marshall the byte array into a return value for %[2]s in the %[3]s domain.
 func (a * %[1]s) MarshalJSON() ([]byte, error) {
-	return json.Marshal(a)
+	type Copy %[1]s
+	return json.Marshal(&Copy{})
 }
 `, c.ArgsName(d), c.Name(), d.Name())
 }
