@@ -161,7 +161,6 @@ func main() {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	fmt.Println("PATH", g.path())
 	goimports := exec.CommandContext(ctx, "goimports", "-w", g.path())
 	out, err := goimports.CombinedOutput()
 	if err != nil {
@@ -334,7 +333,6 @@ func (g *Generator) PrintTypeHelper(d proto.Domain, t proto.AnyType, sharedTypes
 // DomainSharedType creates the type definition for all non-struct, enu, time, rawmessage types.
 func (g *Generator) DomainSharedType(d proto.Domain, t proto.AnyType, sharedTypes map[string]bool) {
 	if _, ok := sharedTypes[t.Name(d)]; !ok {
-		fmt.Println("NOT SHARED TYPE", t.Name(d))
 		return
 	}
 	g.PrintTypeHelper(d, t, sharedTypes)
@@ -343,7 +341,6 @@ func (g *Generator) DomainSharedType(d proto.Domain, t proto.AnyType, sharedType
 // DomainType creates the type definition.
 func (g *Generator) DomainType(d proto.Domain, t proto.AnyType, sharedTypes map[string]bool) {
 	if _, ok := sharedTypes[t.Name(d)]; ok {
-		fmt.Println("SKIP SHARED TYPE", t.Name(d))
 		return
 	}
 	g.PrintTypeHelper(d, t, sharedTypes)
@@ -356,16 +353,13 @@ func (g *Generator) printStructProperties(d proto.Domain, name string, props []p
 
 		// Check for types that were pushed into the shared simple_types.go file.
 		suffix := prop.GetSuffix(g.pkg, d)
-		fmt.Printf("SUFFIX '%s'\n", suffix)
 		if suffix != "" {
 			if _, ok := sharedTypes[suffix]; ok {
 				ptype = "shared." + suffix
-				fmt.Printf("PTYPE '%s'\n", ptype)
 			}
 		}
 		if _, ok := sharedTypes[ptype]; ok {
 			ptype = "shared." + ptype
-			fmt.Printf("PTYPE '%s'\n", ptype)
 		}
 
 		// Make all optional properties into pointers, unless they are slices.
@@ -755,9 +749,6 @@ type %[1]s struct {
 	for _, a := range c.Returns {
 		if a.NameName == "frameId" {
 			hasFrameId = true
-		}
-		for _, p := range a.Properties {
-			fmt.Println("PROP", p.IDName, p.NameName)
 		}
 	}
 	if hasFrameId {
