@@ -4,6 +4,7 @@ package log
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandLogClear = "Log.clear"
@@ -34,6 +35,15 @@ func (a *ClearArgs) MarshalJSON() ([]byte, error) {
 
 // ClearReply represents the return values for Clear in the Log domain.
 type ClearReply struct {
+}
+
+// ClearReply returns whether or not the FrameID matches the reply value for Clear in the Log domain.
+func (a *ClearReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ClearReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Clear in the Log domain.
@@ -78,6 +88,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 type DisableReply struct {
 }
 
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the Log domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for Disable in the Log domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -118,6 +137,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the Log domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the Log domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the Log domain.
@@ -163,6 +191,15 @@ func (a *StartViolationsReportArgs) MarshalJSON() ([]byte, error) {
 type StartViolationsReportReply struct {
 }
 
+// StartViolationsReportReply returns whether or not the FrameID matches the reply value for StartViolationsReport in the Log domain.
+func (a *StartViolationsReportReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StartViolationsReportReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for StartViolationsReport in the Log domain.
 func (a *StartViolationsReportReply) UnmarshalJSON(b []byte) error {
 	type Copy StartViolationsReportReply
@@ -203,6 +240,15 @@ func (a *StopViolationsReportArgs) MarshalJSON() ([]byte, error) {
 
 // StopViolationsReportReply represents the return values for StopViolationsReport in the Log domain.
 type StopViolationsReportReply struct {
+}
+
+// StopViolationsReportReply returns whether or not the FrameID matches the reply value for StopViolationsReport in the Log domain.
+func (a *StopViolationsReportReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StopViolationsReportReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for StopViolationsReport in the Log domain.

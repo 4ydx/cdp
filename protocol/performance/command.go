@@ -4,6 +4,7 @@ package performance
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandPerformanceDisable = "Performance.disable"
@@ -34,6 +35,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 
 // DisableReply represents the return values for Disable in the Performance domain.
 type DisableReply struct {
+}
+
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the Performance domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Disable in the Performance domain.
@@ -78,6 +88,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 type EnableReply struct {
 }
 
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the Performance domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for Enable in the Performance domain.
 func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	type Copy EnableReply
@@ -119,6 +138,15 @@ func (a *GetMetricsArgs) MarshalJSON() ([]byte, error) {
 // GetMetricsReply represents the return values for GetMetrics in the Performance domain.
 type GetMetricsReply struct {
 	Metrics []Metric `json:"metrics"` // Current values for run-time metrics.
+}
+
+// GetMetricsReply returns whether or not the FrameID matches the reply value for GetMetrics in the Performance domain.
+func (a *GetMetricsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetMetricsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for GetMetrics in the Performance domain.

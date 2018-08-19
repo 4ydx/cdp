@@ -4,6 +4,7 @@ package database
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandDatabaseDisable = "Database.disable"
@@ -34,6 +35,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 
 // DisableReply represents the return values for Disable in the Database domain.
 type DisableReply struct {
+}
+
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the Database domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Disable in the Database domain.
@@ -76,6 +86,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the Database domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the Database domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the Database domain.
@@ -125,6 +144,15 @@ type ExecuteSQLReply struct {
 	SQLError    Error             `json:"sqlError,omitempty"`    // No description.
 }
 
+// ExecuteSQLReply returns whether or not the FrameID matches the reply value for ExecuteSQL in the Database domain.
+func (a *ExecuteSQLReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ExecuteSQLReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for ExecuteSQL in the Database domain.
 func (a *ExecuteSQLReply) UnmarshalJSON(b []byte) error {
 	type Copy ExecuteSQLReply
@@ -167,6 +195,15 @@ func (a *GetDatabaseTableNamesArgs) MarshalJSON() ([]byte, error) {
 // GetDatabaseTableNamesReply represents the return values for GetDatabaseTableNames in the Database domain.
 type GetDatabaseTableNamesReply struct {
 	TableNames []string `json:"tableNames"` // No description.
+}
+
+// GetDatabaseTableNamesReply returns whether or not the FrameID matches the reply value for GetDatabaseTableNames in the Database domain.
+func (a *GetDatabaseTableNamesReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetDatabaseTableNamesReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for GetDatabaseTableNames in the Database domain.

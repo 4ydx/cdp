@@ -4,6 +4,7 @@ package browser
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol/target"
 )
@@ -36,6 +37,15 @@ func (a *CloseArgs) MarshalJSON() ([]byte, error) {
 
 // CloseReply represents the return values for Close in the Browser domain.
 type CloseReply struct {
+}
+
+// CloseReply returns whether or not the FrameID matches the reply value for Close in the Browser domain.
+func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: CloseReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Close in the Browser domain.
@@ -85,6 +95,15 @@ type GetVersionReply struct {
 	JsVersion       string `json:"jsVersion"`       // V8 version.
 }
 
+// GetVersionReply returns whether or not the FrameID matches the reply value for GetVersion in the Browser domain.
+func (a *GetVersionReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetVersionReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetVersion in the Browser domain.
 func (a *GetVersionReply) UnmarshalJSON(b []byte) error {
 	type Copy GetVersionReply
@@ -126,6 +145,15 @@ func (a *GetBrowserCommandLineArgs) MarshalJSON() ([]byte, error) {
 // GetBrowserCommandLineReply represents the return values for GetBrowserCommandLine in the Browser domain.
 type GetBrowserCommandLineReply struct {
 	Arguments []string `json:"arguments"` // Commandline parameters
+}
+
+// GetBrowserCommandLineReply returns whether or not the FrameID matches the reply value for GetBrowserCommandLine in the Browser domain.
+func (a *GetBrowserCommandLineReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetBrowserCommandLineReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for GetBrowserCommandLine in the Browser domain.
@@ -173,6 +201,15 @@ type GetHistogramsReply struct {
 	Histograms []Histogram `json:"histograms"` // Histograms.
 }
 
+// GetHistogramsReply returns whether or not the FrameID matches the reply value for GetHistograms in the Browser domain.
+func (a *GetHistogramsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetHistogramsReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetHistograms in the Browser domain.
 func (a *GetHistogramsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetHistogramsReply
@@ -218,6 +255,15 @@ type GetHistogramReply struct {
 	Histogram Histogram `json:"histogram"` // Histogram.
 }
 
+// GetHistogramReply returns whether or not the FrameID matches the reply value for GetHistogram in the Browser domain.
+func (a *GetHistogramReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetHistogramReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetHistogram in the Browser domain.
 func (a *GetHistogramReply) UnmarshalJSON(b []byte) error {
 	type Copy GetHistogramReply
@@ -260,6 +306,15 @@ func (a *GetWindowBoundsArgs) MarshalJSON() ([]byte, error) {
 // GetWindowBoundsReply represents the return values for GetWindowBounds in the Browser domain.
 type GetWindowBoundsReply struct {
 	Bounds Bounds `json:"bounds"` // Bounds information of the window. When window state is 'minimized', the restored window position and size are returned.
+}
+
+// GetWindowBoundsReply returns whether or not the FrameID matches the reply value for GetWindowBounds in the Browser domain.
+func (a *GetWindowBoundsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetWindowBoundsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for GetWindowBounds in the Browser domain.
@@ -307,6 +362,15 @@ type GetWindowForTargetReply struct {
 	Bounds   Bounds   `json:"bounds"`   // Bounds information of the window. When window state is 'minimized', the restored window position and size are returned.
 }
 
+// GetWindowForTargetReply returns whether or not the FrameID matches the reply value for GetWindowForTarget in the Browser domain.
+func (a *GetWindowForTargetReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetWindowForTargetReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetWindowForTarget in the Browser domain.
 func (a *GetWindowForTargetReply) UnmarshalJSON(b []byte) error {
 	type Copy GetWindowForTargetReply
@@ -349,6 +413,15 @@ func (a *SetWindowBoundsArgs) MarshalJSON() ([]byte, error) {
 
 // SetWindowBoundsReply represents the return values for SetWindowBounds in the Browser domain.
 type SetWindowBoundsReply struct {
+}
+
+// SetWindowBoundsReply returns whether or not the FrameID matches the reply value for SetWindowBounds in the Browser domain.
+func (a *SetWindowBoundsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetWindowBoundsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetWindowBounds in the Browser domain.

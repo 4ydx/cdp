@@ -4,6 +4,7 @@ package io
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol"
 )
@@ -37,6 +38,15 @@ func (a *CloseArgs) MarshalJSON() ([]byte, error) {
 
 // CloseReply represents the return values for Close in the IO domain.
 type CloseReply struct {
+}
+
+// CloseReply returns whether or not the FrameID matches the reply value for Close in the IO domain.
+func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: CloseReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Close in the IO domain.
@@ -87,6 +97,15 @@ type ReadReply struct {
 	EOF           bool   `json:"eof"`                     // Set if the end-of-file condition occurred while reading.
 }
 
+// ReadReply returns whether or not the FrameID matches the reply value for Read in the IO domain.
+func (a *ReadReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ReadReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for Read in the IO domain.
 func (a *ReadReply) UnmarshalJSON(b []byte) error {
 	type Copy ReadReply
@@ -129,6 +148,15 @@ func (a *ResolveBlobArgs) MarshalJSON() ([]byte, error) {
 // ResolveBlobReply represents the return values for ResolveBlob in the IO domain.
 type ResolveBlobReply struct {
 	UUID string `json:"uuid"` // UUID of the specified Blob.
+}
+
+// ResolveBlobReply returns whether or not the FrameID matches the reply value for ResolveBlob in the IO domain.
+func (a *ResolveBlobReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ResolveBlobReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for ResolveBlob in the IO domain.

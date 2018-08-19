@@ -4,6 +4,7 @@ package indexeddb
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandIndexedDBClearObjectStore = "IndexedDB.clearObjectStore"
@@ -37,6 +38,15 @@ func (a *ClearObjectStoreArgs) MarshalJSON() ([]byte, error) {
 
 // ClearObjectStoreReply represents the return values for ClearObjectStore in the IndexedDB domain.
 type ClearObjectStoreReply struct {
+}
+
+// ClearObjectStoreReply returns whether or not the FrameID matches the reply value for ClearObjectStore in the IndexedDB domain.
+func (a *ClearObjectStoreReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ClearObjectStoreReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for ClearObjectStore in the IndexedDB domain.
@@ -81,6 +91,15 @@ func (a *DeleteDatabaseArgs) MarshalJSON() ([]byte, error) {
 
 // DeleteDatabaseReply represents the return values for DeleteDatabase in the IndexedDB domain.
 type DeleteDatabaseReply struct {
+}
+
+// DeleteDatabaseReply returns whether or not the FrameID matches the reply value for DeleteDatabase in the IndexedDB domain.
+func (a *DeleteDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DeleteDatabaseReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for DeleteDatabase in the IndexedDB domain.
@@ -129,6 +148,15 @@ func (a *DeleteObjectStoreEntriesArgs) MarshalJSON() ([]byte, error) {
 type DeleteObjectStoreEntriesReply struct {
 }
 
+// DeleteObjectStoreEntriesReply returns whether or not the FrameID matches the reply value for DeleteObjectStoreEntries in the IndexedDB domain.
+func (a *DeleteObjectStoreEntriesReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DeleteObjectStoreEntriesReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for DeleteObjectStoreEntries in the IndexedDB domain.
 func (a *DeleteObjectStoreEntriesReply) UnmarshalJSON(b []byte) error {
 	type Copy DeleteObjectStoreEntriesReply
@@ -171,6 +199,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 type DisableReply struct {
 }
 
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the IndexedDB domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for Disable in the IndexedDB domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -211,6 +248,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the IndexedDB domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the IndexedDB domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the IndexedDB domain.
@@ -264,6 +310,15 @@ type RequestDataReply struct {
 	HasMore                bool        `json:"hasMore"`                // If true, there are more entries to fetch in the given range.
 }
 
+// RequestDataReply returns whether or not the FrameID matches the reply value for RequestData in the IndexedDB domain.
+func (a *RequestDataReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RequestDataReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for RequestData in the IndexedDB domain.
 func (a *RequestDataReply) UnmarshalJSON(b []byte) error {
 	type Copy RequestDataReply
@@ -309,6 +364,15 @@ type RequestDatabaseReply struct {
 	DatabaseWithObjectStores DatabaseWithObjectStores `json:"databaseWithObjectStores"` // Database with an array of object stores.
 }
 
+// RequestDatabaseReply returns whether or not the FrameID matches the reply value for RequestDatabase in the IndexedDB domain.
+func (a *RequestDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RequestDatabaseReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for RequestDatabase in the IndexedDB domain.
 func (a *RequestDatabaseReply) UnmarshalJSON(b []byte) error {
 	type Copy RequestDatabaseReply
@@ -351,6 +415,15 @@ func (a *RequestDatabaseNamesArgs) MarshalJSON() ([]byte, error) {
 // RequestDatabaseNamesReply represents the return values for RequestDatabaseNames in the IndexedDB domain.
 type RequestDatabaseNamesReply struct {
 	DatabaseNames []string `json:"databaseNames"` // Database names for origin.
+}
+
+// RequestDatabaseNamesReply returns whether or not the FrameID matches the reply value for RequestDatabaseNames in the IndexedDB domain.
+func (a *RequestDatabaseNamesReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RequestDatabaseNamesReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for RequestDatabaseNames in the IndexedDB domain.

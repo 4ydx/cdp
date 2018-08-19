@@ -4,6 +4,7 @@ package tracing
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandTracingEnd = "Tracing.end"
@@ -34,6 +35,15 @@ func (a *EndArgs) MarshalJSON() ([]byte, error) {
 
 // EndReply represents the return values for End in the Tracing domain.
 type EndReply struct {
+}
+
+// EndReply returns whether or not the FrameID matches the reply value for End in the Tracing domain.
+func (a *EndReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EndReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for End in the Tracing domain.
@@ -79,6 +89,15 @@ type GetCategoriesReply struct {
 	Categories []string `json:"categories"` // A list of supported tracing categories.
 }
 
+// GetCategoriesReply returns whether or not the FrameID matches the reply value for GetCategories in the Tracing domain.
+func (a *GetCategoriesReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetCategoriesReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetCategories in the Tracing domain.
 func (a *GetCategoriesReply) UnmarshalJSON(b []byte) error {
 	type Copy GetCategoriesReply
@@ -120,6 +139,15 @@ func (a *RecordClockSyncMarkerArgs) MarshalJSON() ([]byte, error) {
 
 // RecordClockSyncMarkerReply represents the return values for RecordClockSyncMarker in the Tracing domain.
 type RecordClockSyncMarkerReply struct {
+}
+
+// RecordClockSyncMarkerReply returns whether or not the FrameID matches the reply value for RecordClockSyncMarker in the Tracing domain.
+func (a *RecordClockSyncMarkerReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RecordClockSyncMarkerReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for RecordClockSyncMarker in the Tracing domain.
@@ -164,6 +192,15 @@ func (a *RequestMemoryDumpArgs) MarshalJSON() ([]byte, error) {
 type RequestMemoryDumpReply struct {
 	DumpGUID string `json:"dumpGuid"` // GUID of the resulting global memory dump.
 	Success  bool   `json:"success"`  // True iff the global memory dump succeeded.
+}
+
+// RequestMemoryDumpReply returns whether or not the FrameID matches the reply value for RequestMemoryDump in the Tracing domain.
+func (a *RequestMemoryDumpReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RequestMemoryDumpReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for RequestMemoryDump in the Tracing domain.
@@ -223,6 +260,15 @@ func (a *StartArgs) MarshalJSON() ([]byte, error) {
 
 // StartReply represents the return values for Start in the Tracing domain.
 type StartReply struct {
+}
+
+// StartReply returns whether or not the FrameID matches the reply value for Start in the Tracing domain.
+func (a *StartReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StartReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Start in the Tracing domain.

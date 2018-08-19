@@ -700,7 +700,7 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 	}
 	if hasFrameId {
 		g.Printf(`
-				// %[1]s returns the FrameID value for %[2]s in the %[3]s domain.
+				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
 				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
 					`, c.ReplyName(d), c.Name(), d.Name())
 
@@ -711,10 +711,9 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 					return a.FrameID == shared.FrameID(frameID)
 				}
 				`, c.ReplyName(d))
-	}
-	if hasNode {
+	} else if hasNode {
 		g.Printf(`
-				// %[1]s returns the FrameID value for %[2]s in the %[3]s domain.
+				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
 				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
 					`, c.ReplyName(d), c.Name(), d.Name())
 
@@ -725,10 +724,9 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 					return a.Node.FrameID == shared.FrameID(frameID)
 				}
 				`, c.ReplyName(d))
-	}
-	if hasArrayNodes {
+	} else if hasArrayNodes {
 		g.Printf(`
-				// %[1]s returns the FrameID value for %[2]s in the %[3]s domain.
+				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
 				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
 					`, c.ReplyName(d), c.Name(), d.Name())
 
@@ -743,6 +741,19 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 						}
 					}
 					return fid == frameID
+				}
+				`, c.ReplyName(d))
+	} else {
+		g.Printf(`
+				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
+				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
+					`, c.ReplyName(d), c.Name(), d.Name())
+
+		g.Printf(`err := a.UnmarshalJSON(m)
+					if err != nil {
+						log.Fatalf("unmarshal error: %s", err)
+					}
+					return true
 				}
 				`, c.ReplyName(d))
 	}

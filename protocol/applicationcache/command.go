@@ -4,6 +4,7 @@ package applicationcache
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol"
 )
@@ -36,6 +37,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the ApplicationCache domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the ApplicationCache domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the ApplicationCache domain.
@@ -82,6 +92,15 @@ type GetApplicationCacheForFrameReply struct {
 	ApplicationCache ApplicationCache `json:"applicationCache"` // Relevant application cache data for the document in given frame.
 }
 
+// GetApplicationCacheForFrameReply returns whether or not the FrameID matches the reply value for GetApplicationCacheForFrame in the ApplicationCache domain.
+func (a *GetApplicationCacheForFrameReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetApplicationCacheForFrameReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetApplicationCacheForFrame in the ApplicationCache domain.
 func (a *GetApplicationCacheForFrameReply) UnmarshalJSON(b []byte) error {
 	type Copy GetApplicationCacheForFrameReply
@@ -123,6 +142,15 @@ func (a *GetFramesWithManifestsArgs) MarshalJSON() ([]byte, error) {
 // GetFramesWithManifestsReply represents the return values for GetFramesWithManifests in the ApplicationCache domain.
 type GetFramesWithManifestsReply struct {
 	FrameIDs []FrameWithManifest `json:"frameIds"` // Array of frame identifiers with manifest urls for each frame containing a document associated with some application cache.
+}
+
+// GetFramesWithManifestsReply returns whether or not the FrameID matches the reply value for GetFramesWithManifests in the ApplicationCache domain.
+func (a *GetFramesWithManifestsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetFramesWithManifestsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for GetFramesWithManifests in the ApplicationCache domain.
@@ -167,6 +195,15 @@ func (a *GetManifestForFrameArgs) MarshalJSON() ([]byte, error) {
 // GetManifestForFrameReply represents the return values for GetManifestForFrame in the ApplicationCache domain.
 type GetManifestForFrameReply struct {
 	ManifestURL string `json:"manifestURL"` // Manifest URL for document in the given frame.
+}
+
+// GetManifestForFrameReply returns whether or not the FrameID matches the reply value for GetManifestForFrame in the ApplicationCache domain.
+func (a *GetManifestForFrameReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetManifestForFrameReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for GetManifestForFrame in the ApplicationCache domain.

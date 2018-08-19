@@ -4,6 +4,7 @@ package tethering
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandTetheringBind = "Tethering.bind"
@@ -35,6 +36,15 @@ func (a *BindArgs) MarshalJSON() ([]byte, error) {
 
 // BindReply represents the return values for Bind in the Tethering domain.
 type BindReply struct {
+}
+
+// BindReply returns whether or not the FrameID matches the reply value for Bind in the Tethering domain.
+func (a *BindReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: BindReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Bind in the Tethering domain.
@@ -78,6 +88,15 @@ func (a *UnbindArgs) MarshalJSON() ([]byte, error) {
 
 // UnbindReply represents the return values for Unbind in the Tethering domain.
 type UnbindReply struct {
+}
+
+// UnbindReply returns whether or not the FrameID matches the reply value for Unbind in the Tethering domain.
+func (a *UnbindReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: UnbindReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Unbind in the Tethering domain.

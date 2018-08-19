@@ -4,6 +4,7 @@ package accessibility
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/dom"
@@ -42,6 +43,15 @@ func (a *GetPartialAXTreeArgs) MarshalJSON() ([]byte, error) {
 // GetPartialAXTreeReply represents the return values for GetPartialAXTree in the Accessibility domain.
 type GetPartialAXTreeReply struct {
 	Nodes []AXNode `json:"nodes"` // The `Accessibility.AXNode` for this DOM node, if it exists, plus its ancestors, siblings and children, if requested.
+}
+
+// GetPartialAXTreeReply returns whether or not the FrameID matches the reply value for GetPartialAXTree in the Accessibility domain.
+func (a *GetPartialAXTreeReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetPartialAXTreeReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for GetPartialAXTree in the Accessibility domain.

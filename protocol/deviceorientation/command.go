@@ -4,6 +4,7 @@ package deviceorientation
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandDeviceOrientationClearDeviceOrientationOverride = "DeviceOrientation.clearDeviceOrientationOverride"
@@ -34,6 +35,15 @@ func (a *ClearDeviceOrientationOverrideArgs) MarshalJSON() ([]byte, error) {
 
 // ClearDeviceOrientationOverrideReply represents the return values for ClearDeviceOrientationOverride in the DeviceOrientation domain.
 type ClearDeviceOrientationOverrideReply struct {
+}
+
+// ClearDeviceOrientationOverrideReply returns whether or not the FrameID matches the reply value for ClearDeviceOrientationOverride in the DeviceOrientation domain.
+func (a *ClearDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ClearDeviceOrientationOverrideReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for ClearDeviceOrientationOverride in the DeviceOrientation domain.
@@ -79,6 +89,15 @@ func (a *SetDeviceOrientationOverrideArgs) MarshalJSON() ([]byte, error) {
 
 // SetDeviceOrientationOverrideReply represents the return values for SetDeviceOrientationOverride in the DeviceOrientation domain.
 type SetDeviceOrientationOverrideReply struct {
+}
+
+// SetDeviceOrientationOverrideReply returns whether or not the FrameID matches the reply value for SetDeviceOrientationOverride in the DeviceOrientation domain.
+func (a *SetDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetDeviceOrientationOverrideReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetDeviceOrientationOverride in the DeviceOrientation domain.

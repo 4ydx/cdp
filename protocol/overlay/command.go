@@ -4,6 +4,7 @@ package overlay
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/dom"
@@ -37,6 +38,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 
 // DisableReply represents the return values for Disable in the Overlay domain.
 type DisableReply struct {
+}
+
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the Overlay domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Disable in the Overlay domain.
@@ -79,6 +89,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the Overlay domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the Overlay domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the Overlay domain.
@@ -125,6 +144,15 @@ type GetHighlightObjectForTestReply struct {
 	Highlight json.RawMessage `json:"highlight"` // Highlight data for the node.
 }
 
+// GetHighlightObjectForTestReply returns whether or not the FrameID matches the reply value for GetHighlightObjectForTest in the Overlay domain.
+func (a *GetHighlightObjectForTestReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetHighlightObjectForTestReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetHighlightObjectForTest in the Overlay domain.
 func (a *GetHighlightObjectForTestReply) UnmarshalJSON(b []byte) error {
 	type Copy GetHighlightObjectForTestReply
@@ -165,6 +193,15 @@ func (a *HideHighlightArgs) MarshalJSON() ([]byte, error) {
 
 // HideHighlightReply represents the return values for HideHighlight in the Overlay domain.
 type HideHighlightReply struct {
+}
+
+// HideHighlightReply returns whether or not the FrameID matches the reply value for HideHighlight in the Overlay domain.
+func (a *HideHighlightReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: HideHighlightReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for HideHighlight in the Overlay domain.
@@ -210,6 +247,15 @@ func (a *HighlightFrameArgs) MarshalJSON() ([]byte, error) {
 
 // HighlightFrameReply represents the return values for HighlightFrame in the Overlay domain.
 type HighlightFrameReply struct {
+}
+
+// HighlightFrameReply returns whether or not the FrameID matches the reply value for HighlightFrame in the Overlay domain.
+func (a *HighlightFrameReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: HighlightFrameReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for HighlightFrame in the Overlay domain.
@@ -258,6 +304,15 @@ func (a *HighlightNodeArgs) MarshalJSON() ([]byte, error) {
 type HighlightNodeReply struct {
 }
 
+// HighlightNodeReply returns whether or not the FrameID matches the reply value for HighlightNode in the Overlay domain.
+func (a *HighlightNodeReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: HighlightNodeReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for HighlightNode in the Overlay domain.
 func (a *HighlightNodeReply) UnmarshalJSON(b []byte) error {
 	type Copy HighlightNodeReply
@@ -301,6 +356,15 @@ func (a *HighlightQuadArgs) MarshalJSON() ([]byte, error) {
 
 // HighlightQuadReply represents the return values for HighlightQuad in the Overlay domain.
 type HighlightQuadReply struct {
+}
+
+// HighlightQuadReply returns whether or not the FrameID matches the reply value for HighlightQuad in the Overlay domain.
+func (a *HighlightQuadReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: HighlightQuadReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for HighlightQuad in the Overlay domain.
@@ -351,6 +415,15 @@ func (a *HighlightRectArgs) MarshalJSON() ([]byte, error) {
 type HighlightRectReply struct {
 }
 
+// HighlightRectReply returns whether or not the FrameID matches the reply value for HighlightRect in the Overlay domain.
+func (a *HighlightRectReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: HighlightRectReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for HighlightRect in the Overlay domain.
 func (a *HighlightRectReply) UnmarshalJSON(b []byte) error {
 	type Copy HighlightRectReply
@@ -393,6 +466,15 @@ func (a *SetInspectModeArgs) MarshalJSON() ([]byte, error) {
 
 // SetInspectModeReply represents the return values for SetInspectMode in the Overlay domain.
 type SetInspectModeReply struct {
+}
+
+// SetInspectModeReply returns whether or not the FrameID matches the reply value for SetInspectMode in the Overlay domain.
+func (a *SetInspectModeReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetInspectModeReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetInspectMode in the Overlay domain.
@@ -438,6 +520,15 @@ func (a *SetPausedInDebuggerMessageArgs) MarshalJSON() ([]byte, error) {
 type SetPausedInDebuggerMessageReply struct {
 }
 
+// SetPausedInDebuggerMessageReply returns whether or not the FrameID matches the reply value for SetPausedInDebuggerMessage in the Overlay domain.
+func (a *SetPausedInDebuggerMessageReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetPausedInDebuggerMessageReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetPausedInDebuggerMessage in the Overlay domain.
 func (a *SetPausedInDebuggerMessageReply) UnmarshalJSON(b []byte) error {
 	type Copy SetPausedInDebuggerMessageReply
@@ -479,6 +570,15 @@ func (a *SetShowDebugBordersArgs) MarshalJSON() ([]byte, error) {
 
 // SetShowDebugBordersReply represents the return values for SetShowDebugBorders in the Overlay domain.
 type SetShowDebugBordersReply struct {
+}
+
+// SetShowDebugBordersReply returns whether or not the FrameID matches the reply value for SetShowDebugBorders in the Overlay domain.
+func (a *SetShowDebugBordersReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetShowDebugBordersReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetShowDebugBorders in the Overlay domain.
@@ -524,6 +624,15 @@ func (a *SetShowFPSCounterArgs) MarshalJSON() ([]byte, error) {
 type SetShowFPSCounterReply struct {
 }
 
+// SetShowFPSCounterReply returns whether or not the FrameID matches the reply value for SetShowFPSCounter in the Overlay domain.
+func (a *SetShowFPSCounterReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetShowFPSCounterReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetShowFPSCounter in the Overlay domain.
 func (a *SetShowFPSCounterReply) UnmarshalJSON(b []byte) error {
 	type Copy SetShowFPSCounterReply
@@ -565,6 +674,15 @@ func (a *SetShowPaintRectsArgs) MarshalJSON() ([]byte, error) {
 
 // SetShowPaintRectsReply represents the return values for SetShowPaintRects in the Overlay domain.
 type SetShowPaintRectsReply struct {
+}
+
+// SetShowPaintRectsReply returns whether or not the FrameID matches the reply value for SetShowPaintRects in the Overlay domain.
+func (a *SetShowPaintRectsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetShowPaintRectsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetShowPaintRects in the Overlay domain.
@@ -610,6 +728,15 @@ func (a *SetShowScrollBottleneckRectsArgs) MarshalJSON() ([]byte, error) {
 type SetShowScrollBottleneckRectsReply struct {
 }
 
+// SetShowScrollBottleneckRectsReply returns whether or not the FrameID matches the reply value for SetShowScrollBottleneckRects in the Overlay domain.
+func (a *SetShowScrollBottleneckRectsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetShowScrollBottleneckRectsReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetShowScrollBottleneckRects in the Overlay domain.
 func (a *SetShowScrollBottleneckRectsReply) UnmarshalJSON(b []byte) error {
 	type Copy SetShowScrollBottleneckRectsReply
@@ -653,6 +780,15 @@ func (a *SetShowViewportSizeOnResizeArgs) MarshalJSON() ([]byte, error) {
 type SetShowViewportSizeOnResizeReply struct {
 }
 
+// SetShowViewportSizeOnResizeReply returns whether or not the FrameID matches the reply value for SetShowViewportSizeOnResize in the Overlay domain.
+func (a *SetShowViewportSizeOnResizeReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetShowViewportSizeOnResizeReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetShowViewportSizeOnResize in the Overlay domain.
 func (a *SetShowViewportSizeOnResizeReply) UnmarshalJSON(b []byte) error {
 	type Copy SetShowViewportSizeOnResizeReply
@@ -694,6 +830,15 @@ func (a *SetSuspendedArgs) MarshalJSON() ([]byte, error) {
 
 // SetSuspendedReply represents the return values for SetSuspended in the Overlay domain.
 type SetSuspendedReply struct {
+}
+
+// SetSuspendedReply returns whether or not the FrameID matches the reply value for SetSuspended in the Overlay domain.
+func (a *SetSuspendedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetSuspendedReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetSuspended in the Overlay domain.

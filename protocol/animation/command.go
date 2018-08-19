@@ -4,6 +4,7 @@ package animation
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol/runtime"
 )
@@ -36,6 +37,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 
 // DisableReply represents the return values for Disable in the Animation domain.
 type DisableReply struct {
+}
+
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the Animation domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Disable in the Animation domain.
@@ -78,6 +88,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the Animation domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the Animation domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the Animation domain.
@@ -124,6 +143,15 @@ type GetCurrentTimeReply struct {
 	CurrentTime float64 `json:"currentTime"` // Current time of the page.
 }
 
+// GetCurrentTimeReply returns whether or not the FrameID matches the reply value for GetCurrentTime in the Animation domain.
+func (a *GetCurrentTimeReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetCurrentTimeReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetCurrentTime in the Animation domain.
 func (a *GetCurrentTimeReply) UnmarshalJSON(b []byte) error {
 	type Copy GetCurrentTimeReply
@@ -167,6 +195,15 @@ type GetPlaybackRateReply struct {
 	PlaybackRate float64 `json:"playbackRate"` // Playback rate for animations on page.
 }
 
+// GetPlaybackRateReply returns whether or not the FrameID matches the reply value for GetPlaybackRate in the Animation domain.
+func (a *GetPlaybackRateReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetPlaybackRateReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetPlaybackRate in the Animation domain.
 func (a *GetPlaybackRateReply) UnmarshalJSON(b []byte) error {
 	type Copy GetPlaybackRateReply
@@ -208,6 +245,15 @@ func (a *ReleaseAnimationsArgs) MarshalJSON() ([]byte, error) {
 
 // ReleaseAnimationsReply represents the return values for ReleaseAnimations in the Animation domain.
 type ReleaseAnimationsReply struct {
+}
+
+// ReleaseAnimationsReply returns whether or not the FrameID matches the reply value for ReleaseAnimations in the Animation domain.
+func (a *ReleaseAnimationsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ReleaseAnimationsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for ReleaseAnimations in the Animation domain.
@@ -254,6 +300,15 @@ type ResolveAnimationReply struct {
 	RemoteObject runtime.RemoteObject `json:"remoteObject"` // Corresponding remote object.
 }
 
+// ResolveAnimationReply returns whether or not the FrameID matches the reply value for ResolveAnimation in the Animation domain.
+func (a *ResolveAnimationReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ResolveAnimationReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for ResolveAnimation in the Animation domain.
 func (a *ResolveAnimationReply) UnmarshalJSON(b []byte) error {
 	type Copy ResolveAnimationReply
@@ -296,6 +351,15 @@ func (a *SeekAnimationsArgs) MarshalJSON() ([]byte, error) {
 
 // SeekAnimationsReply represents the return values for SeekAnimations in the Animation domain.
 type SeekAnimationsReply struct {
+}
+
+// SeekAnimationsReply returns whether or not the FrameID matches the reply value for SeekAnimations in the Animation domain.
+func (a *SeekAnimationsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SeekAnimationsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SeekAnimations in the Animation domain.
@@ -342,6 +406,15 @@ func (a *SetPausedArgs) MarshalJSON() ([]byte, error) {
 type SetPausedReply struct {
 }
 
+// SetPausedReply returns whether or not the FrameID matches the reply value for SetPaused in the Animation domain.
+func (a *SetPausedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetPausedReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetPaused in the Animation domain.
 func (a *SetPausedReply) UnmarshalJSON(b []byte) error {
 	type Copy SetPausedReply
@@ -383,6 +456,15 @@ func (a *SetPlaybackRateArgs) MarshalJSON() ([]byte, error) {
 
 // SetPlaybackRateReply represents the return values for SetPlaybackRate in the Animation domain.
 type SetPlaybackRateReply struct {
+}
+
+// SetPlaybackRateReply returns whether or not the FrameID matches the reply value for SetPlaybackRate in the Animation domain.
+func (a *SetPlaybackRateReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetPlaybackRateReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetPlaybackRate in the Animation domain.
@@ -428,6 +510,15 @@ func (a *SetTimingArgs) MarshalJSON() ([]byte, error) {
 
 // SetTimingReply represents the return values for SetTiming in the Animation domain.
 type SetTimingReply struct {
+}
+
+// SetTimingReply returns whether or not the FrameID matches the reply value for SetTiming in the Animation domain.
+func (a *SetTimingReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetTimingReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetTiming in the Animation domain.

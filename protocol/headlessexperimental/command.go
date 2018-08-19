@@ -4,6 +4,7 @@ package headlessexperimental
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandHeadlessExperimentalBeginFrame = "HeadlessExperimental.beginFrame"
@@ -40,6 +41,15 @@ func (a *BeginFrameArgs) MarshalJSON() ([]byte, error) {
 type BeginFrameReply struct {
 	HasDamage      bool   `json:"hasDamage"`                // Whether the BeginFrame resulted in damage and, thus, a new frame was committed to the display. Reported for diagnostic uses, may be removed in the future.
 	ScreenshotData []byte `json:"screenshotData,omitempty"` // Base64-encoded image data of the screenshot, if one was requested and successfully taken.
+}
+
+// BeginFrameReply returns whether or not the FrameID matches the reply value for BeginFrame in the HeadlessExperimental domain.
+func (a *BeginFrameReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: BeginFrameReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for BeginFrame in the HeadlessExperimental domain.
@@ -84,6 +94,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 type DisableReply struct {
 }
 
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the HeadlessExperimental domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for Disable in the HeadlessExperimental domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -124,6 +143,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the HeadlessExperimental domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the HeadlessExperimental domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the HeadlessExperimental domain.

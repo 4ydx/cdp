@@ -4,6 +4,7 @@ package input
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandInputDispatchKeyEvent = "Input.dispatchKeyEvent"
@@ -51,6 +52,15 @@ func (a *DispatchKeyEventArgs) MarshalJSON() ([]byte, error) {
 
 // DispatchKeyEventReply represents the return values for DispatchKeyEvent in the Input domain.
 type DispatchKeyEventReply struct {
+}
+
+// DispatchKeyEventReply returns whether or not the FrameID matches the reply value for DispatchKeyEvent in the Input domain.
+func (a *DispatchKeyEventReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DispatchKeyEventReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for DispatchKeyEvent in the Input domain.
@@ -110,6 +120,15 @@ func (a *DispatchMouseEventArgs) MarshalJSON() ([]byte, error) {
 type DispatchMouseEventReply struct {
 }
 
+// DispatchMouseEventReply returns whether or not the FrameID matches the reply value for DispatchMouseEvent in the Input domain.
+func (a *DispatchMouseEventReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DispatchMouseEventReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for DispatchMouseEvent in the Input domain.
 func (a *DispatchMouseEventReply) UnmarshalJSON(b []byte) error {
 	type Copy DispatchMouseEventReply
@@ -159,6 +178,15 @@ func (a *DispatchTouchEventArgs) MarshalJSON() ([]byte, error) {
 
 // DispatchTouchEventReply represents the return values for DispatchTouchEvent in the Input domain.
 type DispatchTouchEventReply struct {
+}
+
+// DispatchTouchEventReply returns whether or not the FrameID matches the reply value for DispatchTouchEvent in the Input domain.
+func (a *DispatchTouchEventReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DispatchTouchEventReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for DispatchTouchEvent in the Input domain.
@@ -218,6 +246,15 @@ func (a *EmulateTouchFromMouseEventArgs) MarshalJSON() ([]byte, error) {
 type EmulateTouchFromMouseEventReply struct {
 }
 
+// EmulateTouchFromMouseEventReply returns whether or not the FrameID matches the reply value for EmulateTouchFromMouseEvent in the Input domain.
+func (a *EmulateTouchFromMouseEventReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EmulateTouchFromMouseEventReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for EmulateTouchFromMouseEvent in the Input domain.
 func (a *EmulateTouchFromMouseEventReply) UnmarshalJSON(b []byte) error {
 	type Copy EmulateTouchFromMouseEventReply
@@ -259,6 +296,15 @@ func (a *SetIgnoreInputEventsArgs) MarshalJSON() ([]byte, error) {
 
 // SetIgnoreInputEventsReply represents the return values for SetIgnoreInputEvents in the Input domain.
 type SetIgnoreInputEventsReply struct {
+}
+
+// SetIgnoreInputEventsReply returns whether or not the FrameID matches the reply value for SetIgnoreInputEvents in the Input domain.
+func (a *SetIgnoreInputEventsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetIgnoreInputEventsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetIgnoreInputEvents in the Input domain.
@@ -306,6 +352,15 @@ func (a *SynthesizePinchGestureArgs) MarshalJSON() ([]byte, error) {
 
 // SynthesizePinchGestureReply represents the return values for SynthesizePinchGesture in the Input domain.
 type SynthesizePinchGestureReply struct {
+}
+
+// SynthesizePinchGestureReply returns whether or not the FrameID matches the reply value for SynthesizePinchGesture in the Input domain.
+func (a *SynthesizePinchGestureReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SynthesizePinchGestureReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SynthesizePinchGesture in the Input domain.
@@ -362,6 +417,15 @@ func (a *SynthesizeScrollGestureArgs) MarshalJSON() ([]byte, error) {
 type SynthesizeScrollGestureReply struct {
 }
 
+// SynthesizeScrollGestureReply returns whether or not the FrameID matches the reply value for SynthesizeScrollGesture in the Input domain.
+func (a *SynthesizeScrollGestureReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SynthesizeScrollGestureReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SynthesizeScrollGesture in the Input domain.
 func (a *SynthesizeScrollGestureReply) UnmarshalJSON(b []byte) error {
 	type Copy SynthesizeScrollGestureReply
@@ -407,6 +471,15 @@ func (a *SynthesizeTapGestureArgs) MarshalJSON() ([]byte, error) {
 
 // SynthesizeTapGestureReply represents the return values for SynthesizeTapGesture in the Input domain.
 type SynthesizeTapGestureReply struct {
+}
+
+// SynthesizeTapGestureReply returns whether or not the FrameID matches the reply value for SynthesizeTapGesture in the Input domain.
+func (a *SynthesizeTapGestureReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SynthesizeTapGestureReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SynthesizeTapGesture in the Input domain.

@@ -4,6 +4,7 @@ package profiler
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandProfilerDisable = "Profiler.disable"
@@ -34,6 +35,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 
 // DisableReply represents the return values for Disable in the Profiler domain.
 type DisableReply struct {
+}
+
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the Profiler domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Disable in the Profiler domain.
@@ -76,6 +86,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the Profiler domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the Profiler domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the Profiler domain.
@@ -121,6 +140,15 @@ type GetBestEffortCoverageReply struct {
 	Result []ScriptCoverage `json:"result"` // Coverage data for the current isolate.
 }
 
+// GetBestEffortCoverageReply returns whether or not the FrameID matches the reply value for GetBestEffortCoverage in the Profiler domain.
+func (a *GetBestEffortCoverageReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetBestEffortCoverageReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetBestEffortCoverage in the Profiler domain.
 func (a *GetBestEffortCoverageReply) UnmarshalJSON(b []byte) error {
 	type Copy GetBestEffortCoverageReply
@@ -164,6 +192,15 @@ func (a *SetSamplingIntervalArgs) MarshalJSON() ([]byte, error) {
 type SetSamplingIntervalReply struct {
 }
 
+// SetSamplingIntervalReply returns whether or not the FrameID matches the reply value for SetSamplingInterval in the Profiler domain.
+func (a *SetSamplingIntervalReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetSamplingIntervalReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetSamplingInterval in the Profiler domain.
 func (a *SetSamplingIntervalReply) UnmarshalJSON(b []byte) error {
 	type Copy SetSamplingIntervalReply
@@ -204,6 +241,15 @@ func (a *StartArgs) MarshalJSON() ([]byte, error) {
 
 // StartReply represents the return values for Start in the Profiler domain.
 type StartReply struct {
+}
+
+// StartReply returns whether or not the FrameID matches the reply value for Start in the Profiler domain.
+func (a *StartReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StartReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Start in the Profiler domain.
@@ -250,6 +296,15 @@ func (a *StartPreciseCoverageArgs) MarshalJSON() ([]byte, error) {
 type StartPreciseCoverageReply struct {
 }
 
+// StartPreciseCoverageReply returns whether or not the FrameID matches the reply value for StartPreciseCoverage in the Profiler domain.
+func (a *StartPreciseCoverageReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StartPreciseCoverageReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for StartPreciseCoverage in the Profiler domain.
 func (a *StartPreciseCoverageReply) UnmarshalJSON(b []byte) error {
 	type Copy StartPreciseCoverageReply
@@ -290,6 +345,15 @@ func (a *StartTypeProfileArgs) MarshalJSON() ([]byte, error) {
 
 // StartTypeProfileReply represents the return values for StartTypeProfile in the Profiler domain.
 type StartTypeProfileReply struct {
+}
+
+// StartTypeProfileReply returns whether or not the FrameID matches the reply value for StartTypeProfile in the Profiler domain.
+func (a *StartTypeProfileReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StartTypeProfileReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for StartTypeProfile in the Profiler domain.
@@ -335,6 +399,15 @@ type StopReply struct {
 	Profile Profile `json:"profile"` // Recorded profile.
 }
 
+// StopReply returns whether or not the FrameID matches the reply value for Stop in the Profiler domain.
+func (a *StopReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StopReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for Stop in the Profiler domain.
 func (a *StopReply) UnmarshalJSON(b []byte) error {
 	type Copy StopReply
@@ -377,6 +450,15 @@ func (a *StopPreciseCoverageArgs) MarshalJSON() ([]byte, error) {
 type StopPreciseCoverageReply struct {
 }
 
+// StopPreciseCoverageReply returns whether or not the FrameID matches the reply value for StopPreciseCoverage in the Profiler domain.
+func (a *StopPreciseCoverageReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StopPreciseCoverageReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for StopPreciseCoverage in the Profiler domain.
 func (a *StopPreciseCoverageReply) UnmarshalJSON(b []byte) error {
 	type Copy StopPreciseCoverageReply
@@ -417,6 +499,15 @@ func (a *StopTypeProfileArgs) MarshalJSON() ([]byte, error) {
 
 // StopTypeProfileReply represents the return values for StopTypeProfile in the Profiler domain.
 type StopTypeProfileReply struct {
+}
+
+// StopTypeProfileReply returns whether or not the FrameID matches the reply value for StopTypeProfile in the Profiler domain.
+func (a *StopTypeProfileReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StopTypeProfileReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for StopTypeProfile in the Profiler domain.
@@ -462,6 +553,15 @@ type TakePreciseCoverageReply struct {
 	Result []ScriptCoverage `json:"result"` // Coverage data for the current isolate.
 }
 
+// TakePreciseCoverageReply returns whether or not the FrameID matches the reply value for TakePreciseCoverage in the Profiler domain.
+func (a *TakePreciseCoverageReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: TakePreciseCoverageReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for TakePreciseCoverage in the Profiler domain.
 func (a *TakePreciseCoverageReply) UnmarshalJSON(b []byte) error {
 	type Copy TakePreciseCoverageReply
@@ -503,6 +603,15 @@ func (a *TakeTypeProfileArgs) MarshalJSON() ([]byte, error) {
 // TakeTypeProfileReply represents the return values for TakeTypeProfile in the Profiler domain.
 type TakeTypeProfileReply struct {
 	Result []ScriptTypeProfile `json:"result"` // Type profile for all scripts since startTypeProfile() was turned on.
+}
+
+// TakeTypeProfileReply returns whether or not the FrameID matches the reply value for TakeTypeProfile in the Profiler domain.
+func (a *TakeTypeProfileReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: TakeTypeProfileReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for TakeTypeProfile in the Profiler domain.

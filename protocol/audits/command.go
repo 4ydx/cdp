@@ -4,6 +4,7 @@ package audits
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol/network"
 )
@@ -46,6 +47,15 @@ type GetEncodedResponseReply struct {
 	Body         string `json:"body,omitempty"` // The encoded body as a base64 string. Omitted if sizeOnly is true.
 	OriginalSize int    `json:"originalSize"`   // Size before re-encoding.
 	EncodedSize  int    `json:"encodedSize"`    // Size after re-encoding.
+}
+
+// GetEncodedResponseReply returns whether or not the FrameID matches the reply value for GetEncodedResponse in the Audits domain.
+func (a *GetEncodedResponseReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetEncodedResponseReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for GetEncodedResponse in the Audits domain.

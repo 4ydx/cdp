@@ -4,6 +4,7 @@ package security
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandSecurityDisable = "Security.disable"
@@ -34,6 +35,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 
 // DisableReply represents the return values for Disable in the Security domain.
 type DisableReply struct {
+}
+
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the Security domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Disable in the Security domain.
@@ -78,6 +88,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 type EnableReply struct {
 }
 
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the Security domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for Enable in the Security domain.
 func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	type Copy EnableReply
@@ -119,6 +138,15 @@ func (a *SetIgnoreCertificateErrorsArgs) MarshalJSON() ([]byte, error) {
 
 // SetIgnoreCertificateErrorsReply represents the return values for SetIgnoreCertificateErrors in the Security domain.
 type SetIgnoreCertificateErrorsReply struct {
+}
+
+// SetIgnoreCertificateErrorsReply returns whether or not the FrameID matches the reply value for SetIgnoreCertificateErrors in the Security domain.
+func (a *SetIgnoreCertificateErrorsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetIgnoreCertificateErrorsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetIgnoreCertificateErrors in the Security domain.
@@ -165,6 +193,15 @@ func (a *HandleCertificateErrorArgs) MarshalJSON() ([]byte, error) {
 type HandleCertificateErrorReply struct {
 }
 
+// HandleCertificateErrorReply returns whether or not the FrameID matches the reply value for HandleCertificateError in the Security domain.
+func (a *HandleCertificateErrorReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: HandleCertificateErrorReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for HandleCertificateError in the Security domain.
 func (a *HandleCertificateErrorReply) UnmarshalJSON(b []byte) error {
 	type Copy HandleCertificateErrorReply
@@ -206,6 +243,15 @@ func (a *SetOverrideCertificateErrorsArgs) MarshalJSON() ([]byte, error) {
 
 // SetOverrideCertificateErrorsReply represents the return values for SetOverrideCertificateErrors in the Security domain.
 type SetOverrideCertificateErrorsReply struct {
+}
+
+// SetOverrideCertificateErrorsReply returns whether or not the FrameID matches the reply value for SetOverrideCertificateErrors in the Security domain.
+func (a *SetOverrideCertificateErrorsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetOverrideCertificateErrorsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetOverrideCertificateErrors in the Security domain.

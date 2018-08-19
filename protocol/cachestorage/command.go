@@ -4,6 +4,7 @@ package cachestorage
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandCacheStorageDeleteCache = "CacheStorage.deleteCache"
@@ -35,6 +36,15 @@ func (a *DeleteCacheArgs) MarshalJSON() ([]byte, error) {
 
 // DeleteCacheReply represents the return values for DeleteCache in the CacheStorage domain.
 type DeleteCacheReply struct {
+}
+
+// DeleteCacheReply returns whether or not the FrameID matches the reply value for DeleteCache in the CacheStorage domain.
+func (a *DeleteCacheReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DeleteCacheReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for DeleteCache in the CacheStorage domain.
@@ -81,6 +91,15 @@ func (a *DeleteEntryArgs) MarshalJSON() ([]byte, error) {
 type DeleteEntryReply struct {
 }
 
+// DeleteEntryReply returns whether or not the FrameID matches the reply value for DeleteEntry in the CacheStorage domain.
+func (a *DeleteEntryReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DeleteEntryReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for DeleteEntry in the CacheStorage domain.
 func (a *DeleteEntryReply) UnmarshalJSON(b []byte) error {
 	type Copy DeleteEntryReply
@@ -123,6 +142,15 @@ func (a *RequestCacheNamesArgs) MarshalJSON() ([]byte, error) {
 // RequestCacheNamesReply represents the return values for RequestCacheNames in the CacheStorage domain.
 type RequestCacheNamesReply struct {
 	Caches []Cache `json:"caches"` // Caches for the security origin.
+}
+
+// RequestCacheNamesReply returns whether or not the FrameID matches the reply value for RequestCacheNames in the CacheStorage domain.
+func (a *RequestCacheNamesReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RequestCacheNamesReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for RequestCacheNames in the CacheStorage domain.
@@ -170,6 +198,15 @@ type RequestCachedResponseReply struct {
 	Response CachedResponse `json:"response"` // Response read from the cache.
 }
 
+// RequestCachedResponseReply returns whether or not the FrameID matches the reply value for RequestCachedResponse in the CacheStorage domain.
+func (a *RequestCachedResponseReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RequestCachedResponseReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for RequestCachedResponse in the CacheStorage domain.
 func (a *RequestCachedResponseReply) UnmarshalJSON(b []byte) error {
 	type Copy RequestCachedResponseReply
@@ -215,6 +252,15 @@ func (a *RequestEntriesArgs) MarshalJSON() ([]byte, error) {
 type RequestEntriesReply struct {
 	CacheDataEntries []DataEntry `json:"cacheDataEntries"` // Array of object store data entries.
 	HasMore          bool        `json:"hasMore"`          // If true, there are more entries to fetch in the given range.
+}
+
+// RequestEntriesReply returns whether or not the FrameID matches the reply value for RequestEntries in the CacheStorage domain.
+func (a *RequestEntriesReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RequestEntriesReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for RequestEntries in the CacheStorage domain.

@@ -4,6 +4,7 @@ package emulation
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol/dom"
 	"github.com/4ydx/cdp/protocol/network"
@@ -39,6 +40,15 @@ func (a *CanEmulateArgs) MarshalJSON() ([]byte, error) {
 // CanEmulateReply represents the return values for CanEmulate in the Emulation domain.
 type CanEmulateReply struct {
 	Result bool `json:"result"` // True if emulation is supported.
+}
+
+// CanEmulateReply returns whether or not the FrameID matches the reply value for CanEmulate in the Emulation domain.
+func (a *CanEmulateReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: CanEmulateReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for CanEmulate in the Emulation domain.
@@ -83,6 +93,15 @@ func (a *ClearDeviceMetricsOverrideArgs) MarshalJSON() ([]byte, error) {
 type ClearDeviceMetricsOverrideReply struct {
 }
 
+// ClearDeviceMetricsOverrideReply returns whether or not the FrameID matches the reply value for ClearDeviceMetricsOverride in the Emulation domain.
+func (a *ClearDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ClearDeviceMetricsOverrideReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for ClearDeviceMetricsOverride in the Emulation domain.
 func (a *ClearDeviceMetricsOverrideReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearDeviceMetricsOverrideReply
@@ -125,6 +144,15 @@ func (a *ClearGeolocationOverrideArgs) MarshalJSON() ([]byte, error) {
 type ClearGeolocationOverrideReply struct {
 }
 
+// ClearGeolocationOverrideReply returns whether or not the FrameID matches the reply value for ClearGeolocationOverride in the Emulation domain.
+func (a *ClearGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ClearGeolocationOverrideReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for ClearGeolocationOverride in the Emulation domain.
 func (a *ClearGeolocationOverrideReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearGeolocationOverrideReply
@@ -165,6 +193,15 @@ func (a *ResetPageScaleFactorArgs) MarshalJSON() ([]byte, error) {
 
 // ResetPageScaleFactorReply represents the return values for ResetPageScaleFactor in the Emulation domain.
 type ResetPageScaleFactorReply struct {
+}
+
+// ResetPageScaleFactorReply returns whether or not the FrameID matches the reply value for ResetPageScaleFactor in the Emulation domain.
+func (a *ResetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ResetPageScaleFactorReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for ResetPageScaleFactor in the Emulation domain.
@@ -210,6 +247,15 @@ func (a *SetCPUThrottlingRateArgs) MarshalJSON() ([]byte, error) {
 type SetCPUThrottlingRateReply struct {
 }
 
+// SetCPUThrottlingRateReply returns whether or not the FrameID matches the reply value for SetCPUThrottlingRate in the Emulation domain.
+func (a *SetCPUThrottlingRateReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetCPUThrottlingRateReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetCPUThrottlingRate in the Emulation domain.
 func (a *SetCPUThrottlingRateReply) UnmarshalJSON(b []byte) error {
 	type Copy SetCPUThrottlingRateReply
@@ -251,6 +297,15 @@ func (a *SetDefaultBackgroundColorOverrideArgs) MarshalJSON() ([]byte, error) {
 
 // SetDefaultBackgroundColorOverrideReply represents the return values for SetDefaultBackgroundColorOverride in the Emulation domain.
 type SetDefaultBackgroundColorOverrideReply struct {
+}
+
+// SetDefaultBackgroundColorOverrideReply returns whether or not the FrameID matches the reply value for SetDefaultBackgroundColorOverride in the Emulation domain.
+func (a *SetDefaultBackgroundColorOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetDefaultBackgroundColorOverrideReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetDefaultBackgroundColorOverride in the Emulation domain.
@@ -335,6 +390,15 @@ func (a *SetDeviceMetricsOverrideArgs) MarshalJSON() ([]byte, error) {
 type SetDeviceMetricsOverrideReply struct {
 }
 
+// SetDeviceMetricsOverrideReply returns whether or not the FrameID matches the reply value for SetDeviceMetricsOverride in the Emulation domain.
+func (a *SetDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetDeviceMetricsOverrideReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetDeviceMetricsOverride in the Emulation domain.
 func (a *SetDeviceMetricsOverrideReply) UnmarshalJSON(b []byte) error {
 	type Copy SetDeviceMetricsOverrideReply
@@ -378,6 +442,15 @@ func (a *SetScrollbarsHiddenArgs) MarshalJSON() ([]byte, error) {
 type SetScrollbarsHiddenReply struct {
 }
 
+// SetScrollbarsHiddenReply returns whether or not the FrameID matches the reply value for SetScrollbarsHidden in the Emulation domain.
+func (a *SetScrollbarsHiddenReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetScrollbarsHiddenReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetScrollbarsHidden in the Emulation domain.
 func (a *SetScrollbarsHiddenReply) UnmarshalJSON(b []byte) error {
 	type Copy SetScrollbarsHiddenReply
@@ -419,6 +492,15 @@ func (a *SetDocumentCookieDisabledArgs) MarshalJSON() ([]byte, error) {
 
 // SetDocumentCookieDisabledReply represents the return values for SetDocumentCookieDisabled in the Emulation domain.
 type SetDocumentCookieDisabledReply struct {
+}
+
+// SetDocumentCookieDisabledReply returns whether or not the FrameID matches the reply value for SetDocumentCookieDisabled in the Emulation domain.
+func (a *SetDocumentCookieDisabledReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetDocumentCookieDisabledReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetDocumentCookieDisabled in the Emulation domain.
@@ -469,6 +551,15 @@ func (a *SetEmitTouchEventsForMouseArgs) MarshalJSON() ([]byte, error) {
 type SetEmitTouchEventsForMouseReply struct {
 }
 
+// SetEmitTouchEventsForMouseReply returns whether or not the FrameID matches the reply value for SetEmitTouchEventsForMouse in the Emulation domain.
+func (a *SetEmitTouchEventsForMouseReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetEmitTouchEventsForMouseReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetEmitTouchEventsForMouse in the Emulation domain.
 func (a *SetEmitTouchEventsForMouseReply) UnmarshalJSON(b []byte) error {
 	type Copy SetEmitTouchEventsForMouseReply
@@ -510,6 +601,15 @@ func (a *SetEmulatedMediaArgs) MarshalJSON() ([]byte, error) {
 
 // SetEmulatedMediaReply represents the return values for SetEmulatedMedia in the Emulation domain.
 type SetEmulatedMediaReply struct {
+}
+
+// SetEmulatedMediaReply returns whether or not the FrameID matches the reply value for SetEmulatedMedia in the Emulation domain.
+func (a *SetEmulatedMediaReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetEmulatedMediaReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetEmulatedMedia in the Emulation domain.
@@ -557,6 +657,15 @@ func (a *SetGeolocationOverrideArgs) MarshalJSON() ([]byte, error) {
 type SetGeolocationOverrideReply struct {
 }
 
+// SetGeolocationOverrideReply returns whether or not the FrameID matches the reply value for SetGeolocationOverride in the Emulation domain.
+func (a *SetGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetGeolocationOverrideReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetGeolocationOverride in the Emulation domain.
 func (a *SetGeolocationOverrideReply) UnmarshalJSON(b []byte) error {
 	type Copy SetGeolocationOverrideReply
@@ -598,6 +707,15 @@ func (a *SetNavigatorOverridesArgs) MarshalJSON() ([]byte, error) {
 
 // SetNavigatorOverridesReply represents the return values for SetNavigatorOverrides in the Emulation domain.
 type SetNavigatorOverridesReply struct {
+}
+
+// SetNavigatorOverridesReply returns whether or not the FrameID matches the reply value for SetNavigatorOverrides in the Emulation domain.
+func (a *SetNavigatorOverridesReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetNavigatorOverridesReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetNavigatorOverrides in the Emulation domain.
@@ -643,6 +761,15 @@ func (a *SetPageScaleFactorArgs) MarshalJSON() ([]byte, error) {
 type SetPageScaleFactorReply struct {
 }
 
+// SetPageScaleFactorReply returns whether or not the FrameID matches the reply value for SetPageScaleFactor in the Emulation domain.
+func (a *SetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetPageScaleFactorReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetPageScaleFactor in the Emulation domain.
 func (a *SetPageScaleFactorReply) UnmarshalJSON(b []byte) error {
 	type Copy SetPageScaleFactorReply
@@ -684,6 +811,15 @@ func (a *SetScriptExecutionDisabledArgs) MarshalJSON() ([]byte, error) {
 
 // SetScriptExecutionDisabledReply represents the return values for SetScriptExecutionDisabled in the Emulation domain.
 type SetScriptExecutionDisabledReply struct {
+}
+
+// SetScriptExecutionDisabledReply returns whether or not the FrameID matches the reply value for SetScriptExecutionDisabled in the Emulation domain.
+func (a *SetScriptExecutionDisabledReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetScriptExecutionDisabledReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetScriptExecutionDisabled in the Emulation domain.
@@ -728,6 +864,15 @@ func (a *SetTouchEmulationEnabledArgs) MarshalJSON() ([]byte, error) {
 
 // SetTouchEmulationEnabledReply represents the return values for SetTouchEmulationEnabled in the Emulation domain.
 type SetTouchEmulationEnabledReply struct {
+}
+
+// SetTouchEmulationEnabledReply returns whether or not the FrameID matches the reply value for SetTouchEmulationEnabled in the Emulation domain.
+func (a *SetTouchEmulationEnabledReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetTouchEmulationEnabledReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetTouchEmulationEnabled in the Emulation domain.
@@ -778,6 +923,15 @@ type SetVirtualTimePolicyReply struct {
 	VirtualTimeTicksBase float64 `json:"virtualTimeTicksBase"` // Absolute timestamp at which virtual time was first enabled (up time in milliseconds).
 }
 
+// SetVirtualTimePolicyReply returns whether or not the FrameID matches the reply value for SetVirtualTimePolicy in the Emulation domain.
+func (a *SetVirtualTimePolicyReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetVirtualTimePolicyReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for SetVirtualTimePolicy in the Emulation domain.
 func (a *SetVirtualTimePolicyReply) UnmarshalJSON(b []byte) error {
 	type Copy SetVirtualTimePolicyReply
@@ -820,6 +974,15 @@ func (a *SetVisibleSizeArgs) MarshalJSON() ([]byte, error) {
 
 // SetVisibleSizeReply represents the return values for SetVisibleSize in the Emulation domain.
 type SetVisibleSizeReply struct {
+}
+
+// SetVisibleSizeReply returns whether or not the FrameID matches the reply value for SetVisibleSize in the Emulation domain.
+func (a *SetVisibleSizeReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetVisibleSizeReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetVisibleSize in the Emulation domain.
@@ -865,6 +1028,15 @@ func (a *SetUserAgentOverrideArgs) MarshalJSON() ([]byte, error) {
 
 // SetUserAgentOverrideReply represents the return values for SetUserAgentOverride in the Emulation domain.
 type SetUserAgentOverrideReply struct {
+}
+
+// SetUserAgentOverrideReply returns whether or not the FrameID matches the reply value for SetUserAgentOverride in the Emulation domain.
+func (a *SetUserAgentOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetUserAgentOverrideReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SetUserAgentOverride in the Emulation domain.

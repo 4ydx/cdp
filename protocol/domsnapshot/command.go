@@ -4,6 +4,7 @@ package domsnapshot
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const CommandDOMSnapshotDisable = "DOMSnapshot.disable"
@@ -34,6 +35,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 
 // DisableReply represents the return values for Disable in the DOMSnapshot domain.
 type DisableReply struct {
+}
+
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the DOMSnapshot domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Disable in the DOMSnapshot domain.
@@ -76,6 +86,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the DOMSnapshot domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the DOMSnapshot domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the DOMSnapshot domain.
@@ -127,6 +146,15 @@ type GetSnapshotReply struct {
 	ComputedStyles  []ComputedStyle  `json:"computedStyles"`  // Whitelisted ComputedStyle properties for each node in the layout tree.
 }
 
+// GetSnapshotReply returns whether or not the FrameID matches the reply value for GetSnapshot in the DOMSnapshot domain.
+func (a *GetSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetSnapshotReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for GetSnapshot in the DOMSnapshot domain.
 func (a *GetSnapshotReply) UnmarshalJSON(b []byte) error {
 	type Copy GetSnapshotReply
@@ -171,6 +199,15 @@ type CaptureSnapshotReply struct {
 	Nodes   DOMTreeSnapshot    `json:"nodes"`   // The nodes in the DOM tree. The DOMNode at index 0 corresponds to the root document.
 	Layout  LayoutTreeSnapshot `json:"layout"`  // The nodes in the layout tree.
 	Strings []string           `json:"strings"` // Shared string table that all string properties refer to with indexes.
+}
+
+// CaptureSnapshotReply returns whether or not the FrameID matches the reply value for CaptureSnapshot in the DOMSnapshot domain.
+func (a *CaptureSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: CaptureSnapshotReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for CaptureSnapshot in the DOMSnapshot domain.

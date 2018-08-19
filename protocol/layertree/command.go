@@ -4,6 +4,7 @@ package layertree
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol/dom"
 )
@@ -38,6 +39,15 @@ func (a *CompositingReasonsArgs) MarshalJSON() ([]byte, error) {
 // CompositingReasonsReply represents the return values for CompositingReasons in the LayerTree domain.
 type CompositingReasonsReply struct {
 	CompositingReasons []string `json:"compositingReasons"` // A list of strings specifying reasons for the given layer to become composited.
+}
+
+// CompositingReasonsReply returns whether or not the FrameID matches the reply value for CompositingReasons in the LayerTree domain.
+func (a *CompositingReasonsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: CompositingReasonsReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for CompositingReasons in the LayerTree domain.
@@ -82,6 +92,15 @@ func (a *DisableArgs) MarshalJSON() ([]byte, error) {
 type DisableReply struct {
 }
 
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the LayerTree domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DisableReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for Disable in the LayerTree domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -122,6 +141,15 @@ func (a *EnableArgs) MarshalJSON() ([]byte, error) {
 
 // EnableReply represents the return values for Enable in the LayerTree domain.
 type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the LayerTree domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: EnableReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for Enable in the LayerTree domain.
@@ -168,6 +196,15 @@ type LoadSnapshotReply struct {
 	SnapshotID SnapshotID `json:"snapshotId"` // The id of the snapshot.
 }
 
+// LoadSnapshotReply returns whether or not the FrameID matches the reply value for LoadSnapshot in the LayerTree domain.
+func (a *LoadSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: LoadSnapshotReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for LoadSnapshot in the LayerTree domain.
 func (a *LoadSnapshotReply) UnmarshalJSON(b []byte) error {
 	type Copy LoadSnapshotReply
@@ -210,6 +247,15 @@ func (a *MakeSnapshotArgs) MarshalJSON() ([]byte, error) {
 // MakeSnapshotReply represents the return values for MakeSnapshot in the LayerTree domain.
 type MakeSnapshotReply struct {
 	SnapshotID SnapshotID `json:"snapshotId"` // The id of the layer snapshot.
+}
+
+// MakeSnapshotReply returns whether or not the FrameID matches the reply value for MakeSnapshot in the LayerTree domain.
+func (a *MakeSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: MakeSnapshotReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for MakeSnapshot in the LayerTree domain.
@@ -259,6 +305,15 @@ type ProfileSnapshotReply struct {
 	Timings []PaintProfile `json:"timings"` // The array of paint profiles, one per run.
 }
 
+// ProfileSnapshotReply returns whether or not the FrameID matches the reply value for ProfileSnapshot in the LayerTree domain.
+func (a *ProfileSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ProfileSnapshotReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for ProfileSnapshot in the LayerTree domain.
 func (a *ProfileSnapshotReply) UnmarshalJSON(b []byte) error {
 	type Copy ProfileSnapshotReply
@@ -300,6 +355,15 @@ func (a *ReleaseSnapshotArgs) MarshalJSON() ([]byte, error) {
 
 // ReleaseSnapshotReply represents the return values for ReleaseSnapshot in the LayerTree domain.
 type ReleaseSnapshotReply struct {
+}
+
+// ReleaseSnapshotReply returns whether or not the FrameID matches the reply value for ReleaseSnapshot in the LayerTree domain.
+func (a *ReleaseSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ReleaseSnapshotReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for ReleaseSnapshot in the LayerTree domain.
@@ -349,6 +413,15 @@ type ReplaySnapshotReply struct {
 	DataURL string `json:"dataURL"` // A data: URL for resulting image.
 }
 
+// ReplaySnapshotReply returns whether or not the FrameID matches the reply value for ReplaySnapshot in the LayerTree domain.
+func (a *ReplaySnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ReplaySnapshotReply", err)
+	}
+	return true
+}
+
 // Unmarshal the byte array into a return value for ReplaySnapshot in the LayerTree domain.
 func (a *ReplaySnapshotReply) UnmarshalJSON(b []byte) error {
 	type Copy ReplaySnapshotReply
@@ -391,6 +464,15 @@ func (a *SnapshotCommandLogArgs) MarshalJSON() ([]byte, error) {
 // SnapshotCommandLogReply represents the return values for SnapshotCommandLog in the LayerTree domain.
 type SnapshotCommandLogReply struct {
 	CommandLog []json.RawMessage `json:"commandLog"` // The array of canvas function calls.
+}
+
+// SnapshotCommandLogReply returns whether or not the FrameID matches the reply value for SnapshotCommandLog in the LayerTree domain.
+func (a *SnapshotCommandLogReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SnapshotCommandLogReply", err)
+	}
+	return true
 }
 
 // Unmarshal the byte array into a return value for SnapshotCommandLog in the LayerTree domain.
