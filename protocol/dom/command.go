@@ -4,6 +4,7 @@ package dom
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/runtime"
@@ -133,6 +134,15 @@ func (a *DescribeNodeArgs) MarshalJSON() ([]byte, error) {
 // DescribeNodeReply represents the return values for DescribeNode in the DOM domain.
 type DescribeNodeReply struct {
 	Node Node `json:"node"` // Node description.
+}
+
+// DescribeNodeReply returns the FrameID value for DescribeNode in the DOM domain.
+func (a *DescribeNodeReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: DescribeNodeReply", err)
+	}
+	return a.Node.FrameID == shared.FrameID(frameID)
 }
 
 // Unmarshal the byte array into a return value for DescribeNode in the DOM domain.
@@ -531,6 +541,21 @@ func (a *GetFlattenedDocumentArgs) MarshalJSON() ([]byte, error) {
 // GetFlattenedDocumentReply represents the return values for GetFlattenedDocument in the DOM domain.
 type GetFlattenedDocumentReply struct {
 	Nodes []Node `json:"nodes"` // Resulting node.
+}
+
+// GetFlattenedDocumentReply returns the FrameID value for GetFlattenedDocument in the DOM domain.
+func (a *GetFlattenedDocumentReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: GetFlattenedDocumentReply", err)
+	}
+	fid := ""
+	for _, n := range a.Nodes {
+		if n.FrameID != "" {
+			fid = string(n.FrameID)
+		}
+	}
+	return fid == frameID
 }
 
 // Unmarshal the byte array into a return value for GetFlattenedDocument in the DOM domain.
