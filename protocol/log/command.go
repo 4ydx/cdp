@@ -52,6 +52,11 @@ func (a *ClearReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ClearReply returns the FrameID value for Clear in the Log domain.
+func (a *ClearReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Clear in the Log domain.
 func (a *ClearReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearReply
@@ -101,6 +106,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the Log domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the Log domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -148,6 +158,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the Log domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the Log domain.
@@ -200,6 +215,11 @@ func (a *StartViolationsReportReply) MatchFrameID(frameID string, m []byte) bool
 	return true
 }
 
+// StartViolationsReportReply returns the FrameID value for StartViolationsReport in the Log domain.
+func (a *StartViolationsReportReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StartViolationsReport in the Log domain.
 func (a *StartViolationsReportReply) UnmarshalJSON(b []byte) error {
 	type Copy StartViolationsReportReply
@@ -247,6 +267,11 @@ func (a *StopViolationsReportReply) MatchFrameID(frameID string, m []byte) bool 
 		log.Fatalf("unmarshal error: StopViolationsReportReply", err)
 	}
 	return true
+}
+
+// StopViolationsReportReply returns the FrameID value for StopViolationsReport in the Log domain.
+func (a *StopViolationsReportReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for StopViolationsReport in the Log domain.

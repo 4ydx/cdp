@@ -52,6 +52,11 @@ func (a *EndReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// EndReply returns the FrameID value for End in the Tracing domain.
+func (a *EndReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for End in the Tracing domain.
 func (a *EndReply) UnmarshalJSON(b []byte) error {
 	type Copy EndReply
@@ -100,6 +105,11 @@ func (a *GetCategoriesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetCategoriesReply", err)
 	}
 	return true
+}
+
+// GetCategoriesReply returns the FrameID value for GetCategories in the Tracing domain.
+func (a *GetCategoriesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetCategories in the Tracing domain.
@@ -152,6 +162,11 @@ func (a *RecordClockSyncMarkerReply) MatchFrameID(frameID string, m []byte) bool
 	return true
 }
 
+// RecordClockSyncMarkerReply returns the FrameID value for RecordClockSyncMarker in the Tracing domain.
+func (a *RecordClockSyncMarkerReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RecordClockSyncMarker in the Tracing domain.
 func (a *RecordClockSyncMarkerReply) UnmarshalJSON(b []byte) error {
 	type Copy RecordClockSyncMarkerReply
@@ -201,6 +216,11 @@ func (a *RequestMemoryDumpReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: RequestMemoryDumpReply", err)
 	}
 	return true
+}
+
+// RequestMemoryDumpReply returns the FrameID value for RequestMemoryDump in the Tracing domain.
+func (a *RequestMemoryDumpReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RequestMemoryDump in the Tracing domain.
@@ -267,6 +287,11 @@ func (a *StartReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: StartReply", err)
 	}
 	return true
+}
+
+// StartReply returns the FrameID value for Start in the Tracing domain.
+func (a *StartReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Start in the Tracing domain.

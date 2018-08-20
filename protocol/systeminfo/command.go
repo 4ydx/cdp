@@ -52,6 +52,11 @@ func (a *GetInfoReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetInfoReply returns the FrameID value for GetInfo in the SystemInfo domain.
+func (a *GetInfoReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetInfo in the SystemInfo domain.
 func (a *GetInfoReply) UnmarshalJSON(b []byte) error {
 	type Copy GetInfoReply

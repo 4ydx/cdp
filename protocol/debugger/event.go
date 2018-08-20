@@ -4,6 +4,7 @@ package debugger
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol/runtime"
 )
@@ -47,6 +48,20 @@ func (a *BreakpointResolvedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// BreakpointResolvedReply returns whether or not the FrameID matches the reply value for BreakpointResolved in the BreakpointResolved domain.
+func (a *BreakpointResolvedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// BreakpointResolvedReply returns the FrameID for BreakpointResolved in the BreakpointResolved domain.
+func (a *BreakpointResolvedReply) GetFrameID() string {
+	return ""
+}
+
 // PausedReply is the reply for Paused events.
 type PausedReply struct {
 	CallFrames []CallFrame `json:"callFrames"` // Call stack the virtual machine stopped on.
@@ -82,6 +97,20 @@ func (a *PausedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// PausedReply returns whether or not the FrameID matches the reply value for Paused in the Paused domain.
+func (a *PausedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// PausedReply returns the FrameID for Paused in the Paused domain.
+func (a *PausedReply) GetFrameID() string {
+	return ""
+}
+
 // ResumedReply is the reply for Resumed events.
 type ResumedReply struct {
 }
@@ -96,6 +125,20 @@ func (a *ResumedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ResumedReply(*c)
 	return nil
+}
+
+// ResumedReply returns whether or not the FrameID matches the reply value for Resumed in the Resumed domain.
+func (a *ResumedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ResumedReply returns the FrameID for Resumed in the Resumed domain.
+func (a *ResumedReply) GetFrameID() string {
+	return ""
 }
 
 // ScriptFailedToParseReply is the reply for ScriptFailedToParse events.
@@ -130,6 +173,20 @@ func (a *ScriptFailedToParseReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ScriptFailedToParseReply(*c)
 	return nil
+}
+
+// ScriptFailedToParseReply returns whether or not the FrameID matches the reply value for ScriptFailedToParse in the ScriptFailedToParse domain.
+func (a *ScriptFailedToParseReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ScriptFailedToParseReply returns the FrameID for ScriptFailedToParse in the ScriptFailedToParse domain.
+func (a *ScriptFailedToParseReply) GetFrameID() string {
+	return ""
 }
 
 // ScriptParsedReply is the reply for ScriptParsed events.
@@ -169,4 +226,18 @@ func (a *ScriptParsedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ScriptParsedReply(*c)
 	return nil
+}
+
+// ScriptParsedReply returns whether or not the FrameID matches the reply value for ScriptParsed in the ScriptParsed domain.
+func (a *ScriptParsedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ScriptParsedReply returns the FrameID for ScriptParsed in the ScriptParsed domain.
+func (a *ScriptParsedReply) GetFrameID() string {
+	return ""
 }

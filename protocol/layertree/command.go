@@ -60,6 +60,11 @@ func (a *CompositingReasonsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CompositingReasonsReply returns the FrameID value for CompositingReasons in the LayerTree domain.
+func (a *CompositingReasonsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CompositingReasons in the LayerTree domain.
 func (a *CompositingReasonsReply) UnmarshalJSON(b []byte) error {
 	type Copy CompositingReasonsReply
@@ -109,6 +114,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the LayerTree domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the LayerTree domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -156,6 +166,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the LayerTree domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the LayerTree domain.
@@ -209,6 +224,11 @@ func (a *LoadSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// LoadSnapshotReply returns the FrameID value for LoadSnapshot in the LayerTree domain.
+func (a *LoadSnapshotReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for LoadSnapshot in the LayerTree domain.
 func (a *LoadSnapshotReply) UnmarshalJSON(b []byte) error {
 	type Copy LoadSnapshotReply
@@ -258,6 +278,11 @@ func (a *MakeSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: MakeSnapshotReply", err)
 	}
 	return true
+}
+
+// MakeSnapshotReply returns the FrameID value for MakeSnapshot in the LayerTree domain.
+func (a *MakeSnapshotReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for MakeSnapshot in the LayerTree domain.
@@ -314,6 +339,11 @@ func (a *ProfileSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ProfileSnapshotReply returns the FrameID value for ProfileSnapshot in the LayerTree domain.
+func (a *ProfileSnapshotReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ProfileSnapshot in the LayerTree domain.
 func (a *ProfileSnapshotReply) UnmarshalJSON(b []byte) error {
 	type Copy ProfileSnapshotReply
@@ -362,6 +392,11 @@ func (a *ReleaseSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ReleaseSnapshotReply", err)
 	}
 	return true
+}
+
+// ReleaseSnapshotReply returns the FrameID value for ReleaseSnapshot in the LayerTree domain.
+func (a *ReleaseSnapshotReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ReleaseSnapshot in the LayerTree domain.
@@ -418,6 +453,11 @@ func (a *ReplaySnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ReplaySnapshotReply returns the FrameID value for ReplaySnapshot in the LayerTree domain.
+func (a *ReplaySnapshotReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ReplaySnapshot in the LayerTree domain.
 func (a *ReplaySnapshotReply) UnmarshalJSON(b []byte) error {
 	type Copy ReplaySnapshotReply
@@ -467,6 +507,11 @@ func (a *SnapshotCommandLogReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SnapshotCommandLogReply", err)
 	}
 	return true
+}
+
+// SnapshotCommandLogReply returns the FrameID value for SnapshotCommandLog in the LayerTree domain.
+func (a *SnapshotCommandLogReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SnapshotCommandLog in the LayerTree domain.

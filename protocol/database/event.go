@@ -4,6 +4,7 @@ package database
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -34,4 +35,18 @@ func (a *AddDatabaseReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = AddDatabaseReply(*c)
 	return nil
+}
+
+// AddDatabaseReply returns whether or not the FrameID matches the reply value for AddDatabase in the AddDatabase domain.
+func (a *AddDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// AddDatabaseReply returns the FrameID for AddDatabase in the AddDatabase domain.
+func (a *AddDatabaseReply) GetFrameID() string {
+	return ""
 }

@@ -59,6 +59,11 @@ func (a *GetDOMCountersReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetDOMCountersReply returns the FrameID value for GetDOMCounters in the Memory domain.
+func (a *GetDOMCountersReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetDOMCounters in the Memory domain.
 func (a *GetDOMCountersReply) UnmarshalJSON(b []byte) error {
 	type Copy GetDOMCountersReply
@@ -106,6 +111,11 @@ func (a *PrepareForLeakDetectionReply) MatchFrameID(frameID string, m []byte) bo
 		log.Fatalf("unmarshal error: PrepareForLeakDetectionReply", err)
 	}
 	return true
+}
+
+// PrepareForLeakDetectionReply returns the FrameID value for PrepareForLeakDetection in the Memory domain.
+func (a *PrepareForLeakDetectionReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for PrepareForLeakDetection in the Memory domain.
@@ -158,6 +168,11 @@ func (a *SetPressureNotificationsSuppressedReply) MatchFrameID(frameID string, m
 	return true
 }
 
+// SetPressureNotificationsSuppressedReply returns the FrameID value for SetPressureNotificationsSuppressed in the Memory domain.
+func (a *SetPressureNotificationsSuppressedReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetPressureNotificationsSuppressed in the Memory domain.
 func (a *SetPressureNotificationsSuppressedReply) UnmarshalJSON(b []byte) error {
 	type Copy SetPressureNotificationsSuppressedReply
@@ -206,6 +221,11 @@ func (a *SimulatePressureNotificationReply) MatchFrameID(frameID string, m []byt
 		log.Fatalf("unmarshal error: SimulatePressureNotificationReply", err)
 	}
 	return true
+}
+
+// SimulatePressureNotificationReply returns the FrameID value for SimulatePressureNotification in the Memory domain.
+func (a *SimulatePressureNotificationReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SimulatePressureNotification in the Memory domain.
@@ -259,6 +279,11 @@ func (a *StartSamplingReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// StartSamplingReply returns the FrameID value for StartSampling in the Memory domain.
+func (a *StartSamplingReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StartSampling in the Memory domain.
 func (a *StartSamplingReply) UnmarshalJSON(b []byte) error {
 	type Copy StartSamplingReply
@@ -306,6 +331,11 @@ func (a *StopSamplingReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: StopSamplingReply", err)
 	}
 	return true
+}
+
+// StopSamplingReply returns the FrameID value for StopSampling in the Memory domain.
+func (a *StopSamplingReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for StopSampling in the Memory domain.
@@ -358,6 +388,11 @@ func (a *GetAllTimeSamplingProfileReply) MatchFrameID(frameID string, m []byte) 
 	return true
 }
 
+// GetAllTimeSamplingProfileReply returns the FrameID value for GetAllTimeSamplingProfile in the Memory domain.
+func (a *GetAllTimeSamplingProfileReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetAllTimeSamplingProfile in the Memory domain.
 func (a *GetAllTimeSamplingProfileReply) UnmarshalJSON(b []byte) error {
 	type Copy GetAllTimeSamplingProfileReply
@@ -408,6 +443,11 @@ func (a *GetBrowserSamplingProfileReply) MatchFrameID(frameID string, m []byte) 
 	return true
 }
 
+// GetBrowserSamplingProfileReply returns the FrameID value for GetBrowserSamplingProfile in the Memory domain.
+func (a *GetBrowserSamplingProfileReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetBrowserSamplingProfile in the Memory domain.
 func (a *GetBrowserSamplingProfileReply) UnmarshalJSON(b []byte) error {
 	type Copy GetBrowserSamplingProfileReply
@@ -456,6 +496,11 @@ func (a *GetSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetSamplingProfileReply", err)
 	}
 	return true
+}
+
+// GetSamplingProfileReply returns the FrameID value for GetSamplingProfile in the Memory domain.
+func (a *GetSamplingProfileReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetSamplingProfile in the Memory domain.

@@ -84,6 +84,11 @@ func (a *ContinueToLocationReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ContinueToLocationReply returns the FrameID value for ContinueToLocation in the Debugger domain.
+func (a *ContinueToLocationReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ContinueToLocation in the Debugger domain.
 func (a *ContinueToLocationReply) UnmarshalJSON(b []byte) error {
 	type Copy ContinueToLocationReply
@@ -131,6 +136,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: DisableReply", err)
 	}
 	return true
+}
+
+// DisableReply returns the FrameID value for Disable in the Debugger domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Disable in the Debugger domain.
@@ -184,6 +194,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the Debugger domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the Debugger domain.
@@ -253,6 +268,11 @@ func (a *EvaluateOnCallFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// EvaluateOnCallFrameReply returns the FrameID value for EvaluateOnCallFrame in the Debugger domain.
+func (a *EvaluateOnCallFrameReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for EvaluateOnCallFrame in the Debugger domain.
 func (a *EvaluateOnCallFrameReply) UnmarshalJSON(b []byte) error {
 	type Copy EvaluateOnCallFrameReply
@@ -306,6 +326,11 @@ func (a *GetPossibleBreakpointsReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
+// GetPossibleBreakpointsReply returns the FrameID value for GetPossibleBreakpoints in the Debugger domain.
+func (a *GetPossibleBreakpointsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetPossibleBreakpoints in the Debugger domain.
 func (a *GetPossibleBreakpointsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetPossibleBreakpointsReply
@@ -355,6 +380,11 @@ func (a *GetScriptSourceReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetScriptSourceReply", err)
 	}
 	return true
+}
+
+// GetScriptSourceReply returns the FrameID value for GetScriptSource in the Debugger domain.
+func (a *GetScriptSourceReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetScriptSource in the Debugger domain.
@@ -408,6 +438,11 @@ func (a *GetStackTraceReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetStackTraceReply returns the FrameID value for GetStackTrace in the Debugger domain.
+func (a *GetStackTraceReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetStackTrace in the Debugger domain.
 func (a *GetStackTraceReply) UnmarshalJSON(b []byte) error {
 	type Copy GetStackTraceReply
@@ -455,6 +490,11 @@ func (a *PauseReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: PauseReply", err)
 	}
 	return true
+}
+
+// PauseReply returns the FrameID value for Pause in the Debugger domain.
+func (a *PauseReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Pause in the Debugger domain.
@@ -507,6 +547,11 @@ func (a *PauseOnAsyncCallReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// PauseOnAsyncCallReply returns the FrameID value for PauseOnAsyncCall in the Debugger domain.
+func (a *PauseOnAsyncCallReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for PauseOnAsyncCall in the Debugger domain.
 func (a *PauseOnAsyncCallReply) UnmarshalJSON(b []byte) error {
 	type Copy PauseOnAsyncCallReply
@@ -555,6 +600,11 @@ func (a *RemoveBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: RemoveBreakpointReply", err)
 	}
 	return true
+}
+
+// RemoveBreakpointReply returns the FrameID value for RemoveBreakpoint in the Debugger domain.
+func (a *RemoveBreakpointReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RemoveBreakpoint in the Debugger domain.
@@ -613,6 +663,11 @@ func (a *RestartFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// RestartFrameReply returns the FrameID value for RestartFrame in the Debugger domain.
+func (a *RestartFrameReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RestartFrame in the Debugger domain.
 func (a *RestartFrameReply) UnmarshalJSON(b []byte) error {
 	type Copy RestartFrameReply
@@ -662,6 +717,11 @@ func (a *ResumeReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ResumeReply returns the FrameID value for Resume in the Debugger domain.
+func (a *ResumeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Resume in the Debugger domain.
 func (a *ResumeReply) UnmarshalJSON(b []byte) error {
 	type Copy ResumeReply
@@ -709,6 +769,11 @@ func (a *ScheduleStepIntoAsyncReply) MatchFrameID(frameID string, m []byte) bool
 		log.Fatalf("unmarshal error: ScheduleStepIntoAsyncReply", err)
 	}
 	return true
+}
+
+// ScheduleStepIntoAsyncReply returns the FrameID value for ScheduleStepIntoAsync in the Debugger domain.
+func (a *ScheduleStepIntoAsyncReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ScheduleStepIntoAsync in the Debugger domain.
@@ -765,6 +830,11 @@ func (a *SearchInContentReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SearchInContentReply returns the FrameID value for SearchInContent in the Debugger domain.
+func (a *SearchInContentReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SearchInContent in the Debugger domain.
 func (a *SearchInContentReply) UnmarshalJSON(b []byte) error {
 	type Copy SearchInContentReply
@@ -815,6 +885,11 @@ func (a *SetAsyncCallStackDepthReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
+// SetAsyncCallStackDepthReply returns the FrameID value for SetAsyncCallStackDepth in the Debugger domain.
+func (a *SetAsyncCallStackDepthReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetAsyncCallStackDepth in the Debugger domain.
 func (a *SetAsyncCallStackDepthReply) UnmarshalJSON(b []byte) error {
 	type Copy SetAsyncCallStackDepthReply
@@ -863,6 +938,11 @@ func (a *SetBlackboxPatternsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetBlackboxPatternsReply", err)
 	}
 	return true
+}
+
+// SetBlackboxPatternsReply returns the FrameID value for SetBlackboxPatterns in the Debugger domain.
+func (a *SetBlackboxPatternsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetBlackboxPatterns in the Debugger domain.
@@ -916,6 +996,11 @@ func (a *SetBlackboxedRangesReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetBlackboxedRangesReply returns the FrameID value for SetBlackboxedRanges in the Debugger domain.
+func (a *SetBlackboxedRangesReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetBlackboxedRanges in the Debugger domain.
 func (a *SetBlackboxedRangesReply) UnmarshalJSON(b []byte) error {
 	type Copy SetBlackboxedRangesReply
@@ -967,6 +1052,11 @@ func (a *SetBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetBreakpointReply", err)
 	}
 	return true
+}
+
+// SetBreakpointReply returns the FrameID value for SetBreakpoint in the Debugger domain.
+func (a *SetBreakpointReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetBreakpoint in the Debugger domain.
@@ -1026,6 +1116,11 @@ func (a *SetBreakpointByURLReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetBreakpointByURLReply returns the FrameID value for SetBreakpointByURL in the Debugger domain.
+func (a *SetBreakpointByURLReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetBreakpointByURL in the Debugger domain.
 func (a *SetBreakpointByURLReply) UnmarshalJSON(b []byte) error {
 	type Copy SetBreakpointByURLReply
@@ -1078,6 +1173,11 @@ func (a *SetBreakpointOnFunctionCallReply) MatchFrameID(frameID string, m []byte
 	return true
 }
 
+// SetBreakpointOnFunctionCallReply returns the FrameID value for SetBreakpointOnFunctionCall in the Debugger domain.
+func (a *SetBreakpointOnFunctionCallReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetBreakpointOnFunctionCall in the Debugger domain.
 func (a *SetBreakpointOnFunctionCallReply) UnmarshalJSON(b []byte) error {
 	type Copy SetBreakpointOnFunctionCallReply
@@ -1126,6 +1226,11 @@ func (a *SetBreakpointsActiveReply) MatchFrameID(frameID string, m []byte) bool 
 		log.Fatalf("unmarshal error: SetBreakpointsActiveReply", err)
 	}
 	return true
+}
+
+// SetBreakpointsActiveReply returns the FrameID value for SetBreakpointsActive in the Debugger domain.
+func (a *SetBreakpointsActiveReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetBreakpointsActive in the Debugger domain.
@@ -1181,6 +1286,11 @@ func (a *SetPauseOnExceptionsReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
+// SetPauseOnExceptionsReply returns the FrameID value for SetPauseOnExceptions in the Debugger domain.
+func (a *SetPauseOnExceptionsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetPauseOnExceptions in the Debugger domain.
 func (a *SetPauseOnExceptionsReply) UnmarshalJSON(b []byte) error {
 	type Copy SetPauseOnExceptionsReply
@@ -1229,6 +1339,11 @@ func (a *SetReturnValueReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetReturnValueReply", err)
 	}
 	return true
+}
+
+// SetReturnValueReply returns the FrameID value for SetReturnValue in the Debugger domain.
+func (a *SetReturnValueReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetReturnValue in the Debugger domain.
@@ -1291,6 +1406,11 @@ func (a *SetScriptSourceReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetScriptSourceReply returns the FrameID value for SetScriptSource in the Debugger domain.
+func (a *SetScriptSourceReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetScriptSource in the Debugger domain.
 func (a *SetScriptSourceReply) UnmarshalJSON(b []byte) error {
 	type Copy SetScriptSourceReply
@@ -1339,6 +1459,11 @@ func (a *SetSkipAllPausesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetSkipAllPausesReply", err)
 	}
 	return true
+}
+
+// SetSkipAllPausesReply returns the FrameID value for SetSkipAllPauses in the Debugger domain.
+func (a *SetSkipAllPausesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetSkipAllPauses in the Debugger domain.
@@ -1392,6 +1517,11 @@ func (a *SetVariableValueReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetVariableValueReply", err)
 	}
 	return true
+}
+
+// SetVariableValueReply returns the FrameID value for SetVariableValue in the Debugger domain.
+func (a *SetVariableValueReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetVariableValue in the Debugger domain.
@@ -1448,6 +1578,11 @@ func (a *StepIntoReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// StepIntoReply returns the FrameID value for StepInto in the Debugger domain.
+func (a *StepIntoReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StepInto in the Debugger domain.
 func (a *StepIntoReply) UnmarshalJSON(b []byte) error {
 	type Copy StepIntoReply
@@ -1497,6 +1632,11 @@ func (a *StepOutReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// StepOutReply returns the FrameID value for StepOut in the Debugger domain.
+func (a *StepOutReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StepOut in the Debugger domain.
 func (a *StepOutReply) UnmarshalJSON(b []byte) error {
 	type Copy StepOutReply
@@ -1544,6 +1684,11 @@ func (a *StepOverReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: StepOverReply", err)
 	}
 	return true
+}
+
+// StepOverReply returns the FrameID value for StepOver in the Debugger domain.
+func (a *StepOverReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for StepOver in the Debugger domain.

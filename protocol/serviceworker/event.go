@@ -4,6 +4,7 @@ package serviceworker
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -40,6 +41,20 @@ func (a *WorkerErrorReportedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// WorkerErrorReportedReply returns whether or not the FrameID matches the reply value for WorkerErrorReported in the WorkerErrorReported domain.
+func (a *WorkerErrorReportedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WorkerErrorReportedReply returns the FrameID for WorkerErrorReported in the WorkerErrorReported domain.
+func (a *WorkerErrorReportedReply) GetFrameID() string {
+	return ""
+}
+
 // WorkerRegistrationUpdatedReply is the reply for WorkerRegistrationUpdated events.
 type WorkerRegistrationUpdatedReply struct {
 	Registrations []Registration `json:"registrations"` // No description.
@@ -57,6 +72,20 @@ func (a *WorkerRegistrationUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// WorkerRegistrationUpdatedReply returns whether or not the FrameID matches the reply value for WorkerRegistrationUpdated in the WorkerRegistrationUpdated domain.
+func (a *WorkerRegistrationUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WorkerRegistrationUpdatedReply returns the FrameID for WorkerRegistrationUpdated in the WorkerRegistrationUpdated domain.
+func (a *WorkerRegistrationUpdatedReply) GetFrameID() string {
+	return ""
+}
+
 // WorkerVersionUpdatedReply is the reply for WorkerVersionUpdated events.
 type WorkerVersionUpdatedReply struct {
 	Versions []Version `json:"versions"` // No description.
@@ -72,4 +101,18 @@ func (a *WorkerVersionUpdatedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = WorkerVersionUpdatedReply(*c)
 	return nil
+}
+
+// WorkerVersionUpdatedReply returns whether or not the FrameID matches the reply value for WorkerVersionUpdated in the WorkerVersionUpdated domain.
+func (a *WorkerVersionUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WorkerVersionUpdatedReply returns the FrameID for WorkerVersionUpdated in the WorkerVersionUpdated domain.
+func (a *WorkerVersionUpdatedReply) GetFrameID() string {
+	return ""
 }

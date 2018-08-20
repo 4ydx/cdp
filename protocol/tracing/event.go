@@ -4,6 +4,7 @@ package tracing
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol/io"
 )
@@ -44,6 +45,20 @@ func (a *BufferUsageReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// BufferUsageReply returns whether or not the FrameID matches the reply value for BufferUsage in the BufferUsage domain.
+func (a *BufferUsageReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// BufferUsageReply returns the FrameID for BufferUsage in the BufferUsage domain.
+func (a *BufferUsageReply) GetFrameID() string {
+	return ""
+}
+
 // DataCollectedReply is the reply for DataCollected events.
 type DataCollectedReply struct {
 	Value []json.RawMessage `json:"value"` // No description.
@@ -59,6 +74,20 @@ func (a *DataCollectedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = DataCollectedReply(*c)
 	return nil
+}
+
+// DataCollectedReply returns whether or not the FrameID matches the reply value for DataCollected in the DataCollected domain.
+func (a *DataCollectedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// DataCollectedReply returns the FrameID for DataCollected in the DataCollected domain.
+func (a *DataCollectedReply) GetFrameID() string {
+	return ""
 }
 
 // CompleteReply is the reply for TracingComplete events.
@@ -77,4 +106,18 @@ func (a *CompleteReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = CompleteReply(*c)
 	return nil
+}
+
+// CompleteReply returns whether or not the FrameID matches the reply value for TracingComplete in the TracingComplete domain.
+func (a *CompleteReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// CompleteReply returns the FrameID for TracingComplete in the TracingComplete domain.
+func (a *CompleteReply) GetFrameID() string {
+	return ""
 }

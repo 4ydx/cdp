@@ -59,6 +59,9 @@ const (
 	CommandPageClose                               = "Page.close"
 	CommandPageSetWebLifecycleState                = "Page.setWebLifecycleState"
 	CommandPageStopScreencast                      = "Page.stopScreencast"
+	CommandPageSetProduceCompilationCache          = "Page.setProduceCompilationCache"
+	CommandPageAddCompilationCache                 = "Page.addCompilationCache"
+	CommandPageClearCompilationCache               = "Page.clearCompilationCache"
 )
 
 // AddScriptToEvaluateOnLoadArgs represents the arguments for AddScriptToEvaluateOnLoad in the Page domain.
@@ -98,6 +101,11 @@ func (a *AddScriptToEvaluateOnLoadReply) MatchFrameID(frameID string, m []byte) 
 		log.Fatalf("unmarshal error: AddScriptToEvaluateOnLoadReply", err)
 	}
 	return true
+}
+
+// AddScriptToEvaluateOnLoadReply returns the FrameID value for AddScriptToEvaluateOnLoad in the Page domain.
+func (a *AddScriptToEvaluateOnLoadReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for AddScriptToEvaluateOnLoad in the Page domain.
@@ -151,6 +159,11 @@ func (a *AddScriptToEvaluateOnNewDocumentReply) MatchFrameID(frameID string, m [
 	return true
 }
 
+// AddScriptToEvaluateOnNewDocumentReply returns the FrameID value for AddScriptToEvaluateOnNewDocument in the Page domain.
+func (a *AddScriptToEvaluateOnNewDocumentReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for AddScriptToEvaluateOnNewDocument in the Page domain.
 func (a *AddScriptToEvaluateOnNewDocumentReply) UnmarshalJSON(b []byte) error {
 	type Copy AddScriptToEvaluateOnNewDocumentReply
@@ -198,6 +211,11 @@ func (a *BringToFrontReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: BringToFrontReply", err)
 	}
 	return true
+}
+
+// BringToFrontReply returns the FrameID value for BringToFront in the Page domain.
+func (a *BringToFrontReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for BringToFront in the Page domain.
@@ -261,6 +279,11 @@ func (a *CaptureScreenshotReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CaptureScreenshotReply returns the FrameID value for CaptureScreenshot in the Page domain.
+func (a *CaptureScreenshotReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CaptureScreenshot in the Page domain.
 func (a *CaptureScreenshotReply) UnmarshalJSON(b []byte) error {
 	type Copy CaptureScreenshotReply
@@ -314,6 +337,11 @@ func (a *CreateIsolatedWorldReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CreateIsolatedWorldReply returns the FrameID value for CreateIsolatedWorld in the Page domain.
+func (a *CreateIsolatedWorldReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CreateIsolatedWorld in the Page domain.
 func (a *CreateIsolatedWorldReply) UnmarshalJSON(b []byte) error {
 	type Copy CreateIsolatedWorldReply
@@ -363,6 +391,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the Page domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the Page domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -410,6 +443,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the Page domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the Page domain.
@@ -464,6 +502,11 @@ func (a *GetAppManifestReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetAppManifestReply returns the FrameID value for GetAppManifest in the Page domain.
+func (a *GetAppManifestReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetAppManifest in the Page domain.
 func (a *GetAppManifestReply) UnmarshalJSON(b []byte) error {
 	type Copy GetAppManifestReply
@@ -512,6 +555,11 @@ func (a *GetFrameTreeReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetFrameTreeReply", err)
 	}
 	return true
+}
+
+// GetFrameTreeReply returns the FrameID value for GetFrameTree in the Page domain.
+func (a *GetFrameTreeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetFrameTree in the Page domain.
@@ -566,6 +614,11 @@ func (a *GetLayoutMetricsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetLayoutMetricsReply returns the FrameID value for GetLayoutMetrics in the Page domain.
+func (a *GetLayoutMetricsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetLayoutMetrics in the Page domain.
 func (a *GetLayoutMetricsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetLayoutMetricsReply
@@ -615,6 +668,11 @@ func (a *GetNavigationHistoryReply) MatchFrameID(frameID string, m []byte) bool 
 		log.Fatalf("unmarshal error: GetNavigationHistoryReply", err)
 	}
 	return true
+}
+
+// GetNavigationHistoryReply returns the FrameID value for GetNavigationHistory in the Page domain.
+func (a *GetNavigationHistoryReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetNavigationHistory in the Page domain.
@@ -670,6 +728,11 @@ func (a *GetResourceContentReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetResourceContentReply returns the FrameID value for GetResourceContent in the Page domain.
+func (a *GetResourceContentReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetResourceContent in the Page domain.
 func (a *GetResourceContentReply) UnmarshalJSON(b []byte) error {
 	type Copy GetResourceContentReply
@@ -718,6 +781,11 @@ func (a *GetResourceTreeReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetResourceTreeReply", err)
 	}
 	return true
+}
+
+// GetResourceTreeReply returns the FrameID value for GetResourceTree in the Page domain.
+func (a *GetResourceTreeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetResourceTree in the Page domain.
@@ -769,6 +837,11 @@ func (a *HandleJavaScriptDialogReply) MatchFrameID(frameID string, m []byte) boo
 		log.Fatalf("unmarshal error: HandleJavaScriptDialogReply", err)
 	}
 	return true
+}
+
+// HandleJavaScriptDialogReply returns the FrameID value for HandleJavaScriptDialog in the Page domain.
+func (a *HandleJavaScriptDialogReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for HandleJavaScriptDialog in the Page domain.
@@ -827,6 +900,11 @@ func (a *NavigateReply) MatchFrameID(frameID string, m []byte) bool {
 	return a.FrameID == shared.FrameID(frameID)
 }
 
+// NavigateReply returns the FrameID for Navigate in the Page domain.
+func (a *NavigateReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // Unmarshal the byte array into a return value for Navigate in the Page domain.
 func (a *NavigateReply) UnmarshalJSON(b []byte) error {
 	type Copy NavigateReply
@@ -875,6 +953,11 @@ func (a *NavigateToHistoryEntryReply) MatchFrameID(frameID string, m []byte) boo
 		log.Fatalf("unmarshal error: NavigateToHistoryEntryReply", err)
 	}
 	return true
+}
+
+// NavigateToHistoryEntryReply returns the FrameID value for NavigateToHistoryEntry in the Page domain.
+func (a *NavigateToHistoryEntryReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for NavigateToHistoryEntry in the Page domain.
@@ -942,6 +1025,11 @@ func (a *PrintToPDFReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// PrintToPDFReply returns the FrameID value for PrintToPDF in the Page domain.
+func (a *PrintToPDFReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for PrintToPDF in the Page domain.
 func (a *PrintToPDFReply) UnmarshalJSON(b []byte) error {
 	type Copy PrintToPDFReply
@@ -991,6 +1079,11 @@ func (a *ReloadReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ReloadReply", err)
 	}
 	return true
+}
+
+// ReloadReply returns the FrameID value for Reload in the Page domain.
+func (a *ReloadReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Reload in the Page domain.
@@ -1043,6 +1136,11 @@ func (a *RemoveScriptToEvaluateOnLoadReply) MatchFrameID(frameID string, m []byt
 	return true
 }
 
+// RemoveScriptToEvaluateOnLoadReply returns the FrameID value for RemoveScriptToEvaluateOnLoad in the Page domain.
+func (a *RemoveScriptToEvaluateOnLoadReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RemoveScriptToEvaluateOnLoad in the Page domain.
 func (a *RemoveScriptToEvaluateOnLoadReply) UnmarshalJSON(b []byte) error {
 	type Copy RemoveScriptToEvaluateOnLoadReply
@@ -1091,6 +1189,11 @@ func (a *RemoveScriptToEvaluateOnNewDocumentReply) MatchFrameID(frameID string, 
 		log.Fatalf("unmarshal error: RemoveScriptToEvaluateOnNewDocumentReply", err)
 	}
 	return true
+}
+
+// RemoveScriptToEvaluateOnNewDocumentReply returns the FrameID value for RemoveScriptToEvaluateOnNewDocument in the Page domain.
+func (a *RemoveScriptToEvaluateOnNewDocumentReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RemoveScriptToEvaluateOnNewDocument in the Page domain.
@@ -1142,6 +1245,11 @@ func (a *RequestAppBannerReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// RequestAppBannerReply returns the FrameID value for RequestAppBanner in the Page domain.
+func (a *RequestAppBannerReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RequestAppBanner in the Page domain.
 func (a *RequestAppBannerReply) UnmarshalJSON(b []byte) error {
 	type Copy RequestAppBannerReply
@@ -1190,6 +1298,11 @@ func (a *ScreencastFrameAckReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ScreencastFrameAckReply", err)
 	}
 	return true
+}
+
+// ScreencastFrameAckReply returns the FrameID value for ScreencastFrameAck in the Page domain.
+func (a *ScreencastFrameAckReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ScreencastFrameAck in the Page domain.
@@ -1247,6 +1360,11 @@ func (a *SearchInResourceReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SearchInResourceReply returns the FrameID value for SearchInResource in the Page domain.
+func (a *SearchInResourceReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SearchInResource in the Page domain.
 func (a *SearchInResourceReply) UnmarshalJSON(b []byte) error {
 	type Copy SearchInResourceReply
@@ -1295,6 +1413,11 @@ func (a *SetAdBlockingEnabledReply) MatchFrameID(frameID string, m []byte) bool 
 		log.Fatalf("unmarshal error: SetAdBlockingEnabledReply", err)
 	}
 	return true
+}
+
+// SetAdBlockingEnabledReply returns the FrameID value for SetAdBlockingEnabled in the Page domain.
+func (a *SetAdBlockingEnabledReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetAdBlockingEnabled in the Page domain.
@@ -1347,6 +1470,11 @@ func (a *SetBypassCSPReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetBypassCSPReply returns the FrameID value for SetBypassCSP in the Page domain.
+func (a *SetBypassCSPReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetBypassCSP in the Page domain.
 func (a *SetBypassCSPReply) UnmarshalJSON(b []byte) error {
 	type Copy SetBypassCSPReply
@@ -1395,6 +1523,11 @@ func (a *SetFontFamiliesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetFontFamiliesReply", err)
 	}
 	return true
+}
+
+// SetFontFamiliesReply returns the FrameID value for SetFontFamilies in the Page domain.
+func (a *SetFontFamiliesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetFontFamilies in the Page domain.
@@ -1447,6 +1580,11 @@ func (a *SetFontSizesReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetFontSizesReply returns the FrameID value for SetFontSizes in the Page domain.
+func (a *SetFontSizesReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetFontSizes in the Page domain.
 func (a *SetFontSizesReply) UnmarshalJSON(b []byte) error {
 	type Copy SetFontSizesReply
@@ -1496,6 +1634,11 @@ func (a *SetDocumentContentReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetDocumentContentReply", err)
 	}
 	return true
+}
+
+// SetDocumentContentReply returns the FrameID value for SetDocumentContent in the Page domain.
+func (a *SetDocumentContentReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetDocumentContent in the Page domain.
@@ -1553,6 +1696,11 @@ func (a *SetDownloadBehaviorReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetDownloadBehaviorReply returns the FrameID value for SetDownloadBehavior in the Page domain.
+func (a *SetDownloadBehaviorReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetDownloadBehavior in the Page domain.
 func (a *SetDownloadBehaviorReply) UnmarshalJSON(b []byte) error {
 	type Copy SetDownloadBehaviorReply
@@ -1601,6 +1749,11 @@ func (a *SetLifecycleEventsEnabledReply) MatchFrameID(frameID string, m []byte) 
 		log.Fatalf("unmarshal error: SetLifecycleEventsEnabledReply", err)
 	}
 	return true
+}
+
+// SetLifecycleEventsEnabledReply returns the FrameID value for SetLifecycleEventsEnabled in the Page domain.
+func (a *SetLifecycleEventsEnabledReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetLifecycleEventsEnabled in the Page domain.
@@ -1660,6 +1813,11 @@ func (a *StartScreencastReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// StartScreencastReply returns the FrameID value for StartScreencast in the Page domain.
+func (a *StartScreencastReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StartScreencast in the Page domain.
 func (a *StartScreencastReply) UnmarshalJSON(b []byte) error {
 	type Copy StartScreencastReply
@@ -1707,6 +1865,11 @@ func (a *StopLoadingReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: StopLoadingReply", err)
 	}
 	return true
+}
+
+// StopLoadingReply returns the FrameID value for StopLoading in the Page domain.
+func (a *StopLoadingReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for StopLoading in the Page domain.
@@ -1758,6 +1921,11 @@ func (a *CrashReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CrashReply returns the FrameID value for Crash in the Page domain.
+func (a *CrashReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Crash in the Page domain.
 func (a *CrashReply) UnmarshalJSON(b []byte) error {
 	type Copy CrashReply
@@ -1805,6 +1973,11 @@ func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: CloseReply", err)
 	}
 	return true
+}
+
+// CloseReply returns the FrameID value for Close in the Page domain.
+func (a *CloseReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Close in the Page domain.
@@ -1860,6 +2033,11 @@ func (a *SetWebLifecycleStateReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
+// SetWebLifecycleStateReply returns the FrameID value for SetWebLifecycleState in the Page domain.
+func (a *SetWebLifecycleStateReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetWebLifecycleState in the Page domain.
 func (a *SetWebLifecycleStateReply) UnmarshalJSON(b []byte) error {
 	type Copy SetWebLifecycleStateReply
@@ -1909,6 +2087,11 @@ func (a *StopScreencastReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// StopScreencastReply returns the FrameID value for StopScreencast in the Page domain.
+func (a *StopScreencastReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StopScreencast in the Page domain.
 func (a *StopScreencastReply) UnmarshalJSON(b []byte) error {
 	type Copy StopScreencastReply
@@ -1918,5 +2101,170 @@ func (a *StopScreencastReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = StopScreencastReply(*c)
+	return nil
+}
+
+// SetProduceCompilationCacheArgs represents the arguments for SetProduceCompilationCache in the Page domain.
+type SetProduceCompilationCacheArgs struct {
+	Enabled bool `json:"enabled"` // No description.
+}
+
+// Unmarshal the byte array into a return value for SetProduceCompilationCache in the Page domain.
+func (a *SetProduceCompilationCacheArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetProduceCompilationCacheArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetProduceCompilationCacheArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetProduceCompilationCache in the Page domain.
+func (a *SetProduceCompilationCacheArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetProduceCompilationCacheArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetProduceCompilationCacheReply represents the return values for SetProduceCompilationCache in the Page domain.
+type SetProduceCompilationCacheReply struct {
+}
+
+// SetProduceCompilationCacheReply returns whether or not the FrameID matches the reply value for SetProduceCompilationCache in the Page domain.
+func (a *SetProduceCompilationCacheReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: SetProduceCompilationCacheReply", err)
+	}
+	return true
+}
+
+// SetProduceCompilationCacheReply returns the FrameID value for SetProduceCompilationCache in the Page domain.
+func (a *SetProduceCompilationCacheReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetProduceCompilationCache in the Page domain.
+func (a *SetProduceCompilationCacheReply) UnmarshalJSON(b []byte) error {
+	type Copy SetProduceCompilationCacheReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetProduceCompilationCacheReply(*c)
+	return nil
+}
+
+// AddCompilationCacheArgs represents the arguments for AddCompilationCache in the Page domain.
+type AddCompilationCacheArgs struct {
+	URL  string `json:"url"`  // No description.
+	Data []byte `json:"data"` // Base64-encoded data
+}
+
+// Unmarshal the byte array into a return value for AddCompilationCache in the Page domain.
+func (a *AddCompilationCacheArgs) UnmarshalJSON(b []byte) error {
+	type Copy AddCompilationCacheArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = AddCompilationCacheArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for AddCompilationCache in the Page domain.
+func (a *AddCompilationCacheArgs) MarshalJSON() ([]byte, error) {
+	type Copy AddCompilationCacheArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// AddCompilationCacheReply represents the return values for AddCompilationCache in the Page domain.
+type AddCompilationCacheReply struct {
+}
+
+// AddCompilationCacheReply returns whether or not the FrameID matches the reply value for AddCompilationCache in the Page domain.
+func (a *AddCompilationCacheReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: AddCompilationCacheReply", err)
+	}
+	return true
+}
+
+// AddCompilationCacheReply returns the FrameID value for AddCompilationCache in the Page domain.
+func (a *AddCompilationCacheReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for AddCompilationCache in the Page domain.
+func (a *AddCompilationCacheReply) UnmarshalJSON(b []byte) error {
+	type Copy AddCompilationCacheReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = AddCompilationCacheReply(*c)
+	return nil
+}
+
+// ClearCompilationCacheArgs represents the arguments for ClearCompilationCache in the Page domain.
+type ClearCompilationCacheArgs struct {
+}
+
+// Unmarshal the byte array into a return value for ClearCompilationCache in the Page domain.
+func (a *ClearCompilationCacheArgs) UnmarshalJSON(b []byte) error {
+	type Copy ClearCompilationCacheArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ClearCompilationCacheArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for ClearCompilationCache in the Page domain.
+func (a *ClearCompilationCacheArgs) MarshalJSON() ([]byte, error) {
+	type Copy ClearCompilationCacheArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// ClearCompilationCacheReply represents the return values for ClearCompilationCache in the Page domain.
+type ClearCompilationCacheReply struct {
+}
+
+// ClearCompilationCacheReply returns whether or not the FrameID matches the reply value for ClearCompilationCache in the Page domain.
+func (a *ClearCompilationCacheReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ClearCompilationCacheReply", err)
+	}
+	return true
+}
+
+// ClearCompilationCacheReply returns the FrameID value for ClearCompilationCache in the Page domain.
+func (a *ClearCompilationCacheReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for ClearCompilationCache in the Page domain.
+func (a *ClearCompilationCacheReply) UnmarshalJSON(b []byte) error {
+	type Copy ClearCompilationCacheReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ClearCompilationCacheReply(*c)
 	return nil
 }

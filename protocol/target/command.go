@@ -10,6 +10,7 @@ import (
 const (
 	CommandTargetActivateTarget         = "Target.activateTarget"
 	CommandTargetAttachToTarget         = "Target.attachToTarget"
+	CommandTargetAttachToBrowserTarget  = "Target.attachToBrowserTarget"
 	CommandTargetCloseTarget            = "Target.closeTarget"
 	CommandTargetExposeDevToolsProtocol = "Target.exposeDevToolsProtocol"
 	CommandTargetCreateBrowserContext   = "Target.createBrowserContext"
@@ -61,6 +62,11 @@ func (a *ActivateTargetReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ActivateTargetReply", err)
 	}
 	return true
+}
+
+// ActivateTargetReply returns the FrameID value for ActivateTarget in the Target domain.
+func (a *ActivateTargetReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ActivateTarget in the Target domain.
@@ -119,6 +125,11 @@ func (a *AttachToTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// AttachToTargetReply returns the FrameID value for AttachToTarget in the Target domain.
+func (a *AttachToTargetReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for AttachToTarget in the Target domain.
 func (a *AttachToTargetReply) UnmarshalJSON(b []byte) error {
 	type Copy AttachToTargetReply
@@ -128,6 +139,61 @@ func (a *AttachToTargetReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = AttachToTargetReply(*c)
+	return nil
+}
+
+// AttachToBrowserTargetArgs represents the arguments for AttachToBrowserTarget in the Target domain.
+type AttachToBrowserTargetArgs struct {
+}
+
+// Unmarshal the byte array into a return value for AttachToBrowserTarget in the Target domain.
+func (a *AttachToBrowserTargetArgs) UnmarshalJSON(b []byte) error {
+	type Copy AttachToBrowserTargetArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = AttachToBrowserTargetArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for AttachToBrowserTarget in the Target domain.
+func (a *AttachToBrowserTargetArgs) MarshalJSON() ([]byte, error) {
+	type Copy AttachToBrowserTargetArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// AttachToBrowserTargetReply represents the return values for AttachToBrowserTarget in the Target domain.
+type AttachToBrowserTargetReply struct {
+	SessionID SessionID `json:"sessionId"` // Id assigned to the session.
+}
+
+// AttachToBrowserTargetReply returns whether or not the FrameID matches the reply value for AttachToBrowserTarget in the Target domain.
+func (a *AttachToBrowserTargetReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: AttachToBrowserTargetReply", err)
+	}
+	return true
+}
+
+// AttachToBrowserTargetReply returns the FrameID value for AttachToBrowserTarget in the Target domain.
+func (a *AttachToBrowserTargetReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for AttachToBrowserTarget in the Target domain.
+func (a *AttachToBrowserTargetReply) UnmarshalJSON(b []byte) error {
+	type Copy AttachToBrowserTargetReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = AttachToBrowserTargetReply(*c)
 	return nil
 }
 
@@ -168,6 +234,11 @@ func (a *CloseTargetReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: CloseTargetReply", err)
 	}
 	return true
+}
+
+// CloseTargetReply returns the FrameID value for CloseTarget in the Target domain.
+func (a *CloseTargetReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for CloseTarget in the Target domain.
@@ -221,6 +292,11 @@ func (a *ExposeDevToolsProtocolReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
+// ExposeDevToolsProtocolReply returns the FrameID value for ExposeDevToolsProtocol in the Target domain.
+func (a *ExposeDevToolsProtocolReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ExposeDevToolsProtocol in the Target domain.
 func (a *ExposeDevToolsProtocolReply) UnmarshalJSON(b []byte) error {
 	type Copy ExposeDevToolsProtocolReply
@@ -271,6 +347,11 @@ func (a *CreateBrowserContextReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
+// CreateBrowserContextReply returns the FrameID value for CreateBrowserContext in the Target domain.
+func (a *CreateBrowserContextReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CreateBrowserContext in the Target domain.
 func (a *CreateBrowserContextReply) UnmarshalJSON(b []byte) error {
 	type Copy CreateBrowserContextReply
@@ -319,6 +400,11 @@ func (a *GetBrowserContextsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetBrowserContextsReply", err)
 	}
 	return true
+}
+
+// GetBrowserContextsReply returns the FrameID value for GetBrowserContexts in the Target domain.
+func (a *GetBrowserContextsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetBrowserContexts in the Target domain.
@@ -381,6 +467,11 @@ func (a *CreateTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CreateTargetReply returns the FrameID value for CreateTarget in the Target domain.
+func (a *CreateTargetReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CreateTarget in the Target domain.
 func (a *CreateTargetReply) UnmarshalJSON(b []byte) error {
 	type Copy CreateTargetReply
@@ -435,6 +526,11 @@ func (a *DetachFromTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DetachFromTargetReply returns the FrameID value for DetachFromTarget in the Target domain.
+func (a *DetachFromTargetReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for DetachFromTarget in the Target domain.
 func (a *DetachFromTargetReply) UnmarshalJSON(b []byte) error {
 	type Copy DetachFromTargetReply
@@ -483,6 +579,11 @@ func (a *DisposeBrowserContextReply) MatchFrameID(frameID string, m []byte) bool
 		log.Fatalf("unmarshal error: DisposeBrowserContextReply", err)
 	}
 	return true
+}
+
+// DisposeBrowserContextReply returns the FrameID value for DisposeBrowserContext in the Target domain.
+func (a *DisposeBrowserContextReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for DisposeBrowserContext in the Target domain.
@@ -536,6 +637,11 @@ func (a *GetTargetInfoReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetTargetInfoReply returns the FrameID value for GetTargetInfo in the Target domain.
+func (a *GetTargetInfoReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetTargetInfo in the Target domain.
 func (a *GetTargetInfoReply) UnmarshalJSON(b []byte) error {
 	type Copy GetTargetInfoReply
@@ -584,6 +690,11 @@ func (a *GetTargetsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetTargetsReply", err)
 	}
 	return true
+}
+
+// GetTargetsReply returns the FrameID value for GetTargets in the Target domain.
+func (a *GetTargetsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetTargets in the Target domain.
@@ -641,6 +752,11 @@ func (a *SendMessageToTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SendMessageToTargetReply returns the FrameID value for SendMessageToTarget in the Target domain.
+func (a *SendMessageToTargetReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SendMessageToTarget in the Target domain.
 func (a *SendMessageToTargetReply) UnmarshalJSON(b []byte) error {
 	type Copy SendMessageToTargetReply
@@ -657,6 +773,11 @@ func (a *SendMessageToTargetReply) UnmarshalJSON(b []byte) error {
 type SetAutoAttachArgs struct {
 	AutoAttach             bool `json:"autoAttach"`             // Whether to auto-attach to related targets.
 	WaitForDebuggerOnStart bool `json:"waitForDebuggerOnStart"` // Whether to pause new targets when attaching to them. Use `Runtime.runIfWaitingForDebugger` to run paused targets.
+	// Flatten Enables "flat" access to the session via specifying
+	// sessionId attribute in the commands.
+	//
+	// Note: This property is experimental.
+	Flatten bool `json:"flatten,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for SetAutoAttach in the Target domain.
@@ -690,6 +811,11 @@ func (a *SetAutoAttachReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetAutoAttachReply", err)
 	}
 	return true
+}
+
+// SetAutoAttachReply returns the FrameID value for SetAutoAttach in the Target domain.
+func (a *SetAutoAttachReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetAutoAttach in the Target domain.
@@ -742,6 +868,11 @@ func (a *SetDiscoverTargetsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetDiscoverTargetsReply returns the FrameID value for SetDiscoverTargets in the Target domain.
+func (a *SetDiscoverTargetsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetDiscoverTargets in the Target domain.
 func (a *SetDiscoverTargetsReply) UnmarshalJSON(b []byte) error {
 	type Copy SetDiscoverTargetsReply
@@ -790,6 +921,11 @@ func (a *SetRemoteLocationsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetRemoteLocationsReply", err)
 	}
 	return true
+}
+
+// SetRemoteLocationsReply returns the FrameID value for SetRemoteLocations in the Target domain.
+func (a *SetRemoteLocationsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetRemoteLocations in the Target domain.

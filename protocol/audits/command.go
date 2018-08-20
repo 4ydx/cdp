@@ -60,6 +60,11 @@ func (a *GetEncodedResponseReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetEncodedResponseReply returns the FrameID value for GetEncodedResponse in the Audits domain.
+func (a *GetEncodedResponseReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetEncodedResponse in the Audits domain.
 func (a *GetEncodedResponseReply) UnmarshalJSON(b []byte) error {
 	type Copy GetEncodedResponseReply

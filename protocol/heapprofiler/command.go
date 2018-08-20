@@ -63,6 +63,11 @@ func (a *AddInspectedHeapObjectReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
+// AddInspectedHeapObjectReply returns the FrameID value for AddInspectedHeapObject in the HeapProfiler domain.
+func (a *AddInspectedHeapObjectReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for AddInspectedHeapObject in the HeapProfiler domain.
 func (a *AddInspectedHeapObjectReply) UnmarshalJSON(b []byte) error {
 	type Copy AddInspectedHeapObjectReply
@@ -110,6 +115,11 @@ func (a *CollectGarbageReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: CollectGarbageReply", err)
 	}
 	return true
+}
+
+// CollectGarbageReply returns the FrameID value for CollectGarbage in the HeapProfiler domain.
+func (a *CollectGarbageReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for CollectGarbage in the HeapProfiler domain.
@@ -161,6 +171,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the HeapProfiler domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the HeapProfiler domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -208,6 +223,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the HeapProfiler domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the HeapProfiler domain.
@@ -259,6 +279,11 @@ func (a *GetHeapObjectIDReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetHeapObjectIDReply", err)
 	}
 	return true
+}
+
+// GetHeapObjectIDReply returns the FrameID value for GetHeapObjectID in the HeapProfiler domain.
+func (a *GetHeapObjectIDReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetHeapObjectID in the HeapProfiler domain.
@@ -313,6 +338,11 @@ func (a *GetObjectByHeapObjectIDReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
+// GetObjectByHeapObjectIDReply returns the FrameID value for GetObjectByHeapObjectID in the HeapProfiler domain.
+func (a *GetObjectByHeapObjectIDReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetObjectByHeapObjectID in the HeapProfiler domain.
 func (a *GetObjectByHeapObjectIDReply) UnmarshalJSON(b []byte) error {
 	type Copy GetObjectByHeapObjectIDReply
@@ -361,6 +391,11 @@ func (a *GetSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetSamplingProfileReply", err)
 	}
 	return true
+}
+
+// GetSamplingProfileReply returns the FrameID value for GetSamplingProfile in the HeapProfiler domain.
+func (a *GetSamplingProfileReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetSamplingProfile in the HeapProfiler domain.
@@ -413,6 +448,11 @@ func (a *StartSamplingReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// StartSamplingReply returns the FrameID value for StartSampling in the HeapProfiler domain.
+func (a *StartSamplingReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StartSampling in the HeapProfiler domain.
 func (a *StartSamplingReply) UnmarshalJSON(b []byte) error {
 	type Copy StartSamplingReply
@@ -461,6 +501,11 @@ func (a *StartTrackingHeapObjectsReply) MatchFrameID(frameID string, m []byte) b
 		log.Fatalf("unmarshal error: StartTrackingHeapObjectsReply", err)
 	}
 	return true
+}
+
+// StartTrackingHeapObjectsReply returns the FrameID value for StartTrackingHeapObjects in the HeapProfiler domain.
+func (a *StartTrackingHeapObjectsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for StartTrackingHeapObjects in the HeapProfiler domain.
@@ -513,6 +558,11 @@ func (a *StopSamplingReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// StopSamplingReply returns the FrameID value for StopSampling in the HeapProfiler domain.
+func (a *StopSamplingReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StopSampling in the HeapProfiler domain.
 func (a *StopSamplingReply) UnmarshalJSON(b []byte) error {
 	type Copy StopSamplingReply
@@ -563,6 +613,11 @@ func (a *StopTrackingHeapObjectsReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
+// StopTrackingHeapObjectsReply returns the FrameID value for StopTrackingHeapObjects in the HeapProfiler domain.
+func (a *StopTrackingHeapObjectsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StopTrackingHeapObjects in the HeapProfiler domain.
 func (a *StopTrackingHeapObjectsReply) UnmarshalJSON(b []byte) error {
 	type Copy StopTrackingHeapObjectsReply
@@ -611,6 +666,11 @@ func (a *TakeHeapSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: TakeHeapSnapshotReply", err)
 	}
 	return true
+}
+
+// TakeHeapSnapshotReply returns the FrameID value for TakeHeapSnapshot in the HeapProfiler domain.
+func (a *TakeHeapSnapshotReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for TakeHeapSnapshot in the HeapProfiler domain.

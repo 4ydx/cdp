@@ -71,6 +71,11 @@ func (a *CanEmulateReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CanEmulateReply returns the FrameID value for CanEmulate in the Emulation domain.
+func (a *CanEmulateReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CanEmulate in the Emulation domain.
 func (a *CanEmulateReply) UnmarshalJSON(b []byte) error {
 	type Copy CanEmulateReply
@@ -118,6 +123,11 @@ func (a *ClearDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte)
 		log.Fatalf("unmarshal error: ClearDeviceMetricsOverrideReply", err)
 	}
 	return true
+}
+
+// ClearDeviceMetricsOverrideReply returns the FrameID value for ClearDeviceMetricsOverride in the Emulation domain.
+func (a *ClearDeviceMetricsOverrideReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ClearDeviceMetricsOverride in the Emulation domain.
@@ -169,6 +179,11 @@ func (a *ClearGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) b
 	return true
 }
 
+// ClearGeolocationOverrideReply returns the FrameID value for ClearGeolocationOverride in the Emulation domain.
+func (a *ClearGeolocationOverrideReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ClearGeolocationOverride in the Emulation domain.
 func (a *ClearGeolocationOverrideReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearGeolocationOverrideReply
@@ -216,6 +231,11 @@ func (a *ResetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) bool 
 		log.Fatalf("unmarshal error: ResetPageScaleFactorReply", err)
 	}
 	return true
+}
+
+// ResetPageScaleFactorReply returns the FrameID value for ResetPageScaleFactor in the Emulation domain.
+func (a *ResetPageScaleFactorReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ResetPageScaleFactor in the Emulation domain.
@@ -268,6 +288,11 @@ func (a *SetCPUThrottlingRateReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
+// SetCPUThrottlingRateReply returns the FrameID value for SetCPUThrottlingRate in the Emulation domain.
+func (a *SetCPUThrottlingRateReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetCPUThrottlingRate in the Emulation domain.
 func (a *SetCPUThrottlingRateReply) UnmarshalJSON(b []byte) error {
 	type Copy SetCPUThrottlingRateReply
@@ -316,6 +341,11 @@ func (a *SetDefaultBackgroundColorOverrideReply) MatchFrameID(frameID string, m 
 		log.Fatalf("unmarshal error: SetDefaultBackgroundColorOverrideReply", err)
 	}
 	return true
+}
+
+// SetDefaultBackgroundColorOverrideReply returns the FrameID value for SetDefaultBackgroundColorOverride in the Emulation domain.
+func (a *SetDefaultBackgroundColorOverrideReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetDefaultBackgroundColorOverride in the Emulation domain.
@@ -407,6 +437,11 @@ func (a *SetDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte) b
 	return true
 }
 
+// SetDeviceMetricsOverrideReply returns the FrameID value for SetDeviceMetricsOverride in the Emulation domain.
+func (a *SetDeviceMetricsOverrideReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetDeviceMetricsOverride in the Emulation domain.
 func (a *SetDeviceMetricsOverrideReply) UnmarshalJSON(b []byte) error {
 	type Copy SetDeviceMetricsOverrideReply
@@ -457,6 +492,11 @@ func (a *SetScrollbarsHiddenReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetScrollbarsHiddenReply returns the FrameID value for SetScrollbarsHidden in the Emulation domain.
+func (a *SetScrollbarsHiddenReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetScrollbarsHidden in the Emulation domain.
 func (a *SetScrollbarsHiddenReply) UnmarshalJSON(b []byte) error {
 	type Copy SetScrollbarsHiddenReply
@@ -505,6 +545,11 @@ func (a *SetDocumentCookieDisabledReply) MatchFrameID(frameID string, m []byte) 
 		log.Fatalf("unmarshal error: SetDocumentCookieDisabledReply", err)
 	}
 	return true
+}
+
+// SetDocumentCookieDisabledReply returns the FrameID value for SetDocumentCookieDisabled in the Emulation domain.
+func (a *SetDocumentCookieDisabledReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetDocumentCookieDisabled in the Emulation domain.
@@ -562,6 +607,11 @@ func (a *SetEmitTouchEventsForMouseReply) MatchFrameID(frameID string, m []byte)
 	return true
 }
 
+// SetEmitTouchEventsForMouseReply returns the FrameID value for SetEmitTouchEventsForMouse in the Emulation domain.
+func (a *SetEmitTouchEventsForMouseReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetEmitTouchEventsForMouse in the Emulation domain.
 func (a *SetEmitTouchEventsForMouseReply) UnmarshalJSON(b []byte) error {
 	type Copy SetEmitTouchEventsForMouseReply
@@ -610,6 +660,11 @@ func (a *SetEmulatedMediaReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetEmulatedMediaReply", err)
 	}
 	return true
+}
+
+// SetEmulatedMediaReply returns the FrameID value for SetEmulatedMedia in the Emulation domain.
+func (a *SetEmulatedMediaReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetEmulatedMedia in the Emulation domain.
@@ -664,6 +719,11 @@ func (a *SetGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
+// SetGeolocationOverrideReply returns the FrameID value for SetGeolocationOverride in the Emulation domain.
+func (a *SetGeolocationOverrideReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetGeolocationOverride in the Emulation domain.
 func (a *SetGeolocationOverrideReply) UnmarshalJSON(b []byte) error {
 	type Copy SetGeolocationOverrideReply
@@ -712,6 +772,11 @@ func (a *SetNavigatorOverridesReply) MatchFrameID(frameID string, m []byte) bool
 		log.Fatalf("unmarshal error: SetNavigatorOverridesReply", err)
 	}
 	return true
+}
+
+// SetNavigatorOverridesReply returns the FrameID value for SetNavigatorOverrides in the Emulation domain.
+func (a *SetNavigatorOverridesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetNavigatorOverrides in the Emulation domain.
@@ -764,6 +829,11 @@ func (a *SetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetPageScaleFactorReply returns the FrameID value for SetPageScaleFactor in the Emulation domain.
+func (a *SetPageScaleFactorReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetPageScaleFactor in the Emulation domain.
 func (a *SetPageScaleFactorReply) UnmarshalJSON(b []byte) error {
 	type Copy SetPageScaleFactorReply
@@ -812,6 +882,11 @@ func (a *SetScriptExecutionDisabledReply) MatchFrameID(frameID string, m []byte)
 		log.Fatalf("unmarshal error: SetScriptExecutionDisabledReply", err)
 	}
 	return true
+}
+
+// SetScriptExecutionDisabledReply returns the FrameID value for SetScriptExecutionDisabled in the Emulation domain.
+func (a *SetScriptExecutionDisabledReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetScriptExecutionDisabled in the Emulation domain.
@@ -863,6 +938,11 @@ func (a *SetTouchEmulationEnabledReply) MatchFrameID(frameID string, m []byte) b
 		log.Fatalf("unmarshal error: SetTouchEmulationEnabledReply", err)
 	}
 	return true
+}
+
+// SetTouchEmulationEnabledReply returns the FrameID value for SetTouchEmulationEnabled in the Emulation domain.
+func (a *SetTouchEmulationEnabledReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetTouchEmulationEnabled in the Emulation domain.
@@ -920,6 +1000,11 @@ func (a *SetVirtualTimePolicyReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
+// SetVirtualTimePolicyReply returns the FrameID value for SetVirtualTimePolicy in the Emulation domain.
+func (a *SetVirtualTimePolicyReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetVirtualTimePolicy in the Emulation domain.
 func (a *SetVirtualTimePolicyReply) UnmarshalJSON(b []byte) error {
 	type Copy SetVirtualTimePolicyReply
@@ -969,6 +1054,11 @@ func (a *SetVisibleSizeReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetVisibleSizeReply", err)
 	}
 	return true
+}
+
+// SetVisibleSizeReply returns the FrameID value for SetVisibleSize in the Emulation domain.
+func (a *SetVisibleSizeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetVisibleSize in the Emulation domain.
@@ -1021,6 +1111,11 @@ func (a *SetUserAgentOverrideReply) MatchFrameID(frameID string, m []byte) bool 
 		log.Fatalf("unmarshal error: SetUserAgentOverrideReply", err)
 	}
 	return true
+}
+
+// SetUserAgentOverrideReply returns the FrameID value for SetUserAgentOverride in the Emulation domain.
+func (a *SetUserAgentOverrideReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetUserAgentOverride in the Emulation domain.

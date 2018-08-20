@@ -49,6 +49,11 @@ func (a *ClearDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []b
 	return true
 }
 
+// ClearDeviceOrientationOverrideReply returns the FrameID value for ClearDeviceOrientationOverride in the DeviceOrientation domain.
+func (a *ClearDeviceOrientationOverrideReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ClearDeviceOrientationOverride in the DeviceOrientation domain.
 func (a *ClearDeviceOrientationOverrideReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearDeviceOrientationOverrideReply
@@ -99,6 +104,11 @@ func (a *SetDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []byt
 		log.Fatalf("unmarshal error: SetDeviceOrientationOverrideReply", err)
 	}
 	return true
+}
+
+// SetDeviceOrientationOverrideReply returns the FrameID value for SetDeviceOrientationOverride in the DeviceOrientation domain.
+func (a *SetDeviceOrientationOverrideReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetDeviceOrientationOverride in the DeviceOrientation domain.

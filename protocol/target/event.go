@@ -4,6 +4,7 @@ package target
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -50,6 +51,20 @@ func (a *AttachedToTargetReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// AttachedToTargetReply returns whether or not the FrameID matches the reply value for AttachedToTarget in the AttachedToTarget domain.
+func (a *AttachedToTargetReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// AttachedToTargetReply returns the FrameID for AttachedToTarget in the AttachedToTarget domain.
+func (a *AttachedToTargetReply) GetFrameID() string {
+	return ""
+}
+
 // DetachedFromTargetReply is the reply for DetachedFromTarget events.
 type DetachedFromTargetReply struct {
 	SessionID SessionID `json:"sessionId"` // Detached session identifier.
@@ -69,6 +84,20 @@ func (a *DetachedFromTargetReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = DetachedFromTargetReply(*c)
 	return nil
+}
+
+// DetachedFromTargetReply returns whether or not the FrameID matches the reply value for DetachedFromTarget in the DetachedFromTarget domain.
+func (a *DetachedFromTargetReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// DetachedFromTargetReply returns the FrameID for DetachedFromTarget in the DetachedFromTarget domain.
+func (a *DetachedFromTargetReply) GetFrameID() string {
+	return ""
 }
 
 // ReceivedMessageFromTargetReply is the reply for ReceivedMessageFromTarget events.
@@ -93,6 +122,20 @@ func (a *ReceivedMessageFromTargetReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// ReceivedMessageFromTargetReply returns whether or not the FrameID matches the reply value for ReceivedMessageFromTarget in the ReceivedMessageFromTarget domain.
+func (a *ReceivedMessageFromTargetReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ReceivedMessageFromTargetReply returns the FrameID for ReceivedMessageFromTarget in the ReceivedMessageFromTarget domain.
+func (a *ReceivedMessageFromTargetReply) GetFrameID() string {
+	return ""
+}
+
 // CreatedReply is the reply for TargetCreated events.
 type CreatedReply struct {
 	TargetInfo Info `json:"targetInfo"` // No description.
@@ -110,6 +153,20 @@ func (a *CreatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// CreatedReply returns whether or not the FrameID matches the reply value for TargetCreated in the TargetCreated domain.
+func (a *CreatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// CreatedReply returns the FrameID for TargetCreated in the TargetCreated domain.
+func (a *CreatedReply) GetFrameID() string {
+	return ""
+}
+
 // DestroyedReply is the reply for TargetDestroyed events.
 type DestroyedReply struct {
 	TargetID ID `json:"targetId"` // No description.
@@ -125,6 +182,20 @@ func (a *DestroyedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = DestroyedReply(*c)
 	return nil
+}
+
+// DestroyedReply returns whether or not the FrameID matches the reply value for TargetDestroyed in the TargetDestroyed domain.
+func (a *DestroyedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// DestroyedReply returns the FrameID for TargetDestroyed in the TargetDestroyed domain.
+func (a *DestroyedReply) GetFrameID() string {
+	return ""
 }
 
 // CrashedReply is the reply for TargetCrashed events.
@@ -146,6 +217,20 @@ func (a *CrashedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// CrashedReply returns whether or not the FrameID matches the reply value for TargetCrashed in the TargetCrashed domain.
+func (a *CrashedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// CrashedReply returns the FrameID for TargetCrashed in the TargetCrashed domain.
+func (a *CrashedReply) GetFrameID() string {
+	return ""
+}
+
 // InfoChangedReply is the reply for TargetInfoChanged events.
 type InfoChangedReply struct {
 	TargetInfo Info `json:"targetInfo"` // No description.
@@ -161,4 +246,18 @@ func (a *InfoChangedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = InfoChangedReply(*c)
 	return nil
+}
+
+// InfoChangedReply returns whether or not the FrameID matches the reply value for TargetInfoChanged in the TargetInfoChanged domain.
+func (a *InfoChangedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// InfoChangedReply returns the FrameID for TargetInfoChanged in the TargetInfoChanged domain.
+func (a *InfoChangedReply) GetFrameID() string {
+	return ""
 }

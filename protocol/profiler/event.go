@@ -4,6 +4,7 @@ package profiler
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol/debugger"
 )
@@ -43,6 +44,20 @@ func (a *ConsoleProfileFinishedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// ConsoleProfileFinishedReply returns whether or not the FrameID matches the reply value for ConsoleProfileFinished in the ConsoleProfileFinished domain.
+func (a *ConsoleProfileFinishedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ConsoleProfileFinishedReply returns the FrameID for ConsoleProfileFinished in the ConsoleProfileFinished domain.
+func (a *ConsoleProfileFinishedReply) GetFrameID() string {
+	return ""
+}
+
 // ConsoleProfileStartedReply is the reply for ConsoleProfileStarted events.
 type ConsoleProfileStartedReply struct {
 	ID       string            `json:"id"`              // No description.
@@ -60,4 +75,18 @@ func (a *ConsoleProfileStartedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ConsoleProfileStartedReply(*c)
 	return nil
+}
+
+// ConsoleProfileStartedReply returns whether or not the FrameID matches the reply value for ConsoleProfileStarted in the ConsoleProfileStarted domain.
+func (a *ConsoleProfileStartedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ConsoleProfileStartedReply returns the FrameID for ConsoleProfileStarted in the ConsoleProfileStarted domain.
+func (a *ConsoleProfileStartedReply) GetFrameID() string {
+	return ""
 }

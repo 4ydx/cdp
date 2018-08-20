@@ -4,6 +4,7 @@ package emulation
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -40,6 +41,20 @@ func (a *VirtualTimeAdvancedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// VirtualTimeAdvancedReply returns whether or not the FrameID matches the reply value for VirtualTimeAdvanced in the VirtualTimeAdvanced domain.
+func (a *VirtualTimeAdvancedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// VirtualTimeAdvancedReply returns the FrameID for VirtualTimeAdvanced in the VirtualTimeAdvanced domain.
+func (a *VirtualTimeAdvancedReply) GetFrameID() string {
+	return ""
+}
+
 // VirtualTimeBudgetExpiredReply is the reply for VirtualTimeBudgetExpired events.
 type VirtualTimeBudgetExpiredReply struct {
 }
@@ -54,6 +69,20 @@ func (a *VirtualTimeBudgetExpiredReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = VirtualTimeBudgetExpiredReply(*c)
 	return nil
+}
+
+// VirtualTimeBudgetExpiredReply returns whether or not the FrameID matches the reply value for VirtualTimeBudgetExpired in the VirtualTimeBudgetExpired domain.
+func (a *VirtualTimeBudgetExpiredReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// VirtualTimeBudgetExpiredReply returns the FrameID for VirtualTimeBudgetExpired in the VirtualTimeBudgetExpired domain.
+func (a *VirtualTimeBudgetExpiredReply) GetFrameID() string {
+	return ""
 }
 
 // VirtualTimePausedReply is the reply for VirtualTimePaused events.
@@ -71,4 +100,18 @@ func (a *VirtualTimePausedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = VirtualTimePausedReply(*c)
 	return nil
+}
+
+// VirtualTimePausedReply returns whether or not the FrameID matches the reply value for VirtualTimePaused in the VirtualTimePaused domain.
+func (a *VirtualTimePausedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// VirtualTimePausedReply returns the FrameID for VirtualTimePaused in the VirtualTimePaused domain.
+func (a *VirtualTimePausedReply) GetFrameID() string {
+	return ""
 }

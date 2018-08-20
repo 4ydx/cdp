@@ -52,6 +52,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the Security domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the Security domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -99,6 +104,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the Security domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the Security domain.
@@ -149,6 +159,11 @@ func (a *SetIgnoreCertificateErrorsReply) MatchFrameID(frameID string, m []byte)
 		log.Fatalf("unmarshal error: SetIgnoreCertificateErrorsReply", err)
 	}
 	return true
+}
+
+// SetIgnoreCertificateErrorsReply returns the FrameID value for SetIgnoreCertificateErrors in the Security domain.
+func (a *SetIgnoreCertificateErrorsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetIgnoreCertificateErrors in the Security domain.
@@ -202,6 +217,11 @@ func (a *HandleCertificateErrorReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
+// HandleCertificateErrorReply returns the FrameID value for HandleCertificateError in the Security domain.
+func (a *HandleCertificateErrorReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for HandleCertificateError in the Security domain.
 func (a *HandleCertificateErrorReply) UnmarshalJSON(b []byte) error {
 	type Copy HandleCertificateErrorReply
@@ -250,6 +270,11 @@ func (a *SetOverrideCertificateErrorsReply) MatchFrameID(frameID string, m []byt
 		log.Fatalf("unmarshal error: SetOverrideCertificateErrorsReply", err)
 	}
 	return true
+}
+
+// SetOverrideCertificateErrorsReply returns the FrameID value for SetOverrideCertificateErrors in the Security domain.
+func (a *SetOverrideCertificateErrorsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetOverrideCertificateErrors in the Security domain.

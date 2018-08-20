@@ -66,6 +66,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the Overlay domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the Overlay domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -113,6 +118,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the Overlay domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the Overlay domain.
@@ -166,6 +176,11 @@ func (a *GetHighlightObjectForTestReply) MatchFrameID(frameID string, m []byte) 
 	return true
 }
 
+// GetHighlightObjectForTestReply returns the FrameID value for GetHighlightObjectForTest in the Overlay domain.
+func (a *GetHighlightObjectForTestReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetHighlightObjectForTest in the Overlay domain.
 func (a *GetHighlightObjectForTestReply) UnmarshalJSON(b []byte) error {
 	type Copy GetHighlightObjectForTestReply
@@ -213,6 +228,11 @@ func (a *HideHighlightReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: HideHighlightReply", err)
 	}
 	return true
+}
+
+// HideHighlightReply returns the FrameID value for HideHighlight in the Overlay domain.
+func (a *HideHighlightReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for HideHighlight in the Overlay domain.
@@ -265,6 +285,11 @@ func (a *HighlightFrameReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: HighlightFrameReply", err)
 	}
 	return true
+}
+
+// HighlightFrameReply returns the FrameID value for HighlightFrame in the Overlay domain.
+func (a *HighlightFrameReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for HighlightFrame in the Overlay domain.
@@ -320,6 +345,11 @@ func (a *HighlightNodeReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// HighlightNodeReply returns the FrameID value for HighlightNode in the Overlay domain.
+func (a *HighlightNodeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for HighlightNode in the Overlay domain.
 func (a *HighlightNodeReply) UnmarshalJSON(b []byte) error {
 	type Copy HighlightNodeReply
@@ -370,6 +400,11 @@ func (a *HighlightQuadReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: HighlightQuadReply", err)
 	}
 	return true
+}
+
+// HighlightQuadReply returns the FrameID value for HighlightQuad in the Overlay domain.
+func (a *HighlightQuadReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for HighlightQuad in the Overlay domain.
@@ -427,6 +462,11 @@ func (a *HighlightRectReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// HighlightRectReply returns the FrameID value for HighlightRect in the Overlay domain.
+func (a *HighlightRectReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for HighlightRect in the Overlay domain.
 func (a *HighlightRectReply) UnmarshalJSON(b []byte) error {
 	type Copy HighlightRectReply
@@ -476,6 +516,11 @@ func (a *SetInspectModeReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetInspectModeReply", err)
 	}
 	return true
+}
+
+// SetInspectModeReply returns the FrameID value for SetInspectMode in the Overlay domain.
+func (a *SetInspectModeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetInspectMode in the Overlay domain.
@@ -528,6 +573,11 @@ func (a *SetPausedInDebuggerMessageReply) MatchFrameID(frameID string, m []byte)
 	return true
 }
 
+// SetPausedInDebuggerMessageReply returns the FrameID value for SetPausedInDebuggerMessage in the Overlay domain.
+func (a *SetPausedInDebuggerMessageReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetPausedInDebuggerMessage in the Overlay domain.
 func (a *SetPausedInDebuggerMessageReply) UnmarshalJSON(b []byte) error {
 	type Copy SetPausedInDebuggerMessageReply
@@ -576,6 +626,11 @@ func (a *SetShowDebugBordersReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetShowDebugBordersReply", err)
 	}
 	return true
+}
+
+// SetShowDebugBordersReply returns the FrameID value for SetShowDebugBorders in the Overlay domain.
+func (a *SetShowDebugBordersReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetShowDebugBorders in the Overlay domain.
@@ -628,6 +683,11 @@ func (a *SetShowFPSCounterReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetShowFPSCounterReply returns the FrameID value for SetShowFPSCounter in the Overlay domain.
+func (a *SetShowFPSCounterReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetShowFPSCounter in the Overlay domain.
 func (a *SetShowFPSCounterReply) UnmarshalJSON(b []byte) error {
 	type Copy SetShowFPSCounterReply
@@ -676,6 +736,11 @@ func (a *SetShowPaintRectsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetShowPaintRectsReply", err)
 	}
 	return true
+}
+
+// SetShowPaintRectsReply returns the FrameID value for SetShowPaintRects in the Overlay domain.
+func (a *SetShowPaintRectsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetShowPaintRects in the Overlay domain.
@@ -728,6 +793,11 @@ func (a *SetShowScrollBottleneckRectsReply) MatchFrameID(frameID string, m []byt
 	return true
 }
 
+// SetShowScrollBottleneckRectsReply returns the FrameID value for SetShowScrollBottleneckRects in the Overlay domain.
+func (a *SetShowScrollBottleneckRectsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetShowScrollBottleneckRects in the Overlay domain.
 func (a *SetShowScrollBottleneckRectsReply) UnmarshalJSON(b []byte) error {
 	type Copy SetShowScrollBottleneckRectsReply
@@ -778,6 +848,11 @@ func (a *SetShowViewportSizeOnResizeReply) MatchFrameID(frameID string, m []byte
 	return true
 }
 
+// SetShowViewportSizeOnResizeReply returns the FrameID value for SetShowViewportSizeOnResize in the Overlay domain.
+func (a *SetShowViewportSizeOnResizeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetShowViewportSizeOnResize in the Overlay domain.
 func (a *SetShowViewportSizeOnResizeReply) UnmarshalJSON(b []byte) error {
 	type Copy SetShowViewportSizeOnResizeReply
@@ -826,6 +901,11 @@ func (a *SetSuspendedReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetSuspendedReply", err)
 	}
 	return true
+}
+
+// SetSuspendedReply returns the FrameID value for SetSuspended in the Overlay domain.
+func (a *SetSuspendedReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetSuspended in the Overlay domain.

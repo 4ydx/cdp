@@ -59,6 +59,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the Animation domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the Animation domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -106,6 +111,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the Animation domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the Animation domain.
@@ -159,6 +169,11 @@ func (a *GetCurrentTimeReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetCurrentTimeReply returns the FrameID value for GetCurrentTime in the Animation domain.
+func (a *GetCurrentTimeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetCurrentTime in the Animation domain.
 func (a *GetCurrentTimeReply) UnmarshalJSON(b []byte) error {
 	type Copy GetCurrentTimeReply
@@ -209,6 +224,11 @@ func (a *GetPlaybackRateReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetPlaybackRateReply returns the FrameID value for GetPlaybackRate in the Animation domain.
+func (a *GetPlaybackRateReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetPlaybackRate in the Animation domain.
 func (a *GetPlaybackRateReply) UnmarshalJSON(b []byte) error {
 	type Copy GetPlaybackRateReply
@@ -257,6 +277,11 @@ func (a *ReleaseAnimationsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ReleaseAnimationsReply", err)
 	}
 	return true
+}
+
+// ReleaseAnimationsReply returns the FrameID value for ReleaseAnimations in the Animation domain.
+func (a *ReleaseAnimationsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ReleaseAnimations in the Animation domain.
@@ -310,6 +335,11 @@ func (a *ResolveAnimationReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ResolveAnimationReply returns the FrameID value for ResolveAnimation in the Animation domain.
+func (a *ResolveAnimationReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ResolveAnimation in the Animation domain.
 func (a *ResolveAnimationReply) UnmarshalJSON(b []byte) error {
 	type Copy ResolveAnimationReply
@@ -359,6 +389,11 @@ func (a *SeekAnimationsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SeekAnimationsReply", err)
 	}
 	return true
+}
+
+// SeekAnimationsReply returns the FrameID value for SeekAnimations in the Animation domain.
+func (a *SeekAnimationsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SeekAnimations in the Animation domain.
@@ -412,6 +447,11 @@ func (a *SetPausedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetPausedReply returns the FrameID value for SetPaused in the Animation domain.
+func (a *SetPausedReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetPaused in the Animation domain.
 func (a *SetPausedReply) UnmarshalJSON(b []byte) error {
 	type Copy SetPausedReply
@@ -460,6 +500,11 @@ func (a *SetPlaybackRateReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetPlaybackRateReply", err)
 	}
 	return true
+}
+
+// SetPlaybackRateReply returns the FrameID value for SetPlaybackRate in the Animation domain.
+func (a *SetPlaybackRateReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetPlaybackRate in the Animation domain.
@@ -512,6 +557,11 @@ func (a *SetTimingReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetTimingReply", err)
 	}
 	return true
+}
+
+// SetTimingReply returns the FrameID value for SetTiming in the Animation domain.
+func (a *SetTimingReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetTiming in the Animation domain.

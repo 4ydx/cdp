@@ -4,6 +4,7 @@ package security
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -40,6 +41,20 @@ func (a *CertificateErrorReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// CertificateErrorReply returns whether or not the FrameID matches the reply value for CertificateError in the CertificateError domain.
+func (a *CertificateErrorReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// CertificateErrorReply returns the FrameID for CertificateError in the CertificateError domain.
+func (a *CertificateErrorReply) GetFrameID() string {
+	return ""
+}
+
 // StateChangedReply is the reply for SecurityStateChanged events.
 type StateChangedReply struct {
 	SecurityState         State                 `json:"securityState"`         // Security state.
@@ -59,4 +74,18 @@ func (a *StateChangedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = StateChangedReply(*c)
 	return nil
+}
+
+// StateChangedReply returns whether or not the FrameID matches the reply value for SecurityStateChanged in the SecurityStateChanged domain.
+func (a *StateChangedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// StateChangedReply returns the FrameID for SecurityStateChanged in the SecurityStateChanged domain.
+func (a *StateChangedReply) GetFrameID() string {
+	return ""
 }

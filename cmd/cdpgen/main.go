@@ -721,10 +721,10 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 	g.printStructProperties(d, c.ReplyName(d), c.Returns, true, false, sharedTypes)
 	g.Printf("}\n\n")
 
-	hasFrameId, hasNode, hasArrayNodes := false, false, false
+	hasFrameID, hasNode, hasArrayNodes := false, false, false
 	for _, a := range c.Returns {
 		if a.NameName == "frameId" {
-			hasFrameId = true
+			hasFrameID = true
 		}
 		if a.NameName == "node" {
 			hasNode = true
@@ -738,7 +738,7 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 			}
 		}
 	}
-	if hasFrameId {
+	if hasFrameID {
 		g.Printf(`
 				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
 				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
@@ -751,6 +751,15 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 					return a.FrameID == shared.FrameID(frameID)
 				}
 				`, c.ReplyName(d))
+
+		g.Printf(`
+				// %[1]s returns the FrameID for %[2]s in the %[3]s domain.
+				func (a * %[1]s) GetFrameID() string {
+					`, c.ReplyName(d), c.Name(), d.Name())
+
+		g.Printf(`return string(a.FrameID)
+				}
+				`)
 	} else if hasNode {
 		g.Printf(`
 				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
@@ -764,6 +773,15 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 					return a.Node.FrameID == shared.FrameID(frameID)
 				}
 				`, c.ReplyName(d))
+
+		g.Printf(`
+				// %[1]s returns the FrameID for %[2]s in the %[3]s domain.
+				func (a * %[1]s) GetFrameID() string {
+					`, c.ReplyName(d), c.Name(), d.Name())
+
+		g.Printf(`return string(a.Node.FrameID)
+				}
+				`)
 	} else if hasArrayNodes {
 		g.Printf(`
 				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
@@ -783,6 +801,21 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 					return fid == frameID
 				}
 				`, c.ReplyName(d))
+
+		g.Printf(`
+				// %[1]s returns the FrameID for %[2]s in the %[3]s domain.
+				func (a * %[1]s) GetFrameID() string {
+					`, c.ReplyName(d), c.Name(), d.Name())
+
+		g.Printf(`fid := ""
+					for _, n := range a.Nodes {
+						if n.FrameID != "" {
+							fid = string(n.FrameID)
+						}
+					}
+					return fid
+				}
+				`)
 	} else {
 		g.Printf(`
 				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
@@ -796,6 +829,15 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 					return true
 				}
 				`, c.ReplyName(d))
+
+		g.Printf(`
+				// %[1]s returns the FrameID value for %[2]s in the %[3]s domain.
+				func (a * %[1]s) GetFrameID() string {
+					`, c.ReplyName(d), c.Name(), d.Name())
+
+		g.Printf(`return ""
+				}
+				`)
 	}
 
 	g.Printf(`
@@ -813,7 +855,7 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 			`, c.ReplyName(d), c.Name(), d.Name())
 }
 
-// DomainCmd defines the command args and reply.
+// DomainCmdConsts defines the command args and reply.
 func (g *Generator) DomainCmdConsts(d proto.Domain, c []proto.Command) {
 	g.beginType()
 	g.hasContent = true
@@ -880,6 +922,83 @@ func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes 
 					return nil
 				}
 				`, e.ReplyName(d), e.Name(), d.Name())
+
+	hasFrameID, hasFrame := false, false
+	for _, a := range e.Parameters {
+		if a.NameName == "frameId" {
+			hasFrameID = true
+		}
+		if a.NameName == "frame" {
+			hasFrame = true
+		}
+	}
+	if hasFrameID {
+		g.Printf(`
+				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
+				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
+					`, e.ReplyName(d), e.Name(), e.Name())
+
+		g.Printf(`err := a.UnmarshalJSON(m)
+					if err != nil {
+						log.Fatalf("unmarshal error: %s", err)
+					}
+					return a.FrameID == shared.FrameID(frameID)
+				}
+				`, e.ReplyName(d))
+
+		g.Printf(`
+				// %[1]s returns the FrameID for %[2]s in the %[3]s domain.
+				func (a * %[1]s) GetFrameID() string {
+					`, e.ReplyName(d), e.Name(), e.Name())
+
+		g.Printf(`return string(a.FrameID)
+				}
+				`)
+	} else if hasFrame {
+		g.Printf(`
+				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
+				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
+					`, e.ReplyName(d), e.Name(), e.Name())
+
+		g.Printf(`err := a.UnmarshalJSON(m)
+					if err != nil {
+						log.Fatalf("unmarshal error: %s", err)
+					}
+					return a.Frame.ID == shared.FrameID(frameID)
+				}
+				`, e.ReplyName(d))
+
+		g.Printf(`
+				// %[1]s returns the FrameID for %[2]s in the %[3]s domain.
+				func (a * %[1]s) GetFrameID() string {
+					`, e.ReplyName(d), e.Name(), e.Name())
+
+		g.Printf(`return string(a.Frame.ID)
+				}
+				`)
+	} else {
+		g.Printf(`
+				// %[1]s returns whether or not the FrameID matches the reply value for %[2]s in the %[3]s domain.
+				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
+					`, e.ReplyName(d), e.Name(), e.Name())
+
+		g.Printf(`err := a.UnmarshalJSON(m)
+					if err != nil {
+						log.Fatalf("unmarshal error: %s", err)
+					}
+					return true
+				}
+				`)
+
+		g.Printf(`
+				// %[1]s returns the FrameID for %[2]s in the %[3]s domain.
+				func (a * %[1]s) GetFrameID() string {
+					`, e.ReplyName(d), e.Name(), e.Name())
+
+		g.Printf(`return ""
+				}
+				`)
+	}
 }
 
 // DomainEventConsts defines the event constants.

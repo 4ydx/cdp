@@ -4,6 +4,7 @@ package inspector
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -40,6 +41,20 @@ func (a *DetachedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// DetachedReply returns whether or not the FrameID matches the reply value for Detached in the Detached domain.
+func (a *DetachedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// DetachedReply returns the FrameID for Detached in the Detached domain.
+func (a *DetachedReply) GetFrameID() string {
+	return ""
+}
+
 // TargetCrashedReply is the reply for TargetCrashed events.
 type TargetCrashedReply struct {
 }
@@ -56,6 +71,20 @@ func (a *TargetCrashedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// TargetCrashedReply returns whether or not the FrameID matches the reply value for TargetCrashed in the TargetCrashed domain.
+func (a *TargetCrashedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// TargetCrashedReply returns the FrameID for TargetCrashed in the TargetCrashed domain.
+func (a *TargetCrashedReply) GetFrameID() string {
+	return ""
+}
+
 // TargetReloadedAfterCrashReply is the reply for TargetReloadedAfterCrash events.
 type TargetReloadedAfterCrashReply struct {
 }
@@ -70,4 +99,18 @@ func (a *TargetReloadedAfterCrashReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = TargetReloadedAfterCrashReply(*c)
 	return nil
+}
+
+// TargetReloadedAfterCrashReply returns whether or not the FrameID matches the reply value for TargetReloadedAfterCrash in the TargetReloadedAfterCrash domain.
+func (a *TargetReloadedAfterCrashReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// TargetReloadedAfterCrashReply returns the FrameID for TargetReloadedAfterCrash in the TargetReloadedAfterCrash domain.
+func (a *TargetReloadedAfterCrashReply) GetFrameID() string {
+	return ""
 }

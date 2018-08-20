@@ -50,6 +50,11 @@ func (a *ClearMessagesReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ClearMessagesReply returns the FrameID value for ClearMessages in the Console domain.
+func (a *ClearMessagesReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ClearMessages in the Console domain.
 func (a *ClearMessagesReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearMessagesReply
@@ -99,6 +104,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the Console domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the Console domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -146,6 +156,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the Console domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the Console domain.

@@ -49,6 +49,11 @@ func (a *GetDomainsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetDomainsReply returns the FrameID value for GetDomains in the Schema domain.
+func (a *GetDomainsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetDomains in the Schema domain.
 func (a *GetDomainsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetDomainsReply

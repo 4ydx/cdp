@@ -56,6 +56,11 @@ func (a *GetPartialAXTreeReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetPartialAXTreeReply returns the FrameID value for GetPartialAXTree in the Accessibility domain.
+func (a *GetPartialAXTreeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetPartialAXTree in the Accessibility domain.
 func (a *GetPartialAXTreeReply) UnmarshalJSON(b []byte) error {
 	type Copy GetPartialAXTreeReply

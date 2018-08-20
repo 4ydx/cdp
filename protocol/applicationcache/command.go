@@ -53,6 +53,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// EnableReply returns the FrameID value for Enable in the ApplicationCache domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Enable in the ApplicationCache domain.
 func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	type Copy EnableReply
@@ -102,6 +107,11 @@ func (a *GetApplicationCacheForFrameReply) MatchFrameID(frameID string, m []byte
 		log.Fatalf("unmarshal error: GetApplicationCacheForFrameReply", err)
 	}
 	return true
+}
+
+// GetApplicationCacheForFrameReply returns the FrameID value for GetApplicationCacheForFrame in the ApplicationCache domain.
+func (a *GetApplicationCacheForFrameReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetApplicationCacheForFrame in the ApplicationCache domain.
@@ -154,6 +164,11 @@ func (a *GetFramesWithManifestsReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
+// GetFramesWithManifestsReply returns the FrameID value for GetFramesWithManifests in the ApplicationCache domain.
+func (a *GetFramesWithManifestsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetFramesWithManifests in the ApplicationCache domain.
 func (a *GetFramesWithManifestsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetFramesWithManifestsReply
@@ -203,6 +218,11 @@ func (a *GetManifestForFrameReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetManifestForFrameReply", err)
 	}
 	return true
+}
+
+// GetManifestForFrameReply returns the FrameID value for GetManifestForFrame in the ApplicationCache domain.
+func (a *GetManifestForFrameReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetManifestForFrame in the ApplicationCache domain.

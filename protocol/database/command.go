@@ -51,6 +51,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the Database domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the Database domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -98,6 +103,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the Database domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the Database domain.
@@ -154,6 +164,11 @@ func (a *ExecuteSQLReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ExecuteSQLReply returns the FrameID value for ExecuteSQL in the Database domain.
+func (a *ExecuteSQLReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ExecuteSQL in the Database domain.
 func (a *ExecuteSQLReply) UnmarshalJSON(b []byte) error {
 	type Copy ExecuteSQLReply
@@ -203,6 +218,11 @@ func (a *GetDatabaseTableNamesReply) MatchFrameID(frameID string, m []byte) bool
 		log.Fatalf("unmarshal error: GetDatabaseTableNamesReply", err)
 	}
 	return true
+}
+
+// GetDatabaseTableNamesReply returns the FrameID value for GetDatabaseTableNames in the Database domain.
+func (a *GetDatabaseTableNamesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetDatabaseTableNames in the Database domain.

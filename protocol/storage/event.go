@@ -4,6 +4,7 @@ package storage
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -43,6 +44,20 @@ func (a *CacheStorageContentUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// CacheStorageContentUpdatedReply returns whether or not the FrameID matches the reply value for CacheStorageContentUpdated in the CacheStorageContentUpdated domain.
+func (a *CacheStorageContentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// CacheStorageContentUpdatedReply returns the FrameID for CacheStorageContentUpdated in the CacheStorageContentUpdated domain.
+func (a *CacheStorageContentUpdatedReply) GetFrameID() string {
+	return ""
+}
+
 // CacheStorageListUpdatedReply is the reply for CacheStorageListUpdated events.
 type CacheStorageListUpdatedReply struct {
 	Origin string `json:"origin"` // Origin to update.
@@ -58,6 +73,20 @@ func (a *CacheStorageListUpdatedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = CacheStorageListUpdatedReply(*c)
 	return nil
+}
+
+// CacheStorageListUpdatedReply returns whether or not the FrameID matches the reply value for CacheStorageListUpdated in the CacheStorageListUpdated domain.
+func (a *CacheStorageListUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// CacheStorageListUpdatedReply returns the FrameID for CacheStorageListUpdated in the CacheStorageListUpdated domain.
+func (a *CacheStorageListUpdatedReply) GetFrameID() string {
+	return ""
 }
 
 // IndexedDBContentUpdatedReply is the reply for IndexedDBContentUpdated events.
@@ -79,6 +108,20 @@ func (a *IndexedDBContentUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// IndexedDBContentUpdatedReply returns whether or not the FrameID matches the reply value for IndexedDBContentUpdated in the IndexedDBContentUpdated domain.
+func (a *IndexedDBContentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// IndexedDBContentUpdatedReply returns the FrameID for IndexedDBContentUpdated in the IndexedDBContentUpdated domain.
+func (a *IndexedDBContentUpdatedReply) GetFrameID() string {
+	return ""
+}
+
 // IndexedDBListUpdatedReply is the reply for IndexedDBListUpdated events.
 type IndexedDBListUpdatedReply struct {
 	Origin string `json:"origin"` // Origin to update.
@@ -94,4 +137,18 @@ func (a *IndexedDBListUpdatedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = IndexedDBListUpdatedReply(*c)
 	return nil
+}
+
+// IndexedDBListUpdatedReply returns whether or not the FrameID matches the reply value for IndexedDBListUpdated in the IndexedDBListUpdated domain.
+func (a *IndexedDBListUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// IndexedDBListUpdatedReply returns the FrameID for IndexedDBListUpdated in the IndexedDBListUpdated domain.
+func (a *IndexedDBListUpdatedReply) GetFrameID() string {
+	return ""
 }

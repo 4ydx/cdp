@@ -79,6 +79,11 @@ func (a *CanClearBrowserCacheReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
+// CanClearBrowserCacheReply returns the FrameID value for CanClearBrowserCache in the Network domain.
+func (a *CanClearBrowserCacheReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CanClearBrowserCache in the Network domain.
 func (a *CanClearBrowserCacheReply) UnmarshalJSON(b []byte) error {
 	type Copy CanClearBrowserCacheReply
@@ -127,6 +132,11 @@ func (a *CanClearBrowserCookiesReply) MatchFrameID(frameID string, m []byte) boo
 		log.Fatalf("unmarshal error: CanClearBrowserCookiesReply", err)
 	}
 	return true
+}
+
+// CanClearBrowserCookiesReply returns the FrameID value for CanClearBrowserCookies in the Network domain.
+func (a *CanClearBrowserCookiesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for CanClearBrowserCookies in the Network domain.
@@ -179,6 +189,11 @@ func (a *CanEmulateNetworkConditionsReply) MatchFrameID(frameID string, m []byte
 	return true
 }
 
+// CanEmulateNetworkConditionsReply returns the FrameID value for CanEmulateNetworkConditions in the Network domain.
+func (a *CanEmulateNetworkConditionsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CanEmulateNetworkConditions in the Network domain.
 func (a *CanEmulateNetworkConditionsReply) UnmarshalJSON(b []byte) error {
 	type Copy CanEmulateNetworkConditionsReply
@@ -228,6 +243,11 @@ func (a *ClearBrowserCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ClearBrowserCacheReply returns the FrameID value for ClearBrowserCache in the Network domain.
+func (a *ClearBrowserCacheReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ClearBrowserCache in the Network domain.
 func (a *ClearBrowserCacheReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearBrowserCacheReply
@@ -275,6 +295,11 @@ func (a *ClearBrowserCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ClearBrowserCookiesReply", err)
 	}
 	return true
+}
+
+// ClearBrowserCookiesReply returns the FrameID value for ClearBrowserCookies in the Network domain.
+func (a *ClearBrowserCookiesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ClearBrowserCookies in the Network domain.
@@ -334,6 +359,11 @@ func (a *ContinueInterceptedRequestReply) MatchFrameID(frameID string, m []byte)
 	return true
 }
 
+// ContinueInterceptedRequestReply returns the FrameID value for ContinueInterceptedRequest in the Network domain.
+func (a *ContinueInterceptedRequestReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ContinueInterceptedRequest in the Network domain.
 func (a *ContinueInterceptedRequestReply) UnmarshalJSON(b []byte) error {
 	type Copy ContinueInterceptedRequestReply
@@ -387,6 +417,11 @@ func (a *DeleteCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DeleteCookiesReply returns the FrameID value for DeleteCookies in the Network domain.
+func (a *DeleteCookiesReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for DeleteCookies in the Network domain.
 func (a *DeleteCookiesReply) UnmarshalJSON(b []byte) error {
 	type Copy DeleteCookiesReply
@@ -434,6 +469,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: DisableReply", err)
 	}
 	return true
+}
+
+// DisableReply returns the FrameID value for Disable in the Network domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Disable in the Network domain.
@@ -488,6 +528,11 @@ func (a *EmulateNetworkConditionsReply) MatchFrameID(frameID string, m []byte) b
 		log.Fatalf("unmarshal error: EmulateNetworkConditionsReply", err)
 	}
 	return true
+}
+
+// EmulateNetworkConditionsReply returns the FrameID value for EmulateNetworkConditions in the Network domain.
+func (a *EmulateNetworkConditionsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for EmulateNetworkConditions in the Network domain.
@@ -550,6 +595,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// EnableReply returns the FrameID value for Enable in the Network domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Enable in the Network domain.
 func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	type Copy EnableReply
@@ -598,6 +648,11 @@ func (a *GetAllCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetAllCookiesReply", err)
 	}
 	return true
+}
+
+// GetAllCookiesReply returns the FrameID value for GetAllCookies in the Network domain.
+func (a *GetAllCookiesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetAllCookies in the Network domain.
@@ -651,6 +706,11 @@ func (a *GetCertificateReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetCertificateReply returns the FrameID value for GetCertificate in the Network domain.
+func (a *GetCertificateReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetCertificate in the Network domain.
 func (a *GetCertificateReply) UnmarshalJSON(b []byte) error {
 	type Copy GetCertificateReply
@@ -700,6 +760,11 @@ func (a *GetCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetCookiesReply", err)
 	}
 	return true
+}
+
+// GetCookiesReply returns the FrameID value for GetCookies in the Network domain.
+func (a *GetCookiesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetCookies in the Network domain.
@@ -754,6 +819,11 @@ func (a *GetResponseBodyReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetResponseBodyReply returns the FrameID value for GetResponseBody in the Network domain.
+func (a *GetResponseBodyReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetResponseBody in the Network domain.
 func (a *GetResponseBodyReply) UnmarshalJSON(b []byte) error {
 	type Copy GetResponseBodyReply
@@ -803,6 +873,11 @@ func (a *GetRequestPostDataReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetRequestPostDataReply", err)
 	}
 	return true
+}
+
+// GetRequestPostDataReply returns the FrameID value for GetRequestPostData in the Network domain.
+func (a *GetRequestPostDataReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetRequestPostData in the Network domain.
@@ -857,6 +932,11 @@ func (a *GetResponseBodyForInterceptionReply) MatchFrameID(frameID string, m []b
 	return true
 }
 
+// GetResponseBodyForInterceptionReply returns the FrameID value for GetResponseBodyForInterception in the Network domain.
+func (a *GetResponseBodyForInterceptionReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetResponseBodyForInterception in the Network domain.
 func (a *GetResponseBodyForInterceptionReply) UnmarshalJSON(b []byte) error {
 	type Copy GetResponseBodyForInterceptionReply
@@ -908,6 +988,11 @@ func (a *TakeResponseBodyForInterceptionAsStreamReply) MatchFrameID(frameID stri
 	return true
 }
 
+// TakeResponseBodyForInterceptionAsStreamReply returns the FrameID value for TakeResponseBodyForInterceptionAsStream in the Network domain.
+func (a *TakeResponseBodyForInterceptionAsStreamReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for TakeResponseBodyForInterceptionAsStream in the Network domain.
 func (a *TakeResponseBodyForInterceptionAsStreamReply) UnmarshalJSON(b []byte) error {
 	type Copy TakeResponseBodyForInterceptionAsStreamReply
@@ -956,6 +1041,11 @@ func (a *ReplayXHRReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ReplayXHRReply", err)
 	}
 	return true
+}
+
+// ReplayXHRReply returns the FrameID value for ReplayXHR in the Network domain.
+func (a *ReplayXHRReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ReplayXHR in the Network domain.
@@ -1012,6 +1102,11 @@ func (a *SearchInResponseBodyReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
+// SearchInResponseBodyReply returns the FrameID value for SearchInResponseBody in the Network domain.
+func (a *SearchInResponseBodyReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SearchInResponseBody in the Network domain.
 func (a *SearchInResponseBodyReply) UnmarshalJSON(b []byte) error {
 	type Copy SearchInResponseBodyReply
@@ -1060,6 +1155,11 @@ func (a *SetBlockedURLsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetBlockedURLsReply", err)
 	}
 	return true
+}
+
+// SetBlockedURLsReply returns the FrameID value for SetBlockedURLs in the Network domain.
+func (a *SetBlockedURLsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetBlockedURLs in the Network domain.
@@ -1112,6 +1212,11 @@ func (a *SetBypassServiceWorkerReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
+// SetBypassServiceWorkerReply returns the FrameID value for SetBypassServiceWorker in the Network domain.
+func (a *SetBypassServiceWorkerReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetBypassServiceWorker in the Network domain.
 func (a *SetBypassServiceWorkerReply) UnmarshalJSON(b []byte) error {
 	type Copy SetBypassServiceWorkerReply
@@ -1160,6 +1265,11 @@ func (a *SetCacheDisabledReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetCacheDisabledReply", err)
 	}
 	return true
+}
+
+// SetCacheDisabledReply returns the FrameID value for SetCacheDisabled in the Network domain.
+func (a *SetCacheDisabledReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetCacheDisabled in the Network domain.
@@ -1221,6 +1331,11 @@ func (a *SetCookieReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetCookieReply returns the FrameID value for SetCookie in the Network domain.
+func (a *SetCookieReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetCookie in the Network domain.
 func (a *SetCookieReply) UnmarshalJSON(b []byte) error {
 	type Copy SetCookieReply
@@ -1269,6 +1384,11 @@ func (a *SetCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetCookiesReply", err)
 	}
 	return true
+}
+
+// SetCookiesReply returns the FrameID value for SetCookies in the Network domain.
+func (a *SetCookiesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetCookies in the Network domain.
@@ -1322,6 +1442,11 @@ func (a *SetDataSizeLimitsForTestReply) MatchFrameID(frameID string, m []byte) b
 	return true
 }
 
+// SetDataSizeLimitsForTestReply returns the FrameID value for SetDataSizeLimitsForTest in the Network domain.
+func (a *SetDataSizeLimitsForTestReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetDataSizeLimitsForTest in the Network domain.
 func (a *SetDataSizeLimitsForTestReply) UnmarshalJSON(b []byte) error {
 	type Copy SetDataSizeLimitsForTestReply
@@ -1372,6 +1497,11 @@ func (a *SetExtraHTTPHeadersReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetExtraHTTPHeadersReply returns the FrameID value for SetExtraHTTPHeaders in the Network domain.
+func (a *SetExtraHTTPHeadersReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetExtraHTTPHeaders in the Network domain.
 func (a *SetExtraHTTPHeadersReply) UnmarshalJSON(b []byte) error {
 	type Copy SetExtraHTTPHeadersReply
@@ -1420,6 +1550,11 @@ func (a *SetRequestInterceptionReply) MatchFrameID(frameID string, m []byte) boo
 		log.Fatalf("unmarshal error: SetRequestInterceptionReply", err)
 	}
 	return true
+}
+
+// SetRequestInterceptionReply returns the FrameID value for SetRequestInterception in the Network domain.
+func (a *SetRequestInterceptionReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetRequestInterception in the Network domain.

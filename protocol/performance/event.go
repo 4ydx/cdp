@@ -4,6 +4,7 @@ package performance
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -35,4 +36,18 @@ func (a *MetricsReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = MetricsReply(*c)
 	return nil
+}
+
+// MetricsReply returns whether or not the FrameID matches the reply value for Metrics in the Metrics domain.
+func (a *MetricsReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// MetricsReply returns the FrameID for Metrics in the Metrics domain.
+func (a *MetricsReply) GetFrameID() string {
+	return ""
 }

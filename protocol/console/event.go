@@ -4,6 +4,7 @@ package console
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -34,4 +35,18 @@ func (a *MessageAddedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = MessageAddedReply(*c)
 	return nil
+}
+
+// MessageAddedReply returns whether or not the FrameID matches the reply value for MessageAdded in the MessageAdded domain.
+func (a *MessageAddedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// MessageAddedReply returns the FrameID for MessageAdded in the MessageAdded domain.
+func (a *MessageAddedReply) GetFrameID() string {
+	return ""
 }

@@ -50,6 +50,11 @@ func (a *BindReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// BindReply returns the FrameID value for Bind in the Tethering domain.
+func (a *BindReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Bind in the Tethering domain.
 func (a *BindReply) UnmarshalJSON(b []byte) error {
 	type Copy BindReply
@@ -98,6 +103,11 @@ func (a *UnbindReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: UnbindReply", err)
 	}
 	return true
+}
+
+// UnbindReply returns the FrameID value for Unbind in the Tethering domain.
+func (a *UnbindReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Unbind in the Tethering domain.

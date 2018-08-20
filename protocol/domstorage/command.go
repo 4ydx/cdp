@@ -54,6 +54,11 @@ func (a *ClearReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ClearReply returns the FrameID value for Clear in the DOMStorage domain.
+func (a *ClearReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Clear in the DOMStorage domain.
 func (a *ClearReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearReply
@@ -103,6 +108,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the DOMStorage domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the DOMStorage domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -150,6 +160,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the DOMStorage domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the DOMStorage domain.
@@ -203,6 +218,11 @@ func (a *GetDOMStorageItemsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetDOMStorageItemsReply returns the FrameID value for GetDOMStorageItems in the DOMStorage domain.
+func (a *GetDOMStorageItemsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetDOMStorageItems in the DOMStorage domain.
 func (a *GetDOMStorageItemsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetDOMStorageItemsReply
@@ -252,6 +272,11 @@ func (a *RemoveDOMStorageItemReply) MatchFrameID(frameID string, m []byte) bool 
 		log.Fatalf("unmarshal error: RemoveDOMStorageItemReply", err)
 	}
 	return true
+}
+
+// RemoveDOMStorageItemReply returns the FrameID value for RemoveDOMStorageItem in the DOMStorage domain.
+func (a *RemoveDOMStorageItemReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RemoveDOMStorageItem in the DOMStorage domain.
@@ -304,6 +329,11 @@ func (a *SetDOMStorageItemReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetDOMStorageItemReply", err)
 	}
 	return true
+}
+
+// SetDOMStorageItemReply returns the FrameID value for SetDOMStorageItem in the DOMStorage domain.
+func (a *SetDOMStorageItemReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetDOMStorageItem in the DOMStorage domain.

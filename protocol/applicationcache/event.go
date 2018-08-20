@@ -4,6 +4,7 @@ package applicationcache
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol"
 )
@@ -42,6 +43,20 @@ func (a *StatusUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// StatusUpdatedReply returns whether or not the FrameID matches the reply value for ApplicationCacheStatusUpdated in the ApplicationCacheStatusUpdated domain.
+func (a *StatusUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: StatusUpdatedReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// StatusUpdatedReply returns the FrameID for ApplicationCacheStatusUpdated in the ApplicationCacheStatusUpdated domain.
+func (a *StatusUpdatedReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // NetworkStateUpdatedReply is the reply for NetworkStateUpdated events.
 type NetworkStateUpdatedReply struct {
 	IsNowOnline bool `json:"isNowOnline"` // No description.
@@ -57,4 +72,18 @@ func (a *NetworkStateUpdatedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = NetworkStateUpdatedReply(*c)
 	return nil
+}
+
+// NetworkStateUpdatedReply returns whether or not the FrameID matches the reply value for NetworkStateUpdated in the NetworkStateUpdated domain.
+func (a *NetworkStateUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// NetworkStateUpdatedReply returns the FrameID for NetworkStateUpdated in the NetworkStateUpdated domain.
+func (a *NetworkStateUpdatedReply) GetFrameID() string {
+	return ""
 }

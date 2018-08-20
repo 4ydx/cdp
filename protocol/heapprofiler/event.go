@@ -4,6 +4,7 @@ package heapprofiler
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -44,6 +45,20 @@ func (a *AddHeapSnapshotChunkReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// AddHeapSnapshotChunkReply returns whether or not the FrameID matches the reply value for AddHeapSnapshotChunk in the AddHeapSnapshotChunk domain.
+func (a *AddHeapSnapshotChunkReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// AddHeapSnapshotChunkReply returns the FrameID for AddHeapSnapshotChunk in the AddHeapSnapshotChunk domain.
+func (a *AddHeapSnapshotChunkReply) GetFrameID() string {
+	return ""
+}
+
 // HeapStatsUpdateReply is the reply for HeapStatsUpdate events.
 type HeapStatsUpdateReply struct {
 	StatsUpdate []int `json:"statsUpdate"` // An array of triplets. Each triplet describes a fragment. The first integer is the fragment index, the second integer is a total count of objects for the fragment, the third integer is a total size of the objects for the fragment.
@@ -59,6 +74,20 @@ func (a *HeapStatsUpdateReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = HeapStatsUpdateReply(*c)
 	return nil
+}
+
+// HeapStatsUpdateReply returns whether or not the FrameID matches the reply value for HeapStatsUpdate in the HeapStatsUpdate domain.
+func (a *HeapStatsUpdateReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// HeapStatsUpdateReply returns the FrameID for HeapStatsUpdate in the HeapStatsUpdate domain.
+func (a *HeapStatsUpdateReply) GetFrameID() string {
+	return ""
 }
 
 // LastSeenObjectIDReply is the reply for LastSeenObjectID events.
@@ -77,6 +106,20 @@ func (a *LastSeenObjectIDReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = LastSeenObjectIDReply(*c)
 	return nil
+}
+
+// LastSeenObjectIDReply returns whether or not the FrameID matches the reply value for LastSeenObjectID in the LastSeenObjectID domain.
+func (a *LastSeenObjectIDReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// LastSeenObjectIDReply returns the FrameID for LastSeenObjectID in the LastSeenObjectID domain.
+func (a *LastSeenObjectIDReply) GetFrameID() string {
+	return ""
 }
 
 // ReportHeapSnapshotProgressReply is the reply for ReportHeapSnapshotProgress events.
@@ -98,6 +141,20 @@ func (a *ReportHeapSnapshotProgressReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// ReportHeapSnapshotProgressReply returns whether or not the FrameID matches the reply value for ReportHeapSnapshotProgress in the ReportHeapSnapshotProgress domain.
+func (a *ReportHeapSnapshotProgressReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ReportHeapSnapshotProgressReply returns the FrameID for ReportHeapSnapshotProgress in the ReportHeapSnapshotProgress domain.
+func (a *ReportHeapSnapshotProgressReply) GetFrameID() string {
+	return ""
+}
+
 // ResetProfilesReply is the reply for ResetProfiles events.
 type ResetProfilesReply struct {
 }
@@ -112,4 +169,18 @@ func (a *ResetProfilesReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ResetProfilesReply(*c)
 	return nil
+}
+
+// ResetProfilesReply returns whether or not the FrameID matches the reply value for ResetProfiles in the ResetProfiles domain.
+func (a *ResetProfilesReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ResetProfilesReply returns the FrameID for ResetProfiles in the ResetProfiles domain.
+func (a *ResetProfilesReply) GetFrameID() string {
+	return ""
 }

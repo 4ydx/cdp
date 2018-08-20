@@ -53,6 +53,11 @@ func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CloseReply returns the FrameID value for Close in the IO domain.
+func (a *CloseReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Close in the IO domain.
 func (a *CloseReply) UnmarshalJSON(b []byte) error {
 	type Copy CloseReply
@@ -108,6 +113,11 @@ func (a *ReadReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ReadReply returns the FrameID value for Read in the IO domain.
+func (a *ReadReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Read in the IO domain.
 func (a *ReadReply) UnmarshalJSON(b []byte) error {
 	type Copy ReadReply
@@ -157,6 +167,11 @@ func (a *ResolveBlobReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ResolveBlobReply", err)
 	}
 	return true
+}
+
+// ResolveBlobReply returns the FrameID value for ResolveBlob in the IO domain.
+func (a *ResolveBlobReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ResolveBlob in the IO domain.

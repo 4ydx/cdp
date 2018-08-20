@@ -62,6 +62,11 @@ func (a *DeliverPushMessageReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DeliverPushMessageReply returns the FrameID value for DeliverPushMessage in the ServiceWorker domain.
+func (a *DeliverPushMessageReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for DeliverPushMessage in the ServiceWorker domain.
 func (a *DeliverPushMessageReply) UnmarshalJSON(b []byte) error {
 	type Copy DeliverPushMessageReply
@@ -109,6 +114,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: DisableReply", err)
 	}
 	return true
+}
+
+// DisableReply returns the FrameID value for Disable in the ServiceWorker domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Disable in the ServiceWorker domain.
@@ -164,6 +174,11 @@ func (a *DispatchSyncEventReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DispatchSyncEventReply returns the FrameID value for DispatchSyncEvent in the ServiceWorker domain.
+func (a *DispatchSyncEventReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for DispatchSyncEvent in the ServiceWorker domain.
 func (a *DispatchSyncEventReply) UnmarshalJSON(b []byte) error {
 	type Copy DispatchSyncEventReply
@@ -211,6 +226,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the ServiceWorker domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the ServiceWorker domain.
@@ -263,6 +283,11 @@ func (a *InspectWorkerReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// InspectWorkerReply returns the FrameID value for InspectWorker in the ServiceWorker domain.
+func (a *InspectWorkerReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for InspectWorker in the ServiceWorker domain.
 func (a *InspectWorkerReply) UnmarshalJSON(b []byte) error {
 	type Copy InspectWorkerReply
@@ -311,6 +336,11 @@ func (a *SetForceUpdateOnPageLoadReply) MatchFrameID(frameID string, m []byte) b
 		log.Fatalf("unmarshal error: SetForceUpdateOnPageLoadReply", err)
 	}
 	return true
+}
+
+// SetForceUpdateOnPageLoadReply returns the FrameID value for SetForceUpdateOnPageLoad in the ServiceWorker domain.
+func (a *SetForceUpdateOnPageLoadReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetForceUpdateOnPageLoad in the ServiceWorker domain.
@@ -363,6 +393,11 @@ func (a *SkipWaitingReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SkipWaitingReply returns the FrameID value for SkipWaiting in the ServiceWorker domain.
+func (a *SkipWaitingReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SkipWaiting in the ServiceWorker domain.
 func (a *SkipWaitingReply) UnmarshalJSON(b []byte) error {
 	type Copy SkipWaitingReply
@@ -413,6 +448,11 @@ func (a *StartWorkerReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// StartWorkerReply returns the FrameID value for StartWorker in the ServiceWorker domain.
+func (a *StartWorkerReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StartWorker in the ServiceWorker domain.
 func (a *StartWorkerReply) UnmarshalJSON(b []byte) error {
 	type Copy StartWorkerReply
@@ -460,6 +500,11 @@ func (a *StopAllWorkersReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: StopAllWorkersReply", err)
 	}
 	return true
+}
+
+// StopAllWorkersReply returns the FrameID value for StopAllWorkers in the ServiceWorker domain.
+func (a *StopAllWorkersReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for StopAllWorkers in the ServiceWorker domain.
@@ -512,6 +557,11 @@ func (a *StopWorkerReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// StopWorkerReply returns the FrameID value for StopWorker in the ServiceWorker domain.
+func (a *StopWorkerReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StopWorker in the ServiceWorker domain.
 func (a *StopWorkerReply) UnmarshalJSON(b []byte) error {
 	type Copy StopWorkerReply
@@ -562,6 +612,11 @@ func (a *UnregisterReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// UnregisterReply returns the FrameID value for Unregister in the ServiceWorker domain.
+func (a *UnregisterReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Unregister in the ServiceWorker domain.
 func (a *UnregisterReply) UnmarshalJSON(b []byte) error {
 	type Copy UnregisterReply
@@ -610,6 +665,11 @@ func (a *UpdateRegistrationReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: UpdateRegistrationReply", err)
 	}
 	return true
+}
+
+// UpdateRegistrationReply returns the FrameID value for UpdateRegistration in the ServiceWorker domain.
+func (a *UpdateRegistrationReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for UpdateRegistration in the ServiceWorker domain.

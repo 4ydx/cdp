@@ -4,6 +4,7 @@ package network
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol"
 )
@@ -73,6 +74,20 @@ func (a *DataReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// DataReceivedReply returns whether or not the FrameID matches the reply value for DataReceived in the DataReceived domain.
+func (a *DataReceivedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// DataReceivedReply returns the FrameID for DataReceived in the DataReceived domain.
+func (a *DataReceivedReply) GetFrameID() string {
+	return ""
+}
+
 // EventSourceMessageReceivedReply is the reply for EventSourceMessageReceived events.
 type EventSourceMessageReceivedReply struct {
 	RequestID RequestID     `json:"requestId"` // Request identifier.
@@ -92,6 +107,20 @@ func (a *EventSourceMessageReceivedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = EventSourceMessageReceivedReply(*c)
 	return nil
+}
+
+// EventSourceMessageReceivedReply returns whether or not the FrameID matches the reply value for EventSourceMessageReceived in the EventSourceMessageReceived domain.
+func (a *EventSourceMessageReceivedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// EventSourceMessageReceivedReply returns the FrameID for EventSourceMessageReceived in the EventSourceMessageReceived domain.
+func (a *EventSourceMessageReceivedReply) GetFrameID() string {
+	return ""
 }
 
 // LoadingFailedReply is the reply for LoadingFailed events.
@@ -116,6 +145,20 @@ func (a *LoadingFailedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// LoadingFailedReply returns whether or not the FrameID matches the reply value for LoadingFailed in the LoadingFailed domain.
+func (a *LoadingFailedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// LoadingFailedReply returns the FrameID for LoadingFailed in the LoadingFailed domain.
+func (a *LoadingFailedReply) GetFrameID() string {
+	return ""
+}
+
 // LoadingFinishedReply is the reply for LoadingFinished events.
 type LoadingFinishedReply struct {
 	RequestID                RequestID     `json:"requestId"`                          // Request identifier.
@@ -134,6 +177,20 @@ func (a *LoadingFinishedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = LoadingFinishedReply(*c)
 	return nil
+}
+
+// LoadingFinishedReply returns whether or not the FrameID matches the reply value for LoadingFinished in the LoadingFinished domain.
+func (a *LoadingFinishedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// LoadingFinishedReply returns the FrameID for LoadingFinished in the LoadingFinished domain.
+func (a *LoadingFinishedReply) GetFrameID() string {
+	return ""
 }
 
 // RequestInterceptedReply is the reply for RequestIntercepted events.
@@ -163,6 +220,20 @@ func (a *RequestInterceptedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// RequestInterceptedReply returns whether or not the FrameID matches the reply value for RequestIntercepted in the RequestIntercepted domain.
+func (a *RequestInterceptedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RequestInterceptedReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// RequestInterceptedReply returns the FrameID for RequestIntercepted in the RequestIntercepted domain.
+func (a *RequestInterceptedReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // RequestServedFromCacheReply is the reply for RequestServedFromCache events.
 type RequestServedFromCacheReply struct {
 	RequestID RequestID `json:"requestId"` // Request identifier.
@@ -178,6 +249,20 @@ func (a *RequestServedFromCacheReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = RequestServedFromCacheReply(*c)
 	return nil
+}
+
+// RequestServedFromCacheReply returns whether or not the FrameID matches the reply value for RequestServedFromCache in the RequestServedFromCache domain.
+func (a *RequestServedFromCacheReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// RequestServedFromCacheReply returns the FrameID for RequestServedFromCache in the RequestServedFromCache domain.
+func (a *RequestServedFromCacheReply) GetFrameID() string {
+	return ""
 }
 
 // RequestWillBeSentReply is the reply for RequestWillBeSent events.
@@ -207,6 +292,20 @@ func (a *RequestWillBeSentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// RequestWillBeSentReply returns whether or not the FrameID matches the reply value for RequestWillBeSent in the RequestWillBeSent domain.
+func (a *RequestWillBeSentReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: RequestWillBeSentReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// RequestWillBeSentReply returns the FrameID for RequestWillBeSent in the RequestWillBeSent domain.
+func (a *RequestWillBeSentReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // ResourceChangedPriorityReply is the reply for ResourceChangedPriority events.
 type ResourceChangedPriorityReply struct {
 	RequestID   RequestID        `json:"requestId"`   // Request identifier.
@@ -226,6 +325,20 @@ func (a *ResourceChangedPriorityReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// ResourceChangedPriorityReply returns whether or not the FrameID matches the reply value for ResourceChangedPriority in the ResourceChangedPriority domain.
+func (a *ResourceChangedPriorityReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ResourceChangedPriorityReply returns the FrameID for ResourceChangedPriority in the ResourceChangedPriority domain.
+func (a *ResourceChangedPriorityReply) GetFrameID() string {
+	return ""
+}
+
 // SignedExchangeReceivedReply is the reply for SignedExchangeReceived events.
 type SignedExchangeReceivedReply struct {
 	RequestID RequestID          `json:"requestId"` // Request identifier.
@@ -242,6 +355,20 @@ func (a *SignedExchangeReceivedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = SignedExchangeReceivedReply(*c)
 	return nil
+}
+
+// SignedExchangeReceivedReply returns whether or not the FrameID matches the reply value for SignedExchangeReceived in the SignedExchangeReceived domain.
+func (a *SignedExchangeReceivedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// SignedExchangeReceivedReply returns the FrameID for SignedExchangeReceived in the SignedExchangeReceived domain.
+func (a *SignedExchangeReceivedReply) GetFrameID() string {
+	return ""
 }
 
 // ResponseReceivedReply is the reply for ResponseReceived events.
@@ -266,6 +393,20 @@ func (a *ResponseReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// ResponseReceivedReply returns whether or not the FrameID matches the reply value for ResponseReceived in the ResponseReceived domain.
+func (a *ResponseReceivedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: ResponseReceivedReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// ResponseReceivedReply returns the FrameID for ResponseReceived in the ResponseReceived domain.
+func (a *ResponseReceivedReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // WebSocketClosedReply is the reply for WebSocketClosed events.
 type WebSocketClosedReply struct {
 	RequestID RequestID     `json:"requestId"` // Request identifier.
@@ -282,6 +423,20 @@ func (a *WebSocketClosedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = WebSocketClosedReply(*c)
 	return nil
+}
+
+// WebSocketClosedReply returns whether or not the FrameID matches the reply value for WebSocketClosed in the WebSocketClosed domain.
+func (a *WebSocketClosedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WebSocketClosedReply returns the FrameID for WebSocketClosed in the WebSocketClosed domain.
+func (a *WebSocketClosedReply) GetFrameID() string {
+	return ""
 }
 
 // WebSocketCreatedReply is the reply for WebSocketCreated events.
@@ -303,6 +458,20 @@ func (a *WebSocketCreatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// WebSocketCreatedReply returns whether or not the FrameID matches the reply value for WebSocketCreated in the WebSocketCreated domain.
+func (a *WebSocketCreatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WebSocketCreatedReply returns the FrameID for WebSocketCreated in the WebSocketCreated domain.
+func (a *WebSocketCreatedReply) GetFrameID() string {
+	return ""
+}
+
 // WebSocketFrameErrorReply is the reply for WebSocketFrameError events.
 type WebSocketFrameErrorReply struct {
 	RequestID    RequestID     `json:"requestId"`    // Request identifier.
@@ -320,6 +489,20 @@ func (a *WebSocketFrameErrorReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = WebSocketFrameErrorReply(*c)
 	return nil
+}
+
+// WebSocketFrameErrorReply returns whether or not the FrameID matches the reply value for WebSocketFrameError in the WebSocketFrameError domain.
+func (a *WebSocketFrameErrorReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WebSocketFrameErrorReply returns the FrameID for WebSocketFrameError in the WebSocketFrameError domain.
+func (a *WebSocketFrameErrorReply) GetFrameID() string {
+	return ""
 }
 
 // WebSocketFrameReceivedReply is the reply for WebSocketFrameReceived events.
@@ -341,6 +524,20 @@ func (a *WebSocketFrameReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// WebSocketFrameReceivedReply returns whether or not the FrameID matches the reply value for WebSocketFrameReceived in the WebSocketFrameReceived domain.
+func (a *WebSocketFrameReceivedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WebSocketFrameReceivedReply returns the FrameID for WebSocketFrameReceived in the WebSocketFrameReceived domain.
+func (a *WebSocketFrameReceivedReply) GetFrameID() string {
+	return ""
+}
+
 // WebSocketFrameSentReply is the reply for WebSocketFrameSent events.
 type WebSocketFrameSentReply struct {
 	RequestID RequestID      `json:"requestId"` // Request identifier.
@@ -358,6 +555,20 @@ func (a *WebSocketFrameSentReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = WebSocketFrameSentReply(*c)
 	return nil
+}
+
+// WebSocketFrameSentReply returns whether or not the FrameID matches the reply value for WebSocketFrameSent in the WebSocketFrameSent domain.
+func (a *WebSocketFrameSentReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WebSocketFrameSentReply returns the FrameID for WebSocketFrameSent in the WebSocketFrameSent domain.
+func (a *WebSocketFrameSentReply) GetFrameID() string {
+	return ""
 }
 
 // WebSocketHandshakeResponseReceivedReply is the reply for WebSocketHandshakeResponseReceived events.
@@ -379,6 +590,20 @@ func (a *WebSocketHandshakeResponseReceivedReply) UnmarshalJSON(b []byte) error 
 	return nil
 }
 
+// WebSocketHandshakeResponseReceivedReply returns whether or not the FrameID matches the reply value for WebSocketHandshakeResponseReceived in the WebSocketHandshakeResponseReceived domain.
+func (a *WebSocketHandshakeResponseReceivedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WebSocketHandshakeResponseReceivedReply returns the FrameID for WebSocketHandshakeResponseReceived in the WebSocketHandshakeResponseReceived domain.
+func (a *WebSocketHandshakeResponseReceivedReply) GetFrameID() string {
+	return ""
+}
+
 // WebSocketWillSendHandshakeRequestReply is the reply for WebSocketWillSendHandshakeRequest events.
 type WebSocketWillSendHandshakeRequestReply struct {
 	RequestID RequestID        `json:"requestId"` // Request identifier.
@@ -397,4 +622,18 @@ func (a *WebSocketWillSendHandshakeRequestReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = WebSocketWillSendHandshakeRequestReply(*c)
 	return nil
+}
+
+// WebSocketWillSendHandshakeRequestReply returns whether or not the FrameID matches the reply value for WebSocketWillSendHandshakeRequest in the WebSocketWillSendHandshakeRequest domain.
+func (a *WebSocketWillSendHandshakeRequestReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WebSocketWillSendHandshakeRequestReply returns the FrameID for WebSocketWillSendHandshakeRequest in the WebSocketWillSendHandshakeRequest domain.
+func (a *WebSocketWillSendHandshakeRequestReply) GetFrameID() string {
+	return ""
 }

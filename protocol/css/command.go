@@ -76,6 +76,11 @@ func (a *AddRuleReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// AddRuleReply returns the FrameID value for AddRule in the CSS domain.
+func (a *AddRuleReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for AddRule in the CSS domain.
 func (a *AddRuleReply) UnmarshalJSON(b []byte) error {
 	type Copy AddRuleReply
@@ -125,6 +130,11 @@ func (a *CollectClassNamesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: CollectClassNamesReply", err)
 	}
 	return true
+}
+
+// CollectClassNamesReply returns the FrameID value for CollectClassNames in the CSS domain.
+func (a *CollectClassNamesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for CollectClassNames in the CSS domain.
@@ -178,6 +188,11 @@ func (a *CreateStyleSheetReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CreateStyleSheetReply returns the FrameID value for CreateStyleSheet in the CSS domain.
+func (a *CreateStyleSheetReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CreateStyleSheet in the CSS domain.
 func (a *CreateStyleSheetReply) UnmarshalJSON(b []byte) error {
 	type Copy CreateStyleSheetReply
@@ -225,6 +240,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: DisableReply", err)
 	}
 	return true
+}
+
+// DisableReply returns the FrameID value for Disable in the CSS domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Disable in the CSS domain.
@@ -276,6 +296,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// EnableReply returns the FrameID value for Enable in the CSS domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Enable in the CSS domain.
 func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	type Copy EnableReply
@@ -325,6 +350,11 @@ func (a *ForcePseudoStateReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ForcePseudoStateReply", err)
 	}
 	return true
+}
+
+// ForcePseudoStateReply returns the FrameID value for ForcePseudoState in the CSS domain.
+func (a *ForcePseudoStateReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ForcePseudoState in the CSS domain.
@@ -381,6 +411,11 @@ func (a *GetBackgroundColorsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetBackgroundColorsReply returns the FrameID value for GetBackgroundColors in the CSS domain.
+func (a *GetBackgroundColorsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetBackgroundColors in the CSS domain.
 func (a *GetBackgroundColorsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetBackgroundColorsReply
@@ -430,6 +465,11 @@ func (a *GetComputedStyleForNodeReply) MatchFrameID(frameID string, m []byte) bo
 		log.Fatalf("unmarshal error: GetComputedStyleForNodeReply", err)
 	}
 	return true
+}
+
+// GetComputedStyleForNodeReply returns the FrameID value for GetComputedStyleForNode in the CSS domain.
+func (a *GetComputedStyleForNodeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetComputedStyleForNode in the CSS domain.
@@ -482,6 +522,11 @@ func (a *GetInlineStylesForNodeReply) MatchFrameID(frameID string, m []byte) boo
 		log.Fatalf("unmarshal error: GetInlineStylesForNodeReply", err)
 	}
 	return true
+}
+
+// GetInlineStylesForNodeReply returns the FrameID value for GetInlineStylesForNode in the CSS domain.
+func (a *GetInlineStylesForNodeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetInlineStylesForNode in the CSS domain.
@@ -540,6 +585,11 @@ func (a *GetMatchedStylesForNodeReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
+// GetMatchedStylesForNodeReply returns the FrameID value for GetMatchedStylesForNode in the CSS domain.
+func (a *GetMatchedStylesForNodeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetMatchedStylesForNode in the CSS domain.
 func (a *GetMatchedStylesForNodeReply) UnmarshalJSON(b []byte) error {
 	type Copy GetMatchedStylesForNodeReply
@@ -588,6 +638,11 @@ func (a *GetMediaQueriesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetMediaQueriesReply", err)
 	}
 	return true
+}
+
+// GetMediaQueriesReply returns the FrameID value for GetMediaQueries in the CSS domain.
+func (a *GetMediaQueriesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetMediaQueries in the CSS domain.
@@ -641,6 +696,11 @@ func (a *GetPlatformFontsForNodeReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
+// GetPlatformFontsForNodeReply returns the FrameID value for GetPlatformFontsForNode in the CSS domain.
+func (a *GetPlatformFontsForNodeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetPlatformFontsForNode in the CSS domain.
 func (a *GetPlatformFontsForNodeReply) UnmarshalJSON(b []byte) error {
 	type Copy GetPlatformFontsForNodeReply
@@ -690,6 +750,11 @@ func (a *GetStyleSheetTextReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetStyleSheetTextReply", err)
 	}
 	return true
+}
+
+// GetStyleSheetTextReply returns the FrameID value for GetStyleSheetText in the CSS domain.
+func (a *GetStyleSheetTextReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetStyleSheetText in the CSS domain.
@@ -742,6 +807,11 @@ func (a *SetEffectivePropertyValueForNodeReply) MatchFrameID(frameID string, m [
 		log.Fatalf("unmarshal error: SetEffectivePropertyValueForNodeReply", err)
 	}
 	return true
+}
+
+// SetEffectivePropertyValueForNodeReply returns the FrameID value for SetEffectivePropertyValueForNode in the CSS domain.
+func (a *SetEffectivePropertyValueForNodeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetEffectivePropertyValueForNode in the CSS domain.
@@ -797,6 +867,11 @@ func (a *SetKeyframeKeyReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetKeyframeKeyReply returns the FrameID value for SetKeyframeKey in the CSS domain.
+func (a *SetKeyframeKeyReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetKeyframeKey in the CSS domain.
 func (a *SetKeyframeKeyReply) UnmarshalJSON(b []byte) error {
 	type Copy SetKeyframeKeyReply
@@ -848,6 +923,11 @@ func (a *SetMediaTextReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetMediaTextReply", err)
 	}
 	return true
+}
+
+// SetMediaTextReply returns the FrameID value for SetMediaText in the CSS domain.
+func (a *SetMediaTextReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetMediaText in the CSS domain.
@@ -903,6 +983,11 @@ func (a *SetRuleSelectorReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetRuleSelectorReply returns the FrameID value for SetRuleSelector in the CSS domain.
+func (a *SetRuleSelectorReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetRuleSelector in the CSS domain.
 func (a *SetRuleSelectorReply) UnmarshalJSON(b []byte) error {
 	type Copy SetRuleSelectorReply
@@ -953,6 +1038,11 @@ func (a *SetStyleSheetTextReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetStyleSheetTextReply", err)
 	}
 	return true
+}
+
+// SetStyleSheetTextReply returns the FrameID value for SetStyleSheetText in the CSS domain.
+func (a *SetStyleSheetTextReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetStyleSheetText in the CSS domain.
@@ -1006,6 +1096,11 @@ func (a *SetStyleTextsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetStyleTextsReply returns the FrameID value for SetStyleTexts in the CSS domain.
+func (a *SetStyleTextsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetStyleTexts in the CSS domain.
 func (a *SetStyleTextsReply) UnmarshalJSON(b []byte) error {
 	type Copy SetStyleTextsReply
@@ -1053,6 +1148,11 @@ func (a *StartRuleUsageTrackingReply) MatchFrameID(frameID string, m []byte) boo
 		log.Fatalf("unmarshal error: StartRuleUsageTrackingReply", err)
 	}
 	return true
+}
+
+// StartRuleUsageTrackingReply returns the FrameID value for StartRuleUsageTracking in the CSS domain.
+func (a *StartRuleUsageTrackingReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for StartRuleUsageTracking in the CSS domain.
@@ -1105,6 +1205,11 @@ func (a *StopRuleUsageTrackingReply) MatchFrameID(frameID string, m []byte) bool
 	return true
 }
 
+// StopRuleUsageTrackingReply returns the FrameID value for StopRuleUsageTracking in the CSS domain.
+func (a *StopRuleUsageTrackingReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for StopRuleUsageTracking in the CSS domain.
 func (a *StopRuleUsageTrackingReply) UnmarshalJSON(b []byte) error {
 	type Copy StopRuleUsageTrackingReply
@@ -1153,6 +1258,11 @@ func (a *TakeCoverageDeltaReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: TakeCoverageDeltaReply", err)
 	}
 	return true
+}
+
+// TakeCoverageDeltaReply returns the FrameID value for TakeCoverageDelta in the CSS domain.
+func (a *TakeCoverageDeltaReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for TakeCoverageDelta in the CSS domain.

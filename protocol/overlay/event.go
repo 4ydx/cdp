@@ -4,6 +4,7 @@ package overlay
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol/dom"
 	"github.com/4ydx/cdp/protocol/page"
@@ -43,6 +44,20 @@ func (a *InspectNodeRequestedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// InspectNodeRequestedReply returns whether or not the FrameID matches the reply value for InspectNodeRequested in the InspectNodeRequested domain.
+func (a *InspectNodeRequestedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// InspectNodeRequestedReply returns the FrameID for InspectNodeRequested in the InspectNodeRequested domain.
+func (a *InspectNodeRequestedReply) GetFrameID() string {
+	return ""
+}
+
 // NodeHighlightRequestedReply is the reply for NodeHighlightRequested events.
 type NodeHighlightRequestedReply struct {
 	NodeID dom.NodeID `json:"nodeId"` // No description.
@@ -60,6 +75,20 @@ func (a *NodeHighlightRequestedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// NodeHighlightRequestedReply returns whether or not the FrameID matches the reply value for NodeHighlightRequested in the NodeHighlightRequested domain.
+func (a *NodeHighlightRequestedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// NodeHighlightRequestedReply returns the FrameID for NodeHighlightRequested in the NodeHighlightRequested domain.
+func (a *NodeHighlightRequestedReply) GetFrameID() string {
+	return ""
+}
+
 // ScreenshotRequestedReply is the reply for ScreenshotRequested events.
 type ScreenshotRequestedReply struct {
 	Viewport page.Viewport `json:"viewport"` // Viewport to capture, in CSS.
@@ -75,4 +104,18 @@ func (a *ScreenshotRequestedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ScreenshotRequestedReply(*c)
 	return nil
+}
+
+// ScreenshotRequestedReply returns whether or not the FrameID matches the reply value for ScreenshotRequested in the ScreenshotRequested domain.
+func (a *ScreenshotRequestedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ScreenshotRequestedReply returns the FrameID for ScreenshotRequested in the ScreenshotRequested domain.
+func (a *ScreenshotRequestedReply) GetFrameID() string {
+	return ""
 }

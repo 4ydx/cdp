@@ -4,6 +4,7 @@ package runtime
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -52,6 +53,20 @@ func (a *BindingCalledReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// BindingCalledReply returns whether or not the FrameID matches the reply value for BindingCalled in the BindingCalled domain.
+func (a *BindingCalledReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// BindingCalledReply returns the FrameID for BindingCalled in the BindingCalled domain.
+func (a *BindingCalledReply) GetFrameID() string {
+	return ""
+}
+
 // ConsoleAPICalledReply is the reply for ConsoleAPICalled events.
 type ConsoleAPICalledReply struct {
 	// Type Type of the call.
@@ -82,6 +97,20 @@ func (a *ConsoleAPICalledReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// ConsoleAPICalledReply returns whether or not the FrameID matches the reply value for ConsoleAPICalled in the ConsoleAPICalled domain.
+func (a *ConsoleAPICalledReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ConsoleAPICalledReply returns the FrameID for ConsoleAPICalled in the ConsoleAPICalled domain.
+func (a *ConsoleAPICalledReply) GetFrameID() string {
+	return ""
+}
+
 // ExceptionRevokedReply is the reply for ExceptionRevoked events.
 type ExceptionRevokedReply struct {
 	Reason      string `json:"reason"`      // Reason describing why exception was revoked.
@@ -98,6 +127,20 @@ func (a *ExceptionRevokedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ExceptionRevokedReply(*c)
 	return nil
+}
+
+// ExceptionRevokedReply returns whether or not the FrameID matches the reply value for ExceptionRevoked in the ExceptionRevoked domain.
+func (a *ExceptionRevokedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ExceptionRevokedReply returns the FrameID for ExceptionRevoked in the ExceptionRevoked domain.
+func (a *ExceptionRevokedReply) GetFrameID() string {
+	return ""
 }
 
 // ExceptionThrownReply is the reply for ExceptionThrown events.
@@ -118,6 +161,20 @@ func (a *ExceptionThrownReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// ExceptionThrownReply returns whether or not the FrameID matches the reply value for ExceptionThrown in the ExceptionThrown domain.
+func (a *ExceptionThrownReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ExceptionThrownReply returns the FrameID for ExceptionThrown in the ExceptionThrown domain.
+func (a *ExceptionThrownReply) GetFrameID() string {
+	return ""
+}
+
 // ExecutionContextCreatedReply is the reply for ExecutionContextCreated events.
 type ExecutionContextCreatedReply struct {
 	Context ExecutionContextDescription `json:"context"` // A newly created execution context.
@@ -133,6 +190,20 @@ func (a *ExecutionContextCreatedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ExecutionContextCreatedReply(*c)
 	return nil
+}
+
+// ExecutionContextCreatedReply returns whether or not the FrameID matches the reply value for ExecutionContextCreated in the ExecutionContextCreated domain.
+func (a *ExecutionContextCreatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ExecutionContextCreatedReply returns the FrameID for ExecutionContextCreated in the ExecutionContextCreated domain.
+func (a *ExecutionContextCreatedReply) GetFrameID() string {
+	return ""
 }
 
 // ExecutionContextDestroyedReply is the reply for ExecutionContextDestroyed events.
@@ -152,6 +223,20 @@ func (a *ExecutionContextDestroyedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// ExecutionContextDestroyedReply returns whether or not the FrameID matches the reply value for ExecutionContextDestroyed in the ExecutionContextDestroyed domain.
+func (a *ExecutionContextDestroyedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ExecutionContextDestroyedReply returns the FrameID for ExecutionContextDestroyed in the ExecutionContextDestroyed domain.
+func (a *ExecutionContextDestroyedReply) GetFrameID() string {
+	return ""
+}
+
 // ExecutionContextsClearedReply is the reply for ExecutionContextsCleared events.
 type ExecutionContextsClearedReply struct {
 }
@@ -166,6 +251,20 @@ func (a *ExecutionContextsClearedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ExecutionContextsClearedReply(*c)
 	return nil
+}
+
+// ExecutionContextsClearedReply returns whether or not the FrameID matches the reply value for ExecutionContextsCleared in the ExecutionContextsCleared domain.
+func (a *ExecutionContextsClearedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ExecutionContextsClearedReply returns the FrameID for ExecutionContextsCleared in the ExecutionContextsCleared domain.
+func (a *ExecutionContextsClearedReply) GetFrameID() string {
+	return ""
 }
 
 // InspectRequestedReply is the reply for InspectRequested events.
@@ -184,4 +283,18 @@ func (a *InspectRequestedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = InspectRequestedReply(*c)
 	return nil
+}
+
+// InspectRequestedReply returns whether or not the FrameID matches the reply value for InspectRequested in the InspectRequested domain.
+func (a *InspectRequestedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// InspectRequestedReply returns the FrameID for InspectRequested in the InspectRequested domain.
+func (a *InspectRequestedReply) GetFrameID() string {
+	return ""
 }

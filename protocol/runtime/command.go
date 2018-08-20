@@ -76,6 +76,11 @@ func (a *AwaitPromiseReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// AwaitPromiseReply returns the FrameID value for AwaitPromise in the Runtime domain.
+func (a *AwaitPromiseReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for AwaitPromise in the Runtime domain.
 func (a *AwaitPromiseReply) UnmarshalJSON(b []byte) error {
 	type Copy AwaitPromiseReply
@@ -140,6 +145,11 @@ func (a *CallFunctionOnReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CallFunctionOnReply returns the FrameID value for CallFunctionOn in the Runtime domain.
+func (a *CallFunctionOnReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CallFunctionOn in the Runtime domain.
 func (a *CallFunctionOnReply) UnmarshalJSON(b []byte) error {
 	type Copy CallFunctionOnReply
@@ -195,6 +205,11 @@ func (a *CompileScriptReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CompileScriptReply returns the FrameID value for CompileScript in the Runtime domain.
+func (a *CompileScriptReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CompileScript in the Runtime domain.
 func (a *CompileScriptReply) UnmarshalJSON(b []byte) error {
 	type Copy CompileScriptReply
@@ -242,6 +257,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: DisableReply", err)
 	}
 	return true
+}
+
+// DisableReply returns the FrameID value for Disable in the Runtime domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Disable in the Runtime domain.
@@ -293,6 +313,11 @@ func (a *DiscardConsoleEntriesReply) MatchFrameID(frameID string, m []byte) bool
 	return true
 }
 
+// DiscardConsoleEntriesReply returns the FrameID value for DiscardConsoleEntries in the Runtime domain.
+func (a *DiscardConsoleEntriesReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for DiscardConsoleEntries in the Runtime domain.
 func (a *DiscardConsoleEntriesReply) UnmarshalJSON(b []byte) error {
 	type Copy DiscardConsoleEntriesReply
@@ -340,6 +365,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the Runtime domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the Runtime domain.
@@ -415,6 +445,11 @@ func (a *EvaluateReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// EvaluateReply returns the FrameID value for Evaluate in the Runtime domain.
+func (a *EvaluateReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Evaluate in the Runtime domain.
 func (a *EvaluateReply) UnmarshalJSON(b []byte) error {
 	type Copy EvaluateReply
@@ -463,6 +498,11 @@ func (a *GetIsolateIDReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetIsolateIDReply", err)
 	}
 	return true
+}
+
+// GetIsolateIDReply returns the FrameID value for GetIsolateID in the Runtime domain.
+func (a *GetIsolateIDReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetIsolateID in the Runtime domain.
@@ -514,6 +554,11 @@ func (a *GetHeapUsageReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetHeapUsageReply", err)
 	}
 	return true
+}
+
+// GetHeapUsageReply returns the FrameID value for GetHeapUsage in the Runtime domain.
+func (a *GetHeapUsageReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetHeapUsage in the Runtime domain.
@@ -580,6 +625,11 @@ func (a *GetPropertiesReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetPropertiesReply returns the FrameID value for GetProperties in the Runtime domain.
+func (a *GetPropertiesReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetProperties in the Runtime domain.
 func (a *GetPropertiesReply) UnmarshalJSON(b []byte) error {
 	type Copy GetPropertiesReply
@@ -629,6 +679,11 @@ func (a *GlobalLexicalScopeNamesReply) MatchFrameID(frameID string, m []byte) bo
 		log.Fatalf("unmarshal error: GlobalLexicalScopeNamesReply", err)
 	}
 	return true
+}
+
+// GlobalLexicalScopeNamesReply returns the FrameID value for GlobalLexicalScopeNames in the Runtime domain.
+func (a *GlobalLexicalScopeNamesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GlobalLexicalScopeNames in the Runtime domain.
@@ -683,6 +738,11 @@ func (a *QueryObjectsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// QueryObjectsReply returns the FrameID value for QueryObjects in the Runtime domain.
+func (a *QueryObjectsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for QueryObjects in the Runtime domain.
 func (a *QueryObjectsReply) UnmarshalJSON(b []byte) error {
 	type Copy QueryObjectsReply
@@ -731,6 +791,11 @@ func (a *ReleaseObjectReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: ReleaseObjectReply", err)
 	}
 	return true
+}
+
+// ReleaseObjectReply returns the FrameID value for ReleaseObject in the Runtime domain.
+func (a *ReleaseObjectReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for ReleaseObject in the Runtime domain.
@@ -783,6 +848,11 @@ func (a *ReleaseObjectGroupReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ReleaseObjectGroupReply returns the FrameID value for ReleaseObjectGroup in the Runtime domain.
+func (a *ReleaseObjectGroupReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ReleaseObjectGroup in the Runtime domain.
 func (a *ReleaseObjectGroupReply) UnmarshalJSON(b []byte) error {
 	type Copy ReleaseObjectGroupReply
@@ -830,6 +900,11 @@ func (a *RunIfWaitingForDebuggerReply) MatchFrameID(frameID string, m []byte) bo
 		log.Fatalf("unmarshal error: RunIfWaitingForDebuggerReply", err)
 	}
 	return true
+}
+
+// RunIfWaitingForDebuggerReply returns the FrameID value for RunIfWaitingForDebugger in the Runtime domain.
+func (a *RunIfWaitingForDebuggerReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RunIfWaitingForDebugger in the Runtime domain.
@@ -891,6 +966,11 @@ func (a *RunScriptReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// RunScriptReply returns the FrameID value for RunScript in the Runtime domain.
+func (a *RunScriptReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RunScript in the Runtime domain.
 func (a *RunScriptReply) UnmarshalJSON(b []byte) error {
 	type Copy RunScriptReply
@@ -939,6 +1019,11 @@ func (a *SetCustomObjectFormatterEnabledReply) MatchFrameID(frameID string, m []
 		log.Fatalf("unmarshal error: SetCustomObjectFormatterEnabledReply", err)
 	}
 	return true
+}
+
+// SetCustomObjectFormatterEnabledReply returns the FrameID value for SetCustomObjectFormatterEnabled in the Runtime domain.
+func (a *SetCustomObjectFormatterEnabledReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetCustomObjectFormatterEnabled in the Runtime domain.
@@ -991,6 +1076,11 @@ func (a *SetMaxCallStackSizeToCaptureReply) MatchFrameID(frameID string, m []byt
 	return true
 }
 
+// SetMaxCallStackSizeToCaptureReply returns the FrameID value for SetMaxCallStackSizeToCapture in the Runtime domain.
+func (a *SetMaxCallStackSizeToCaptureReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetMaxCallStackSizeToCapture in the Runtime domain.
 func (a *SetMaxCallStackSizeToCaptureReply) UnmarshalJSON(b []byte) error {
 	type Copy SetMaxCallStackSizeToCaptureReply
@@ -1038,6 +1128,11 @@ func (a *TerminateExecutionReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: TerminateExecutionReply", err)
 	}
 	return true
+}
+
+// TerminateExecutionReply returns the FrameID value for TerminateExecution in the Runtime domain.
+func (a *TerminateExecutionReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for TerminateExecution in the Runtime domain.
@@ -1091,6 +1186,11 @@ func (a *AddBindingReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// AddBindingReply returns the FrameID value for AddBinding in the Runtime domain.
+func (a *AddBindingReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for AddBinding in the Runtime domain.
 func (a *AddBindingReply) UnmarshalJSON(b []byte) error {
 	type Copy AddBindingReply
@@ -1139,6 +1239,11 @@ func (a *RemoveBindingReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: RemoveBindingReply", err)
 	}
 	return true
+}
+
+// RemoveBindingReply returns the FrameID value for RemoveBinding in the Runtime domain.
+func (a *RemoveBindingReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RemoveBinding in the Runtime domain.

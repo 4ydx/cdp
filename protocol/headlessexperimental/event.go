@@ -4,6 +4,7 @@ package headlessexperimental
 
 import (
 	"encoding/json"
+	"log"
 )
 
 const (
@@ -34,4 +35,18 @@ func (a *NeedsBeginFramesChangedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = NeedsBeginFramesChangedReply(*c)
 	return nil
+}
+
+// NeedsBeginFramesChangedReply returns whether or not the FrameID matches the reply value for NeedsBeginFramesChanged in the NeedsBeginFramesChanged domain.
+func (a *NeedsBeginFramesChangedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// NeedsBeginFramesChangedReply returns the FrameID for NeedsBeginFramesChanged in the NeedsBeginFramesChanged domain.
+func (a *NeedsBeginFramesChangedReply) GetFrameID() string {
+	return ""
 }

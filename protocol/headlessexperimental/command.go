@@ -56,6 +56,11 @@ func (a *BeginFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// BeginFrameReply returns the FrameID value for BeginFrame in the HeadlessExperimental domain.
+func (a *BeginFrameReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for BeginFrame in the HeadlessExperimental domain.
 func (a *BeginFrameReply) UnmarshalJSON(b []byte) error {
 	type Copy BeginFrameReply
@@ -105,6 +110,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the HeadlessExperimental domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the HeadlessExperimental domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -152,6 +162,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the HeadlessExperimental domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the HeadlessExperimental domain.

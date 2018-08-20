@@ -57,6 +57,11 @@ func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// CloseReply returns the FrameID value for Close in the Browser domain.
+func (a *CloseReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Close in the Browser domain.
 func (a *CloseReply) UnmarshalJSON(b []byte) error {
 	type Copy CloseReply
@@ -111,6 +116,11 @@ func (a *GetVersionReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetVersionReply returns the FrameID value for GetVersion in the Browser domain.
+func (a *GetVersionReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetVersion in the Browser domain.
 func (a *GetVersionReply) UnmarshalJSON(b []byte) error {
 	type Copy GetVersionReply
@@ -159,6 +169,11 @@ func (a *GetBrowserCommandLineReply) MatchFrameID(frameID string, m []byte) bool
 		log.Fatalf("unmarshal error: GetBrowserCommandLineReply", err)
 	}
 	return true
+}
+
+// GetBrowserCommandLineReply returns the FrameID value for GetBrowserCommandLine in the Browser domain.
+func (a *GetBrowserCommandLineReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetBrowserCommandLine in the Browser domain.
@@ -213,6 +228,11 @@ func (a *GetHistogramsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetHistogramsReply returns the FrameID value for GetHistograms in the Browser domain.
+func (a *GetHistogramsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetHistograms in the Browser domain.
 func (a *GetHistogramsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetHistogramsReply
@@ -265,6 +285,11 @@ func (a *GetHistogramReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetHistogramReply returns the FrameID value for GetHistogram in the Browser domain.
+func (a *GetHistogramReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetHistogram in the Browser domain.
 func (a *GetHistogramReply) UnmarshalJSON(b []byte) error {
 	type Copy GetHistogramReply
@@ -314,6 +339,11 @@ func (a *GetWindowBoundsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetWindowBoundsReply", err)
 	}
 	return true
+}
+
+// GetWindowBoundsReply returns the FrameID value for GetWindowBounds in the Browser domain.
+func (a *GetWindowBoundsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetWindowBounds in the Browser domain.
@@ -368,6 +398,11 @@ func (a *GetWindowForTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetWindowForTargetReply returns the FrameID value for GetWindowForTarget in the Browser domain.
+func (a *GetWindowForTargetReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetWindowForTarget in the Browser domain.
 func (a *GetWindowForTargetReply) UnmarshalJSON(b []byte) error {
 	type Copy GetWindowForTargetReply
@@ -417,6 +452,11 @@ func (a *SetWindowBoundsReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetWindowBoundsReply", err)
 	}
 	return true
+}
+
+// SetWindowBoundsReply returns the FrameID value for SetWindowBounds in the Browser domain.
+func (a *SetWindowBoundsReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetWindowBounds in the Browser domain.

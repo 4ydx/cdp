@@ -55,6 +55,11 @@ func (a *ClearDataForOriginReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ClearDataForOriginReply returns the FrameID value for ClearDataForOrigin in the Storage domain.
+func (a *ClearDataForOriginReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ClearDataForOrigin in the Storage domain.
 func (a *ClearDataForOriginReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearDataForOriginReply
@@ -108,6 +113,11 @@ func (a *GetUsageAndQuotaReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetUsageAndQuotaReply returns the FrameID value for GetUsageAndQuota in the Storage domain.
+func (a *GetUsageAndQuotaReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetUsageAndQuota in the Storage domain.
 func (a *GetUsageAndQuotaReply) UnmarshalJSON(b []byte) error {
 	type Copy GetUsageAndQuotaReply
@@ -156,6 +166,11 @@ func (a *TrackCacheStorageForOriginReply) MatchFrameID(frameID string, m []byte)
 		log.Fatalf("unmarshal error: TrackCacheStorageForOriginReply", err)
 	}
 	return true
+}
+
+// TrackCacheStorageForOriginReply returns the FrameID value for TrackCacheStorageForOrigin in the Storage domain.
+func (a *TrackCacheStorageForOriginReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for TrackCacheStorageForOrigin in the Storage domain.
@@ -208,6 +223,11 @@ func (a *TrackIndexedDBForOriginReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
+// TrackIndexedDBForOriginReply returns the FrameID value for TrackIndexedDBForOrigin in the Storage domain.
+func (a *TrackIndexedDBForOriginReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for TrackIndexedDBForOrigin in the Storage domain.
 func (a *TrackIndexedDBForOriginReply) UnmarshalJSON(b []byte) error {
 	type Copy TrackIndexedDBForOriginReply
@@ -258,6 +278,11 @@ func (a *UntrackCacheStorageForOriginReply) MatchFrameID(frameID string, m []byt
 	return true
 }
 
+// UntrackCacheStorageForOriginReply returns the FrameID value for UntrackCacheStorageForOrigin in the Storage domain.
+func (a *UntrackCacheStorageForOriginReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for UntrackCacheStorageForOrigin in the Storage domain.
 func (a *UntrackCacheStorageForOriginReply) UnmarshalJSON(b []byte) error {
 	type Copy UntrackCacheStorageForOriginReply
@@ -306,6 +331,11 @@ func (a *UntrackIndexedDBForOriginReply) MatchFrameID(frameID string, m []byte) 
 		log.Fatalf("unmarshal error: UntrackIndexedDBForOriginReply", err)
 	}
 	return true
+}
+
+// UntrackIndexedDBForOriginReply returns the FrameID value for UntrackIndexedDBForOrigin in the Storage domain.
+func (a *UntrackIndexedDBForOriginReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for UntrackIndexedDBForOrigin in the Storage domain.

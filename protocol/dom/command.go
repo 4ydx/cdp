@@ -93,6 +93,11 @@ func (a *CollectClassNamesFromSubtreeReply) MatchFrameID(frameID string, m []byt
 	return true
 }
 
+// CollectClassNamesFromSubtreeReply returns the FrameID value for CollectClassNamesFromSubtree in the DOM domain.
+func (a *CollectClassNamesFromSubtreeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for CollectClassNamesFromSubtree in the DOM domain.
 func (a *CollectClassNamesFromSubtreeReply) UnmarshalJSON(b []byte) error {
 	type Copy CollectClassNamesFromSubtreeReply
@@ -144,6 +149,11 @@ func (a *CopyToReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: CopyToReply", err)
 	}
 	return true
+}
+
+// CopyToReply returns the FrameID value for CopyTo in the DOM domain.
+func (a *CopyToReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for CopyTo in the DOM domain.
@@ -201,6 +211,11 @@ func (a *DescribeNodeReply) MatchFrameID(frameID string, m []byte) bool {
 	return a.Node.FrameID == shared.FrameID(frameID)
 }
 
+// DescribeNodeReply returns the FrameID for DescribeNode in the DOM domain.
+func (a *DescribeNodeReply) GetFrameID() string {
+	return string(a.Node.FrameID)
+}
+
 // Unmarshal the byte array into a return value for DescribeNode in the DOM domain.
 func (a *DescribeNodeReply) UnmarshalJSON(b []byte) error {
 	type Copy DescribeNodeReply
@@ -248,6 +263,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: DisableReply", err)
 	}
 	return true
+}
+
+// DisableReply returns the FrameID value for Disable in the DOM domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Disable in the DOM domain.
@@ -300,6 +320,11 @@ func (a *DiscardSearchResultsReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
+// DiscardSearchResultsReply returns the FrameID value for DiscardSearchResults in the DOM domain.
+func (a *DiscardSearchResultsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for DiscardSearchResults in the DOM domain.
 func (a *DiscardSearchResultsReply) UnmarshalJSON(b []byte) error {
 	type Copy DiscardSearchResultsReply
@@ -347,6 +372,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the DOM domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the DOM domain.
@@ -401,6 +431,11 @@ func (a *FocusReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// FocusReply returns the FrameID value for Focus in the DOM domain.
+func (a *FocusReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Focus in the DOM domain.
 func (a *FocusReply) UnmarshalJSON(b []byte) error {
 	type Copy FocusReply
@@ -450,6 +485,11 @@ func (a *GetAttributesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetAttributesReply", err)
 	}
 	return true
+}
+
+// GetAttributesReply returns the FrameID value for GetAttributes in the DOM domain.
+func (a *GetAttributesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetAttributes in the DOM domain.
@@ -505,6 +545,11 @@ func (a *GetBoxModelReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetBoxModelReply returns the FrameID value for GetBoxModel in the DOM domain.
+func (a *GetBoxModelReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetBoxModel in the DOM domain.
 func (a *GetBoxModelReply) UnmarshalJSON(b []byte) error {
 	type Copy GetBoxModelReply
@@ -558,6 +603,11 @@ func (a *GetContentQuadsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetContentQuadsReply returns the FrameID value for GetContentQuads in the DOM domain.
+func (a *GetContentQuadsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetContentQuads in the DOM domain.
 func (a *GetContentQuadsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetContentQuadsReply
@@ -608,6 +658,11 @@ func (a *GetDocumentReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetDocumentReply", err)
 	}
 	return true
+}
+
+// GetDocumentReply returns the FrameID value for GetDocument in the DOM domain.
+func (a *GetDocumentReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetDocument in the DOM domain.
@@ -668,6 +723,17 @@ func (a *GetFlattenedDocumentReply) MatchFrameID(frameID string, m []byte) bool 
 	return fid == frameID
 }
 
+// GetFlattenedDocumentReply returns the FrameID for GetFlattenedDocument in the DOM domain.
+func (a *GetFlattenedDocumentReply) GetFrameID() string {
+	fid := ""
+	for _, n := range a.Nodes {
+		if n.FrameID != "" {
+			fid = string(n.FrameID)
+		}
+	}
+	return fid
+}
+
 // Unmarshal the byte array into a return value for GetFlattenedDocument in the DOM domain.
 func (a *GetFlattenedDocumentReply) UnmarshalJSON(b []byte) error {
 	type Copy GetFlattenedDocumentReply
@@ -719,6 +785,11 @@ func (a *GetNodeForLocationReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetNodeForLocationReply", err)
 	}
 	return true
+}
+
+// GetNodeForLocationReply returns the FrameID value for GetNodeForLocation in the DOM domain.
+func (a *GetNodeForLocationReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetNodeForLocation in the DOM domain.
@@ -774,6 +845,11 @@ func (a *GetOuterHTMLReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetOuterHTMLReply returns the FrameID value for GetOuterHTML in the DOM domain.
+func (a *GetOuterHTMLReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetOuterHTML in the DOM domain.
 func (a *GetOuterHTMLReply) UnmarshalJSON(b []byte) error {
 	type Copy GetOuterHTMLReply
@@ -823,6 +899,11 @@ func (a *GetRelayoutBoundaryReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetRelayoutBoundaryReply", err)
 	}
 	return true
+}
+
+// GetRelayoutBoundaryReply returns the FrameID value for GetRelayoutBoundary in the DOM domain.
+func (a *GetRelayoutBoundaryReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetRelayoutBoundary in the DOM domain.
@@ -878,6 +959,11 @@ func (a *GetSearchResultsReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// GetSearchResultsReply returns the FrameID value for GetSearchResults in the DOM domain.
+func (a *GetSearchResultsReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for GetSearchResults in the DOM domain.
 func (a *GetSearchResultsReply) UnmarshalJSON(b []byte) error {
 	type Copy GetSearchResultsReply
@@ -925,6 +1011,11 @@ func (a *MarkUndoableStateReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: MarkUndoableStateReply", err)
 	}
 	return true
+}
+
+// MarkUndoableStateReply returns the FrameID value for MarkUndoableState in the DOM domain.
+func (a *MarkUndoableStateReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for MarkUndoableState in the DOM domain.
@@ -980,6 +1071,11 @@ func (a *MoveToReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// MoveToReply returns the FrameID value for MoveTo in the DOM domain.
+func (a *MoveToReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for MoveTo in the DOM domain.
 func (a *MoveToReply) UnmarshalJSON(b []byte) error {
 	type Copy MoveToReply
@@ -1033,6 +1129,11 @@ func (a *PerformSearchReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// PerformSearchReply returns the FrameID value for PerformSearch in the DOM domain.
+func (a *PerformSearchReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for PerformSearch in the DOM domain.
 func (a *PerformSearchReply) UnmarshalJSON(b []byte) error {
 	type Copy PerformSearchReply
@@ -1084,6 +1185,11 @@ func (a *PushNodeByPathToFrontendReply) MatchFrameID(frameID string, m []byte) b
 	return true
 }
 
+// PushNodeByPathToFrontendReply returns the FrameID value for PushNodeByPathToFrontend in the DOM domain.
+func (a *PushNodeByPathToFrontendReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for PushNodeByPathToFrontend in the DOM domain.
 func (a *PushNodeByPathToFrontendReply) UnmarshalJSON(b []byte) error {
 	type Copy PushNodeByPathToFrontendReply
@@ -1133,6 +1239,11 @@ func (a *PushNodesByBackendIdsToFrontendReply) MatchFrameID(frameID string, m []
 		log.Fatalf("unmarshal error: PushNodesByBackendIdsToFrontendReply", err)
 	}
 	return true
+}
+
+// PushNodesByBackendIdsToFrontendReply returns the FrameID value for PushNodesByBackendIdsToFrontend in the DOM domain.
+func (a *PushNodesByBackendIdsToFrontendReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for PushNodesByBackendIdsToFrontend in the DOM domain.
@@ -1187,6 +1298,11 @@ func (a *QuerySelectorReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// QuerySelectorReply returns the FrameID value for QuerySelector in the DOM domain.
+func (a *QuerySelectorReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for QuerySelector in the DOM domain.
 func (a *QuerySelectorReply) UnmarshalJSON(b []byte) error {
 	type Copy QuerySelectorReply
@@ -1239,6 +1355,11 @@ func (a *QuerySelectorAllReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// QuerySelectorAllReply returns the FrameID value for QuerySelectorAll in the DOM domain.
+func (a *QuerySelectorAllReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for QuerySelectorAll in the DOM domain.
 func (a *QuerySelectorAllReply) UnmarshalJSON(b []byte) error {
 	type Copy QuerySelectorAllReply
@@ -1286,6 +1407,11 @@ func (a *RedoReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: RedoReply", err)
 	}
 	return true
+}
+
+// RedoReply returns the FrameID value for Redo in the DOM domain.
+func (a *RedoReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Redo in the DOM domain.
@@ -1339,6 +1465,11 @@ func (a *RemoveAttributeReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// RemoveAttributeReply returns the FrameID value for RemoveAttribute in the DOM domain.
+func (a *RemoveAttributeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RemoveAttribute in the DOM domain.
 func (a *RemoveAttributeReply) UnmarshalJSON(b []byte) error {
 	type Copy RemoveAttributeReply
@@ -1387,6 +1518,11 @@ func (a *RemoveNodeReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: RemoveNodeReply", err)
 	}
 	return true
+}
+
+// RemoveNodeReply returns the FrameID value for RemoveNode in the DOM domain.
+func (a *RemoveNodeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RemoveNode in the DOM domain.
@@ -1441,6 +1577,11 @@ func (a *RequestChildNodesReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// RequestChildNodesReply returns the FrameID value for RequestChildNodes in the DOM domain.
+func (a *RequestChildNodesReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RequestChildNodes in the DOM domain.
 func (a *RequestChildNodesReply) UnmarshalJSON(b []byte) error {
 	type Copy RequestChildNodesReply
@@ -1490,6 +1631,11 @@ func (a *RequestNodeReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: RequestNodeReply", err)
 	}
 	return true
+}
+
+// RequestNodeReply returns the FrameID value for RequestNode in the DOM domain.
+func (a *RequestNodeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RequestNode in the DOM domain.
@@ -1545,6 +1691,11 @@ func (a *ResolveNodeReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ResolveNodeReply returns the FrameID value for ResolveNode in the DOM domain.
+func (a *ResolveNodeReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ResolveNode in the DOM domain.
 func (a *ResolveNodeReply) UnmarshalJSON(b []byte) error {
 	type Copy ResolveNodeReply
@@ -1597,6 +1748,11 @@ func (a *SetAttributeValueReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetAttributeValueReply returns the FrameID value for SetAttributeValue in the DOM domain.
+func (a *SetAttributeValueReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetAttributeValue in the DOM domain.
 func (a *SetAttributeValueReply) UnmarshalJSON(b []byte) error {
 	type Copy SetAttributeValueReply
@@ -1647,6 +1803,11 @@ func (a *SetAttributesAsTextReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetAttributesAsTextReply", err)
 	}
 	return true
+}
+
+// SetAttributesAsTextReply returns the FrameID value for SetAttributesAsText in the DOM domain.
+func (a *SetAttributesAsTextReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetAttributesAsText in the DOM domain.
@@ -1702,6 +1863,11 @@ func (a *SetFileInputFilesReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetFileInputFilesReply returns the FrameID value for SetFileInputFiles in the DOM domain.
+func (a *SetFileInputFilesReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetFileInputFiles in the DOM domain.
 func (a *SetFileInputFilesReply) UnmarshalJSON(b []byte) error {
 	type Copy SetFileInputFilesReply
@@ -1750,6 +1916,11 @@ func (a *SetInspectedNodeReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetInspectedNodeReply", err)
 	}
 	return true
+}
+
+// SetInspectedNodeReply returns the FrameID value for SetInspectedNode in the DOM domain.
+func (a *SetInspectedNodeReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetInspectedNode in the DOM domain.
@@ -1804,6 +1975,11 @@ func (a *SetNodeNameReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetNodeNameReply returns the FrameID value for SetNodeName in the DOM domain.
+func (a *SetNodeNameReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetNodeName in the DOM domain.
 func (a *SetNodeNameReply) UnmarshalJSON(b []byte) error {
 	type Copy SetNodeNameReply
@@ -1853,6 +2029,11 @@ func (a *SetNodeValueReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: SetNodeValueReply", err)
 	}
 	return true
+}
+
+// SetNodeValueReply returns the FrameID value for SetNodeValue in the DOM domain.
+func (a *SetNodeValueReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for SetNodeValue in the DOM domain.
@@ -1906,6 +2087,11 @@ func (a *SetOuterHTMLReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// SetOuterHTMLReply returns the FrameID value for SetOuterHTML in the DOM domain.
+func (a *SetOuterHTMLReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for SetOuterHTML in the DOM domain.
 func (a *SetOuterHTMLReply) UnmarshalJSON(b []byte) error {
 	type Copy SetOuterHTMLReply
@@ -1953,6 +2139,11 @@ func (a *UndoReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: UndoReply", err)
 	}
 	return true
+}
+
+// UndoReply returns the FrameID value for Undo in the DOM domain.
+func (a *UndoReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Undo in the DOM domain.
@@ -2004,6 +2195,11 @@ func (a *GetFrameOwnerReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: GetFrameOwnerReply", err)
 	}
 	return true
+}
+
+// GetFrameOwnerReply returns the FrameID value for GetFrameOwner in the DOM domain.
+func (a *GetFrameOwnerReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for GetFrameOwner in the DOM domain.

@@ -4,6 +4,7 @@ package page
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/network"
@@ -30,6 +31,7 @@ const (
 	EventPageScreencastFrame                 = "Page.screencastFrame"
 	EventPageScreencastVisibilityChanged     = "Page.screencastVisibilityChanged"
 	EventPageWindowOpen                      = "Page.windowOpen"
+	EventPageCompilationCacheProduced        = "Page.compilationCacheProduced"
 )
 
 var EventConstants = map[string]json.Unmarshaler{
@@ -52,6 +54,7 @@ var EventConstants = map[string]json.Unmarshaler{
 	EventPageScreencastFrame:                 &ScreencastFrameReply{},
 	EventPageScreencastVisibilityChanged:     &ScreencastVisibilityChangedReply{},
 	EventPageWindowOpen:                      &WindowOpenReply{},
+	EventPageCompilationCacheProduced:        &CompilationCacheProducedReply{},
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
@@ -76,6 +79,20 @@ func (a *DOMContentEventFiredReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// DOMContentEventFiredReply returns whether or not the FrameID matches the reply value for DOMContentEventFired in the DOMContentEventFired domain.
+func (a *DOMContentEventFiredReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// DOMContentEventFiredReply returns the FrameID for DOMContentEventFired in the DOMContentEventFired domain.
+func (a *DOMContentEventFiredReply) GetFrameID() string {
+	return ""
+}
+
 // FrameAttachedReply is the reply for FrameAttached events.
 type FrameAttachedReply struct {
 	FrameID       shared.FrameID     `json:"frameId"`         // Id of the frame that has been attached.
@@ -95,6 +112,20 @@ func (a *FrameAttachedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// FrameAttachedReply returns whether or not the FrameID matches the reply value for FrameAttached in the FrameAttached domain.
+func (a *FrameAttachedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: FrameAttachedReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// FrameAttachedReply returns the FrameID for FrameAttached in the FrameAttached domain.
+func (a *FrameAttachedReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // FrameClearedScheduledNavigationReply is the reply for FrameClearedScheduledNavigation events.
 type FrameClearedScheduledNavigationReply struct {
 	FrameID shared.FrameID `json:"frameId"` // Id of the frame that has cleared its scheduled navigation.
@@ -110,6 +141,20 @@ func (a *FrameClearedScheduledNavigationReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = FrameClearedScheduledNavigationReply(*c)
 	return nil
+}
+
+// FrameClearedScheduledNavigationReply returns whether or not the FrameID matches the reply value for FrameClearedScheduledNavigation in the FrameClearedScheduledNavigation domain.
+func (a *FrameClearedScheduledNavigationReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: FrameClearedScheduledNavigationReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// FrameClearedScheduledNavigationReply returns the FrameID for FrameClearedScheduledNavigation in the FrameClearedScheduledNavigation domain.
+func (a *FrameClearedScheduledNavigationReply) GetFrameID() string {
+	return string(a.FrameID)
 }
 
 // FrameDetachedReply is the reply for FrameDetached events.
@@ -129,6 +174,20 @@ func (a *FrameDetachedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// FrameDetachedReply returns whether or not the FrameID matches the reply value for FrameDetached in the FrameDetached domain.
+func (a *FrameDetachedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: FrameDetachedReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// FrameDetachedReply returns the FrameID for FrameDetached in the FrameDetached domain.
+func (a *FrameDetachedReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // FrameNavigatedReply is the reply for FrameNavigated events.
 type FrameNavigatedReply struct {
 	Frame Frame `json:"frame"` // Frame object.
@@ -146,6 +205,20 @@ func (a *FrameNavigatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// FrameNavigatedReply returns whether or not the FrameID matches the reply value for FrameNavigated in the FrameNavigated domain.
+func (a *FrameNavigatedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: FrameNavigatedReply", err)
+	}
+	return a.Frame.ID == shared.FrameID(frameID)
+}
+
+// FrameNavigatedReply returns the FrameID for FrameNavigated in the FrameNavigated domain.
+func (a *FrameNavigatedReply) GetFrameID() string {
+	return string(a.Frame.ID)
+}
+
 // FrameResizedReply is the reply for FrameResized events.
 type FrameResizedReply struct {
 }
@@ -160,6 +233,20 @@ func (a *FrameResizedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = FrameResizedReply(*c)
 	return nil
+}
+
+// FrameResizedReply returns whether or not the FrameID matches the reply value for FrameResized in the FrameResized domain.
+func (a *FrameResizedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// FrameResizedReply returns the FrameID for FrameResized in the FrameResized domain.
+func (a *FrameResizedReply) GetFrameID() string {
+	return ""
 }
 
 // FrameScheduledNavigationReply is the reply for FrameScheduledNavigation events.
@@ -185,6 +272,20 @@ func (a *FrameScheduledNavigationReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// FrameScheduledNavigationReply returns whether or not the FrameID matches the reply value for FrameScheduledNavigation in the FrameScheduledNavigation domain.
+func (a *FrameScheduledNavigationReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: FrameScheduledNavigationReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// FrameScheduledNavigationReply returns the FrameID for FrameScheduledNavigation in the FrameScheduledNavigation domain.
+func (a *FrameScheduledNavigationReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // FrameStartedLoadingReply is the reply for FrameStartedLoading events.
 type FrameStartedLoadingReply struct {
 	FrameID shared.FrameID `json:"frameId"` // Id of the frame that has started loading.
@@ -200,6 +301,20 @@ func (a *FrameStartedLoadingReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = FrameStartedLoadingReply(*c)
 	return nil
+}
+
+// FrameStartedLoadingReply returns whether or not the FrameID matches the reply value for FrameStartedLoading in the FrameStartedLoading domain.
+func (a *FrameStartedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: FrameStartedLoadingReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// FrameStartedLoadingReply returns the FrameID for FrameStartedLoading in the FrameStartedLoading domain.
+func (a *FrameStartedLoadingReply) GetFrameID() string {
+	return string(a.FrameID)
 }
 
 // FrameStoppedLoadingReply is the reply for FrameStoppedLoading events.
@@ -219,6 +334,20 @@ func (a *FrameStoppedLoadingReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// FrameStoppedLoadingReply returns whether or not the FrameID matches the reply value for FrameStoppedLoading in the FrameStoppedLoading domain.
+func (a *FrameStoppedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: FrameStoppedLoadingReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// FrameStoppedLoadingReply returns the FrameID for FrameStoppedLoading in the FrameStoppedLoading domain.
+func (a *FrameStoppedLoadingReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // InterstitialHiddenReply is the reply for InterstitialHidden events.
 type InterstitialHiddenReply struct {
 }
@@ -233,6 +362,20 @@ func (a *InterstitialHiddenReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = InterstitialHiddenReply(*c)
 	return nil
+}
+
+// InterstitialHiddenReply returns whether or not the FrameID matches the reply value for InterstitialHidden in the InterstitialHidden domain.
+func (a *InterstitialHiddenReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// InterstitialHiddenReply returns the FrameID for InterstitialHidden in the InterstitialHidden domain.
+func (a *InterstitialHiddenReply) GetFrameID() string {
+	return ""
 }
 
 // InterstitialShownReply is the reply for InterstitialShown events.
@@ -251,6 +394,20 @@ func (a *InterstitialShownReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// InterstitialShownReply returns whether or not the FrameID matches the reply value for InterstitialShown in the InterstitialShown domain.
+func (a *InterstitialShownReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// InterstitialShownReply returns the FrameID for InterstitialShown in the InterstitialShown domain.
+func (a *InterstitialShownReply) GetFrameID() string {
+	return ""
+}
+
 // JavascriptDialogClosedReply is the reply for JavascriptDialogClosed events.
 type JavascriptDialogClosedReply struct {
 	Result    bool   `json:"result"`    // Whether dialog was confirmed.
@@ -267,6 +424,20 @@ func (a *JavascriptDialogClosedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = JavascriptDialogClosedReply(*c)
 	return nil
+}
+
+// JavascriptDialogClosedReply returns whether or not the FrameID matches the reply value for JavascriptDialogClosed in the JavascriptDialogClosed domain.
+func (a *JavascriptDialogClosedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// JavascriptDialogClosedReply returns the FrameID for JavascriptDialogClosed in the JavascriptDialogClosed domain.
+func (a *JavascriptDialogClosedReply) GetFrameID() string {
+	return ""
 }
 
 // JavascriptDialogOpeningReply is the reply for JavascriptDialogOpening events.
@@ -290,6 +461,20 @@ func (a *JavascriptDialogOpeningReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// JavascriptDialogOpeningReply returns whether or not the FrameID matches the reply value for JavascriptDialogOpening in the JavascriptDialogOpening domain.
+func (a *JavascriptDialogOpeningReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// JavascriptDialogOpeningReply returns the FrameID for JavascriptDialogOpening in the JavascriptDialogOpening domain.
+func (a *JavascriptDialogOpeningReply) GetFrameID() string {
+	return ""
+}
+
 // LifecycleEventReply is the reply for LifecycleEvent events.
 type LifecycleEventReply struct {
 	FrameID   shared.FrameID        `json:"frameId"`   // Id of the frame.
@@ -310,6 +495,20 @@ func (a *LifecycleEventReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// LifecycleEventReply returns whether or not the FrameID matches the reply value for LifecycleEvent in the LifecycleEvent domain.
+func (a *LifecycleEventReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: LifecycleEventReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// LifecycleEventReply returns the FrameID for LifecycleEvent in the LifecycleEvent domain.
+func (a *LifecycleEventReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // LoadEventFiredReply is the reply for LoadEventFired events.
 type LoadEventFiredReply struct {
 	Timestamp network.MonotonicTime `json:"timestamp"` // No description.
@@ -325,6 +524,20 @@ func (a *LoadEventFiredReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = LoadEventFiredReply(*c)
 	return nil
+}
+
+// LoadEventFiredReply returns whether or not the FrameID matches the reply value for LoadEventFired in the LoadEventFired domain.
+func (a *LoadEventFiredReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// LoadEventFiredReply returns the FrameID for LoadEventFired in the LoadEventFired domain.
+func (a *LoadEventFiredReply) GetFrameID() string {
+	return ""
 }
 
 // NavigatedWithinDocumentReply is the reply for NavigatedWithinDocument events.
@@ -343,6 +556,20 @@ func (a *NavigatedWithinDocumentReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = NavigatedWithinDocumentReply(*c)
 	return nil
+}
+
+// NavigatedWithinDocumentReply returns whether or not the FrameID matches the reply value for NavigatedWithinDocument in the NavigatedWithinDocument domain.
+func (a *NavigatedWithinDocumentReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: NavigatedWithinDocumentReply", err)
+	}
+	return a.FrameID == shared.FrameID(frameID)
+}
+
+// NavigatedWithinDocumentReply returns the FrameID for NavigatedWithinDocument in the NavigatedWithinDocument domain.
+func (a *NavigatedWithinDocumentReply) GetFrameID() string {
+	return string(a.FrameID)
 }
 
 // ScreencastFrameReply is the reply for ScreencastFrame events.
@@ -364,6 +591,20 @@ func (a *ScreencastFrameReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// ScreencastFrameReply returns whether or not the FrameID matches the reply value for ScreencastFrame in the ScreencastFrame domain.
+func (a *ScreencastFrameReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ScreencastFrameReply returns the FrameID for ScreencastFrame in the ScreencastFrame domain.
+func (a *ScreencastFrameReply) GetFrameID() string {
+	return ""
+}
+
 // ScreencastVisibilityChangedReply is the reply for ScreencastVisibilityChanged events.
 type ScreencastVisibilityChangedReply struct {
 	Visible bool `json:"visible"` // True if the page is visible.
@@ -379,6 +620,20 @@ func (a *ScreencastVisibilityChangedReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = ScreencastVisibilityChangedReply(*c)
 	return nil
+}
+
+// ScreencastVisibilityChangedReply returns whether or not the FrameID matches the reply value for ScreencastVisibilityChanged in the ScreencastVisibilityChanged domain.
+func (a *ScreencastVisibilityChangedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// ScreencastVisibilityChangedReply returns the FrameID for ScreencastVisibilityChanged in the ScreencastVisibilityChanged domain.
+func (a *ScreencastVisibilityChangedReply) GetFrameID() string {
+	return ""
 }
 
 // WindowOpenReply is the reply for WindowOpen events.
@@ -399,4 +654,50 @@ func (a *WindowOpenReply) UnmarshalJSON(b []byte) error {
 	}
 	*a = WindowOpenReply(*c)
 	return nil
+}
+
+// WindowOpenReply returns whether or not the FrameID matches the reply value for WindowOpen in the WindowOpen domain.
+func (a *WindowOpenReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// WindowOpenReply returns the FrameID for WindowOpen in the WindowOpen domain.
+func (a *WindowOpenReply) GetFrameID() string {
+	return ""
+}
+
+// CompilationCacheProducedReply is the reply for CompilationCacheProduced events.
+type CompilationCacheProducedReply struct {
+	URL  string `json:"url"`  // No description.
+	Data []byte `json:"data"` // Base64-encoded data
+}
+
+// Unmarshal the byte array into a return value for CompilationCacheProduced in the Page domain.
+func (a *CompilationCacheProducedReply) UnmarshalJSON(b []byte) error {
+	type Copy CompilationCacheProducedReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = CompilationCacheProducedReply(*c)
+	return nil
+}
+
+// CompilationCacheProducedReply returns whether or not the FrameID matches the reply value for CompilationCacheProduced in the CompilationCacheProduced domain.
+func (a *CompilationCacheProducedReply) MatchFrameID(frameID string, m []byte) bool {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+	}
+	return true
+}
+
+// CompilationCacheProducedReply returns the FrameID for CompilationCacheProduced in the CompilationCacheProduced domain.
+func (a *CompilationCacheProducedReply) GetFrameID() string {
+	return ""
 }

@@ -53,6 +53,11 @@ func (a *DeleteCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DeleteCacheReply returns the FrameID value for DeleteCache in the CacheStorage domain.
+func (a *DeleteCacheReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for DeleteCache in the CacheStorage domain.
 func (a *DeleteCacheReply) UnmarshalJSON(b []byte) error {
 	type Copy DeleteCacheReply
@@ -104,6 +109,11 @@ func (a *DeleteEntryReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DeleteEntryReply returns the FrameID value for DeleteEntry in the CacheStorage domain.
+func (a *DeleteEntryReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for DeleteEntry in the CacheStorage domain.
 func (a *DeleteEntryReply) UnmarshalJSON(b []byte) error {
 	type Copy DeleteEntryReply
@@ -153,6 +163,11 @@ func (a *RequestCacheNamesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: RequestCacheNamesReply", err)
 	}
 	return true
+}
+
+// RequestCacheNamesReply returns the FrameID value for RequestCacheNames in the CacheStorage domain.
+func (a *RequestCacheNamesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RequestCacheNames in the CacheStorage domain.
@@ -207,6 +222,11 @@ func (a *RequestCachedResponseReply) MatchFrameID(frameID string, m []byte) bool
 	return true
 }
 
+// RequestCachedResponseReply returns the FrameID value for RequestCachedResponse in the CacheStorage domain.
+func (a *RequestCachedResponseReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RequestCachedResponse in the CacheStorage domain.
 func (a *RequestCachedResponseReply) UnmarshalJSON(b []byte) error {
 	type Copy RequestCachedResponseReply
@@ -259,6 +279,11 @@ func (a *RequestEntriesReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: RequestEntriesReply", err)
 	}
 	return true
+}
+
+// RequestEntriesReply returns the FrameID value for RequestEntries in the CacheStorage domain.
+func (a *RequestEntriesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RequestEntries in the CacheStorage domain.

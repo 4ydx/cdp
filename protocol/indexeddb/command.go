@@ -58,6 +58,11 @@ func (a *ClearObjectStoreReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// ClearObjectStoreReply returns the FrameID value for ClearObjectStore in the IndexedDB domain.
+func (a *ClearObjectStoreReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for ClearObjectStore in the IndexedDB domain.
 func (a *ClearObjectStoreReply) UnmarshalJSON(b []byte) error {
 	type Copy ClearObjectStoreReply
@@ -107,6 +112,11 @@ func (a *DeleteDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: DeleteDatabaseReply", err)
 	}
 	return true
+}
+
+// DeleteDatabaseReply returns the FrameID value for DeleteDatabase in the IndexedDB domain.
+func (a *DeleteDatabaseReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for DeleteDatabase in the IndexedDB domain.
@@ -162,6 +172,11 @@ func (a *DeleteObjectStoreEntriesReply) MatchFrameID(frameID string, m []byte) b
 	return true
 }
 
+// DeleteObjectStoreEntriesReply returns the FrameID value for DeleteObjectStoreEntries in the IndexedDB domain.
+func (a *DeleteObjectStoreEntriesReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for DeleteObjectStoreEntries in the IndexedDB domain.
 func (a *DeleteObjectStoreEntriesReply) UnmarshalJSON(b []byte) error {
 	type Copy DeleteObjectStoreEntriesReply
@@ -211,6 +226,11 @@ func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// DisableReply returns the FrameID value for Disable in the IndexedDB domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for Disable in the IndexedDB domain.
 func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	type Copy DisableReply
@@ -258,6 +278,11 @@ func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 		log.Fatalf("unmarshal error: EnableReply", err)
 	}
 	return true
+}
+
+// EnableReply returns the FrameID value for Enable in the IndexedDB domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for Enable in the IndexedDB domain.
@@ -318,6 +343,11 @@ func (a *RequestDataReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// RequestDataReply returns the FrameID value for RequestData in the IndexedDB domain.
+func (a *RequestDataReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RequestData in the IndexedDB domain.
 func (a *RequestDataReply) UnmarshalJSON(b []byte) error {
 	type Copy RequestDataReply
@@ -370,6 +400,11 @@ func (a *RequestDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
+// RequestDatabaseReply returns the FrameID value for RequestDatabase in the IndexedDB domain.
+func (a *RequestDatabaseReply) GetFrameID() string {
+	return ""
+}
+
 // Unmarshal the byte array into a return value for RequestDatabase in the IndexedDB domain.
 func (a *RequestDatabaseReply) UnmarshalJSON(b []byte) error {
 	type Copy RequestDatabaseReply
@@ -419,6 +454,11 @@ func (a *RequestDatabaseNamesReply) MatchFrameID(frameID string, m []byte) bool 
 		log.Fatalf("unmarshal error: RequestDatabaseNamesReply", err)
 	}
 	return true
+}
+
+// RequestDatabaseNamesReply returns the FrameID value for RequestDatabaseNames in the IndexedDB domain.
+func (a *RequestDatabaseNamesReply) GetFrameID() string {
+	return ""
 }
 
 // Unmarshal the byte array into a return value for RequestDatabaseNames in the IndexedDB domain.
