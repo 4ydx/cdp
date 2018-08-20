@@ -6,7 +6,24 @@ import (
 	"encoding/json"
 )
 
-const EventStorageCacheStorageContentUpdated = "Storage.cacheStorageContentUpdated"
+const (
+	EventStorageCacheStorageContentUpdated = "Storage.cacheStorageContentUpdated"
+	EventStorageCacheStorageListUpdated    = "Storage.cacheStorageListUpdated"
+	EventStorageIndexedDBContentUpdated    = "Storage.indexedDBContentUpdated"
+	EventStorageIndexedDBListUpdated       = "Storage.indexedDBListUpdated"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventStorageCacheStorageContentUpdated: &CacheStorageContentUpdatedReply{},
+	EventStorageCacheStorageListUpdated:    &CacheStorageListUpdatedReply{},
+	EventStorageIndexedDBContentUpdated:    &IndexedDBContentUpdatedReply{},
+	EventStorageIndexedDBListUpdated:       &IndexedDBListUpdatedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // CacheStorageContentUpdatedReply is the reply for CacheStorageContentUpdated events.
 type CacheStorageContentUpdatedReply struct {
@@ -26,8 +43,6 @@ func (a *CacheStorageContentUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventStorageCacheStorageListUpdated = "Storage.cacheStorageListUpdated"
-
 // CacheStorageListUpdatedReply is the reply for CacheStorageListUpdated events.
 type CacheStorageListUpdatedReply struct {
 	Origin string `json:"origin"` // Origin to update.
@@ -44,8 +59,6 @@ func (a *CacheStorageListUpdatedReply) UnmarshalJSON(b []byte) error {
 	*a = CacheStorageListUpdatedReply(*c)
 	return nil
 }
-
-const EventStorageIndexedDBContentUpdated = "Storage.indexedDBContentUpdated"
 
 // IndexedDBContentUpdatedReply is the reply for IndexedDBContentUpdated events.
 type IndexedDBContentUpdatedReply struct {
@@ -65,8 +78,6 @@ func (a *IndexedDBContentUpdatedReply) UnmarshalJSON(b []byte) error {
 	*a = IndexedDBContentUpdatedReply(*c)
 	return nil
 }
-
-const EventStorageIndexedDBListUpdated = "Storage.indexedDBListUpdated"
 
 // IndexedDBListUpdatedReply is the reply for IndexedDBListUpdated events.
 type IndexedDBListUpdatedReply struct {

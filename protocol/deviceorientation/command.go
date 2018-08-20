@@ -7,7 +7,10 @@ import (
 	"log"
 )
 
-const CommandDeviceOrientationClearDeviceOrientationOverride = "DeviceOrientation.clearDeviceOrientationOverride"
+const (
+	CommandDeviceOrientationClearDeviceOrientationOverride = "DeviceOrientation.clearDeviceOrientationOverride"
+	CommandDeviceOrientationSetDeviceOrientationOverride   = "DeviceOrientation.setDeviceOrientationOverride"
+)
 
 // ClearDeviceOrientationOverrideArgs represents the arguments for ClearDeviceOrientationOverride in the DeviceOrientation domain.
 type ClearDeviceOrientationOverrideArgs struct {
@@ -57,8 +60,6 @@ func (a *ClearDeviceOrientationOverrideReply) UnmarshalJSON(b []byte) error {
 	*a = ClearDeviceOrientationOverrideReply(*c)
 	return nil
 }
-
-const CommandDeviceOrientationSetDeviceOrientationOverride = "DeviceOrientation.setDeviceOrientationOverride"
 
 // SetDeviceOrientationOverrideArgs represents the arguments for SetDeviceOrientationOverride in the DeviceOrientation domain.
 type SetDeviceOrientationOverrideArgs struct {

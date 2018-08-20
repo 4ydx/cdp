@@ -10,7 +10,20 @@ import (
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
-const CommandHeapProfilerAddInspectedHeapObject = "HeapProfiler.addInspectedHeapObject"
+const (
+	CommandHeapProfilerAddInspectedHeapObject   = "HeapProfiler.addInspectedHeapObject"
+	CommandHeapProfilerCollectGarbage           = "HeapProfiler.collectGarbage"
+	CommandHeapProfilerDisable                  = "HeapProfiler.disable"
+	CommandHeapProfilerEnable                   = "HeapProfiler.enable"
+	CommandHeapProfilerGetHeapObjectId          = "HeapProfiler.getHeapObjectId"
+	CommandHeapProfilerGetObjectByHeapObjectId  = "HeapProfiler.getObjectByHeapObjectId"
+	CommandHeapProfilerGetSamplingProfile       = "HeapProfiler.getSamplingProfile"
+	CommandHeapProfilerStartSampling            = "HeapProfiler.startSampling"
+	CommandHeapProfilerStartTrackingHeapObjects = "HeapProfiler.startTrackingHeapObjects"
+	CommandHeapProfilerStopSampling             = "HeapProfiler.stopSampling"
+	CommandHeapProfilerStopTrackingHeapObjects  = "HeapProfiler.stopTrackingHeapObjects"
+	CommandHeapProfilerTakeHeapSnapshot         = "HeapProfiler.takeHeapSnapshot"
+)
 
 // AddInspectedHeapObjectArgs represents the arguments for AddInspectedHeapObject in the HeapProfiler domain.
 type AddInspectedHeapObjectArgs struct {
@@ -62,8 +75,6 @@ func (a *AddInspectedHeapObjectReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandHeapProfilerCollectGarbage = "HeapProfiler.collectGarbage"
-
 // CollectGarbageArgs represents the arguments for CollectGarbage in the HeapProfiler domain.
 type CollectGarbageArgs struct {
 }
@@ -112,8 +123,6 @@ func (a *CollectGarbageReply) UnmarshalJSON(b []byte) error {
 	*a = CollectGarbageReply(*c)
 	return nil
 }
-
-const CommandHeapProfilerDisable = "HeapProfiler.disable"
 
 // DisableArgs represents the arguments for Disable in the HeapProfiler domain.
 type DisableArgs struct {
@@ -164,8 +173,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandHeapProfilerEnable = "HeapProfiler.enable"
-
 // EnableArgs represents the arguments for Enable in the HeapProfiler domain.
 type EnableArgs struct {
 }
@@ -214,8 +221,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandHeapProfilerGetHeapObjectId = "HeapProfiler.getHeapObjectId"
 
 // GetHeapObjectIDArgs represents the arguments for GetHeapObjectID in the HeapProfiler domain.
 type GetHeapObjectIDArgs struct {
@@ -267,8 +272,6 @@ func (a *GetHeapObjectIDReply) UnmarshalJSON(b []byte) error {
 	*a = GetHeapObjectIDReply(*c)
 	return nil
 }
-
-const CommandHeapProfilerGetObjectByHeapObjectId = "HeapProfiler.getObjectByHeapObjectId"
 
 // GetObjectByHeapObjectIDArgs represents the arguments for GetObjectByHeapObjectID in the HeapProfiler domain.
 type GetObjectByHeapObjectIDArgs struct {
@@ -322,8 +325,6 @@ func (a *GetObjectByHeapObjectIDReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandHeapProfilerGetSamplingProfile = "HeapProfiler.getSamplingProfile"
-
 // GetSamplingProfileArgs represents the arguments for GetSamplingProfile in the HeapProfiler domain.
 type GetSamplingProfileArgs struct {
 }
@@ -373,8 +374,6 @@ func (a *GetSamplingProfileReply) UnmarshalJSON(b []byte) error {
 	*a = GetSamplingProfileReply(*c)
 	return nil
 }
-
-const CommandHeapProfilerStartSampling = "HeapProfiler.startSampling"
 
 // StartSamplingArgs represents the arguments for StartSampling in the HeapProfiler domain.
 type StartSamplingArgs struct {
@@ -426,8 +425,6 @@ func (a *StartSamplingReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandHeapProfilerStartTrackingHeapObjects = "HeapProfiler.startTrackingHeapObjects"
-
 // StartTrackingHeapObjectsArgs represents the arguments for StartTrackingHeapObjects in the HeapProfiler domain.
 type StartTrackingHeapObjectsArgs struct {
 	TrackAllocations bool `json:"trackAllocations,omitempty"` // No description.
@@ -477,8 +474,6 @@ func (a *StartTrackingHeapObjectsReply) UnmarshalJSON(b []byte) error {
 	*a = StartTrackingHeapObjectsReply(*c)
 	return nil
 }
-
-const CommandHeapProfilerStopSampling = "HeapProfiler.stopSampling"
 
 // StopSamplingArgs represents the arguments for StopSampling in the HeapProfiler domain.
 type StopSamplingArgs struct {
@@ -530,8 +525,6 @@ func (a *StopSamplingReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandHeapProfilerStopTrackingHeapObjects = "HeapProfiler.stopTrackingHeapObjects"
-
 // StopTrackingHeapObjectsArgs represents the arguments for StopTrackingHeapObjects in the HeapProfiler domain.
 type StopTrackingHeapObjectsArgs struct {
 	ReportProgress bool `json:"reportProgress,omitempty"` // If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken when the tracking is stopped.
@@ -581,8 +574,6 @@ func (a *StopTrackingHeapObjectsReply) UnmarshalJSON(b []byte) error {
 	*a = StopTrackingHeapObjectsReply(*c)
 	return nil
 }
-
-const CommandHeapProfilerTakeHeapSnapshot = "HeapProfiler.takeHeapSnapshot"
 
 // TakeHeapSnapshotArgs represents the arguments for TakeHeapSnapshot in the HeapProfiler domain.
 type TakeHeapSnapshotArgs struct {

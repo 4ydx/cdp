@@ -7,7 +7,9 @@ import (
 	"log"
 )
 
-const CommandSystemInfoGetInfo = "SystemInfo.getInfo"
+const (
+	CommandSystemInfoGetInfo = "SystemInfo.getInfo"
+)
 
 // GetInfoArgs represents the arguments for GetInfo in the SystemInfo domain.
 type GetInfoArgs struct {

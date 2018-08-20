@@ -10,7 +10,49 @@ import (
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
-const CommandDOMCollectClassNamesFromSubtree = "DOM.collectClassNamesFromSubtree"
+const (
+	CommandDOMCollectClassNamesFromSubtree    = "DOM.collectClassNamesFromSubtree"
+	CommandDOMCopyTo                          = "DOM.copyTo"
+	CommandDOMDescribeNode                    = "DOM.describeNode"
+	CommandDOMDisable                         = "DOM.disable"
+	CommandDOMDiscardSearchResults            = "DOM.discardSearchResults"
+	CommandDOMEnable                          = "DOM.enable"
+	CommandDOMFocus                           = "DOM.focus"
+	CommandDOMGetAttributes                   = "DOM.getAttributes"
+	CommandDOMGetBoxModel                     = "DOM.getBoxModel"
+	CommandDOMGetContentQuads                 = "DOM.getContentQuads"
+	CommandDOMGetDocument                     = "DOM.getDocument"
+	CommandDOMGetFlattenedDocument            = "DOM.getFlattenedDocument"
+	CommandDOMGetNodeForLocation              = "DOM.getNodeForLocation"
+	CommandDOMGetOuterHTML                    = "DOM.getOuterHTML"
+	CommandDOMGetRelayoutBoundary             = "DOM.getRelayoutBoundary"
+	CommandDOMGetSearchResults                = "DOM.getSearchResults"
+	CommandDOMHideHighlight                   = "DOM.hideHighlight"
+	CommandDOMHighlightNode                   = "DOM.highlightNode"
+	CommandDOMHighlightRect                   = "DOM.highlightRect"
+	CommandDOMMarkUndoableState               = "DOM.markUndoableState"
+	CommandDOMMoveTo                          = "DOM.moveTo"
+	CommandDOMPerformSearch                   = "DOM.performSearch"
+	CommandDOMPushNodeByPathToFrontend        = "DOM.pushNodeByPathToFrontend"
+	CommandDOMPushNodesByBackendIdsToFrontend = "DOM.pushNodesByBackendIdsToFrontend"
+	CommandDOMQuerySelector                   = "DOM.querySelector"
+	CommandDOMQuerySelectorAll                = "DOM.querySelectorAll"
+	CommandDOMRedo                            = "DOM.redo"
+	CommandDOMRemoveAttribute                 = "DOM.removeAttribute"
+	CommandDOMRemoveNode                      = "DOM.removeNode"
+	CommandDOMRequestChildNodes               = "DOM.requestChildNodes"
+	CommandDOMRequestNode                     = "DOM.requestNode"
+	CommandDOMResolveNode                     = "DOM.resolveNode"
+	CommandDOMSetAttributeValue               = "DOM.setAttributeValue"
+	CommandDOMSetAttributesAsText             = "DOM.setAttributesAsText"
+	CommandDOMSetFileInputFiles               = "DOM.setFileInputFiles"
+	CommandDOMSetInspectedNode                = "DOM.setInspectedNode"
+	CommandDOMSetNodeName                     = "DOM.setNodeName"
+	CommandDOMSetNodeValue                    = "DOM.setNodeValue"
+	CommandDOMSetOuterHTML                    = "DOM.setOuterHTML"
+	CommandDOMUndo                            = "DOM.undo"
+	CommandDOMGetFrameOwner                   = "DOM.getFrameOwner"
+)
 
 // CollectClassNamesFromSubtreeArgs represents the arguments for CollectClassNamesFromSubtree in the DOM domain.
 type CollectClassNamesFromSubtreeArgs struct {
@@ -62,8 +104,6 @@ func (a *CollectClassNamesFromSubtreeReply) UnmarshalJSON(b []byte) error {
 	*a = CollectClassNamesFromSubtreeReply(*c)
 	return nil
 }
-
-const CommandDOMCopyTo = "DOM.copyTo"
 
 // CopyToArgs represents the arguments for CopyTo in the DOM domain.
 type CopyToArgs struct {
@@ -117,8 +157,6 @@ func (a *CopyToReply) UnmarshalJSON(b []byte) error {
 	*a = CopyToReply(*c)
 	return nil
 }
-
-const CommandDOMDescribeNode = "DOM.describeNode"
 
 // DescribeNodeArgs represents the arguments for DescribeNode in the DOM domain.
 type DescribeNodeArgs struct {
@@ -175,8 +213,6 @@ func (a *DescribeNodeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMDisable = "DOM.disable"
-
 // DisableArgs represents the arguments for Disable in the DOM domain.
 type DisableArgs struct {
 }
@@ -225,8 +261,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	*a = DisableReply(*c)
 	return nil
 }
-
-const CommandDOMDiscardSearchResults = "DOM.discardSearchResults"
 
 // DiscardSearchResultsArgs represents the arguments for DiscardSearchResults in the DOM domain.
 type DiscardSearchResultsArgs struct {
@@ -278,8 +312,6 @@ func (a *DiscardSearchResultsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMEnable = "DOM.enable"
-
 // EnableArgs represents the arguments for Enable in the DOM domain.
 type EnableArgs struct {
 }
@@ -328,8 +360,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandDOMFocus = "DOM.focus"
 
 // FocusArgs represents the arguments for Focus in the DOM domain.
 type FocusArgs struct {
@@ -383,8 +413,6 @@ func (a *FocusReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMGetAttributes = "DOM.getAttributes"
-
 // GetAttributesArgs represents the arguments for GetAttributes in the DOM domain.
 type GetAttributesArgs struct {
 	NodeID NodeID `json:"nodeId"` // Id of the node to retrieve attibutes for.
@@ -435,8 +463,6 @@ func (a *GetAttributesReply) UnmarshalJSON(b []byte) error {
 	*a = GetAttributesReply(*c)
 	return nil
 }
-
-const CommandDOMGetBoxModel = "DOM.getBoxModel"
 
 // GetBoxModelArgs represents the arguments for GetBoxModel in the DOM domain.
 type GetBoxModelArgs struct {
@@ -491,8 +517,6 @@ func (a *GetBoxModelReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMGetContentQuads = "DOM.getContentQuads"
-
 // GetContentQuadsArgs represents the arguments for GetContentQuads in the DOM domain.
 type GetContentQuadsArgs struct {
 	NodeID        NodeID                `json:"nodeId,omitempty"`        // Identifier of the node.
@@ -546,8 +570,6 @@ func (a *GetContentQuadsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMGetDocument = "DOM.getDocument"
-
 // GetDocumentArgs represents the arguments for GetDocument in the DOM domain.
 type GetDocumentArgs struct {
 	Depth  int  `json:"depth,omitempty"`  // The maximum depth at which children should be retrieved, defaults to 1. Use -1 for the entire subtree or provide an integer larger than 0.
@@ -599,8 +621,6 @@ func (a *GetDocumentReply) UnmarshalJSON(b []byte) error {
 	*a = GetDocumentReply(*c)
 	return nil
 }
-
-const CommandDOMGetFlattenedDocument = "DOM.getFlattenedDocument"
 
 // GetFlattenedDocumentArgs represents the arguments for GetFlattenedDocument in the DOM domain.
 type GetFlattenedDocumentArgs struct {
@@ -660,8 +680,6 @@ func (a *GetFlattenedDocumentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMGetNodeForLocation = "DOM.getNodeForLocation"
-
 // GetNodeForLocationArgs represents the arguments for GetNodeForLocation in the DOM domain.
 type GetNodeForLocationArgs struct {
 	X                         int  `json:"x"`                                   // X coordinate.
@@ -714,8 +732,6 @@ func (a *GetNodeForLocationReply) UnmarshalJSON(b []byte) error {
 	*a = GetNodeForLocationReply(*c)
 	return nil
 }
-
-const CommandDOMGetOuterHTML = "DOM.getOuterHTML"
 
 // GetOuterHTMLArgs represents the arguments for GetOuterHTML in the DOM domain.
 type GetOuterHTMLArgs struct {
@@ -770,8 +786,6 @@ func (a *GetOuterHTMLReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMGetRelayoutBoundary = "DOM.getRelayoutBoundary"
-
 // GetRelayoutBoundaryArgs represents the arguments for GetRelayoutBoundary in the DOM domain.
 type GetRelayoutBoundaryArgs struct {
 	NodeID NodeID `json:"nodeId"` // Id of the node.
@@ -822,8 +836,6 @@ func (a *GetRelayoutBoundaryReply) UnmarshalJSON(b []byte) error {
 	*a = GetRelayoutBoundaryReply(*c)
 	return nil
 }
-
-const CommandDOMGetSearchResults = "DOM.getSearchResults"
 
 // GetSearchResultsArgs represents the arguments for GetSearchResults in the DOM domain.
 type GetSearchResultsArgs struct {
@@ -878,8 +890,6 @@ func (a *GetSearchResultsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMMarkUndoableState = "DOM.markUndoableState"
-
 // MarkUndoableStateArgs represents the arguments for MarkUndoableState in the DOM domain.
 type MarkUndoableStateArgs struct {
 }
@@ -928,8 +938,6 @@ func (a *MarkUndoableStateReply) UnmarshalJSON(b []byte) error {
 	*a = MarkUndoableStateReply(*c)
 	return nil
 }
-
-const CommandDOMMoveTo = "DOM.moveTo"
 
 // MoveToArgs represents the arguments for MoveTo in the DOM domain.
 type MoveToArgs struct {
@@ -984,8 +992,6 @@ func (a *MoveToReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMPerformSearch = "DOM.performSearch"
-
 // PerformSearchArgs represents the arguments for PerformSearch in the DOM domain.
 type PerformSearchArgs struct {
 	Query                     string `json:"query"`                               // Plain text or query selector or XPath search query.
@@ -1039,8 +1045,6 @@ func (a *PerformSearchReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMPushNodeByPathToFrontend = "DOM.pushNodeByPathToFrontend"
-
 // PushNodeByPathToFrontendArgs represents the arguments for PushNodeByPathToFrontend in the DOM domain.
 type PushNodeByPathToFrontendArgs struct {
 	Path string `json:"path"` // Path to node in the proprietary format.
@@ -1092,8 +1096,6 @@ func (a *PushNodeByPathToFrontendReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMPushNodesByBackendIdsToFrontend = "DOM.pushNodesByBackendIdsToFrontend"
-
 // PushNodesByBackendIdsToFrontendArgs represents the arguments for PushNodesByBackendIdsToFrontend in the DOM domain.
 type PushNodesByBackendIdsToFrontendArgs struct {
 	BackendNodeIDs []BackendNodeID `json:"backendNodeIds"` // The array of backend node ids.
@@ -1144,8 +1146,6 @@ func (a *PushNodesByBackendIdsToFrontendReply) UnmarshalJSON(b []byte) error {
 	*a = PushNodesByBackendIdsToFrontendReply(*c)
 	return nil
 }
-
-const CommandDOMQuerySelector = "DOM.querySelector"
 
 // QuerySelectorArgs represents the arguments for QuerySelector in the DOM domain.
 type QuerySelectorArgs struct {
@@ -1199,8 +1199,6 @@ func (a *QuerySelectorReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMQuerySelectorAll = "DOM.querySelectorAll"
-
 // QuerySelectorAllArgs represents the arguments for QuerySelectorAll in the DOM domain.
 type QuerySelectorAllArgs struct {
 	NodeID   NodeID `json:"nodeId"`   // Id of the node to query upon.
@@ -1253,8 +1251,6 @@ func (a *QuerySelectorAllReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMRedo = "DOM.redo"
-
 // RedoArgs represents the arguments for Redo in the DOM domain.
 type RedoArgs struct {
 }
@@ -1303,8 +1299,6 @@ func (a *RedoReply) UnmarshalJSON(b []byte) error {
 	*a = RedoReply(*c)
 	return nil
 }
-
-const CommandDOMRemoveAttribute = "DOM.removeAttribute"
 
 // RemoveAttributeArgs represents the arguments for RemoveAttribute in the DOM domain.
 type RemoveAttributeArgs struct {
@@ -1357,8 +1351,6 @@ func (a *RemoveAttributeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMRemoveNode = "DOM.removeNode"
-
 // RemoveNodeArgs represents the arguments for RemoveNode in the DOM domain.
 type RemoveNodeArgs struct {
 	NodeID NodeID `json:"nodeId"` // Id of the node to remove.
@@ -1408,8 +1400,6 @@ func (a *RemoveNodeReply) UnmarshalJSON(b []byte) error {
 	*a = RemoveNodeReply(*c)
 	return nil
 }
-
-const CommandDOMRequestChildNodes = "DOM.requestChildNodes"
 
 // RequestChildNodesArgs represents the arguments for RequestChildNodes in the DOM domain.
 type RequestChildNodesArgs struct {
@@ -1463,8 +1453,6 @@ func (a *RequestChildNodesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMRequestNode = "DOM.requestNode"
-
 // RequestNodeArgs represents the arguments for RequestNode in the DOM domain.
 type RequestNodeArgs struct {
 	ObjectID shared.RemoteObjectID `json:"objectId"` // JavaScript object id to convert into node.
@@ -1515,8 +1503,6 @@ func (a *RequestNodeReply) UnmarshalJSON(b []byte) error {
 	*a = RequestNodeReply(*c)
 	return nil
 }
-
-const CommandDOMResolveNode = "DOM.resolveNode"
 
 // ResolveNodeArgs represents the arguments for ResolveNode in the DOM domain.
 type ResolveNodeArgs struct {
@@ -1571,8 +1557,6 @@ func (a *ResolveNodeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMSetAttributeValue = "DOM.setAttributeValue"
-
 // SetAttributeValueArgs represents the arguments for SetAttributeValue in the DOM domain.
 type SetAttributeValueArgs struct {
 	NodeID NodeID `json:"nodeId"` // Id of the element to set attribute for.
@@ -1625,8 +1609,6 @@ func (a *SetAttributeValueReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMSetAttributesAsText = "DOM.setAttributesAsText"
-
 // SetAttributesAsTextArgs represents the arguments for SetAttributesAsText in the DOM domain.
 type SetAttributesAsTextArgs struct {
 	NodeID NodeID `json:"nodeId"`         // Id of the element to set attributes for.
@@ -1678,8 +1660,6 @@ func (a *SetAttributesAsTextReply) UnmarshalJSON(b []byte) error {
 	*a = SetAttributesAsTextReply(*c)
 	return nil
 }
-
-const CommandDOMSetFileInputFiles = "DOM.setFileInputFiles"
 
 // SetFileInputFilesArgs represents the arguments for SetFileInputFiles in the DOM domain.
 type SetFileInputFilesArgs struct {
@@ -1734,8 +1714,6 @@ func (a *SetFileInputFilesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMSetInspectedNode = "DOM.setInspectedNode"
-
 // SetInspectedNodeArgs represents the arguments for SetInspectedNode in the DOM domain.
 type SetInspectedNodeArgs struct {
 	NodeID NodeID `json:"nodeId"` // DOM node id to be accessible by means of $x command line API.
@@ -1785,8 +1763,6 @@ func (a *SetInspectedNodeReply) UnmarshalJSON(b []byte) error {
 	*a = SetInspectedNodeReply(*c)
 	return nil
 }
-
-const CommandDOMSetNodeName = "DOM.setNodeName"
 
 // SetNodeNameArgs represents the arguments for SetNodeName in the DOM domain.
 type SetNodeNameArgs struct {
@@ -1840,8 +1816,6 @@ func (a *SetNodeNameReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMSetNodeValue = "DOM.setNodeValue"
-
 // SetNodeValueArgs represents the arguments for SetNodeValue in the DOM domain.
 type SetNodeValueArgs struct {
 	NodeID NodeID `json:"nodeId"` // Id of the node to set value for.
@@ -1892,8 +1866,6 @@ func (a *SetNodeValueReply) UnmarshalJSON(b []byte) error {
 	*a = SetNodeValueReply(*c)
 	return nil
 }
-
-const CommandDOMSetOuterHTML = "DOM.setOuterHTML"
 
 // SetOuterHTMLArgs represents the arguments for SetOuterHTML in the DOM domain.
 type SetOuterHTMLArgs struct {
@@ -1946,8 +1918,6 @@ func (a *SetOuterHTMLReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMUndo = "DOM.undo"
-
 // UndoArgs represents the arguments for Undo in the DOM domain.
 type UndoArgs struct {
 }
@@ -1996,8 +1966,6 @@ func (a *UndoReply) UnmarshalJSON(b []byte) error {
 	*a = UndoReply(*c)
 	return nil
 }
-
-const CommandDOMGetFrameOwner = "DOM.getFrameOwner"
 
 // GetFrameOwnerArgs represents the arguments for GetFrameOwner in the DOM domain.
 type GetFrameOwnerArgs struct {

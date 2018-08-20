@@ -9,7 +9,22 @@ import (
 	"github.com/4ydx/cdp/protocol/page"
 )
 
-const EventOverlayInspectNodeRequested = "Overlay.inspectNodeRequested"
+const (
+	EventOverlayInspectNodeRequested   = "Overlay.inspectNodeRequested"
+	EventOverlayNodeHighlightRequested = "Overlay.nodeHighlightRequested"
+	EventOverlayScreenshotRequested    = "Overlay.screenshotRequested"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventOverlayInspectNodeRequested:   &InspectNodeRequestedReply{},
+	EventOverlayNodeHighlightRequested: &NodeHighlightRequestedReply{},
+	EventOverlayScreenshotRequested:    &ScreenshotRequestedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // InspectNodeRequestedReply is the reply for InspectNodeRequested events.
 type InspectNodeRequestedReply struct {
@@ -28,8 +43,6 @@ func (a *InspectNodeRequestedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventOverlayNodeHighlightRequested = "Overlay.nodeHighlightRequested"
-
 // NodeHighlightRequestedReply is the reply for NodeHighlightRequested events.
 type NodeHighlightRequestedReply struct {
 	NodeID dom.NodeID `json:"nodeId"` // No description.
@@ -46,8 +59,6 @@ func (a *NodeHighlightRequestedReply) UnmarshalJSON(b []byte) error {
 	*a = NodeHighlightRequestedReply(*c)
 	return nil
 }
-
-const EventOverlayScreenshotRequested = "Overlay.screenshotRequested"
 
 // ScreenshotRequestedReply is the reply for ScreenshotRequested events.
 type ScreenshotRequestedReply struct {

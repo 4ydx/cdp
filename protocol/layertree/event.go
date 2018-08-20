@@ -8,7 +8,20 @@ import (
 	"github.com/4ydx/cdp/protocol/dom"
 )
 
-const EventLayerTreeLayerPainted = "LayerTree.layerPainted"
+const (
+	EventLayerTreeLayerPainted       = "LayerTree.layerPainted"
+	EventLayerTreeLayerTreeDidChange = "LayerTree.layerTreeDidChange"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventLayerTreeLayerPainted:       &LayerPaintedReply{},
+	EventLayerTreeLayerTreeDidChange: &DidChangeReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // LayerPaintedReply is the reply for LayerPainted events.
 type LayerPaintedReply struct {
@@ -27,8 +40,6 @@ func (a *LayerPaintedReply) UnmarshalJSON(b []byte) error {
 	*a = LayerPaintedReply(*c)
 	return nil
 }
-
-const EventLayerTreeLayerTreeDidChange = "LayerTree.layerTreeDidChange"
 
 // DidChangeReply is the reply for LayerTreeDidChange events.
 type DidChangeReply struct {

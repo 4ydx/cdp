@@ -10,7 +10,9 @@ import (
 	"github.com/4ydx/cdp/protocol/dom"
 )
 
-const CommandAccessibilityGetPartialAXTree = "Accessibility.getPartialAXTree"
+const (
+	CommandAccessibilityGetPartialAXTree = "Accessibility.getPartialAXTree"
+)
 
 // GetPartialAXTreeArgs represents the arguments for GetPartialAXTree in the Accessibility domain.
 type GetPartialAXTreeArgs struct {

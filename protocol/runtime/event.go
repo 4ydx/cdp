@@ -6,7 +6,32 @@ import (
 	"encoding/json"
 )
 
-const EventRuntimeBindingCalled = "Runtime.bindingCalled"
+const (
+	EventRuntimeBindingCalled             = "Runtime.bindingCalled"
+	EventRuntimeConsoleAPICalled          = "Runtime.consoleAPICalled"
+	EventRuntimeExceptionRevoked          = "Runtime.exceptionRevoked"
+	EventRuntimeExceptionThrown           = "Runtime.exceptionThrown"
+	EventRuntimeExecutionContextCreated   = "Runtime.executionContextCreated"
+	EventRuntimeExecutionContextDestroyed = "Runtime.executionContextDestroyed"
+	EventRuntimeExecutionContextsCleared  = "Runtime.executionContextsCleared"
+	EventRuntimeInspectRequested          = "Runtime.inspectRequested"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventRuntimeBindingCalled:             &BindingCalledReply{},
+	EventRuntimeConsoleAPICalled:          &ConsoleAPICalledReply{},
+	EventRuntimeExceptionRevoked:          &ExceptionRevokedReply{},
+	EventRuntimeExceptionThrown:           &ExceptionThrownReply{},
+	EventRuntimeExecutionContextCreated:   &ExecutionContextCreatedReply{},
+	EventRuntimeExecutionContextDestroyed: &ExecutionContextDestroyedReply{},
+	EventRuntimeExecutionContextsCleared:  &ExecutionContextsClearedReply{},
+	EventRuntimeInspectRequested:          &InspectRequestedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // BindingCalledReply is the reply for BindingCalled events.
 type BindingCalledReply struct {
@@ -26,8 +51,6 @@ func (a *BindingCalledReply) UnmarshalJSON(b []byte) error {
 	*a = BindingCalledReply(*c)
 	return nil
 }
-
-const EventRuntimeConsoleAPICalled = "Runtime.consoleAPICalled"
 
 // ConsoleAPICalledReply is the reply for ConsoleAPICalled events.
 type ConsoleAPICalledReply struct {
@@ -59,8 +82,6 @@ func (a *ConsoleAPICalledReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventRuntimeExceptionRevoked = "Runtime.exceptionRevoked"
-
 // ExceptionRevokedReply is the reply for ExceptionRevoked events.
 type ExceptionRevokedReply struct {
 	Reason      string `json:"reason"`      // Reason describing why exception was revoked.
@@ -78,8 +99,6 @@ func (a *ExceptionRevokedReply) UnmarshalJSON(b []byte) error {
 	*a = ExceptionRevokedReply(*c)
 	return nil
 }
-
-const EventRuntimeExceptionThrown = "Runtime.exceptionThrown"
 
 // ExceptionThrownReply is the reply for ExceptionThrown events.
 type ExceptionThrownReply struct {
@@ -99,8 +118,6 @@ func (a *ExceptionThrownReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventRuntimeExecutionContextCreated = "Runtime.executionContextCreated"
-
 // ExecutionContextCreatedReply is the reply for ExecutionContextCreated events.
 type ExecutionContextCreatedReply struct {
 	Context ExecutionContextDescription `json:"context"` // A newly created execution context.
@@ -117,8 +134,6 @@ func (a *ExecutionContextCreatedReply) UnmarshalJSON(b []byte) error {
 	*a = ExecutionContextCreatedReply(*c)
 	return nil
 }
-
-const EventRuntimeExecutionContextDestroyed = "Runtime.executionContextDestroyed"
 
 // ExecutionContextDestroyedReply is the reply for ExecutionContextDestroyed events.
 type ExecutionContextDestroyedReply struct {
@@ -137,8 +152,6 @@ func (a *ExecutionContextDestroyedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventRuntimeExecutionContextsCleared = "Runtime.executionContextsCleared"
-
 // ExecutionContextsClearedReply is the reply for ExecutionContextsCleared events.
 type ExecutionContextsClearedReply struct {
 }
@@ -154,8 +167,6 @@ func (a *ExecutionContextsClearedReply) UnmarshalJSON(b []byte) error {
 	*a = ExecutionContextsClearedReply(*c)
 	return nil
 }
-
-const EventRuntimeInspectRequested = "Runtime.inspectRequested"
 
 // InspectRequestedReply is the reply for InspectRequested events.
 type InspectRequestedReply struct {

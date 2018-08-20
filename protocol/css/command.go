@@ -10,7 +10,30 @@ import (
 	"github.com/4ydx/cdp/protocol/dom"
 )
 
-const CommandCSSAddRule = "CSS.addRule"
+const (
+	CommandCSSAddRule                          = "CSS.addRule"
+	CommandCSSCollectClassNames                = "CSS.collectClassNames"
+	CommandCSSCreateStyleSheet                 = "CSS.createStyleSheet"
+	CommandCSSDisable                          = "CSS.disable"
+	CommandCSSEnable                           = "CSS.enable"
+	CommandCSSForcePseudoState                 = "CSS.forcePseudoState"
+	CommandCSSGetBackgroundColors              = "CSS.getBackgroundColors"
+	CommandCSSGetComputedStyleForNode          = "CSS.getComputedStyleForNode"
+	CommandCSSGetInlineStylesForNode           = "CSS.getInlineStylesForNode"
+	CommandCSSGetMatchedStylesForNode          = "CSS.getMatchedStylesForNode"
+	CommandCSSGetMediaQueries                  = "CSS.getMediaQueries"
+	CommandCSSGetPlatformFontsForNode          = "CSS.getPlatformFontsForNode"
+	CommandCSSGetStyleSheetText                = "CSS.getStyleSheetText"
+	CommandCSSSetEffectivePropertyValueForNode = "CSS.setEffectivePropertyValueForNode"
+	CommandCSSSetKeyframeKey                   = "CSS.setKeyframeKey"
+	CommandCSSSetMediaText                     = "CSS.setMediaText"
+	CommandCSSSetRuleSelector                  = "CSS.setRuleSelector"
+	CommandCSSSetStyleSheetText                = "CSS.setStyleSheetText"
+	CommandCSSSetStyleTexts                    = "CSS.setStyleTexts"
+	CommandCSSStartRuleUsageTracking           = "CSS.startRuleUsageTracking"
+	CommandCSSStopRuleUsageTracking            = "CSS.stopRuleUsageTracking"
+	CommandCSSTakeCoverageDelta                = "CSS.takeCoverageDelta"
+)
 
 // AddRuleArgs represents the arguments for AddRule in the CSS domain.
 type AddRuleArgs struct {
@@ -65,8 +88,6 @@ func (a *AddRuleReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSCollectClassNames = "CSS.collectClassNames"
-
 // CollectClassNamesArgs represents the arguments for CollectClassNames in the CSS domain.
 type CollectClassNamesArgs struct {
 	StyleSheetID StyleSheetID `json:"styleSheetId"` // No description.
@@ -117,8 +138,6 @@ func (a *CollectClassNamesReply) UnmarshalJSON(b []byte) error {
 	*a = CollectClassNamesReply(*c)
 	return nil
 }
-
-const CommandCSSCreateStyleSheet = "CSS.createStyleSheet"
 
 // CreateStyleSheetArgs represents the arguments for CreateStyleSheet in the CSS domain.
 type CreateStyleSheetArgs struct {
@@ -171,8 +190,6 @@ func (a *CreateStyleSheetReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSDisable = "CSS.disable"
-
 // DisableArgs represents the arguments for Disable in the CSS domain.
 type DisableArgs struct {
 }
@@ -222,8 +239,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSEnable = "CSS.enable"
-
 // EnableArgs represents the arguments for Enable in the CSS domain.
 type EnableArgs struct {
 }
@@ -272,8 +287,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandCSSForcePseudoState = "CSS.forcePseudoState"
 
 // ForcePseudoStateArgs represents the arguments for ForcePseudoState in the CSS domain.
 type ForcePseudoStateArgs struct {
@@ -325,8 +338,6 @@ func (a *ForcePseudoStateReply) UnmarshalJSON(b []byte) error {
 	*a = ForcePseudoStateReply(*c)
 	return nil
 }
-
-const CommandCSSGetBackgroundColors = "CSS.getBackgroundColors"
 
 // GetBackgroundColorsArgs represents the arguments for GetBackgroundColors in the CSS domain.
 type GetBackgroundColorsArgs struct {
@@ -382,8 +393,6 @@ func (a *GetBackgroundColorsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSGetComputedStyleForNode = "CSS.getComputedStyleForNode"
-
 // GetComputedStyleForNodeArgs represents the arguments for GetComputedStyleForNode in the CSS domain.
 type GetComputedStyleForNodeArgs struct {
 	NodeID dom.NodeID `json:"nodeId"` // No description.
@@ -434,8 +443,6 @@ func (a *GetComputedStyleForNodeReply) UnmarshalJSON(b []byte) error {
 	*a = GetComputedStyleForNodeReply(*c)
 	return nil
 }
-
-const CommandCSSGetInlineStylesForNode = "CSS.getInlineStylesForNode"
 
 // GetInlineStylesForNodeArgs represents the arguments for GetInlineStylesForNode in the CSS domain.
 type GetInlineStylesForNodeArgs struct {
@@ -488,8 +495,6 @@ func (a *GetInlineStylesForNodeReply) UnmarshalJSON(b []byte) error {
 	*a = GetInlineStylesForNodeReply(*c)
 	return nil
 }
-
-const CommandCSSGetMatchedStylesForNode = "CSS.getMatchedStylesForNode"
 
 // GetMatchedStylesForNodeArgs represents the arguments for GetMatchedStylesForNode in the CSS domain.
 type GetMatchedStylesForNodeArgs struct {
@@ -547,8 +552,6 @@ func (a *GetMatchedStylesForNodeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSGetMediaQueries = "CSS.getMediaQueries"
-
 // GetMediaQueriesArgs represents the arguments for GetMediaQueries in the CSS domain.
 type GetMediaQueriesArgs struct {
 }
@@ -598,8 +601,6 @@ func (a *GetMediaQueriesReply) UnmarshalJSON(b []byte) error {
 	*a = GetMediaQueriesReply(*c)
 	return nil
 }
-
-const CommandCSSGetPlatformFontsForNode = "CSS.getPlatformFontsForNode"
 
 // GetPlatformFontsForNodeArgs represents the arguments for GetPlatformFontsForNode in the CSS domain.
 type GetPlatformFontsForNodeArgs struct {
@@ -652,8 +653,6 @@ func (a *GetPlatformFontsForNodeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSGetStyleSheetText = "CSS.getStyleSheetText"
-
 // GetStyleSheetTextArgs represents the arguments for GetStyleSheetText in the CSS domain.
 type GetStyleSheetTextArgs struct {
 	StyleSheetID StyleSheetID `json:"styleSheetId"` // No description.
@@ -704,8 +703,6 @@ func (a *GetStyleSheetTextReply) UnmarshalJSON(b []byte) error {
 	*a = GetStyleSheetTextReply(*c)
 	return nil
 }
-
-const CommandCSSSetEffectivePropertyValueForNode = "CSS.setEffectivePropertyValueForNode"
 
 // SetEffectivePropertyValueForNodeArgs represents the arguments for SetEffectivePropertyValueForNode in the CSS domain.
 type SetEffectivePropertyValueForNodeArgs struct {
@@ -758,8 +755,6 @@ func (a *SetEffectivePropertyValueForNodeReply) UnmarshalJSON(b []byte) error {
 	*a = SetEffectivePropertyValueForNodeReply(*c)
 	return nil
 }
-
-const CommandCSSSetKeyframeKey = "CSS.setKeyframeKey"
 
 // SetKeyframeKeyArgs represents the arguments for SetKeyframeKey in the CSS domain.
 type SetKeyframeKeyArgs struct {
@@ -814,8 +809,6 @@ func (a *SetKeyframeKeyReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSSetMediaText = "CSS.setMediaText"
-
 // SetMediaTextArgs represents the arguments for SetMediaText in the CSS domain.
 type SetMediaTextArgs struct {
 	StyleSheetID StyleSheetID `json:"styleSheetId"` // No description.
@@ -868,8 +861,6 @@ func (a *SetMediaTextReply) UnmarshalJSON(b []byte) error {
 	*a = SetMediaTextReply(*c)
 	return nil
 }
-
-const CommandCSSSetRuleSelector = "CSS.setRuleSelector"
 
 // SetRuleSelectorArgs represents the arguments for SetRuleSelector in the CSS domain.
 type SetRuleSelectorArgs struct {
@@ -924,8 +915,6 @@ func (a *SetRuleSelectorReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSSetStyleSheetText = "CSS.setStyleSheetText"
-
 // SetStyleSheetTextArgs represents the arguments for SetStyleSheetText in the CSS domain.
 type SetStyleSheetTextArgs struct {
 	StyleSheetID StyleSheetID `json:"styleSheetId"` // No description.
@@ -978,8 +967,6 @@ func (a *SetStyleSheetTextReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSSetStyleTexts = "CSS.setStyleTexts"
-
 // SetStyleTextsArgs represents the arguments for SetStyleTexts in the CSS domain.
 type SetStyleTextsArgs struct {
 	Edits []StyleDeclarationEdit `json:"edits"` // No description.
@@ -1031,8 +1018,6 @@ func (a *SetStyleTextsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCSSStartRuleUsageTracking = "CSS.startRuleUsageTracking"
-
 // StartRuleUsageTrackingArgs represents the arguments for StartRuleUsageTracking in the CSS domain.
 type StartRuleUsageTrackingArgs struct {
 }
@@ -1081,8 +1066,6 @@ func (a *StartRuleUsageTrackingReply) UnmarshalJSON(b []byte) error {
 	*a = StartRuleUsageTrackingReply(*c)
 	return nil
 }
-
-const CommandCSSStopRuleUsageTracking = "CSS.stopRuleUsageTracking"
 
 // StopRuleUsageTrackingArgs represents the arguments for StopRuleUsageTracking in the CSS domain.
 type StopRuleUsageTrackingArgs struct {
@@ -1133,8 +1116,6 @@ func (a *StopRuleUsageTrackingReply) UnmarshalJSON(b []byte) error {
 	*a = StopRuleUsageTrackingReply(*c)
 	return nil
 }
-
-const CommandCSSTakeCoverageDelta = "CSS.takeCoverageDelta"
 
 // TakeCoverageDeltaArgs represents the arguments for TakeCoverageDelta in the CSS domain.
 type TakeCoverageDeltaArgs struct {

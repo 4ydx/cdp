@@ -6,7 +6,18 @@ import (
 	"encoding/json"
 )
 
-const EventConsoleMessageAdded = "Console.messageAdded"
+const (
+	EventConsoleMessageAdded = "Console.messageAdded"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventConsoleMessageAdded: &MessageAddedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // MessageAddedReply is the reply for MessageAdded events.
 type MessageAddedReply struct {

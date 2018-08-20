@@ -7,7 +7,11 @@ import (
 	"log"
 )
 
-const CommandHeadlessExperimentalBeginFrame = "HeadlessExperimental.beginFrame"
+const (
+	CommandHeadlessExperimentalBeginFrame = "HeadlessExperimental.beginFrame"
+	CommandHeadlessExperimentalDisable    = "HeadlessExperimental.disable"
+	CommandHeadlessExperimentalEnable     = "HeadlessExperimental.enable"
+)
 
 // BeginFrameArgs represents the arguments for BeginFrame in the HeadlessExperimental domain.
 type BeginFrameArgs struct {
@@ -64,8 +68,6 @@ func (a *BeginFrameReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandHeadlessExperimentalDisable = "HeadlessExperimental.disable"
-
 // DisableArgs represents the arguments for Disable in the HeadlessExperimental domain.
 type DisableArgs struct {
 }
@@ -114,8 +116,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	*a = DisableReply(*c)
 	return nil
 }
-
-const CommandHeadlessExperimentalEnable = "HeadlessExperimental.enable"
 
 // EnableArgs represents the arguments for Enable in the HeadlessExperimental domain.
 type EnableArgs struct {

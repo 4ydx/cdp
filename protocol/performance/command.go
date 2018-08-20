@@ -7,7 +7,11 @@ import (
 	"log"
 )
 
-const CommandPerformanceDisable = "Performance.disable"
+const (
+	CommandPerformanceDisable    = "Performance.disable"
+	CommandPerformanceEnable     = "Performance.enable"
+	CommandPerformanceGetMetrics = "Performance.getMetrics"
+)
 
 // DisableArgs represents the arguments for Disable in the Performance domain.
 type DisableArgs struct {
@@ -58,8 +62,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPerformanceEnable = "Performance.enable"
-
 // EnableArgs represents the arguments for Enable in the Performance domain.
 type EnableArgs struct {
 }
@@ -108,8 +110,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandPerformanceGetMetrics = "Performance.getMetrics"
 
 // GetMetricsArgs represents the arguments for GetMetrics in the Performance domain.
 type GetMetricsArgs struct {

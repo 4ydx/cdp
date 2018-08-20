@@ -9,7 +9,9 @@ import (
 	"github.com/4ydx/cdp/protocol/network"
 )
 
-const CommandAuditsGetEncodedResponse = "Audits.getEncodedResponse"
+const (
+	CommandAuditsGetEncodedResponse = "Audits.getEncodedResponse"
+)
 
 // GetEncodedResponseArgs represents the arguments for GetEncodedResponse in the Audits domain.
 type GetEncodedResponseArgs struct {

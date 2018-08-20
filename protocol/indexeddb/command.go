@@ -7,7 +7,16 @@ import (
 	"log"
 )
 
-const CommandIndexedDBClearObjectStore = "IndexedDB.clearObjectStore"
+const (
+	CommandIndexedDBClearObjectStore         = "IndexedDB.clearObjectStore"
+	CommandIndexedDBDeleteDatabase           = "IndexedDB.deleteDatabase"
+	CommandIndexedDBDeleteObjectStoreEntries = "IndexedDB.deleteObjectStoreEntries"
+	CommandIndexedDBDisable                  = "IndexedDB.disable"
+	CommandIndexedDBEnable                   = "IndexedDB.enable"
+	CommandIndexedDBRequestData              = "IndexedDB.requestData"
+	CommandIndexedDBRequestDatabase          = "IndexedDB.requestDatabase"
+	CommandIndexedDBRequestDatabaseNames     = "IndexedDB.requestDatabaseNames"
+)
 
 // ClearObjectStoreArgs represents the arguments for ClearObjectStore in the IndexedDB domain.
 type ClearObjectStoreArgs struct {
@@ -61,8 +70,6 @@ func (a *ClearObjectStoreReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandIndexedDBDeleteDatabase = "IndexedDB.deleteDatabase"
-
 // DeleteDatabaseArgs represents the arguments for DeleteDatabase in the IndexedDB domain.
 type DeleteDatabaseArgs struct {
 	SecurityOrigin string `json:"securityOrigin"` // Security origin.
@@ -113,8 +120,6 @@ func (a *DeleteDatabaseReply) UnmarshalJSON(b []byte) error {
 	*a = DeleteDatabaseReply(*c)
 	return nil
 }
-
-const CommandIndexedDBDeleteObjectStoreEntries = "IndexedDB.deleteObjectStoreEntries"
 
 // DeleteObjectStoreEntriesArgs represents the arguments for DeleteObjectStoreEntries in the IndexedDB domain.
 type DeleteObjectStoreEntriesArgs struct {
@@ -169,8 +174,6 @@ func (a *DeleteObjectStoreEntriesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandIndexedDBDisable = "IndexedDB.disable"
-
 // DisableArgs represents the arguments for Disable in the IndexedDB domain.
 type DisableArgs struct {
 }
@@ -220,8 +223,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandIndexedDBEnable = "IndexedDB.enable"
-
 // EnableArgs represents the arguments for Enable in the IndexedDB domain.
 type EnableArgs struct {
 }
@@ -270,8 +271,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandIndexedDBRequestData = "IndexedDB.requestData"
 
 // RequestDataArgs represents the arguments for RequestData in the IndexedDB domain.
 type RequestDataArgs struct {
@@ -331,8 +330,6 @@ func (a *RequestDataReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandIndexedDBRequestDatabase = "IndexedDB.requestDatabase"
-
 // RequestDatabaseArgs represents the arguments for RequestDatabase in the IndexedDB domain.
 type RequestDatabaseArgs struct {
 	SecurityOrigin string `json:"securityOrigin"` // Security origin.
@@ -384,8 +381,6 @@ func (a *RequestDatabaseReply) UnmarshalJSON(b []byte) error {
 	*a = RequestDatabaseReply(*c)
 	return nil
 }
-
-const CommandIndexedDBRequestDatabaseNames = "IndexedDB.requestDatabaseNames"
 
 // RequestDatabaseNamesArgs represents the arguments for RequestDatabaseNames in the IndexedDB domain.
 type RequestDatabaseNamesArgs struct {

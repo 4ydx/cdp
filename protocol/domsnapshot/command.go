@@ -7,7 +7,12 @@ import (
 	"log"
 )
 
-const CommandDOMSnapshotDisable = "DOMSnapshot.disable"
+const (
+	CommandDOMSnapshotDisable         = "DOMSnapshot.disable"
+	CommandDOMSnapshotEnable          = "DOMSnapshot.enable"
+	CommandDOMSnapshotGetSnapshot     = "DOMSnapshot.getSnapshot"
+	CommandDOMSnapshotCaptureSnapshot = "DOMSnapshot.captureSnapshot"
+)
 
 // DisableArgs represents the arguments for Disable in the DOMSnapshot domain.
 type DisableArgs struct {
@@ -58,8 +63,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMSnapshotEnable = "DOMSnapshot.enable"
-
 // EnableArgs represents the arguments for Enable in the DOMSnapshot domain.
 type EnableArgs struct {
 }
@@ -108,8 +111,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandDOMSnapshotGetSnapshot = "DOMSnapshot.getSnapshot"
 
 // GetSnapshotArgs represents the arguments for GetSnapshot in the DOMSnapshot domain.
 type GetSnapshotArgs struct {
@@ -166,8 +167,6 @@ func (a *GetSnapshotReply) UnmarshalJSON(b []byte) error {
 	*a = GetSnapshotReply(*c)
 	return nil
 }
-
-const CommandDOMSnapshotCaptureSnapshot = "DOMSnapshot.captureSnapshot"
 
 // CaptureSnapshotArgs represents the arguments for CaptureSnapshot in the DOMSnapshot domain.
 type CaptureSnapshotArgs struct {

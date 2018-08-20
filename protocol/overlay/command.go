@@ -10,7 +10,24 @@ import (
 	"github.com/4ydx/cdp/protocol/dom"
 )
 
-const CommandOverlayDisable = "Overlay.disable"
+const (
+	CommandOverlayDisable                      = "Overlay.disable"
+	CommandOverlayEnable                       = "Overlay.enable"
+	CommandOverlayGetHighlightObjectForTest    = "Overlay.getHighlightObjectForTest"
+	CommandOverlayHideHighlight                = "Overlay.hideHighlight"
+	CommandOverlayHighlightFrame               = "Overlay.highlightFrame"
+	CommandOverlayHighlightNode                = "Overlay.highlightNode"
+	CommandOverlayHighlightQuad                = "Overlay.highlightQuad"
+	CommandOverlayHighlightRect                = "Overlay.highlightRect"
+	CommandOverlaySetInspectMode               = "Overlay.setInspectMode"
+	CommandOverlaySetPausedInDebuggerMessage   = "Overlay.setPausedInDebuggerMessage"
+	CommandOverlaySetShowDebugBorders          = "Overlay.setShowDebugBorders"
+	CommandOverlaySetShowFPSCounter            = "Overlay.setShowFPSCounter"
+	CommandOverlaySetShowPaintRects            = "Overlay.setShowPaintRects"
+	CommandOverlaySetShowScrollBottleneckRects = "Overlay.setShowScrollBottleneckRects"
+	CommandOverlaySetShowViewportSizeOnResize  = "Overlay.setShowViewportSizeOnResize"
+	CommandOverlaySetSuspended                 = "Overlay.setSuspended"
+)
 
 // DisableArgs represents the arguments for Disable in the Overlay domain.
 type DisableArgs struct {
@@ -61,8 +78,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandOverlayEnable = "Overlay.enable"
-
 // EnableArgs represents the arguments for Enable in the Overlay domain.
 type EnableArgs struct {
 }
@@ -111,8 +126,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandOverlayGetHighlightObjectForTest = "Overlay.getHighlightObjectForTest"
 
 // GetHighlightObjectForTestArgs represents the arguments for GetHighlightObjectForTest in the Overlay domain.
 type GetHighlightObjectForTestArgs struct {
@@ -165,8 +178,6 @@ func (a *GetHighlightObjectForTestReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandOverlayHideHighlight = "Overlay.hideHighlight"
-
 // HideHighlightArgs represents the arguments for HideHighlight in the Overlay domain.
 type HideHighlightArgs struct {
 }
@@ -215,8 +226,6 @@ func (a *HideHighlightReply) UnmarshalJSON(b []byte) error {
 	*a = HideHighlightReply(*c)
 	return nil
 }
-
-const CommandOverlayHighlightFrame = "Overlay.highlightFrame"
 
 // HighlightFrameArgs represents the arguments for HighlightFrame in the Overlay domain.
 type HighlightFrameArgs struct {
@@ -269,8 +278,6 @@ func (a *HighlightFrameReply) UnmarshalJSON(b []byte) error {
 	*a = HighlightFrameReply(*c)
 	return nil
 }
-
-const CommandOverlayHighlightNode = "Overlay.highlightNode"
 
 // HighlightNodeArgs represents the arguments for HighlightNode in the Overlay domain.
 type HighlightNodeArgs struct {
@@ -325,8 +332,6 @@ func (a *HighlightNodeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandOverlayHighlightQuad = "Overlay.highlightQuad"
-
 // HighlightQuadArgs represents the arguments for HighlightQuad in the Overlay domain.
 type HighlightQuadArgs struct {
 	Quad         dom.Quad `json:"quad"`                   // Quad to highlight
@@ -378,8 +383,6 @@ func (a *HighlightQuadReply) UnmarshalJSON(b []byte) error {
 	*a = HighlightQuadReply(*c)
 	return nil
 }
-
-const CommandOverlayHighlightRect = "Overlay.highlightRect"
 
 // HighlightRectArgs represents the arguments for HighlightRect in the Overlay domain.
 type HighlightRectArgs struct {
@@ -436,8 +439,6 @@ func (a *HighlightRectReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandOverlaySetInspectMode = "Overlay.setInspectMode"
-
 // SetInspectModeArgs represents the arguments for SetInspectMode in the Overlay domain.
 type SetInspectModeArgs struct {
 	Mode            InspectMode     `json:"mode"`                      // Set an inspection mode.
@@ -489,8 +490,6 @@ func (a *SetInspectModeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandOverlaySetPausedInDebuggerMessage = "Overlay.setPausedInDebuggerMessage"
-
 // SetPausedInDebuggerMessageArgs represents the arguments for SetPausedInDebuggerMessage in the Overlay domain.
 type SetPausedInDebuggerMessageArgs struct {
 	Message string `json:"message,omitempty"` // The message to display, also triggers resume and step over controls.
@@ -540,8 +539,6 @@ func (a *SetPausedInDebuggerMessageReply) UnmarshalJSON(b []byte) error {
 	*a = SetPausedInDebuggerMessageReply(*c)
 	return nil
 }
-
-const CommandOverlaySetShowDebugBorders = "Overlay.setShowDebugBorders"
 
 // SetShowDebugBordersArgs represents the arguments for SetShowDebugBorders in the Overlay domain.
 type SetShowDebugBordersArgs struct {
@@ -593,8 +590,6 @@ func (a *SetShowDebugBordersReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandOverlaySetShowFPSCounter = "Overlay.setShowFPSCounter"
-
 // SetShowFPSCounterArgs represents the arguments for SetShowFPSCounter in the Overlay domain.
 type SetShowFPSCounterArgs struct {
 	Show bool `json:"show"` // True for showing the FPS counter
@@ -644,8 +639,6 @@ func (a *SetShowFPSCounterReply) UnmarshalJSON(b []byte) error {
 	*a = SetShowFPSCounterReply(*c)
 	return nil
 }
-
-const CommandOverlaySetShowPaintRects = "Overlay.setShowPaintRects"
 
 // SetShowPaintRectsArgs represents the arguments for SetShowPaintRects in the Overlay domain.
 type SetShowPaintRectsArgs struct {
@@ -697,8 +690,6 @@ func (a *SetShowPaintRectsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandOverlaySetShowScrollBottleneckRects = "Overlay.setShowScrollBottleneckRects"
-
 // SetShowScrollBottleneckRectsArgs represents the arguments for SetShowScrollBottleneckRects in the Overlay domain.
 type SetShowScrollBottleneckRectsArgs struct {
 	Show bool `json:"show"` // True for showing scroll bottleneck rects
@@ -749,8 +740,6 @@ func (a *SetShowScrollBottleneckRectsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandOverlaySetShowViewportSizeOnResize = "Overlay.setShowViewportSizeOnResize"
-
 // SetShowViewportSizeOnResizeArgs represents the arguments for SetShowViewportSizeOnResize in the Overlay domain.
 type SetShowViewportSizeOnResizeArgs struct {
 	Show bool `json:"show"` // Whether to paint size or not.
@@ -800,8 +789,6 @@ func (a *SetShowViewportSizeOnResizeReply) UnmarshalJSON(b []byte) error {
 	*a = SetShowViewportSizeOnResizeReply(*c)
 	return nil
 }
-
-const CommandOverlaySetSuspended = "Overlay.setSuspended"
 
 // SetSuspendedArgs represents the arguments for SetSuspended in the Overlay domain.
 type SetSuspendedArgs struct {

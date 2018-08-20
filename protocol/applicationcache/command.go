@@ -9,7 +9,12 @@ import (
 	"github.com/4ydx/cdp/protocol"
 )
 
-const CommandApplicationCacheEnable = "ApplicationCache.enable"
+const (
+	CommandApplicationCacheEnable                      = "ApplicationCache.enable"
+	CommandApplicationCacheGetApplicationCacheForFrame = "ApplicationCache.getApplicationCacheForFrame"
+	CommandApplicationCacheGetFramesWithManifests      = "ApplicationCache.getFramesWithManifests"
+	CommandApplicationCacheGetManifestForFrame         = "ApplicationCache.getManifestForFrame"
+)
 
 // EnableArgs represents the arguments for Enable in the ApplicationCache domain.
 type EnableArgs struct {
@@ -59,8 +64,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandApplicationCacheGetApplicationCacheForFrame = "ApplicationCache.getApplicationCacheForFrame"
 
 // GetApplicationCacheForFrameArgs represents the arguments for GetApplicationCacheForFrame in the ApplicationCache domain.
 type GetApplicationCacheForFrameArgs struct {
@@ -113,8 +116,6 @@ func (a *GetApplicationCacheForFrameReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandApplicationCacheGetFramesWithManifests = "ApplicationCache.getFramesWithManifests"
-
 // GetFramesWithManifestsArgs represents the arguments for GetFramesWithManifests in the ApplicationCache domain.
 type GetFramesWithManifestsArgs struct {
 }
@@ -164,8 +165,6 @@ func (a *GetFramesWithManifestsReply) UnmarshalJSON(b []byte) error {
 	*a = GetFramesWithManifestsReply(*c)
 	return nil
 }
-
-const CommandApplicationCacheGetManifestForFrame = "ApplicationCache.getManifestForFrame"
 
 // GetManifestForFrameArgs represents the arguments for GetManifestForFrame in the ApplicationCache domain.
 type GetManifestForFrameArgs struct {

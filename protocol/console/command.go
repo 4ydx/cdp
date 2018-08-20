@@ -7,7 +7,11 @@ import (
 	"log"
 )
 
-const CommandConsoleClearMessages = "Console.clearMessages"
+const (
+	CommandConsoleClearMessages = "Console.clearMessages"
+	CommandConsoleDisable       = "Console.disable"
+	CommandConsoleEnable        = "Console.enable"
+)
 
 // ClearMessagesArgs represents the arguments for ClearMessages in the Console domain.
 type ClearMessagesArgs struct {
@@ -58,8 +62,6 @@ func (a *ClearMessagesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandConsoleDisable = "Console.disable"
-
 // DisableArgs represents the arguments for Disable in the Console domain.
 type DisableArgs struct {
 }
@@ -108,8 +110,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	*a = DisableReply(*c)
 	return nil
 }
-
-const CommandConsoleEnable = "Console.enable"
 
 // EnableArgs represents the arguments for Enable in the Console domain.
 type EnableArgs struct {

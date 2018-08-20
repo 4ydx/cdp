@@ -10,7 +10,17 @@ import (
 	"github.com/4ydx/cdp/protocol/dom"
 )
 
-const CommandDOMDebuggerGetEventListeners = "DOMDebugger.getEventListeners"
+const (
+	CommandDOMDebuggerGetEventListeners               = "DOMDebugger.getEventListeners"
+	CommandDOMDebuggerRemoveDOMBreakpoint             = "DOMDebugger.removeDOMBreakpoint"
+	CommandDOMDebuggerRemoveEventListenerBreakpoint   = "DOMDebugger.removeEventListenerBreakpoint"
+	CommandDOMDebuggerRemoveInstrumentationBreakpoint = "DOMDebugger.removeInstrumentationBreakpoint"
+	CommandDOMDebuggerRemoveXHRBreakpoint             = "DOMDebugger.removeXHRBreakpoint"
+	CommandDOMDebuggerSetDOMBreakpoint                = "DOMDebugger.setDOMBreakpoint"
+	CommandDOMDebuggerSetEventListenerBreakpoint      = "DOMDebugger.setEventListenerBreakpoint"
+	CommandDOMDebuggerSetInstrumentationBreakpoint    = "DOMDebugger.setInstrumentationBreakpoint"
+	CommandDOMDebuggerSetXHRBreakpoint                = "DOMDebugger.setXHRBreakpoint"
+)
 
 // GetEventListenersArgs represents the arguments for GetEventListeners in the DOMDebugger domain.
 type GetEventListenersArgs struct {
@@ -65,8 +75,6 @@ func (a *GetEventListenersReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMDebuggerRemoveDOMBreakpoint = "DOMDebugger.removeDOMBreakpoint"
-
 // RemoveDOMBreakpointArgs represents the arguments for RemoveDOMBreakpoint in the DOMDebugger domain.
 type RemoveDOMBreakpointArgs struct {
 	NodeID dom.NodeID        `json:"nodeId"` // Identifier of the node to remove breakpoint from.
@@ -117,8 +125,6 @@ func (a *RemoveDOMBreakpointReply) UnmarshalJSON(b []byte) error {
 	*a = RemoveDOMBreakpointReply(*c)
 	return nil
 }
-
-const CommandDOMDebuggerRemoveEventListenerBreakpoint = "DOMDebugger.removeEventListenerBreakpoint"
 
 // RemoveEventListenerBreakpointArgs represents the arguments for RemoveEventListenerBreakpoint in the DOMDebugger domain.
 type RemoveEventListenerBreakpointArgs struct {
@@ -174,8 +180,6 @@ func (a *RemoveEventListenerBreakpointReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMDebuggerRemoveInstrumentationBreakpoint = "DOMDebugger.removeInstrumentationBreakpoint"
-
 // RemoveInstrumentationBreakpointArgs represents the arguments for RemoveInstrumentationBreakpoint in the DOMDebugger domain.
 type RemoveInstrumentationBreakpointArgs struct {
 	EventName string `json:"eventName"` // Instrumentation name to stop on.
@@ -225,8 +229,6 @@ func (a *RemoveInstrumentationBreakpointReply) UnmarshalJSON(b []byte) error {
 	*a = RemoveInstrumentationBreakpointReply(*c)
 	return nil
 }
-
-const CommandDOMDebuggerRemoveXHRBreakpoint = "DOMDebugger.removeXHRBreakpoint"
 
 // RemoveXHRBreakpointArgs represents the arguments for RemoveXHRBreakpoint in the DOMDebugger domain.
 type RemoveXHRBreakpointArgs struct {
@@ -278,8 +280,6 @@ func (a *RemoveXHRBreakpointReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMDebuggerSetDOMBreakpoint = "DOMDebugger.setDOMBreakpoint"
-
 // SetDOMBreakpointArgs represents the arguments for SetDOMBreakpoint in the DOMDebugger domain.
 type SetDOMBreakpointArgs struct {
 	NodeID dom.NodeID        `json:"nodeId"` // Identifier of the node to set breakpoint on.
@@ -330,8 +330,6 @@ func (a *SetDOMBreakpointReply) UnmarshalJSON(b []byte) error {
 	*a = SetDOMBreakpointReply(*c)
 	return nil
 }
-
-const CommandDOMDebuggerSetEventListenerBreakpoint = "DOMDebugger.setEventListenerBreakpoint"
 
 // SetEventListenerBreakpointArgs represents the arguments for SetEventListenerBreakpoint in the DOMDebugger domain.
 type SetEventListenerBreakpointArgs struct {
@@ -388,8 +386,6 @@ func (a *SetEventListenerBreakpointReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMDebuggerSetInstrumentationBreakpoint = "DOMDebugger.setInstrumentationBreakpoint"
-
 // SetInstrumentationBreakpointArgs represents the arguments for SetInstrumentationBreakpoint in the DOMDebugger domain.
 type SetInstrumentationBreakpointArgs struct {
 	EventName string `json:"eventName"` // Instrumentation name to stop on.
@@ -439,8 +435,6 @@ func (a *SetInstrumentationBreakpointReply) UnmarshalJSON(b []byte) error {
 	*a = SetInstrumentationBreakpointReply(*c)
 	return nil
 }
-
-const CommandDOMDebuggerSetXHRBreakpoint = "DOMDebugger.setXHRBreakpoint"
 
 // SetXHRBreakpointArgs represents the arguments for SetXHRBreakpoint in the DOMDebugger domain.
 type SetXHRBreakpointArgs struct {

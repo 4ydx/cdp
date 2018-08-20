@@ -6,7 +6,26 @@ import (
 	"encoding/json"
 )
 
-const EventCSSFontsUpdated = "CSS.fontsUpdated"
+const (
+	EventCSSFontsUpdated            = "CSS.fontsUpdated"
+	EventCSSMediaQueryResultChanged = "CSS.mediaQueryResultChanged"
+	EventCSSStyleSheetAdded         = "CSS.styleSheetAdded"
+	EventCSSStyleSheetChanged       = "CSS.styleSheetChanged"
+	EventCSSStyleSheetRemoved       = "CSS.styleSheetRemoved"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventCSSFontsUpdated:            &FontsUpdatedReply{},
+	EventCSSMediaQueryResultChanged: &MediaQueryResultChangedReply{},
+	EventCSSStyleSheetAdded:         &StyleSheetAddedReply{},
+	EventCSSStyleSheetChanged:       &StyleSheetChangedReply{},
+	EventCSSStyleSheetRemoved:       &StyleSheetRemovedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // FontsUpdatedReply is the reply for FontsUpdated events.
 type FontsUpdatedReply struct {
@@ -25,8 +44,6 @@ func (a *FontsUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventCSSMediaQueryResultChanged = "CSS.mediaQueryResultChanged"
-
 // MediaQueryResultChangedReply is the reply for MediaQueryResultChanged events.
 type MediaQueryResultChangedReply struct {
 }
@@ -42,8 +59,6 @@ func (a *MediaQueryResultChangedReply) UnmarshalJSON(b []byte) error {
 	*a = MediaQueryResultChangedReply(*c)
 	return nil
 }
-
-const EventCSSStyleSheetAdded = "CSS.styleSheetAdded"
 
 // StyleSheetAddedReply is the reply for StyleSheetAdded events.
 type StyleSheetAddedReply struct {
@@ -62,8 +77,6 @@ func (a *StyleSheetAddedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventCSSStyleSheetChanged = "CSS.styleSheetChanged"
-
 // StyleSheetChangedReply is the reply for StyleSheetChanged events.
 type StyleSheetChangedReply struct {
 	StyleSheetID StyleSheetID `json:"styleSheetId"` // No description.
@@ -80,8 +93,6 @@ func (a *StyleSheetChangedReply) UnmarshalJSON(b []byte) error {
 	*a = StyleSheetChangedReply(*c)
 	return nil
 }
-
-const EventCSSStyleSheetRemoved = "CSS.styleSheetRemoved"
 
 // StyleSheetRemovedReply is the reply for StyleSheetRemoved events.
 type StyleSheetRemovedReply struct {

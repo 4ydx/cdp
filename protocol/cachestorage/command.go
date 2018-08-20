@@ -7,7 +7,13 @@ import (
 	"log"
 )
 
-const CommandCacheStorageDeleteCache = "CacheStorage.deleteCache"
+const (
+	CommandCacheStorageDeleteCache           = "CacheStorage.deleteCache"
+	CommandCacheStorageDeleteEntry           = "CacheStorage.deleteEntry"
+	CommandCacheStorageRequestCacheNames     = "CacheStorage.requestCacheNames"
+	CommandCacheStorageRequestCachedResponse = "CacheStorage.requestCachedResponse"
+	CommandCacheStorageRequestEntries        = "CacheStorage.requestEntries"
+)
 
 // DeleteCacheArgs represents the arguments for DeleteCache in the CacheStorage domain.
 type DeleteCacheArgs struct {
@@ -58,8 +64,6 @@ func (a *DeleteCacheReply) UnmarshalJSON(b []byte) error {
 	*a = DeleteCacheReply(*c)
 	return nil
 }
-
-const CommandCacheStorageDeleteEntry = "CacheStorage.deleteEntry"
 
 // DeleteEntryArgs represents the arguments for DeleteEntry in the CacheStorage domain.
 type DeleteEntryArgs struct {
@@ -112,8 +116,6 @@ func (a *DeleteEntryReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandCacheStorageRequestCacheNames = "CacheStorage.requestCacheNames"
-
 // RequestCacheNamesArgs represents the arguments for RequestCacheNames in the CacheStorage domain.
 type RequestCacheNamesArgs struct {
 	SecurityOrigin string `json:"securityOrigin"` // Security origin.
@@ -164,8 +166,6 @@ func (a *RequestCacheNamesReply) UnmarshalJSON(b []byte) error {
 	*a = RequestCacheNamesReply(*c)
 	return nil
 }
-
-const CommandCacheStorageRequestCachedResponse = "CacheStorage.requestCachedResponse"
 
 // RequestCachedResponseArgs represents the arguments for RequestCachedResponse in the CacheStorage domain.
 type RequestCachedResponseArgs struct {
@@ -218,8 +218,6 @@ func (a *RequestCachedResponseReply) UnmarshalJSON(b []byte) error {
 	*a = RequestCachedResponseReply(*c)
 	return nil
 }
-
-const CommandCacheStorageRequestEntries = "CacheStorage.requestEntries"
 
 // RequestEntriesArgs represents the arguments for RequestEntries in the CacheStorage domain.
 type RequestEntriesArgs struct {

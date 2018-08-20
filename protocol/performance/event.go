@@ -6,7 +6,18 @@ import (
 	"encoding/json"
 )
 
-const EventPerformanceMetrics = "Performance.metrics"
+const (
+	EventPerformanceMetrics = "Performance.metrics"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventPerformanceMetrics: &MetricsReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // MetricsReply is the reply for Metrics events.
 type MetricsReply struct {

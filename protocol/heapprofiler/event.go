@@ -6,7 +6,26 @@ import (
 	"encoding/json"
 )
 
-const EventHeapProfilerAddHeapSnapshotChunk = "HeapProfiler.addHeapSnapshotChunk"
+const (
+	EventHeapProfilerAddHeapSnapshotChunk       = "HeapProfiler.addHeapSnapshotChunk"
+	EventHeapProfilerHeapStatsUpdate            = "HeapProfiler.heapStatsUpdate"
+	EventHeapProfilerLastSeenObjectId           = "HeapProfiler.lastSeenObjectId"
+	EventHeapProfilerReportHeapSnapshotProgress = "HeapProfiler.reportHeapSnapshotProgress"
+	EventHeapProfilerResetProfiles              = "HeapProfiler.resetProfiles"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventHeapProfilerAddHeapSnapshotChunk:       &AddHeapSnapshotChunkReply{},
+	EventHeapProfilerHeapStatsUpdate:            &HeapStatsUpdateReply{},
+	EventHeapProfilerLastSeenObjectId:           &LastSeenObjectIDReply{},
+	EventHeapProfilerReportHeapSnapshotProgress: &ReportHeapSnapshotProgressReply{},
+	EventHeapProfilerResetProfiles:              &ResetProfilesReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // AddHeapSnapshotChunkReply is the reply for AddHeapSnapshotChunk events.
 type AddHeapSnapshotChunkReply struct {
@@ -25,8 +44,6 @@ func (a *AddHeapSnapshotChunkReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventHeapProfilerHeapStatsUpdate = "HeapProfiler.heapStatsUpdate"
-
 // HeapStatsUpdateReply is the reply for HeapStatsUpdate events.
 type HeapStatsUpdateReply struct {
 	StatsUpdate []int `json:"statsUpdate"` // An array of triplets. Each triplet describes a fragment. The first integer is the fragment index, the second integer is a total count of objects for the fragment, the third integer is a total size of the objects for the fragment.
@@ -43,8 +60,6 @@ func (a *HeapStatsUpdateReply) UnmarshalJSON(b []byte) error {
 	*a = HeapStatsUpdateReply(*c)
 	return nil
 }
-
-const EventHeapProfilerLastSeenObjectId = "HeapProfiler.lastSeenObjectId"
 
 // LastSeenObjectIDReply is the reply for LastSeenObjectID events.
 type LastSeenObjectIDReply struct {
@@ -64,8 +79,6 @@ func (a *LastSeenObjectIDReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventHeapProfilerReportHeapSnapshotProgress = "HeapProfiler.reportHeapSnapshotProgress"
-
 // ReportHeapSnapshotProgressReply is the reply for ReportHeapSnapshotProgress events.
 type ReportHeapSnapshotProgressReply struct {
 	Done     int  `json:"done"`               // No description.
@@ -84,8 +97,6 @@ func (a *ReportHeapSnapshotProgressReply) UnmarshalJSON(b []byte) error {
 	*a = ReportHeapSnapshotProgressReply(*c)
 	return nil
 }
-
-const EventHeapProfilerResetProfiles = "HeapProfiler.resetProfiles"
 
 // ResetProfilesReply is the reply for ResetProfiles events.
 type ResetProfilesReply struct {

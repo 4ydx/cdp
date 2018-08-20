@@ -7,7 +7,17 @@ import (
 	"log"
 )
 
-const CommandMemoryGetDOMCounters = "Memory.getDOMCounters"
+const (
+	CommandMemoryGetDOMCounters                     = "Memory.getDOMCounters"
+	CommandMemoryPrepareForLeakDetection            = "Memory.prepareForLeakDetection"
+	CommandMemorySetPressureNotificationsSuppressed = "Memory.setPressureNotificationsSuppressed"
+	CommandMemorySimulatePressureNotification       = "Memory.simulatePressureNotification"
+	CommandMemoryStartSampling                      = "Memory.startSampling"
+	CommandMemoryStopSampling                       = "Memory.stopSampling"
+	CommandMemoryGetAllTimeSamplingProfile          = "Memory.getAllTimeSamplingProfile"
+	CommandMemoryGetBrowserSamplingProfile          = "Memory.getBrowserSamplingProfile"
+	CommandMemoryGetSamplingProfile                 = "Memory.getSamplingProfile"
+)
 
 // GetDOMCountersArgs represents the arguments for GetDOMCounters in the Memory domain.
 type GetDOMCountersArgs struct {
@@ -61,8 +71,6 @@ func (a *GetDOMCountersReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandMemoryPrepareForLeakDetection = "Memory.prepareForLeakDetection"
-
 // PrepareForLeakDetectionArgs represents the arguments for PrepareForLeakDetection in the Memory domain.
 type PrepareForLeakDetectionArgs struct {
 }
@@ -111,8 +119,6 @@ func (a *PrepareForLeakDetectionReply) UnmarshalJSON(b []byte) error {
 	*a = PrepareForLeakDetectionReply(*c)
 	return nil
 }
-
-const CommandMemorySetPressureNotificationsSuppressed = "Memory.setPressureNotificationsSuppressed"
 
 // SetPressureNotificationsSuppressedArgs represents the arguments for SetPressureNotificationsSuppressed in the Memory domain.
 type SetPressureNotificationsSuppressedArgs struct {
@@ -164,8 +170,6 @@ func (a *SetPressureNotificationsSuppressedReply) UnmarshalJSON(b []byte) error 
 	return nil
 }
 
-const CommandMemorySimulatePressureNotification = "Memory.simulatePressureNotification"
-
 // SimulatePressureNotificationArgs represents the arguments for SimulatePressureNotification in the Memory domain.
 type SimulatePressureNotificationArgs struct {
 	Level PressureLevel `json:"level"` // Memory pressure level of the notification.
@@ -215,8 +219,6 @@ func (a *SimulatePressureNotificationReply) UnmarshalJSON(b []byte) error {
 	*a = SimulatePressureNotificationReply(*c)
 	return nil
 }
-
-const CommandMemoryStartSampling = "Memory.startSampling"
 
 // StartSamplingArgs represents the arguments for StartSampling in the Memory domain.
 type StartSamplingArgs struct {
@@ -269,8 +271,6 @@ func (a *StartSamplingReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandMemoryStopSampling = "Memory.stopSampling"
-
 // StopSamplingArgs represents the arguments for StopSampling in the Memory domain.
 type StopSamplingArgs struct {
 }
@@ -319,8 +319,6 @@ func (a *StopSamplingReply) UnmarshalJSON(b []byte) error {
 	*a = StopSamplingReply(*c)
 	return nil
 }
-
-const CommandMemoryGetAllTimeSamplingProfile = "Memory.getAllTimeSamplingProfile"
 
 // GetAllTimeSamplingProfileArgs represents the arguments for GetAllTimeSamplingProfile in the Memory domain.
 type GetAllTimeSamplingProfileArgs struct {
@@ -372,8 +370,6 @@ func (a *GetAllTimeSamplingProfileReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandMemoryGetBrowserSamplingProfile = "Memory.getBrowserSamplingProfile"
-
 // GetBrowserSamplingProfileArgs represents the arguments for GetBrowserSamplingProfile in the Memory domain.
 type GetBrowserSamplingProfileArgs struct {
 }
@@ -423,8 +419,6 @@ func (a *GetBrowserSamplingProfileReply) UnmarshalJSON(b []byte) error {
 	*a = GetBrowserSamplingProfileReply(*c)
 	return nil
 }
-
-const CommandMemoryGetSamplingProfile = "Memory.getSamplingProfile"
 
 // GetSamplingProfileArgs represents the arguments for GetSamplingProfile in the Memory domain.
 type GetSamplingProfileArgs struct {

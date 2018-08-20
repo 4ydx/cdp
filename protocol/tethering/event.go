@@ -6,7 +6,18 @@ import (
 	"encoding/json"
 )
 
-const EventTetheringAccepted = "Tethering.accepted"
+const (
+	EventTetheringAccepted = "Tethering.accepted"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventTetheringAccepted: &AcceptedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // AcceptedReply is the reply for Accepted events.
 type AcceptedReply struct {

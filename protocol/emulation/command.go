@@ -11,7 +11,27 @@ import (
 	"github.com/4ydx/cdp/protocol/page"
 )
 
-const CommandEmulationCanEmulate = "Emulation.canEmulate"
+const (
+	CommandEmulationCanEmulate                        = "Emulation.canEmulate"
+	CommandEmulationClearDeviceMetricsOverride        = "Emulation.clearDeviceMetricsOverride"
+	CommandEmulationClearGeolocationOverride          = "Emulation.clearGeolocationOverride"
+	CommandEmulationResetPageScaleFactor              = "Emulation.resetPageScaleFactor"
+	CommandEmulationSetCPUThrottlingRate              = "Emulation.setCPUThrottlingRate"
+	CommandEmulationSetDefaultBackgroundColorOverride = "Emulation.setDefaultBackgroundColorOverride"
+	CommandEmulationSetDeviceMetricsOverride          = "Emulation.setDeviceMetricsOverride"
+	CommandEmulationSetScrollbarsHidden               = "Emulation.setScrollbarsHidden"
+	CommandEmulationSetDocumentCookieDisabled         = "Emulation.setDocumentCookieDisabled"
+	CommandEmulationSetEmitTouchEventsForMouse        = "Emulation.setEmitTouchEventsForMouse"
+	CommandEmulationSetEmulatedMedia                  = "Emulation.setEmulatedMedia"
+	CommandEmulationSetGeolocationOverride            = "Emulation.setGeolocationOverride"
+	CommandEmulationSetNavigatorOverrides             = "Emulation.setNavigatorOverrides"
+	CommandEmulationSetPageScaleFactor                = "Emulation.setPageScaleFactor"
+	CommandEmulationSetScriptExecutionDisabled        = "Emulation.setScriptExecutionDisabled"
+	CommandEmulationSetTouchEmulationEnabled          = "Emulation.setTouchEmulationEnabled"
+	CommandEmulationSetVirtualTimePolicy              = "Emulation.setVirtualTimePolicy"
+	CommandEmulationSetVisibleSize                    = "Emulation.setVisibleSize"
+	CommandEmulationSetUserAgentOverride              = "Emulation.setUserAgentOverride"
+)
 
 // CanEmulateArgs represents the arguments for CanEmulate in the Emulation domain.
 type CanEmulateArgs struct {
@@ -63,8 +83,6 @@ func (a *CanEmulateReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandEmulationClearDeviceMetricsOverride = "Emulation.clearDeviceMetricsOverride"
-
 // ClearDeviceMetricsOverrideArgs represents the arguments for ClearDeviceMetricsOverride in the Emulation domain.
 type ClearDeviceMetricsOverrideArgs struct {
 }
@@ -113,8 +131,6 @@ func (a *ClearDeviceMetricsOverrideReply) UnmarshalJSON(b []byte) error {
 	*a = ClearDeviceMetricsOverrideReply(*c)
 	return nil
 }
-
-const CommandEmulationClearGeolocationOverride = "Emulation.clearGeolocationOverride"
 
 // ClearGeolocationOverrideArgs represents the arguments for ClearGeolocationOverride in the Emulation domain.
 type ClearGeolocationOverrideArgs struct {
@@ -165,8 +181,6 @@ func (a *ClearGeolocationOverrideReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandEmulationResetPageScaleFactor = "Emulation.resetPageScaleFactor"
-
 // ResetPageScaleFactorArgs represents the arguments for ResetPageScaleFactor in the Emulation domain.
 type ResetPageScaleFactorArgs struct {
 }
@@ -215,8 +229,6 @@ func (a *ResetPageScaleFactorReply) UnmarshalJSON(b []byte) error {
 	*a = ResetPageScaleFactorReply(*c)
 	return nil
 }
-
-const CommandEmulationSetCPUThrottlingRate = "Emulation.setCPUThrottlingRate"
 
 // SetCPUThrottlingRateArgs represents the arguments for SetCPUThrottlingRate in the Emulation domain.
 type SetCPUThrottlingRateArgs struct {
@@ -268,8 +280,6 @@ func (a *SetCPUThrottlingRateReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandEmulationSetDefaultBackgroundColorOverride = "Emulation.setDefaultBackgroundColorOverride"
-
 // SetDefaultBackgroundColorOverrideArgs represents the arguments for SetDefaultBackgroundColorOverride in the Emulation domain.
 type SetDefaultBackgroundColorOverrideArgs struct {
 	Color dom.RGBA `json:"color,omitempty"` // RGBA of the default background color. If not specified, any existing override will be cleared.
@@ -319,8 +329,6 @@ func (a *SetDefaultBackgroundColorOverrideReply) UnmarshalJSON(b []byte) error {
 	*a = SetDefaultBackgroundColorOverrideReply(*c)
 	return nil
 }
-
-const CommandEmulationSetDeviceMetricsOverride = "Emulation.setDeviceMetricsOverride"
 
 // SetDeviceMetricsOverrideArgs represents the arguments for SetDeviceMetricsOverride in the Emulation domain.
 type SetDeviceMetricsOverrideArgs struct {
@@ -411,8 +419,6 @@ func (a *SetDeviceMetricsOverrideReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandEmulationSetScrollbarsHidden = "Emulation.setScrollbarsHidden"
-
 // SetScrollbarsHiddenArgs represents the arguments for SetScrollbarsHidden in the Emulation domain.
 type SetScrollbarsHiddenArgs struct {
 	Hidden bool `json:"hidden"` // Whether scrollbars should be always hidden.
@@ -463,8 +469,6 @@ func (a *SetScrollbarsHiddenReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandEmulationSetDocumentCookieDisabled = "Emulation.setDocumentCookieDisabled"
-
 // SetDocumentCookieDisabledArgs represents the arguments for SetDocumentCookieDisabled in the Emulation domain.
 type SetDocumentCookieDisabledArgs struct {
 	Disabled bool `json:"disabled"` // Whether document.coookie API should be disabled.
@@ -514,8 +518,6 @@ func (a *SetDocumentCookieDisabledReply) UnmarshalJSON(b []byte) error {
 	*a = SetDocumentCookieDisabledReply(*c)
 	return nil
 }
-
-const CommandEmulationSetEmitTouchEventsForMouse = "Emulation.setEmitTouchEventsForMouse"
 
 // SetEmitTouchEventsForMouseArgs represents the arguments for SetEmitTouchEventsForMouse in the Emulation domain.
 type SetEmitTouchEventsForMouseArgs struct {
@@ -572,8 +574,6 @@ func (a *SetEmitTouchEventsForMouseReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandEmulationSetEmulatedMedia = "Emulation.setEmulatedMedia"
-
 // SetEmulatedMediaArgs represents the arguments for SetEmulatedMedia in the Emulation domain.
 type SetEmulatedMediaArgs struct {
 	Media string `json:"media"` // Media type to emulate. Empty string disables the override.
@@ -623,8 +623,6 @@ func (a *SetEmulatedMediaReply) UnmarshalJSON(b []byte) error {
 	*a = SetEmulatedMediaReply(*c)
 	return nil
 }
-
-const CommandEmulationSetGeolocationOverride = "Emulation.setGeolocationOverride"
 
 // SetGeolocationOverrideArgs represents the arguments for SetGeolocationOverride in the Emulation domain.
 type SetGeolocationOverrideArgs struct {
@@ -678,8 +676,6 @@ func (a *SetGeolocationOverrideReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandEmulationSetNavigatorOverrides = "Emulation.setNavigatorOverrides"
-
 // SetNavigatorOverridesArgs represents the arguments for SetNavigatorOverrides in the Emulation domain.
 type SetNavigatorOverridesArgs struct {
 	Platform string `json:"platform"` // The platform navigator.platform should return.
@@ -729,8 +725,6 @@ func (a *SetNavigatorOverridesReply) UnmarshalJSON(b []byte) error {
 	*a = SetNavigatorOverridesReply(*c)
 	return nil
 }
-
-const CommandEmulationSetPageScaleFactor = "Emulation.setPageScaleFactor"
 
 // SetPageScaleFactorArgs represents the arguments for SetPageScaleFactor in the Emulation domain.
 type SetPageScaleFactorArgs struct {
@@ -782,8 +776,6 @@ func (a *SetPageScaleFactorReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandEmulationSetScriptExecutionDisabled = "Emulation.setScriptExecutionDisabled"
-
 // SetScriptExecutionDisabledArgs represents the arguments for SetScriptExecutionDisabled in the Emulation domain.
 type SetScriptExecutionDisabledArgs struct {
 	Value bool `json:"value"` // Whether script execution should be disabled in the page.
@@ -833,8 +825,6 @@ func (a *SetScriptExecutionDisabledReply) UnmarshalJSON(b []byte) error {
 	*a = SetScriptExecutionDisabledReply(*c)
 	return nil
 }
-
-const CommandEmulationSetTouchEmulationEnabled = "Emulation.setTouchEmulationEnabled"
 
 // SetTouchEmulationEnabledArgs represents the arguments for SetTouchEmulationEnabled in the Emulation domain.
 type SetTouchEmulationEnabledArgs struct {
@@ -886,8 +876,6 @@ func (a *SetTouchEmulationEnabledReply) UnmarshalJSON(b []byte) error {
 	*a = SetTouchEmulationEnabledReply(*c)
 	return nil
 }
-
-const CommandEmulationSetVirtualTimePolicy = "Emulation.setVirtualTimePolicy"
 
 // SetVirtualTimePolicyArgs represents the arguments for SetVirtualTimePolicy in the Emulation domain.
 type SetVirtualTimePolicyArgs struct {
@@ -944,8 +932,6 @@ func (a *SetVirtualTimePolicyReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandEmulationSetVisibleSize = "Emulation.setVisibleSize"
-
 // SetVisibleSizeArgs represents the arguments for SetVisibleSize in the Emulation domain.
 type SetVisibleSizeArgs struct {
 	Width  int `json:"width"`  // Frame width (DIP).
@@ -996,8 +982,6 @@ func (a *SetVisibleSizeReply) UnmarshalJSON(b []byte) error {
 	*a = SetVisibleSizeReply(*c)
 	return nil
 }
-
-const CommandEmulationSetUserAgentOverride = "Emulation.setUserAgentOverride"
 
 // SetUserAgentOverrideArgs represents the arguments for SetUserAgentOverride in the Emulation domain.
 type SetUserAgentOverrideArgs struct {

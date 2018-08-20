@@ -7,7 +7,14 @@ import (
 	"log"
 )
 
-const CommandDOMStorageClear = "DOMStorage.clear"
+const (
+	CommandDOMStorageClear                = "DOMStorage.clear"
+	CommandDOMStorageDisable              = "DOMStorage.disable"
+	CommandDOMStorageEnable               = "DOMStorage.enable"
+	CommandDOMStorageGetDOMStorageItems   = "DOMStorage.getDOMStorageItems"
+	CommandDOMStorageRemoveDOMStorageItem = "DOMStorage.removeDOMStorageItem"
+	CommandDOMStorageSetDOMStorageItem    = "DOMStorage.setDOMStorageItem"
+)
 
 // ClearArgs represents the arguments for Clear in the DOMStorage domain.
 type ClearArgs struct {
@@ -59,8 +66,6 @@ func (a *ClearReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMStorageDisable = "DOMStorage.disable"
-
 // DisableArgs represents the arguments for Disable in the DOMStorage domain.
 type DisableArgs struct {
 }
@@ -110,8 +115,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMStorageEnable = "DOMStorage.enable"
-
 // EnableArgs represents the arguments for Enable in the DOMStorage domain.
 type EnableArgs struct {
 }
@@ -160,8 +163,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandDOMStorageGetDOMStorageItems = "DOMStorage.getDOMStorageItems"
 
 // GetDOMStorageItemsArgs represents the arguments for GetDOMStorageItems in the DOMStorage domain.
 type GetDOMStorageItemsArgs struct {
@@ -214,8 +215,6 @@ func (a *GetDOMStorageItemsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDOMStorageRemoveDOMStorageItem = "DOMStorage.removeDOMStorageItem"
-
 // RemoveDOMStorageItemArgs represents the arguments for RemoveDOMStorageItem in the DOMStorage domain.
 type RemoveDOMStorageItemArgs struct {
 	StorageID StorageID `json:"storageId"` // No description.
@@ -266,8 +265,6 @@ func (a *RemoveDOMStorageItemReply) UnmarshalJSON(b []byte) error {
 	*a = RemoveDOMStorageItemReply(*c)
 	return nil
 }
-
-const CommandDOMStorageSetDOMStorageItem = "DOMStorage.setDOMStorageItem"
 
 // SetDOMStorageItemArgs represents the arguments for SetDOMStorageItem in the DOMStorage domain.
 type SetDOMStorageItemArgs struct {

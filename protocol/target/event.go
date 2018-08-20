@@ -6,7 +6,30 @@ import (
 	"encoding/json"
 )
 
-const EventTargetAttachedToTarget = "Target.attachedToTarget"
+const (
+	EventTargetAttachedToTarget          = "Target.attachedToTarget"
+	EventTargetDetachedFromTarget        = "Target.detachedFromTarget"
+	EventTargetReceivedMessageFromTarget = "Target.receivedMessageFromTarget"
+	EventTargetTargetCreated             = "Target.targetCreated"
+	EventTargetTargetDestroyed           = "Target.targetDestroyed"
+	EventTargetTargetCrashed             = "Target.targetCrashed"
+	EventTargetTargetInfoChanged         = "Target.targetInfoChanged"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventTargetAttachedToTarget:          &AttachedToTargetReply{},
+	EventTargetDetachedFromTarget:        &DetachedFromTargetReply{},
+	EventTargetReceivedMessageFromTarget: &ReceivedMessageFromTargetReply{},
+	EventTargetTargetCreated:             &CreatedReply{},
+	EventTargetTargetDestroyed:           &DestroyedReply{},
+	EventTargetTargetCrashed:             &CrashedReply{},
+	EventTargetTargetInfoChanged:         &InfoChangedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // AttachedToTargetReply is the reply for AttachedToTarget events.
 type AttachedToTargetReply struct {
@@ -26,8 +49,6 @@ func (a *AttachedToTargetReply) UnmarshalJSON(b []byte) error {
 	*a = AttachedToTargetReply(*c)
 	return nil
 }
-
-const EventTargetDetachedFromTarget = "Target.detachedFromTarget"
 
 // DetachedFromTargetReply is the reply for DetachedFromTarget events.
 type DetachedFromTargetReply struct {
@@ -49,8 +70,6 @@ func (a *DetachedFromTargetReply) UnmarshalJSON(b []byte) error {
 	*a = DetachedFromTargetReply(*c)
 	return nil
 }
-
-const EventTargetReceivedMessageFromTarget = "Target.receivedMessageFromTarget"
 
 // ReceivedMessageFromTargetReply is the reply for ReceivedMessageFromTarget events.
 type ReceivedMessageFromTargetReply struct {
@@ -74,8 +93,6 @@ func (a *ReceivedMessageFromTargetReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventTargetTargetCreated = "Target.targetCreated"
-
 // CreatedReply is the reply for TargetCreated events.
 type CreatedReply struct {
 	TargetInfo Info `json:"targetInfo"` // No description.
@@ -93,8 +110,6 @@ func (a *CreatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventTargetTargetDestroyed = "Target.targetDestroyed"
-
 // DestroyedReply is the reply for TargetDestroyed events.
 type DestroyedReply struct {
 	TargetID ID `json:"targetId"` // No description.
@@ -111,8 +126,6 @@ func (a *DestroyedReply) UnmarshalJSON(b []byte) error {
 	*a = DestroyedReply(*c)
 	return nil
 }
-
-const EventTargetTargetCrashed = "Target.targetCrashed"
 
 // CrashedReply is the reply for TargetCrashed events.
 type CrashedReply struct {
@@ -132,8 +145,6 @@ func (a *CrashedReply) UnmarshalJSON(b []byte) error {
 	*a = CrashedReply(*c)
 	return nil
 }
-
-const EventTargetTargetInfoChanged = "Target.targetInfoChanged"
 
 // InfoChangedReply is the reply for TargetInfoChanged events.
 type InfoChangedReply struct {

@@ -13,7 +13,53 @@ import (
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
-const CommandPageAddScriptToEvaluateOnLoad = "Page.addScriptToEvaluateOnLoad"
+const (
+	CommandPageAddScriptToEvaluateOnLoad           = "Page.addScriptToEvaluateOnLoad"
+	CommandPageAddScriptToEvaluateOnNewDocument    = "Page.addScriptToEvaluateOnNewDocument"
+	CommandPageBringToFront                        = "Page.bringToFront"
+	CommandPageCaptureScreenshot                   = "Page.captureScreenshot"
+	CommandPageClearDeviceMetricsOverride          = "Page.clearDeviceMetricsOverride"
+	CommandPageClearDeviceOrientationOverride      = "Page.clearDeviceOrientationOverride"
+	CommandPageClearGeolocationOverride            = "Page.clearGeolocationOverride"
+	CommandPageCreateIsolatedWorld                 = "Page.createIsolatedWorld"
+	CommandPageDeleteCookie                        = "Page.deleteCookie"
+	CommandPageDisable                             = "Page.disable"
+	CommandPageEnable                              = "Page.enable"
+	CommandPageGetAppManifest                      = "Page.getAppManifest"
+	CommandPageGetCookies                          = "Page.getCookies"
+	CommandPageGetFrameTree                        = "Page.getFrameTree"
+	CommandPageGetLayoutMetrics                    = "Page.getLayoutMetrics"
+	CommandPageGetNavigationHistory                = "Page.getNavigationHistory"
+	CommandPageGetResourceContent                  = "Page.getResourceContent"
+	CommandPageGetResourceTree                     = "Page.getResourceTree"
+	CommandPageHandleJavaScriptDialog              = "Page.handleJavaScriptDialog"
+	CommandPageNavigate                            = "Page.navigate"
+	CommandPageNavigateToHistoryEntry              = "Page.navigateToHistoryEntry"
+	CommandPagePrintToPDF                          = "Page.printToPDF"
+	CommandPageReload                              = "Page.reload"
+	CommandPageRemoveScriptToEvaluateOnLoad        = "Page.removeScriptToEvaluateOnLoad"
+	CommandPageRemoveScriptToEvaluateOnNewDocument = "Page.removeScriptToEvaluateOnNewDocument"
+	CommandPageRequestAppBanner                    = "Page.requestAppBanner"
+	CommandPageScreencastFrameAck                  = "Page.screencastFrameAck"
+	CommandPageSearchInResource                    = "Page.searchInResource"
+	CommandPageSetAdBlockingEnabled                = "Page.setAdBlockingEnabled"
+	CommandPageSetBypassCSP                        = "Page.setBypassCSP"
+	CommandPageSetDeviceMetricsOverride            = "Page.setDeviceMetricsOverride"
+	CommandPageSetDeviceOrientationOverride        = "Page.setDeviceOrientationOverride"
+	CommandPageSetFontFamilies                     = "Page.setFontFamilies"
+	CommandPageSetFontSizes                        = "Page.setFontSizes"
+	CommandPageSetDocumentContent                  = "Page.setDocumentContent"
+	CommandPageSetDownloadBehavior                 = "Page.setDownloadBehavior"
+	CommandPageSetGeolocationOverride              = "Page.setGeolocationOverride"
+	CommandPageSetLifecycleEventsEnabled           = "Page.setLifecycleEventsEnabled"
+	CommandPageSetTouchEmulationEnabled            = "Page.setTouchEmulationEnabled"
+	CommandPageStartScreencast                     = "Page.startScreencast"
+	CommandPageStopLoading                         = "Page.stopLoading"
+	CommandPageCrash                               = "Page.crash"
+	CommandPageClose                               = "Page.close"
+	CommandPageSetWebLifecycleState                = "Page.setWebLifecycleState"
+	CommandPageStopScreencast                      = "Page.stopScreencast"
+)
 
 // AddScriptToEvaluateOnLoadArgs represents the arguments for AddScriptToEvaluateOnLoad in the Page domain.
 type AddScriptToEvaluateOnLoadArgs struct {
@@ -66,8 +112,6 @@ func (a *AddScriptToEvaluateOnLoadReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageAddScriptToEvaluateOnNewDocument = "Page.addScriptToEvaluateOnNewDocument"
-
 // AddScriptToEvaluateOnNewDocumentArgs represents the arguments for AddScriptToEvaluateOnNewDocument in the Page domain.
 type AddScriptToEvaluateOnNewDocumentArgs struct {
 	Source string `json:"source"` // No description.
@@ -119,8 +163,6 @@ func (a *AddScriptToEvaluateOnNewDocumentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageBringToFront = "Page.bringToFront"
-
 // BringToFrontArgs represents the arguments for BringToFront in the Page domain.
 type BringToFrontArgs struct {
 }
@@ -169,8 +211,6 @@ func (a *BringToFrontReply) UnmarshalJSON(b []byte) error {
 	*a = BringToFrontReply(*c)
 	return nil
 }
-
-const CommandPageCaptureScreenshot = "Page.captureScreenshot"
 
 // CaptureScreenshotArgs represents the arguments for CaptureScreenshot in the Page domain.
 type CaptureScreenshotArgs struct {
@@ -233,8 +273,6 @@ func (a *CaptureScreenshotReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageCreateIsolatedWorld = "Page.createIsolatedWorld"
-
 // CreateIsolatedWorldArgs represents the arguments for CreateIsolatedWorld in the Page domain.
 type CreateIsolatedWorldArgs struct {
 	FrameID             shared.FrameID `json:"frameId"`                       // Id of the frame in which the isolated world should be created.
@@ -288,8 +326,6 @@ func (a *CreateIsolatedWorldReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageDisable = "Page.disable"
-
 // DisableArgs represents the arguments for Disable in the Page domain.
 type DisableArgs struct {
 }
@@ -339,8 +375,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageEnable = "Page.enable"
-
 // EnableArgs represents the arguments for Enable in the Page domain.
 type EnableArgs struct {
 }
@@ -389,8 +423,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandPageGetAppManifest = "Page.getAppManifest"
 
 // GetAppManifestArgs represents the arguments for GetAppManifest in the Page domain.
 type GetAppManifestArgs struct {
@@ -444,8 +476,6 @@ func (a *GetAppManifestReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageGetFrameTree = "Page.getFrameTree"
-
 // GetFrameTreeArgs represents the arguments for GetFrameTree in the Page domain.
 type GetFrameTreeArgs struct {
 }
@@ -495,8 +525,6 @@ func (a *GetFrameTreeReply) UnmarshalJSON(b []byte) error {
 	*a = GetFrameTreeReply(*c)
 	return nil
 }
-
-const CommandPageGetLayoutMetrics = "Page.getLayoutMetrics"
 
 // GetLayoutMetricsArgs represents the arguments for GetLayoutMetrics in the Page domain.
 type GetLayoutMetricsArgs struct {
@@ -550,8 +578,6 @@ func (a *GetLayoutMetricsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageGetNavigationHistory = "Page.getNavigationHistory"
-
 // GetNavigationHistoryArgs represents the arguments for GetNavigationHistory in the Page domain.
 type GetNavigationHistoryArgs struct {
 }
@@ -602,8 +628,6 @@ func (a *GetNavigationHistoryReply) UnmarshalJSON(b []byte) error {
 	*a = GetNavigationHistoryReply(*c)
 	return nil
 }
-
-const CommandPageGetResourceContent = "Page.getResourceContent"
 
 // GetResourceContentArgs represents the arguments for GetResourceContent in the Page domain.
 type GetResourceContentArgs struct {
@@ -658,8 +682,6 @@ func (a *GetResourceContentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageGetResourceTree = "Page.getResourceTree"
-
 // GetResourceTreeArgs represents the arguments for GetResourceTree in the Page domain.
 type GetResourceTreeArgs struct {
 }
@@ -709,8 +731,6 @@ func (a *GetResourceTreeReply) UnmarshalJSON(b []byte) error {
 	*a = GetResourceTreeReply(*c)
 	return nil
 }
-
-const CommandPageHandleJavaScriptDialog = "Page.handleJavaScriptDialog"
 
 // HandleJavaScriptDialogArgs represents the arguments for HandleJavaScriptDialog in the Page domain.
 type HandleJavaScriptDialogArgs struct {
@@ -762,8 +782,6 @@ func (a *HandleJavaScriptDialogReply) UnmarshalJSON(b []byte) error {
 	*a = HandleJavaScriptDialogReply(*c)
 	return nil
 }
-
-const CommandPageNavigate = "Page.navigate"
 
 // NavigateArgs represents the arguments for Navigate in the Page domain.
 type NavigateArgs struct {
@@ -821,8 +839,6 @@ func (a *NavigateReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageNavigateToHistoryEntry = "Page.navigateToHistoryEntry"
-
 // NavigateToHistoryEntryArgs represents the arguments for NavigateToHistoryEntry in the Page domain.
 type NavigateToHistoryEntryArgs struct {
 	EntryID int `json:"entryId"` // Unique id of the entry to navigate to.
@@ -872,8 +888,6 @@ func (a *NavigateToHistoryEntryReply) UnmarshalJSON(b []byte) error {
 	*a = NavigateToHistoryEntryReply(*c)
 	return nil
 }
-
-const CommandPagePrintToPDF = "Page.printToPDF"
 
 // PrintToPDFArgs represents the arguments for PrintToPDF in the Page domain.
 type PrintToPDFArgs struct {
@@ -940,8 +954,6 @@ func (a *PrintToPDFReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageReload = "Page.reload"
-
 // ReloadArgs represents the arguments for Reload in the Page domain.
 type ReloadArgs struct {
 	IgnoreCache            bool   `json:"ignoreCache,omitempty"`            // If true, browser cache is ignored (as if the user pressed Shift+refresh).
@@ -993,8 +1005,6 @@ func (a *ReloadReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageRemoveScriptToEvaluateOnLoad = "Page.removeScriptToEvaluateOnLoad"
-
 // RemoveScriptToEvaluateOnLoadArgs represents the arguments for RemoveScriptToEvaluateOnLoad in the Page domain.
 type RemoveScriptToEvaluateOnLoadArgs struct {
 	Identifier ScriptIdentifier `json:"identifier"` // No description.
@@ -1044,8 +1054,6 @@ func (a *RemoveScriptToEvaluateOnLoadReply) UnmarshalJSON(b []byte) error {
 	*a = RemoveScriptToEvaluateOnLoadReply(*c)
 	return nil
 }
-
-const CommandPageRemoveScriptToEvaluateOnNewDocument = "Page.removeScriptToEvaluateOnNewDocument"
 
 // RemoveScriptToEvaluateOnNewDocumentArgs represents the arguments for RemoveScriptToEvaluateOnNewDocument in the Page domain.
 type RemoveScriptToEvaluateOnNewDocumentArgs struct {
@@ -1097,8 +1105,6 @@ func (a *RemoveScriptToEvaluateOnNewDocumentReply) UnmarshalJSON(b []byte) error
 	return nil
 }
 
-const CommandPageRequestAppBanner = "Page.requestAppBanner"
-
 // RequestAppBannerArgs represents the arguments for RequestAppBanner in the Page domain.
 type RequestAppBannerArgs struct {
 }
@@ -1147,8 +1153,6 @@ func (a *RequestAppBannerReply) UnmarshalJSON(b []byte) error {
 	*a = RequestAppBannerReply(*c)
 	return nil
 }
-
-const CommandPageScreencastFrameAck = "Page.screencastFrameAck"
 
 // ScreencastFrameAckArgs represents the arguments for ScreencastFrameAck in the Page domain.
 type ScreencastFrameAckArgs struct {
@@ -1199,8 +1203,6 @@ func (a *ScreencastFrameAckReply) UnmarshalJSON(b []byte) error {
 	*a = ScreencastFrameAckReply(*c)
 	return nil
 }
-
-const CommandPageSearchInResource = "Page.searchInResource"
 
 // SearchInResourceArgs represents the arguments for SearchInResource in the Page domain.
 type SearchInResourceArgs struct {
@@ -1257,8 +1259,6 @@ func (a *SearchInResourceReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageSetAdBlockingEnabled = "Page.setAdBlockingEnabled"
-
 // SetAdBlockingEnabledArgs represents the arguments for SetAdBlockingEnabled in the Page domain.
 type SetAdBlockingEnabledArgs struct {
 	Enabled bool `json:"enabled"` // Whether to block ads.
@@ -1308,8 +1308,6 @@ func (a *SetAdBlockingEnabledReply) UnmarshalJSON(b []byte) error {
 	*a = SetAdBlockingEnabledReply(*c)
 	return nil
 }
-
-const CommandPageSetBypassCSP = "Page.setBypassCSP"
 
 // SetBypassCSPArgs represents the arguments for SetBypassCSP in the Page domain.
 type SetBypassCSPArgs struct {
@@ -1361,8 +1359,6 @@ func (a *SetBypassCSPReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageSetFontFamilies = "Page.setFontFamilies"
-
 // SetFontFamiliesArgs represents the arguments for SetFontFamilies in the Page domain.
 type SetFontFamiliesArgs struct {
 	FontFamilies FontFamilies `json:"fontFamilies"` // Specifies font families to set. If a font family is not specified, it won't be changed.
@@ -1412,8 +1408,6 @@ func (a *SetFontFamiliesReply) UnmarshalJSON(b []byte) error {
 	*a = SetFontFamiliesReply(*c)
 	return nil
 }
-
-const CommandPageSetFontSizes = "Page.setFontSizes"
 
 // SetFontSizesArgs represents the arguments for SetFontSizes in the Page domain.
 type SetFontSizesArgs struct {
@@ -1465,8 +1459,6 @@ func (a *SetFontSizesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageSetDocumentContent = "Page.setDocumentContent"
-
 // SetDocumentContentArgs represents the arguments for SetDocumentContent in the Page domain.
 type SetDocumentContentArgs struct {
 	FrameID shared.FrameID `json:"frameId"` // Frame id to set HTML for.
@@ -1517,8 +1509,6 @@ func (a *SetDocumentContentReply) UnmarshalJSON(b []byte) error {
 	*a = SetDocumentContentReply(*c)
 	return nil
 }
-
-const CommandPageSetDownloadBehavior = "Page.setDownloadBehavior"
 
 // SetDownloadBehaviorArgs represents the arguments for SetDownloadBehavior in the Page domain.
 type SetDownloadBehaviorArgs struct {
@@ -1575,8 +1565,6 @@ func (a *SetDownloadBehaviorReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageSetLifecycleEventsEnabled = "Page.setLifecycleEventsEnabled"
-
 // SetLifecycleEventsEnabledArgs represents the arguments for SetLifecycleEventsEnabled in the Page domain.
 type SetLifecycleEventsEnabledArgs struct {
 	Enabled bool `json:"enabled"` // If true, starts emitting lifecycle events.
@@ -1626,8 +1614,6 @@ func (a *SetLifecycleEventsEnabledReply) UnmarshalJSON(b []byte) error {
 	*a = SetLifecycleEventsEnabledReply(*c)
 	return nil
 }
-
-const CommandPageStartScreencast = "Page.startScreencast"
 
 // StartScreencastArgs represents the arguments for StartScreencast in the Page domain.
 type StartScreencastArgs struct {
@@ -1686,8 +1672,6 @@ func (a *StartScreencastReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageStopLoading = "Page.stopLoading"
-
 // StopLoadingArgs represents the arguments for StopLoading in the Page domain.
 type StopLoadingArgs struct {
 }
@@ -1736,8 +1720,6 @@ func (a *StopLoadingReply) UnmarshalJSON(b []byte) error {
 	*a = StopLoadingReply(*c)
 	return nil
 }
-
-const CommandPageCrash = "Page.crash"
 
 // CrashArgs represents the arguments for Crash in the Page domain.
 type CrashArgs struct {
@@ -1788,8 +1770,6 @@ func (a *CrashReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandPageClose = "Page.close"
-
 // CloseArgs represents the arguments for Close in the Page domain.
 type CloseArgs struct {
 }
@@ -1838,8 +1818,6 @@ func (a *CloseReply) UnmarshalJSON(b []byte) error {
 	*a = CloseReply(*c)
 	return nil
 }
-
-const CommandPageSetWebLifecycleState = "Page.setWebLifecycleState"
 
 // SetWebLifecycleStateArgs represents the arguments for SetWebLifecycleState in the Page domain.
 type SetWebLifecycleStateArgs struct {
@@ -1893,8 +1871,6 @@ func (a *SetWebLifecycleStateReply) UnmarshalJSON(b []byte) error {
 	*a = SetWebLifecycleStateReply(*c)
 	return nil
 }
-
-const CommandPageStopScreencast = "Page.stopScreencast"
 
 // StopScreencastArgs represents the arguments for StopScreencast in the Page domain.
 type StopScreencastArgs struct {

@@ -6,7 +6,20 @@ import (
 	"encoding/json"
 )
 
-const EventSecurityCertificateError = "Security.certificateError"
+const (
+	EventSecurityCertificateError     = "Security.certificateError"
+	EventSecuritySecurityStateChanged = "Security.securityStateChanged"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventSecurityCertificateError:     &CertificateErrorReply{},
+	EventSecuritySecurityStateChanged: &StateChangedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // CertificateErrorReply is the reply for CertificateError events.
 type CertificateErrorReply struct {
@@ -26,8 +39,6 @@ func (a *CertificateErrorReply) UnmarshalJSON(b []byte) error {
 	*a = CertificateErrorReply(*c)
 	return nil
 }
-
-const EventSecuritySecurityStateChanged = "Security.securityStateChanged"
 
 // StateChangedReply is the reply for SecurityStateChanged events.
 type StateChangedReply struct {

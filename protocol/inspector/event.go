@@ -6,7 +6,22 @@ import (
 	"encoding/json"
 )
 
-const EventInspectorDetached = "Inspector.detached"
+const (
+	EventInspectorDetached                 = "Inspector.detached"
+	EventInspectorTargetCrashed            = "Inspector.targetCrashed"
+	EventInspectorTargetReloadedAfterCrash = "Inspector.targetReloadedAfterCrash"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventInspectorDetached:                 &DetachedReply{},
+	EventInspectorTargetCrashed:            &TargetCrashedReply{},
+	EventInspectorTargetReloadedAfterCrash: &TargetReloadedAfterCrashReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // DetachedReply is the reply for Detached events.
 type DetachedReply struct {
@@ -25,8 +40,6 @@ func (a *DetachedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventInspectorTargetCrashed = "Inspector.targetCrashed"
-
 // TargetCrashedReply is the reply for TargetCrashed events.
 type TargetCrashedReply struct {
 }
@@ -42,8 +55,6 @@ func (a *TargetCrashedReply) UnmarshalJSON(b []byte) error {
 	*a = TargetCrashedReply(*c)
 	return nil
 }
-
-const EventInspectorTargetReloadedAfterCrash = "Inspector.targetReloadedAfterCrash"
 
 // TargetReloadedAfterCrashReply is the reply for TargetReloadedAfterCrash events.
 type TargetReloadedAfterCrashReply struct {

@@ -10,7 +10,37 @@ import (
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
-const CommandDebuggerContinueToLocation = "Debugger.continueToLocation"
+const (
+	CommandDebuggerContinueToLocation          = "Debugger.continueToLocation"
+	CommandDebuggerDisable                     = "Debugger.disable"
+	CommandDebuggerEnable                      = "Debugger.enable"
+	CommandDebuggerEvaluateOnCallFrame         = "Debugger.evaluateOnCallFrame"
+	CommandDebuggerGetPossibleBreakpoints      = "Debugger.getPossibleBreakpoints"
+	CommandDebuggerGetScriptSource             = "Debugger.getScriptSource"
+	CommandDebuggerGetStackTrace               = "Debugger.getStackTrace"
+	CommandDebuggerPause                       = "Debugger.pause"
+	CommandDebuggerPauseOnAsyncCall            = "Debugger.pauseOnAsyncCall"
+	CommandDebuggerRemoveBreakpoint            = "Debugger.removeBreakpoint"
+	CommandDebuggerRestartFrame                = "Debugger.restartFrame"
+	CommandDebuggerResume                      = "Debugger.resume"
+	CommandDebuggerScheduleStepIntoAsync       = "Debugger.scheduleStepIntoAsync"
+	CommandDebuggerSearchInContent             = "Debugger.searchInContent"
+	CommandDebuggerSetAsyncCallStackDepth      = "Debugger.setAsyncCallStackDepth"
+	CommandDebuggerSetBlackboxPatterns         = "Debugger.setBlackboxPatterns"
+	CommandDebuggerSetBlackboxedRanges         = "Debugger.setBlackboxedRanges"
+	CommandDebuggerSetBreakpoint               = "Debugger.setBreakpoint"
+	CommandDebuggerSetBreakpointByUrl          = "Debugger.setBreakpointByUrl"
+	CommandDebuggerSetBreakpointOnFunctionCall = "Debugger.setBreakpointOnFunctionCall"
+	CommandDebuggerSetBreakpointsActive        = "Debugger.setBreakpointsActive"
+	CommandDebuggerSetPauseOnExceptions        = "Debugger.setPauseOnExceptions"
+	CommandDebuggerSetReturnValue              = "Debugger.setReturnValue"
+	CommandDebuggerSetScriptSource             = "Debugger.setScriptSource"
+	CommandDebuggerSetSkipAllPauses            = "Debugger.setSkipAllPauses"
+	CommandDebuggerSetVariableValue            = "Debugger.setVariableValue"
+	CommandDebuggerStepInto                    = "Debugger.stepInto"
+	CommandDebuggerStepOut                     = "Debugger.stepOut"
+	CommandDebuggerStepOver                    = "Debugger.stepOver"
+)
 
 // ContinueToLocationArgs represents the arguments for ContinueToLocation in the Debugger domain.
 type ContinueToLocationArgs struct {
@@ -66,8 +96,6 @@ func (a *ContinueToLocationReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerDisable = "Debugger.disable"
-
 // DisableArgs represents the arguments for Disable in the Debugger domain.
 type DisableArgs struct {
 }
@@ -116,8 +144,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	*a = DisableReply(*c)
 	return nil
 }
-
-const CommandDebuggerEnable = "Debugger.enable"
 
 // EnableArgs represents the arguments for Enable in the Debugger domain.
 type EnableArgs struct {
@@ -171,8 +197,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandDebuggerEvaluateOnCallFrame = "Debugger.evaluateOnCallFrame"
 
 // EvaluateOnCallFrameArgs represents the arguments for EvaluateOnCallFrame in the Debugger domain.
 type EvaluateOnCallFrameArgs struct {
@@ -241,8 +265,6 @@ func (a *EvaluateOnCallFrameReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerGetPossibleBreakpoints = "Debugger.getPossibleBreakpoints"
-
 // GetPossibleBreakpointsArgs represents the arguments for GetPossibleBreakpoints in the Debugger domain.
 type GetPossibleBreakpointsArgs struct {
 	Start              Location `json:"start"`                        // Start of range to search possible breakpoint locations in.
@@ -296,8 +318,6 @@ func (a *GetPossibleBreakpointsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerGetScriptSource = "Debugger.getScriptSource"
-
 // GetScriptSourceArgs represents the arguments for GetScriptSource in the Debugger domain.
 type GetScriptSourceArgs struct {
 	ScriptID runtime.ScriptID `json:"scriptId"` // Id of the script to get source for.
@@ -348,8 +368,6 @@ func (a *GetScriptSourceReply) UnmarshalJSON(b []byte) error {
 	*a = GetScriptSourceReply(*c)
 	return nil
 }
-
-const CommandDebuggerGetStackTrace = "Debugger.getStackTrace"
 
 // GetStackTraceArgs represents the arguments for GetStackTrace in the Debugger domain.
 type GetStackTraceArgs struct {
@@ -402,8 +420,6 @@ func (a *GetStackTraceReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerPause = "Debugger.pause"
-
 // PauseArgs represents the arguments for Pause in the Debugger domain.
 type PauseArgs struct {
 }
@@ -452,8 +468,6 @@ func (a *PauseReply) UnmarshalJSON(b []byte) error {
 	*a = PauseReply(*c)
 	return nil
 }
-
-const CommandDebuggerPauseOnAsyncCall = "Debugger.pauseOnAsyncCall"
 
 // PauseOnAsyncCallArgs represents the arguments for PauseOnAsyncCall in the Debugger domain.
 type PauseOnAsyncCallArgs struct {
@@ -505,8 +519,6 @@ func (a *PauseOnAsyncCallReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerRemoveBreakpoint = "Debugger.removeBreakpoint"
-
 // RemoveBreakpointArgs represents the arguments for RemoveBreakpoint in the Debugger domain.
 type RemoveBreakpointArgs struct {
 	BreakpointID BreakpointID `json:"breakpointId"` // No description.
@@ -556,8 +568,6 @@ func (a *RemoveBreakpointReply) UnmarshalJSON(b []byte) error {
 	*a = RemoveBreakpointReply(*c)
 	return nil
 }
-
-const CommandDebuggerRestartFrame = "Debugger.restartFrame"
 
 // RestartFrameArgs represents the arguments for RestartFrame in the Debugger domain.
 type RestartFrameArgs struct {
@@ -615,8 +625,6 @@ func (a *RestartFrameReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerResume = "Debugger.resume"
-
 // ResumeArgs represents the arguments for Resume in the Debugger domain.
 type ResumeArgs struct {
 }
@@ -666,8 +674,6 @@ func (a *ResumeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerScheduleStepIntoAsync = "Debugger.scheduleStepIntoAsync"
-
 // ScheduleStepIntoAsyncArgs represents the arguments for ScheduleStepIntoAsync in the Debugger domain.
 type ScheduleStepIntoAsyncArgs struct {
 }
@@ -716,8 +722,6 @@ func (a *ScheduleStepIntoAsyncReply) UnmarshalJSON(b []byte) error {
 	*a = ScheduleStepIntoAsyncReply(*c)
 	return nil
 }
-
-const CommandDebuggerSearchInContent = "Debugger.searchInContent"
 
 // SearchInContentArgs represents the arguments for SearchInContent in the Debugger domain.
 type SearchInContentArgs struct {
@@ -773,8 +777,6 @@ func (a *SearchInContentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerSetAsyncCallStackDepth = "Debugger.setAsyncCallStackDepth"
-
 // SetAsyncCallStackDepthArgs represents the arguments for SetAsyncCallStackDepth in the Debugger domain.
 type SetAsyncCallStackDepthArgs struct {
 	MaxDepth int `json:"maxDepth"` // Maximum depth of async call stacks. Setting to `0` will effectively disable collecting async call stacks (default).
@@ -824,8 +826,6 @@ func (a *SetAsyncCallStackDepthReply) UnmarshalJSON(b []byte) error {
 	*a = SetAsyncCallStackDepthReply(*c)
 	return nil
 }
-
-const CommandDebuggerSetBlackboxPatterns = "Debugger.setBlackboxPatterns"
 
 // SetBlackboxPatternsArgs represents the arguments for SetBlackboxPatterns in the Debugger domain.
 type SetBlackboxPatternsArgs struct {
@@ -877,8 +877,6 @@ func (a *SetBlackboxPatternsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerSetBlackboxedRanges = "Debugger.setBlackboxedRanges"
-
 // SetBlackboxedRangesArgs represents the arguments for SetBlackboxedRanges in the Debugger domain.
 type SetBlackboxedRangesArgs struct {
 	ScriptID  runtime.ScriptID `json:"scriptId"`  // Id of the script.
@@ -929,8 +927,6 @@ func (a *SetBlackboxedRangesReply) UnmarshalJSON(b []byte) error {
 	*a = SetBlackboxedRangesReply(*c)
 	return nil
 }
-
-const CommandDebuggerSetBreakpoint = "Debugger.setBreakpoint"
 
 // SetBreakpointArgs represents the arguments for SetBreakpoint in the Debugger domain.
 type SetBreakpointArgs struct {
@@ -984,8 +980,6 @@ func (a *SetBreakpointReply) UnmarshalJSON(b []byte) error {
 	*a = SetBreakpointReply(*c)
 	return nil
 }
-
-const CommandDebuggerSetBreakpointByUrl = "Debugger.setBreakpointByUrl"
 
 // SetBreakpointByURLArgs represents the arguments for SetBreakpointByURL in the Debugger domain.
 type SetBreakpointByURLArgs struct {
@@ -1044,8 +1038,6 @@ func (a *SetBreakpointByURLReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerSetBreakpointOnFunctionCall = "Debugger.setBreakpointOnFunctionCall"
-
 // SetBreakpointOnFunctionCallArgs represents the arguments for SetBreakpointOnFunctionCall in the Debugger domain.
 type SetBreakpointOnFunctionCallArgs struct {
 	ObjectID  shared.RemoteObjectID `json:"objectId"`            // Function object id.
@@ -1098,8 +1090,6 @@ func (a *SetBreakpointOnFunctionCallReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerSetBreakpointsActive = "Debugger.setBreakpointsActive"
-
 // SetBreakpointsActiveArgs represents the arguments for SetBreakpointsActive in the Debugger domain.
 type SetBreakpointsActiveArgs struct {
 	Active bool `json:"active"` // New value for breakpoints active state.
@@ -1149,8 +1139,6 @@ func (a *SetBreakpointsActiveReply) UnmarshalJSON(b []byte) error {
 	*a = SetBreakpointsActiveReply(*c)
 	return nil
 }
-
-const CommandDebuggerSetPauseOnExceptions = "Debugger.setPauseOnExceptions"
 
 // SetPauseOnExceptionsArgs represents the arguments for SetPauseOnExceptions in the Debugger domain.
 type SetPauseOnExceptionsArgs struct {
@@ -1205,8 +1193,6 @@ func (a *SetPauseOnExceptionsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerSetReturnValue = "Debugger.setReturnValue"
-
 // SetReturnValueArgs represents the arguments for SetReturnValue in the Debugger domain.
 type SetReturnValueArgs struct {
 	NewValue runtime.CallArgument `json:"newValue"` // New return value.
@@ -1256,8 +1242,6 @@ func (a *SetReturnValueReply) UnmarshalJSON(b []byte) error {
 	*a = SetReturnValueReply(*c)
 	return nil
 }
-
-const CommandDebuggerSetScriptSource = "Debugger.setScriptSource"
 
 // SetScriptSourceArgs represents the arguments for SetScriptSource in the Debugger domain.
 type SetScriptSourceArgs struct {
@@ -1319,8 +1303,6 @@ func (a *SetScriptSourceReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerSetSkipAllPauses = "Debugger.setSkipAllPauses"
-
 // SetSkipAllPausesArgs represents the arguments for SetSkipAllPauses in the Debugger domain.
 type SetSkipAllPausesArgs struct {
 	Skip bool `json:"skip"` // New value for skip pauses state.
@@ -1370,8 +1352,6 @@ func (a *SetSkipAllPausesReply) UnmarshalJSON(b []byte) error {
 	*a = SetSkipAllPausesReply(*c)
 	return nil
 }
-
-const CommandDebuggerSetVariableValue = "Debugger.setVariableValue"
 
 // SetVariableValueArgs represents the arguments for SetVariableValue in the Debugger domain.
 type SetVariableValueArgs struct {
@@ -1425,8 +1405,6 @@ func (a *SetVariableValueReply) UnmarshalJSON(b []byte) error {
 	*a = SetVariableValueReply(*c)
 	return nil
 }
-
-const CommandDebuggerStepInto = "Debugger.stepInto"
 
 // StepIntoArgs represents the arguments for StepInto in the Debugger domain.
 type StepIntoArgs struct {
@@ -1482,8 +1460,6 @@ func (a *StepIntoReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDebuggerStepOut = "Debugger.stepOut"
-
 // StepOutArgs represents the arguments for StepOut in the Debugger domain.
 type StepOutArgs struct {
 }
@@ -1532,8 +1508,6 @@ func (a *StepOutReply) UnmarshalJSON(b []byte) error {
 	*a = StepOutReply(*c)
 	return nil
 }
-
-const CommandDebuggerStepOver = "Debugger.stepOver"
 
 // StepOverArgs represents the arguments for StepOver in the Debugger domain.
 type StepOverArgs struct {

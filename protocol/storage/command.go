@@ -7,7 +7,14 @@ import (
 	"log"
 )
 
-const CommandStorageClearDataForOrigin = "Storage.clearDataForOrigin"
+const (
+	CommandStorageClearDataForOrigin           = "Storage.clearDataForOrigin"
+	CommandStorageGetUsageAndQuota             = "Storage.getUsageAndQuota"
+	CommandStorageTrackCacheStorageForOrigin   = "Storage.trackCacheStorageForOrigin"
+	CommandStorageTrackIndexedDBForOrigin      = "Storage.trackIndexedDBForOrigin"
+	CommandStorageUntrackCacheStorageForOrigin = "Storage.untrackCacheStorageForOrigin"
+	CommandStorageUntrackIndexedDBForOrigin    = "Storage.untrackIndexedDBForOrigin"
+)
 
 // ClearDataForOriginArgs represents the arguments for ClearDataForOrigin in the Storage domain.
 type ClearDataForOriginArgs struct {
@@ -59,8 +66,6 @@ func (a *ClearDataForOriginReply) UnmarshalJSON(b []byte) error {
 	*a = ClearDataForOriginReply(*c)
 	return nil
 }
-
-const CommandStorageGetUsageAndQuota = "Storage.getUsageAndQuota"
 
 // GetUsageAndQuotaArgs represents the arguments for GetUsageAndQuota in the Storage domain.
 type GetUsageAndQuotaArgs struct {
@@ -115,8 +120,6 @@ func (a *GetUsageAndQuotaReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandStorageTrackCacheStorageForOrigin = "Storage.trackCacheStorageForOrigin"
-
 // TrackCacheStorageForOriginArgs represents the arguments for TrackCacheStorageForOrigin in the Storage domain.
 type TrackCacheStorageForOriginArgs struct {
 	Origin string `json:"origin"` // Security origin.
@@ -166,8 +169,6 @@ func (a *TrackCacheStorageForOriginReply) UnmarshalJSON(b []byte) error {
 	*a = TrackCacheStorageForOriginReply(*c)
 	return nil
 }
-
-const CommandStorageTrackIndexedDBForOrigin = "Storage.trackIndexedDBForOrigin"
 
 // TrackIndexedDBForOriginArgs represents the arguments for TrackIndexedDBForOrigin in the Storage domain.
 type TrackIndexedDBForOriginArgs struct {
@@ -219,8 +220,6 @@ func (a *TrackIndexedDBForOriginReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandStorageUntrackCacheStorageForOrigin = "Storage.untrackCacheStorageForOrigin"
-
 // UntrackCacheStorageForOriginArgs represents the arguments for UntrackCacheStorageForOrigin in the Storage domain.
 type UntrackCacheStorageForOriginArgs struct {
 	Origin string `json:"origin"` // Security origin.
@@ -270,8 +269,6 @@ func (a *UntrackCacheStorageForOriginReply) UnmarshalJSON(b []byte) error {
 	*a = UntrackCacheStorageForOriginReply(*c)
 	return nil
 }
-
-const CommandStorageUntrackIndexedDBForOrigin = "Storage.untrackIndexedDBForOrigin"
 
 // UntrackIndexedDBForOriginArgs represents the arguments for UntrackIndexedDBForOrigin in the Storage domain.
 type UntrackIndexedDBForOriginArgs struct {

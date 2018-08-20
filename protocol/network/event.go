@@ -8,7 +8,50 @@ import (
 	"github.com/4ydx/cdp/protocol"
 )
 
-const EventNetworkDataReceived = "Network.dataReceived"
+const (
+	EventNetworkDataReceived                       = "Network.dataReceived"
+	EventNetworkEventSourceMessageReceived         = "Network.eventSourceMessageReceived"
+	EventNetworkLoadingFailed                      = "Network.loadingFailed"
+	EventNetworkLoadingFinished                    = "Network.loadingFinished"
+	EventNetworkRequestIntercepted                 = "Network.requestIntercepted"
+	EventNetworkRequestServedFromCache             = "Network.requestServedFromCache"
+	EventNetworkRequestWillBeSent                  = "Network.requestWillBeSent"
+	EventNetworkResourceChangedPriority            = "Network.resourceChangedPriority"
+	EventNetworkSignedExchangeReceived             = "Network.signedExchangeReceived"
+	EventNetworkResponseReceived                   = "Network.responseReceived"
+	EventNetworkWebSocketClosed                    = "Network.webSocketClosed"
+	EventNetworkWebSocketCreated                   = "Network.webSocketCreated"
+	EventNetworkWebSocketFrameError                = "Network.webSocketFrameError"
+	EventNetworkWebSocketFrameReceived             = "Network.webSocketFrameReceived"
+	EventNetworkWebSocketFrameSent                 = "Network.webSocketFrameSent"
+	EventNetworkWebSocketHandshakeResponseReceived = "Network.webSocketHandshakeResponseReceived"
+	EventNetworkWebSocketWillSendHandshakeRequest  = "Network.webSocketWillSendHandshakeRequest"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventNetworkDataReceived:                       &DataReceivedReply{},
+	EventNetworkEventSourceMessageReceived:         &EventSourceMessageReceivedReply{},
+	EventNetworkLoadingFailed:                      &LoadingFailedReply{},
+	EventNetworkLoadingFinished:                    &LoadingFinishedReply{},
+	EventNetworkRequestIntercepted:                 &RequestInterceptedReply{},
+	EventNetworkRequestServedFromCache:             &RequestServedFromCacheReply{},
+	EventNetworkRequestWillBeSent:                  &RequestWillBeSentReply{},
+	EventNetworkResourceChangedPriority:            &ResourceChangedPriorityReply{},
+	EventNetworkSignedExchangeReceived:             &SignedExchangeReceivedReply{},
+	EventNetworkResponseReceived:                   &ResponseReceivedReply{},
+	EventNetworkWebSocketClosed:                    &WebSocketClosedReply{},
+	EventNetworkWebSocketCreated:                   &WebSocketCreatedReply{},
+	EventNetworkWebSocketFrameError:                &WebSocketFrameErrorReply{},
+	EventNetworkWebSocketFrameReceived:             &WebSocketFrameReceivedReply{},
+	EventNetworkWebSocketFrameSent:                 &WebSocketFrameSentReply{},
+	EventNetworkWebSocketHandshakeResponseReceived: &WebSocketHandshakeResponseReceivedReply{},
+	EventNetworkWebSocketWillSendHandshakeRequest:  &WebSocketWillSendHandshakeRequestReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // DataReceivedReply is the reply for DataReceived events.
 type DataReceivedReply struct {
@@ -30,8 +73,6 @@ func (a *DataReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventNetworkEventSourceMessageReceived = "Network.eventSourceMessageReceived"
-
 // EventSourceMessageReceivedReply is the reply for EventSourceMessageReceived events.
 type EventSourceMessageReceivedReply struct {
 	RequestID RequestID     `json:"requestId"` // Request identifier.
@@ -52,8 +93,6 @@ func (a *EventSourceMessageReceivedReply) UnmarshalJSON(b []byte) error {
 	*a = EventSourceMessageReceivedReply(*c)
 	return nil
 }
-
-const EventNetworkLoadingFailed = "Network.loadingFailed"
 
 // LoadingFailedReply is the reply for LoadingFailed events.
 type LoadingFailedReply struct {
@@ -77,8 +116,6 @@ func (a *LoadingFailedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventNetworkLoadingFinished = "Network.loadingFinished"
-
 // LoadingFinishedReply is the reply for LoadingFinished events.
 type LoadingFinishedReply struct {
 	RequestID                RequestID     `json:"requestId"`                          // Request identifier.
@@ -98,8 +135,6 @@ func (a *LoadingFinishedReply) UnmarshalJSON(b []byte) error {
 	*a = LoadingFinishedReply(*c)
 	return nil
 }
-
-const EventNetworkRequestIntercepted = "Network.requestIntercepted"
 
 // RequestInterceptedReply is the reply for RequestIntercepted events.
 type RequestInterceptedReply struct {
@@ -128,8 +163,6 @@ func (a *RequestInterceptedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventNetworkRequestServedFromCache = "Network.requestServedFromCache"
-
 // RequestServedFromCacheReply is the reply for RequestServedFromCache events.
 type RequestServedFromCacheReply struct {
 	RequestID RequestID `json:"requestId"` // Request identifier.
@@ -146,8 +179,6 @@ func (a *RequestServedFromCacheReply) UnmarshalJSON(b []byte) error {
 	*a = RequestServedFromCacheReply(*c)
 	return nil
 }
-
-const EventNetworkRequestWillBeSent = "Network.requestWillBeSent"
 
 // RequestWillBeSentReply is the reply for RequestWillBeSent events.
 type RequestWillBeSentReply struct {
@@ -176,8 +207,6 @@ func (a *RequestWillBeSentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventNetworkResourceChangedPriority = "Network.resourceChangedPriority"
-
 // ResourceChangedPriorityReply is the reply for ResourceChangedPriority events.
 type ResourceChangedPriorityReply struct {
 	RequestID   RequestID        `json:"requestId"`   // Request identifier.
@@ -197,8 +226,6 @@ func (a *ResourceChangedPriorityReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventNetworkSignedExchangeReceived = "Network.signedExchangeReceived"
-
 // SignedExchangeReceivedReply is the reply for SignedExchangeReceived events.
 type SignedExchangeReceivedReply struct {
 	RequestID RequestID          `json:"requestId"` // Request identifier.
@@ -216,8 +243,6 @@ func (a *SignedExchangeReceivedReply) UnmarshalJSON(b []byte) error {
 	*a = SignedExchangeReceivedReply(*c)
 	return nil
 }
-
-const EventNetworkResponseReceived = "Network.responseReceived"
 
 // ResponseReceivedReply is the reply for ResponseReceived events.
 type ResponseReceivedReply struct {
@@ -241,8 +266,6 @@ func (a *ResponseReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventNetworkWebSocketClosed = "Network.webSocketClosed"
-
 // WebSocketClosedReply is the reply for WebSocketClosed events.
 type WebSocketClosedReply struct {
 	RequestID RequestID     `json:"requestId"` // Request identifier.
@@ -260,8 +283,6 @@ func (a *WebSocketClosedReply) UnmarshalJSON(b []byte) error {
 	*a = WebSocketClosedReply(*c)
 	return nil
 }
-
-const EventNetworkWebSocketCreated = "Network.webSocketCreated"
 
 // WebSocketCreatedReply is the reply for WebSocketCreated events.
 type WebSocketCreatedReply struct {
@@ -282,8 +303,6 @@ func (a *WebSocketCreatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventNetworkWebSocketFrameError = "Network.webSocketFrameError"
-
 // WebSocketFrameErrorReply is the reply for WebSocketFrameError events.
 type WebSocketFrameErrorReply struct {
 	RequestID    RequestID     `json:"requestId"`    // Request identifier.
@@ -302,8 +321,6 @@ func (a *WebSocketFrameErrorReply) UnmarshalJSON(b []byte) error {
 	*a = WebSocketFrameErrorReply(*c)
 	return nil
 }
-
-const EventNetworkWebSocketFrameReceived = "Network.webSocketFrameReceived"
 
 // WebSocketFrameReceivedReply is the reply for WebSocketFrameReceived events.
 type WebSocketFrameReceivedReply struct {
@@ -324,8 +341,6 @@ func (a *WebSocketFrameReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventNetworkWebSocketFrameSent = "Network.webSocketFrameSent"
-
 // WebSocketFrameSentReply is the reply for WebSocketFrameSent events.
 type WebSocketFrameSentReply struct {
 	RequestID RequestID      `json:"requestId"` // Request identifier.
@@ -345,8 +360,6 @@ func (a *WebSocketFrameSentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventNetworkWebSocketHandshakeResponseReceived = "Network.webSocketHandshakeResponseReceived"
-
 // WebSocketHandshakeResponseReceivedReply is the reply for WebSocketHandshakeResponseReceived events.
 type WebSocketHandshakeResponseReceivedReply struct {
 	RequestID RequestID         `json:"requestId"` // Request identifier.
@@ -365,8 +378,6 @@ func (a *WebSocketHandshakeResponseReceivedReply) UnmarshalJSON(b []byte) error 
 	*a = WebSocketHandshakeResponseReceivedReply(*c)
 	return nil
 }
-
-const EventNetworkWebSocketWillSendHandshakeRequest = "Network.webSocketWillSendHandshakeRequest"
 
 // WebSocketWillSendHandshakeRequestReply is the reply for WebSocketWillSendHandshakeRequest events.
 type WebSocketWillSendHandshakeRequestReply struct {

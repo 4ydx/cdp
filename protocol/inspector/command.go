@@ -7,7 +7,10 @@ import (
 	"log"
 )
 
-const CommandInspectorDisable = "Inspector.disable"
+const (
+	CommandInspectorDisable = "Inspector.disable"
+	CommandInspectorEnable  = "Inspector.enable"
+)
 
 // DisableArgs represents the arguments for Disable in the Inspector domain.
 type DisableArgs struct {
@@ -57,8 +60,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	*a = DisableReply(*c)
 	return nil
 }
-
-const CommandInspectorEnable = "Inspector.enable"
 
 // EnableArgs represents the arguments for Enable in the Inspector domain.
 type EnableArgs struct {

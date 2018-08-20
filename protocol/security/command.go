@@ -7,7 +7,13 @@ import (
 	"log"
 )
 
-const CommandSecurityDisable = "Security.disable"
+const (
+	CommandSecurityDisable                      = "Security.disable"
+	CommandSecurityEnable                       = "Security.enable"
+	CommandSecuritySetIgnoreCertificateErrors   = "Security.setIgnoreCertificateErrors"
+	CommandSecurityHandleCertificateError       = "Security.handleCertificateError"
+	CommandSecuritySetOverrideCertificateErrors = "Security.setOverrideCertificateErrors"
+)
 
 // DisableArgs represents the arguments for Disable in the Security domain.
 type DisableArgs struct {
@@ -58,8 +64,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandSecurityEnable = "Security.enable"
-
 // EnableArgs represents the arguments for Enable in the Security domain.
 type EnableArgs struct {
 }
@@ -108,8 +112,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandSecuritySetIgnoreCertificateErrors = "Security.setIgnoreCertificateErrors"
 
 // SetIgnoreCertificateErrorsArgs represents the arguments for SetIgnoreCertificateErrors in the Security domain.
 type SetIgnoreCertificateErrorsArgs struct {
@@ -161,8 +163,6 @@ func (a *SetIgnoreCertificateErrorsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandSecurityHandleCertificateError = "Security.handleCertificateError"
-
 // HandleCertificateErrorArgs represents the arguments for HandleCertificateError in the Security domain.
 type HandleCertificateErrorArgs struct {
 	EventID int                    `json:"eventId"` // The ID of the event.
@@ -213,8 +213,6 @@ func (a *HandleCertificateErrorReply) UnmarshalJSON(b []byte) error {
 	*a = HandleCertificateErrorReply(*c)
 	return nil
 }
-
-const CommandSecuritySetOverrideCertificateErrors = "Security.setOverrideCertificateErrors"
 
 // SetOverrideCertificateErrorsArgs represents the arguments for SetOverrideCertificateErrors in the Security domain.
 type SetOverrideCertificateErrorsArgs struct {

@@ -7,7 +7,10 @@ import (
 	"log"
 )
 
-const CommandTetheringBind = "Tethering.bind"
+const (
+	CommandTetheringBind   = "Tethering.bind"
+	CommandTetheringUnbind = "Tethering.unbind"
+)
 
 // BindArgs represents the arguments for Bind in the Tethering domain.
 type BindArgs struct {
@@ -58,8 +61,6 @@ func (a *BindReply) UnmarshalJSON(b []byte) error {
 	*a = BindReply(*c)
 	return nil
 }
-
-const CommandTetheringUnbind = "Tethering.unbind"
 
 // UnbindArgs represents the arguments for Unbind in the Tethering domain.
 type UnbindArgs struct {

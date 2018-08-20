@@ -6,7 +6,22 @@ import (
 	"encoding/json"
 )
 
-const EventAnimationAnimationCanceled = "Animation.animationCanceled"
+const (
+	EventAnimationAnimationCanceled = "Animation.animationCanceled"
+	EventAnimationAnimationCreated  = "Animation.animationCreated"
+	EventAnimationAnimationStarted  = "Animation.animationStarted"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventAnimationAnimationCanceled: &CanceledReply{},
+	EventAnimationAnimationCreated:  &CreatedReply{},
+	EventAnimationAnimationStarted:  &StartedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // CanceledReply is the reply for AnimationCanceled events.
 type CanceledReply struct {
@@ -25,8 +40,6 @@ func (a *CanceledReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventAnimationAnimationCreated = "Animation.animationCreated"
-
 // CreatedReply is the reply for AnimationCreated events.
 type CreatedReply struct {
 	ID string `json:"id"` // Id of the animation that was created.
@@ -43,8 +56,6 @@ func (a *CreatedReply) UnmarshalJSON(b []byte) error {
 	*a = CreatedReply(*c)
 	return nil
 }
-
-const EventAnimationAnimationStarted = "Animation.animationStarted"
 
 // StartedReply is the reply for AnimationStarted events.
 type StartedReply struct {

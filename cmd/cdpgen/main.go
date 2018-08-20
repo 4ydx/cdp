@@ -139,6 +139,7 @@ func main() {
 
 		if len(d.Commands) > 0 {
 			g.PackageHeader("")
+			g.DomainCmdConsts(d, d.Commands)
 			for _, c := range d.Commands {
 				if c.Redirect != "" {
 					continue
@@ -150,12 +151,28 @@ func main() {
 
 		if len(d.Events) > 0 {
 			g.PackageHeader("")
+			g.DomainEventConsts(d, d.Events)
 			for _, e := range d.Events {
 				g.DomainEvent(d, e, sharedTypes)
 			}
 			g.writeFile("event.go")
 		}
 	}
+
+	// Generate a lib file that gives access to helper functions that span all packages
+	g.dir = path.Join(protoDest, "lib")
+	g.pkg = "lib"
+	err = mkdir(g.path())
+	panicErr(err)
+
+	g.imports = []string{}
+	for _, d := range protocol.Domains {
+		g.imports = append(g.imports, fmt.Sprintf("%s/%s", protoDest, strings.ToLower(d.Name())))
+	}
+	g.PackageHeader("")
+	g.DomainEventUnmarshaler(protocol.Domains)
+	g.writeFile("lib.go")
+
 	g.dir = destPkg
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -290,6 +307,7 @@ func (g *Generator) PackageHeader(comment string) {
 	`, comment, g.pkg, quotedImports(g.imports))
 }
 
+// PrintTypeHelper prints values for the given type.
 func (g *Generator) PrintTypeHelper(d proto.Domain, t proto.AnyType, sharedTypes map[string]bool) {
 	g.hasContent = true
 	g.beginType()
@@ -324,12 +342,36 @@ func (g *Generator) PrintTypeHelper(d proto.Domain, t proto.AnyType, sharedTypes
 	g.commitType()
 }
 
-// DomainSharedType creates the type definition for all non-struct, enu, time, rawmessage types.
+// DomainSharedType creates the type definition for all shared types.  A shared type is any type that would create circular dependencies.
 func (g *Generator) DomainSharedType(d proto.Domain, t proto.AnyType, sharedTypes map[string]bool) {
 	if _, ok := sharedTypes[t.Name(d)]; !ok {
 		return
 	}
 	g.PrintTypeHelper(d, t, sharedTypes)
+}
+
+// DomainEventUnmarshaler is a generic shared library that provides an easy way to access a domain specific object that can unmarshal event data.
+func (g *Generator) DomainEventUnmarshaler(domains []proto.Domain) {
+	g.hasContent = true
+	g.beginType()
+
+	g.Printf(`
+	// GetEventUnmarshaler returns an object that can receive and unmarshal event data.
+	func GetEventUnmarshaler(event string) (json.Unmarshaler, bool) { 
+		var o json.Unmarshaler
+		var ok bool
+		`)
+	for _, d := range domains {
+		if len(d.Events) > 0 {
+			g.Printf("o, ok = %[1]s.GetEventReply(event)\n", strings.ToLower(d.Name()))
+			g.Printf(`if ok {
+			return o, true
+		}
+		`)
+		}
+	}
+	g.Printf("return nil, false \n}\n\n")
+	g.commitType()
 }
 
 // DomainType creates the type definition.
@@ -419,71 +461,71 @@ func (g *Generator) domainTypeStruct(d proto.Domain, t proto.AnyType, sharedType
 func (g *Generator) domainTypeTime(d proto.Domain, t proto.AnyType) {
 	g.Printf(`float64
 
-	// String calls (time.Time).String().
-	func (t %[1]s) String() string {
-		return t.Time().String()
-	}
-
-	// Time parses the Unix time with millisecond accuracy.
-	func (t %[1]s) Time() time.Time {
-		secs := int64(t)
-		// The Unix time in t only has ms accuracy.
-		ms := int64((float64(t)-float64(secs))*1000000)
-		return time.Unix(secs, ms*1000)
-	}
-
-	// MarshalJSON implements json.Marshaler. Encodes to null if t is zero.
-	func (t %[1]s) MarshalJSON() ([]byte, error) {
-		if t == 0 {
-			return []byte("null"), nil
+		// String calls (time.Time).String().
+		func (t %[1]s) String() string {
+			return t.Time().String()
 		}
-		f := float64(t)
-		return json.Marshal(&f)
-	}
 
-	// UnmarshalJSON implements json.Unmarshaler.
-	func (t *%[1]s) UnmarshalJSON(data []byte) error {
-		*t = 0
-		if len(data) == 0 {
+		// Time parses the Unix time with millisecond accuracy.
+		func (t %[1]s) Time() time.Time {
+			secs := int64(t)
+			// The Unix time in t only has ms accuracy.
+			ms := int64((float64(t)-float64(secs))*1000000)
+			return time.Unix(secs, ms*1000)
+		}
+
+		// MarshalJSON implements json.Marshaler. Encodes to null if t is zero.
+		func (t %[1]s) MarshalJSON() ([]byte, error) {
+			if t == 0 {
+				return []byte("null"), nil
+			}
+			f := float64(t)
+			return json.Marshal(&f)
+		}
+
+		// UnmarshalJSON implements json.Unmarshaler.
+		func (t *%[1]s) UnmarshalJSON(data []byte) error {
+			*t = 0
+			if len(data) == 0 {
+				return nil
+			}
+			var f float64
+			if err := json.Unmarshal(data, &f); err != nil {
+				return errors.New("%[2]s.%[1]s: " + err.Error())
+			}
+			*t = %[1]s(f)
 			return nil
 		}
-		var f float64
-		if err := json.Unmarshal(data, &f); err != nil {
-			return errors.New("%[2]s.%[1]s: " + err.Error())
-		}
-		*t = %[1]s(f)
-		return nil
-	}
 
-	var _ json.Marshaler = (*%[1]s)(nil)
-	var _ json.Unmarshaler = (*%[1]s)(nil)
-	`, t.Name(d), g.pkg)
+		var _ json.Marshaler = (*%[1]s)(nil)
+		var _ json.Unmarshaler = (*%[1]s)(nil)
+		`, t.Name(d), g.pkg)
 
 }
 
 func (g *Generator) domainTypeRawMessage(d proto.Domain, t proto.AnyType) {
 	g.Printf(`[]byte
 
-	// MarshalJSON copies behavior of json.RawMessage.
-	func (%[3]s %[1]s) MarshalJSON() ([]byte, error) {
-		if %[3]s == nil {
-			return []byte("null"), nil
+		// MarshalJSON copies behavior of json.RawMessage.
+		func (%[3]s %[1]s) MarshalJSON() ([]byte, error) {
+			if %[3]s == nil {
+				return []byte("null"), nil
+			}
+			return %[3]s, nil
 		}
-		return %[3]s, nil
-	}
 
-	// UnmarshalJSON copies behavior of json.RawMessage.
-	func (%[3]s *%[1]s) UnmarshalJSON(data []byte) error {
-		if %[3]s == nil {
-			return errors.New("%[2]s.%[1]s: UnmarshalJSON on nil pointer")
+		// UnmarshalJSON copies behavior of json.RawMessage.
+		func (%[3]s *%[1]s) UnmarshalJSON(data []byte) error {
+			if %[3]s == nil {
+				return errors.New("%[2]s.%[1]s: UnmarshalJSON on nil pointer")
+			}
+			*%[3]s = append((*%[3]s)[0:0], data...)
+			return nil
 		}
-		*%[3]s = append((*%[3]s)[0:0], data...)
-		return nil
-	}
 
-	var _ json.Marshaler = (*%[1]s)(nil)
-	var _ json.Unmarshaler = (*%[1]s)(nil)
-	`, t.Name(d), g.pkg, t.Recvr(d))
+		var _ json.Marshaler = (*%[1]s)(nil)
+		var _ json.Unmarshaler = (*%[1]s)(nil)
+		`, t.Name(d), g.pkg, t.Recvr(d))
 }
 
 func (g *Generator) domainTypeEnum(d proto.Domain, t proto.AnyType) {
@@ -506,71 +548,71 @@ func (g *Generator) domainTypeEnum(d proto.Domain, t proto.AnyType) {
 
 		if name != "PageResourceType" {
 			format := `
-			// %s as enums.
-			const (
-				%sNotSet %s = iota`
+				// %s as enums.
+				const (
+					%sNotSet %s = iota`
 			g.Printf(format, name, name, name)
 			for _, e := range t.Enum {
 				g.Printf("\n\t%s%s", name, e.Name())
 			}
 			g.Printf(`
-			)
-			`)
+				)
+				`)
 		}
 		g.Printf(`
-		// Valid returns true if enum is set.
-		func (e %[1]s) Valid() bool {
-			return e >= 1 && e <= %[2]d
-		}
+			// Valid returns true if enum is set.
+			func (e %[1]s) Valid() bool {
+				return e >= 1 && e <= %[2]d
+			}
 
-		func (e %[1]s) String() string {
-			switch e {
-			case 0:
-				return "%[1]sNotSet"`, name, len(t.Enum))
+			func (e %[1]s) String() string {
+				switch e {
+				case 0:
+					return "%[1]sNotSet"`, name, len(t.Enum))
 		for i, e := range t.Enum {
 			g.Printf(`
-				case %d:
-					return "%s"`, i+1, e)
+					case %d:
+						return "%s"`, i+1, e)
 		}
 		g.Printf(`
+				}
+				return fmt.Sprintf("%[1]s(%%d)", e)
 			}
-			return fmt.Sprintf("%[1]s(%%d)", e)
-		}
 
-		// MarshalJSON encodes enum into a string or null when not set.
-		func (e %[1]s) MarshalJSON() ([]byte, error) {
-			if e == 0 {
-				return []byte("null"), nil
+			// MarshalJSON encodes enum into a string or null when not set.
+			func (e %[1]s) MarshalJSON() ([]byte, error) {
+				if e == 0 {
+					return []byte("null"), nil
+				}
+				if !e.Valid() {
+					return nil, errors.New("%[2]s.%[1]s: MarshalJSON on bad enum value: " + e.String())
+				}
+				return json.Marshal(e.String())
 			}
-			if !e.Valid() {
-				return nil, errors.New("%[2]s.%[1]s: MarshalJSON on bad enum value: " + e.String())
-			}
-			return json.Marshal(e.String())
-		}
 
-		// UnmarshalJSON decodes a string value into a enum.
-		func (e *%[1]s) UnmarshalJSON(data []byte) error {
-			switch string(data) {
-			case "null":
-				*e = 0`, name, g.pkg)
+			// UnmarshalJSON decodes a string value into a enum.
+			func (e *%[1]s) UnmarshalJSON(data []byte) error {
+				switch string(data) {
+				case "null":
+					*e = 0`, name, g.pkg)
 		for i, e := range t.Enum {
 			g.Printf(`
-				case "\"%s\"":
-					*e = %d`, e, i+1)
+					case "\"%s\"":
+						*e = %d`, e, i+1)
 		}
 		g.Printf(`
-			default:
-				return fmt.Errorf("%s.%s: UnmarshalJSON on bad input: %%s", data)
-			}
-			return nil
-		}`, g.pkg, name)
+				default:
+					return fmt.Errorf("%s.%s: UnmarshalJSON on bad input: %%s", data)
+				}
+				return nil
+			}`, g.pkg, name)
 	} else {
 		g.Printf("string\n\n")
 
 		if name != "PageResourceType" {
 			g.Printf(`
-			// %s as enums.
-			const (`, name)
+				// %s as enums.
+				const (`, name)
 			format := "\n\t%s%s %s = %q"
 			g.Printf(format, name, "NotSet", name, "")
 
@@ -578,8 +620,8 @@ func (g *Generator) domainTypeEnum(d proto.Domain, t proto.AnyType) {
 				g.Printf(format, name, e.Name(), name, e)
 			}
 			g.Printf(`
-		)
-		`)
+			)
+			`)
 		}
 
 		var enumValues []string
@@ -588,19 +630,19 @@ func (g *Generator) domainTypeEnum(d proto.Domain, t proto.AnyType) {
 		}
 
 		g.Printf(`
-	func (e %[1]s) Valid() bool {
-		switch e {
-		case %[2]s:
-			return true
-		default:
-			return false
+		func (e %[1]s) Valid() bool {
+			switch e {
+			case %[2]s:
+				return true
+			default:
+				return false
+			}
 		}
-	}
 
-	func (e %[1]s) String() string {
-		return string(e)
-	}
-	`, t.Name(d), strings.Join(enumValues, ", "))
+		func (e %[1]s) String() string {
+			return string(e)
+		}
+		`, t.Name(d), strings.Join(enumValues, ", "))
 	}
 }
 
@@ -639,8 +681,6 @@ func (g *Generator) DomainCmd(d proto.Domain, c proto.Command, sharedTypes map[s
 }
 
 func (g *Generator) domainCmdArgs(d proto.Domain, c proto.Command, sharedTypes map[string]bool) {
-	g.Printf("const %[1]s = %[2]q\n", "Command"+d.Domain+strings.Title(c.NameName), d.Domain+"."+c.NameName)
-
 	g.Printf(`
 	// %[1]s represents the arguments for %[2]s in the %[3]s domain.
 	type %[1]s struct {
@@ -773,6 +813,22 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 			`, c.ReplyName(d), c.Name(), d.Name())
 }
 
+// DomainCmd defines the command args and reply.
+func (g *Generator) DomainCmdConsts(d proto.Domain, c []proto.Command) {
+	g.beginType()
+	g.hasContent = true
+	g.domainCmdConsts(d, c)
+	g.commitType()
+}
+
+func (g *Generator) domainCmdConsts(d proto.Domain, commands []proto.Command) {
+	g.Printf("const (\n")
+	for _, c := range commands {
+		g.Printf("%[1]s = %[2]q\n", "Command"+d.Domain+strings.Title(c.NameName), d.Domain+"."+c.NameName)
+	}
+	g.Printf(")\n")
+}
+
 // EventType generates the type for CDP event names.
 func (g *Generator) EventType(doms []proto.Domain) {
 	g.hasContent = true
@@ -804,8 +860,6 @@ func (g *Generator) DomainEvent(d proto.Domain, e proto.Event, sharedTypes map[s
 }
 
 func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes map[string]bool) {
-	g.Printf("const %[1]s = %[2]q\n", "Event"+d.Domain+strings.Title(e.NameName), d.Domain+"."+e.NameName)
-
 	g.Printf(`
 			// %[1]s is the reply for %[2]s events.
 			type %[1]s struct {
@@ -826,6 +880,35 @@ func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes 
 					return nil
 				}
 				`, e.ReplyName(d), e.Name(), d.Name())
+}
+
+// DomainEventConsts defines the event constants.
+func (g *Generator) DomainEventConsts(d proto.Domain, e []proto.Event) {
+	g.hasContent = true
+
+	g.beginType()
+	g.domainEventConsts(d, e)
+	g.commitType()
+}
+
+func (g *Generator) domainEventConsts(d proto.Domain, events []proto.Event) {
+	g.Printf("const (\n")
+	for _, e := range events {
+		g.Printf("%[1]s = %[2]q\n", "Event"+d.Domain+strings.Title(e.NameName), d.Domain+"."+e.NameName)
+	}
+	g.Printf(")\n")
+
+	g.Printf("var EventConstants = map[string]json.Unmarshaler {\n")
+	for _, e := range events {
+		g.Printf("%[1]s : &%[2]s{},\n", "Event"+d.Domain+strings.Title(e.NameName), e.ReplyName(d))
+	}
+	g.Printf("}\n")
+
+	g.Printf(`func GetEventReply(event string) (json.Unmarshaler,bool) {
+		e, ok := EventConstants[event]
+		return e, ok
+				}
+				`)
 }
 
 func quotedImports(imports []string) string {

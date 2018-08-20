@@ -6,7 +6,18 @@ import (
 	"encoding/json"
 )
 
-const EventHeadlessExperimentalNeedsBeginFramesChanged = "HeadlessExperimental.needsBeginFramesChanged"
+const (
+	EventHeadlessExperimentalNeedsBeginFramesChanged = "HeadlessExperimental.needsBeginFramesChanged"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventHeadlessExperimentalNeedsBeginFramesChanged: &NeedsBeginFramesChangedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // NeedsBeginFramesChangedReply is the reply for NeedsBeginFramesChanged events.
 type NeedsBeginFramesChangedReply struct {

@@ -6,7 +6,44 @@ import (
 	"encoding/json"
 )
 
-const EventDOMAttributeModified = "DOM.attributeModified"
+const (
+	EventDOMAttributeModified       = "DOM.attributeModified"
+	EventDOMAttributeRemoved        = "DOM.attributeRemoved"
+	EventDOMCharacterDataModified   = "DOM.characterDataModified"
+	EventDOMChildNodeCountUpdated   = "DOM.childNodeCountUpdated"
+	EventDOMChildNodeInserted       = "DOM.childNodeInserted"
+	EventDOMChildNodeRemoved        = "DOM.childNodeRemoved"
+	EventDOMDistributedNodesUpdated = "DOM.distributedNodesUpdated"
+	EventDOMDocumentUpdated         = "DOM.documentUpdated"
+	EventDOMInlineStyleInvalidated  = "DOM.inlineStyleInvalidated"
+	EventDOMPseudoElementAdded      = "DOM.pseudoElementAdded"
+	EventDOMPseudoElementRemoved    = "DOM.pseudoElementRemoved"
+	EventDOMSetChildNodes           = "DOM.setChildNodes"
+	EventDOMShadowRootPopped        = "DOM.shadowRootPopped"
+	EventDOMShadowRootPushed        = "DOM.shadowRootPushed"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventDOMAttributeModified:       &AttributeModifiedReply{},
+	EventDOMAttributeRemoved:        &AttributeRemovedReply{},
+	EventDOMCharacterDataModified:   &CharacterDataModifiedReply{},
+	EventDOMChildNodeCountUpdated:   &ChildNodeCountUpdatedReply{},
+	EventDOMChildNodeInserted:       &ChildNodeInsertedReply{},
+	EventDOMChildNodeRemoved:        &ChildNodeRemovedReply{},
+	EventDOMDistributedNodesUpdated: &DistributedNodesUpdatedReply{},
+	EventDOMDocumentUpdated:         &DocumentUpdatedReply{},
+	EventDOMInlineStyleInvalidated:  &InlineStyleInvalidatedReply{},
+	EventDOMPseudoElementAdded:      &PseudoElementAddedReply{},
+	EventDOMPseudoElementRemoved:    &PseudoElementRemovedReply{},
+	EventDOMSetChildNodes:           &SetChildNodesReply{},
+	EventDOMShadowRootPopped:        &ShadowRootPoppedReply{},
+	EventDOMShadowRootPushed:        &ShadowRootPushedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // AttributeModifiedReply is the reply for AttributeModified events.
 type AttributeModifiedReply struct {
@@ -27,8 +64,6 @@ func (a *AttributeModifiedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventDOMAttributeRemoved = "DOM.attributeRemoved"
-
 // AttributeRemovedReply is the reply for AttributeRemoved events.
 type AttributeRemovedReply struct {
 	NodeID NodeID `json:"nodeId"` // Id of the node that has changed.
@@ -46,8 +81,6 @@ func (a *AttributeRemovedReply) UnmarshalJSON(b []byte) error {
 	*a = AttributeRemovedReply(*c)
 	return nil
 }
-
-const EventDOMCharacterDataModified = "DOM.characterDataModified"
 
 // CharacterDataModifiedReply is the reply for CharacterDataModified events.
 type CharacterDataModifiedReply struct {
@@ -67,8 +100,6 @@ func (a *CharacterDataModifiedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventDOMChildNodeCountUpdated = "DOM.childNodeCountUpdated"
-
 // ChildNodeCountUpdatedReply is the reply for ChildNodeCountUpdated events.
 type ChildNodeCountUpdatedReply struct {
 	NodeID         NodeID `json:"nodeId"`         // Id of the node that has changed.
@@ -86,8 +117,6 @@ func (a *ChildNodeCountUpdatedReply) UnmarshalJSON(b []byte) error {
 	*a = ChildNodeCountUpdatedReply(*c)
 	return nil
 }
-
-const EventDOMChildNodeInserted = "DOM.childNodeInserted"
 
 // ChildNodeInsertedReply is the reply for ChildNodeInserted events.
 type ChildNodeInsertedReply struct {
@@ -108,8 +137,6 @@ func (a *ChildNodeInsertedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventDOMChildNodeRemoved = "DOM.childNodeRemoved"
-
 // ChildNodeRemovedReply is the reply for ChildNodeRemoved events.
 type ChildNodeRemovedReply struct {
 	ParentNodeID NodeID `json:"parentNodeId"` // Parent id.
@@ -127,8 +154,6 @@ func (a *ChildNodeRemovedReply) UnmarshalJSON(b []byte) error {
 	*a = ChildNodeRemovedReply(*c)
 	return nil
 }
-
-const EventDOMDistributedNodesUpdated = "DOM.distributedNodesUpdated"
 
 // DistributedNodesUpdatedReply is the reply for DistributedNodesUpdated events.
 type DistributedNodesUpdatedReply struct {
@@ -148,8 +173,6 @@ func (a *DistributedNodesUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventDOMDocumentUpdated = "DOM.documentUpdated"
-
 // DocumentUpdatedReply is the reply for DocumentUpdated events.
 type DocumentUpdatedReply struct {
 }
@@ -165,8 +188,6 @@ func (a *DocumentUpdatedReply) UnmarshalJSON(b []byte) error {
 	*a = DocumentUpdatedReply(*c)
 	return nil
 }
-
-const EventDOMInlineStyleInvalidated = "DOM.inlineStyleInvalidated"
 
 // InlineStyleInvalidatedReply is the reply for InlineStyleInvalidated events.
 type InlineStyleInvalidatedReply struct {
@@ -184,8 +205,6 @@ func (a *InlineStyleInvalidatedReply) UnmarshalJSON(b []byte) error {
 	*a = InlineStyleInvalidatedReply(*c)
 	return nil
 }
-
-const EventDOMPseudoElementAdded = "DOM.pseudoElementAdded"
 
 // PseudoElementAddedReply is the reply for PseudoElementAdded events.
 type PseudoElementAddedReply struct {
@@ -205,8 +224,6 @@ func (a *PseudoElementAddedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventDOMPseudoElementRemoved = "DOM.pseudoElementRemoved"
-
 // PseudoElementRemovedReply is the reply for PseudoElementRemoved events.
 type PseudoElementRemovedReply struct {
 	ParentID        NodeID `json:"parentId"`        // Pseudo element's parent element id.
@@ -224,8 +241,6 @@ func (a *PseudoElementRemovedReply) UnmarshalJSON(b []byte) error {
 	*a = PseudoElementRemovedReply(*c)
 	return nil
 }
-
-const EventDOMSetChildNodes = "DOM.setChildNodes"
 
 // SetChildNodesReply is the reply for SetChildNodes events.
 type SetChildNodesReply struct {
@@ -245,8 +260,6 @@ func (a *SetChildNodesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventDOMShadowRootPopped = "DOM.shadowRootPopped"
-
 // ShadowRootPoppedReply is the reply for ShadowRootPopped events.
 type ShadowRootPoppedReply struct {
 	HostID NodeID `json:"hostId"` // Host element id.
@@ -264,8 +277,6 @@ func (a *ShadowRootPoppedReply) UnmarshalJSON(b []byte) error {
 	*a = ShadowRootPoppedReply(*c)
 	return nil
 }
-
-const EventDOMShadowRootPushed = "DOM.shadowRootPushed"
 
 // ShadowRootPushedReply is the reply for ShadowRootPushed events.
 type ShadowRootPushedReply struct {

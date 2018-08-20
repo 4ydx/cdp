@@ -9,7 +9,11 @@ import (
 	"github.com/4ydx/cdp/protocol"
 )
 
-const CommandIOClose = "IO.close"
+const (
+	CommandIOClose       = "IO.close"
+	CommandIORead        = "IO.read"
+	CommandIOResolveBlob = "IO.resolveBlob"
+)
 
 // CloseArgs represents the arguments for Close in the IO domain.
 type CloseArgs struct {
@@ -60,8 +64,6 @@ func (a *CloseReply) UnmarshalJSON(b []byte) error {
 	*a = CloseReply(*c)
 	return nil
 }
-
-const CommandIORead = "IO.read"
 
 // ReadArgs represents the arguments for Read in the IO domain.
 type ReadArgs struct {
@@ -117,8 +119,6 @@ func (a *ReadReply) UnmarshalJSON(b []byte) error {
 	*a = ReadReply(*c)
 	return nil
 }
-
-const CommandIOResolveBlob = "IO.resolveBlob"
 
 // ResolveBlobArgs represents the arguments for ResolveBlob in the IO domain.
 type ResolveBlobArgs struct {

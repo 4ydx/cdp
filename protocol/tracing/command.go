@@ -7,7 +7,13 @@ import (
 	"log"
 )
 
-const CommandTracingEnd = "Tracing.end"
+const (
+	CommandTracingEnd                   = "Tracing.end"
+	CommandTracingGetCategories         = "Tracing.getCategories"
+	CommandTracingRecordClockSyncMarker = "Tracing.recordClockSyncMarker"
+	CommandTracingRequestMemoryDump     = "Tracing.requestMemoryDump"
+	CommandTracingStart                 = "Tracing.start"
+)
 
 // EndArgs represents the arguments for End in the Tracing domain.
 type EndArgs struct {
@@ -57,8 +63,6 @@ func (a *EndReply) UnmarshalJSON(b []byte) error {
 	*a = EndReply(*c)
 	return nil
 }
-
-const CommandTracingGetCategories = "Tracing.getCategories"
 
 // GetCategoriesArgs represents the arguments for GetCategories in the Tracing domain.
 type GetCategoriesArgs struct {
@@ -110,8 +114,6 @@ func (a *GetCategoriesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandTracingRecordClockSyncMarker = "Tracing.recordClockSyncMarker"
-
 // RecordClockSyncMarkerArgs represents the arguments for RecordClockSyncMarker in the Tracing domain.
 type RecordClockSyncMarkerArgs struct {
 	SyncID string `json:"syncId"` // The ID of this clock sync marker
@@ -161,8 +163,6 @@ func (a *RecordClockSyncMarkerReply) UnmarshalJSON(b []byte) error {
 	*a = RecordClockSyncMarkerReply(*c)
 	return nil
 }
-
-const CommandTracingRequestMemoryDump = "Tracing.requestMemoryDump"
 
 // RequestMemoryDumpArgs represents the arguments for RequestMemoryDump in the Tracing domain.
 type RequestMemoryDumpArgs struct {
@@ -214,8 +214,6 @@ func (a *RequestMemoryDumpReply) UnmarshalJSON(b []byte) error {
 	*a = RequestMemoryDumpReply(*c)
 	return nil
 }
-
-const CommandTracingStart = "Tracing.start"
 
 // StartArgs represents the arguments for Start in the Tracing domain.
 type StartArgs struct {

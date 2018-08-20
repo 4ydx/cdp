@@ -6,7 +6,18 @@ import (
 	"encoding/json"
 )
 
-const EventLogEntryAdded = "Log.entryAdded"
+const (
+	EventLogEntryAdded = "Log.entryAdded"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventLogEntryAdded: &EntryAddedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // EntryAddedReply is the reply for EntryAdded events.
 type EntryAddedReply struct {

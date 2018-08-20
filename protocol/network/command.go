@@ -10,7 +10,36 @@ import (
 	"github.com/4ydx/cdp/protocol/io"
 )
 
-const CommandNetworkCanClearBrowserCache = "Network.canClearBrowserCache"
+const (
+	CommandNetworkCanClearBrowserCache                    = "Network.canClearBrowserCache"
+	CommandNetworkCanClearBrowserCookies                  = "Network.canClearBrowserCookies"
+	CommandNetworkCanEmulateNetworkConditions             = "Network.canEmulateNetworkConditions"
+	CommandNetworkClearBrowserCache                       = "Network.clearBrowserCache"
+	CommandNetworkClearBrowserCookies                     = "Network.clearBrowserCookies"
+	CommandNetworkContinueInterceptedRequest              = "Network.continueInterceptedRequest"
+	CommandNetworkDeleteCookies                           = "Network.deleteCookies"
+	CommandNetworkDisable                                 = "Network.disable"
+	CommandNetworkEmulateNetworkConditions                = "Network.emulateNetworkConditions"
+	CommandNetworkEnable                                  = "Network.enable"
+	CommandNetworkGetAllCookies                           = "Network.getAllCookies"
+	CommandNetworkGetCertificate                          = "Network.getCertificate"
+	CommandNetworkGetCookies                              = "Network.getCookies"
+	CommandNetworkGetResponseBody                         = "Network.getResponseBody"
+	CommandNetworkGetRequestPostData                      = "Network.getRequestPostData"
+	CommandNetworkGetResponseBodyForInterception          = "Network.getResponseBodyForInterception"
+	CommandNetworkTakeResponseBodyForInterceptionAsStream = "Network.takeResponseBodyForInterceptionAsStream"
+	CommandNetworkReplayXHR                               = "Network.replayXHR"
+	CommandNetworkSearchInResponseBody                    = "Network.searchInResponseBody"
+	CommandNetworkSetBlockedURLs                          = "Network.setBlockedURLs"
+	CommandNetworkSetBypassServiceWorker                  = "Network.setBypassServiceWorker"
+	CommandNetworkSetCacheDisabled                        = "Network.setCacheDisabled"
+	CommandNetworkSetCookie                               = "Network.setCookie"
+	CommandNetworkSetCookies                              = "Network.setCookies"
+	CommandNetworkSetDataSizeLimitsForTest                = "Network.setDataSizeLimitsForTest"
+	CommandNetworkSetExtraHTTPHeaders                     = "Network.setExtraHTTPHeaders"
+	CommandNetworkSetRequestInterception                  = "Network.setRequestInterception"
+	CommandNetworkSetUserAgentOverride                    = "Network.setUserAgentOverride"
+)
 
 // CanClearBrowserCacheArgs represents the arguments for CanClearBrowserCache in the Network domain.
 type CanClearBrowserCacheArgs struct {
@@ -62,8 +91,6 @@ func (a *CanClearBrowserCacheReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkCanClearBrowserCookies = "Network.canClearBrowserCookies"
-
 // CanClearBrowserCookiesArgs represents the arguments for CanClearBrowserCookies in the Network domain.
 type CanClearBrowserCookiesArgs struct {
 }
@@ -113,8 +140,6 @@ func (a *CanClearBrowserCookiesReply) UnmarshalJSON(b []byte) error {
 	*a = CanClearBrowserCookiesReply(*c)
 	return nil
 }
-
-const CommandNetworkCanEmulateNetworkConditions = "Network.canEmulateNetworkConditions"
 
 // CanEmulateNetworkConditionsArgs represents the arguments for CanEmulateNetworkConditions in the Network domain.
 type CanEmulateNetworkConditionsArgs struct {
@@ -166,8 +191,6 @@ func (a *CanEmulateNetworkConditionsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkClearBrowserCache = "Network.clearBrowserCache"
-
 // ClearBrowserCacheArgs represents the arguments for ClearBrowserCache in the Network domain.
 type ClearBrowserCacheArgs struct {
 }
@@ -217,8 +240,6 @@ func (a *ClearBrowserCacheReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkClearBrowserCookies = "Network.clearBrowserCookies"
-
 // ClearBrowserCookiesArgs represents the arguments for ClearBrowserCookies in the Network domain.
 type ClearBrowserCookiesArgs struct {
 }
@@ -267,8 +288,6 @@ func (a *ClearBrowserCookiesReply) UnmarshalJSON(b []byte) error {
 	*a = ClearBrowserCookiesReply(*c)
 	return nil
 }
-
-const CommandNetworkContinueInterceptedRequest = "Network.continueInterceptedRequest"
 
 // ContinueInterceptedRequestArgs represents the arguments for ContinueInterceptedRequest in the Network domain.
 type ContinueInterceptedRequestArgs struct {
@@ -327,8 +346,6 @@ func (a *ContinueInterceptedRequestReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkDeleteCookies = "Network.deleteCookies"
-
 // DeleteCookiesArgs represents the arguments for DeleteCookies in the Network domain.
 type DeleteCookiesArgs struct {
 	Name   string `json:"name"`             // Name of the cookies to remove.
@@ -382,8 +399,6 @@ func (a *DeleteCookiesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkDisable = "Network.disable"
-
 // DisableArgs represents the arguments for Disable in the Network domain.
 type DisableArgs struct {
 }
@@ -432,8 +447,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	*a = DisableReply(*c)
 	return nil
 }
-
-const CommandNetworkEmulateNetworkConditions = "Network.emulateNetworkConditions"
 
 // EmulateNetworkConditionsArgs represents the arguments for EmulateNetworkConditions in the Network domain.
 type EmulateNetworkConditionsArgs struct {
@@ -488,8 +501,6 @@ func (a *EmulateNetworkConditionsReply) UnmarshalJSON(b []byte) error {
 	*a = EmulateNetworkConditionsReply(*c)
 	return nil
 }
-
-const CommandNetworkEnable = "Network.enable"
 
 // EnableArgs represents the arguments for Enable in the Network domain.
 type EnableArgs struct {
@@ -551,8 +562,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkGetAllCookies = "Network.getAllCookies"
-
 // GetAllCookiesArgs represents the arguments for GetAllCookies in the Network domain.
 type GetAllCookiesArgs struct {
 }
@@ -602,8 +611,6 @@ func (a *GetAllCookiesReply) UnmarshalJSON(b []byte) error {
 	*a = GetAllCookiesReply(*c)
 	return nil
 }
-
-const CommandNetworkGetCertificate = "Network.getCertificate"
 
 // GetCertificateArgs represents the arguments for GetCertificate in the Network domain.
 type GetCertificateArgs struct {
@@ -656,8 +663,6 @@ func (a *GetCertificateReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkGetCookies = "Network.getCookies"
-
 // GetCookiesArgs represents the arguments for GetCookies in the Network domain.
 type GetCookiesArgs struct {
 	URLs []string `json:"urls,omitempty"` // The list of URLs for which applicable cookies will be fetched
@@ -708,8 +713,6 @@ func (a *GetCookiesReply) UnmarshalJSON(b []byte) error {
 	*a = GetCookiesReply(*c)
 	return nil
 }
-
-const CommandNetworkGetResponseBody = "Network.getResponseBody"
 
 // GetResponseBodyArgs represents the arguments for GetResponseBody in the Network domain.
 type GetResponseBodyArgs struct {
@@ -763,8 +766,6 @@ func (a *GetResponseBodyReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkGetRequestPostData = "Network.getRequestPostData"
-
 // GetRequestPostDataArgs represents the arguments for GetRequestPostData in the Network domain.
 type GetRequestPostDataArgs struct {
 	RequestID RequestID `json:"requestId"` // Identifier of the network request to get content for.
@@ -815,8 +816,6 @@ func (a *GetRequestPostDataReply) UnmarshalJSON(b []byte) error {
 	*a = GetRequestPostDataReply(*c)
 	return nil
 }
-
-const CommandNetworkGetResponseBodyForInterception = "Network.getResponseBodyForInterception"
 
 // GetResponseBodyForInterceptionArgs represents the arguments for GetResponseBodyForInterception in the Network domain.
 type GetResponseBodyForInterceptionArgs struct {
@@ -870,8 +869,6 @@ func (a *GetResponseBodyForInterceptionReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkTakeResponseBodyForInterceptionAsStream = "Network.takeResponseBodyForInterceptionAsStream"
-
 // TakeResponseBodyForInterceptionAsStreamArgs represents the arguments for TakeResponseBodyForInterceptionAsStream in the Network domain.
 type TakeResponseBodyForInterceptionAsStreamArgs struct {
 	InterceptionID InterceptionID `json:"interceptionId"` // No description.
@@ -923,8 +920,6 @@ func (a *TakeResponseBodyForInterceptionAsStreamReply) UnmarshalJSON(b []byte) e
 	return nil
 }
 
-const CommandNetworkReplayXHR = "Network.replayXHR"
-
 // ReplayXHRArgs represents the arguments for ReplayXHR in the Network domain.
 type ReplayXHRArgs struct {
 	RequestID RequestID `json:"requestId"` // Identifier of XHR to replay.
@@ -974,8 +969,6 @@ func (a *ReplayXHRReply) UnmarshalJSON(b []byte) error {
 	*a = ReplayXHRReply(*c)
 	return nil
 }
-
-const CommandNetworkSearchInResponseBody = "Network.searchInResponseBody"
 
 // SearchInResponseBodyArgs represents the arguments for SearchInResponseBody in the Network domain.
 type SearchInResponseBodyArgs struct {
@@ -1031,8 +1024,6 @@ func (a *SearchInResponseBodyReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkSetBlockedURLs = "Network.setBlockedURLs"
-
 // SetBlockedURLsArgs represents the arguments for SetBlockedURLs in the Network domain.
 type SetBlockedURLsArgs struct {
 	URLs []string `json:"urls"` // URL patterns to block. Wildcards ('*') are allowed.
@@ -1082,8 +1073,6 @@ func (a *SetBlockedURLsReply) UnmarshalJSON(b []byte) error {
 	*a = SetBlockedURLsReply(*c)
 	return nil
 }
-
-const CommandNetworkSetBypassServiceWorker = "Network.setBypassServiceWorker"
 
 // SetBypassServiceWorkerArgs represents the arguments for SetBypassServiceWorker in the Network domain.
 type SetBypassServiceWorkerArgs struct {
@@ -1135,8 +1124,6 @@ func (a *SetBypassServiceWorkerReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkSetCacheDisabled = "Network.setCacheDisabled"
-
 // SetCacheDisabledArgs represents the arguments for SetCacheDisabled in the Network domain.
 type SetCacheDisabledArgs struct {
 	CacheDisabled bool `json:"cacheDisabled"` // Cache disabled state.
@@ -1186,8 +1173,6 @@ func (a *SetCacheDisabledReply) UnmarshalJSON(b []byte) error {
 	*a = SetCacheDisabledReply(*c)
 	return nil
 }
-
-const CommandNetworkSetCookie = "Network.setCookie"
 
 // SetCookieArgs represents the arguments for SetCookie in the Network domain.
 type SetCookieArgs struct {
@@ -1248,8 +1233,6 @@ func (a *SetCookieReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkSetCookies = "Network.setCookies"
-
 // SetCookiesArgs represents the arguments for SetCookies in the Network domain.
 type SetCookiesArgs struct {
 	Cookies []CookieParam `json:"cookies"` // Cookies to be set.
@@ -1299,8 +1282,6 @@ func (a *SetCookiesReply) UnmarshalJSON(b []byte) error {
 	*a = SetCookiesReply(*c)
 	return nil
 }
-
-const CommandNetworkSetDataSizeLimitsForTest = "Network.setDataSizeLimitsForTest"
 
 // SetDataSizeLimitsForTestArgs represents the arguments for SetDataSizeLimitsForTest in the Network domain.
 type SetDataSizeLimitsForTestArgs struct {
@@ -1353,8 +1334,6 @@ func (a *SetDataSizeLimitsForTestReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandNetworkSetExtraHTTPHeaders = "Network.setExtraHTTPHeaders"
-
 // SetExtraHTTPHeadersArgs represents the arguments for SetExtraHTTPHeaders in the Network domain.
 type SetExtraHTTPHeadersArgs struct {
 	Headers Headers `json:"headers"` // Map with extra HTTP headers.
@@ -1404,8 +1383,6 @@ func (a *SetExtraHTTPHeadersReply) UnmarshalJSON(b []byte) error {
 	*a = SetExtraHTTPHeadersReply(*c)
 	return nil
 }
-
-const CommandNetworkSetRequestInterception = "Network.setRequestInterception"
 
 // SetRequestInterceptionArgs represents the arguments for SetRequestInterception in the Network domain.
 type SetRequestInterceptionArgs struct {

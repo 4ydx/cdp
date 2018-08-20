@@ -10,7 +10,54 @@ import (
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
-const EventPageDomContentEventFired = "Page.domContentEventFired"
+const (
+	EventPageDomContentEventFired            = "Page.domContentEventFired"
+	EventPageFrameAttached                   = "Page.frameAttached"
+	EventPageFrameClearedScheduledNavigation = "Page.frameClearedScheduledNavigation"
+	EventPageFrameDetached                   = "Page.frameDetached"
+	EventPageFrameNavigated                  = "Page.frameNavigated"
+	EventPageFrameResized                    = "Page.frameResized"
+	EventPageFrameScheduledNavigation        = "Page.frameScheduledNavigation"
+	EventPageFrameStartedLoading             = "Page.frameStartedLoading"
+	EventPageFrameStoppedLoading             = "Page.frameStoppedLoading"
+	EventPageInterstitialHidden              = "Page.interstitialHidden"
+	EventPageInterstitialShown               = "Page.interstitialShown"
+	EventPageJavascriptDialogClosed          = "Page.javascriptDialogClosed"
+	EventPageJavascriptDialogOpening         = "Page.javascriptDialogOpening"
+	EventPageLifecycleEvent                  = "Page.lifecycleEvent"
+	EventPageLoadEventFired                  = "Page.loadEventFired"
+	EventPageNavigatedWithinDocument         = "Page.navigatedWithinDocument"
+	EventPageScreencastFrame                 = "Page.screencastFrame"
+	EventPageScreencastVisibilityChanged     = "Page.screencastVisibilityChanged"
+	EventPageWindowOpen                      = "Page.windowOpen"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventPageDomContentEventFired:            &DOMContentEventFiredReply{},
+	EventPageFrameAttached:                   &FrameAttachedReply{},
+	EventPageFrameClearedScheduledNavigation: &FrameClearedScheduledNavigationReply{},
+	EventPageFrameDetached:                   &FrameDetachedReply{},
+	EventPageFrameNavigated:                  &FrameNavigatedReply{},
+	EventPageFrameResized:                    &FrameResizedReply{},
+	EventPageFrameScheduledNavigation:        &FrameScheduledNavigationReply{},
+	EventPageFrameStartedLoading:             &FrameStartedLoadingReply{},
+	EventPageFrameStoppedLoading:             &FrameStoppedLoadingReply{},
+	EventPageInterstitialHidden:              &InterstitialHiddenReply{},
+	EventPageInterstitialShown:               &InterstitialShownReply{},
+	EventPageJavascriptDialogClosed:          &JavascriptDialogClosedReply{},
+	EventPageJavascriptDialogOpening:         &JavascriptDialogOpeningReply{},
+	EventPageLifecycleEvent:                  &LifecycleEventReply{},
+	EventPageLoadEventFired:                  &LoadEventFiredReply{},
+	EventPageNavigatedWithinDocument:         &NavigatedWithinDocumentReply{},
+	EventPageScreencastFrame:                 &ScreencastFrameReply{},
+	EventPageScreencastVisibilityChanged:     &ScreencastVisibilityChangedReply{},
+	EventPageWindowOpen:                      &WindowOpenReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // DOMContentEventFiredReply is the reply for DOMContentEventFired events.
 type DOMContentEventFiredReply struct {
@@ -28,8 +75,6 @@ func (a *DOMContentEventFiredReply) UnmarshalJSON(b []byte) error {
 	*a = DOMContentEventFiredReply(*c)
 	return nil
 }
-
-const EventPageFrameAttached = "Page.frameAttached"
 
 // FrameAttachedReply is the reply for FrameAttached events.
 type FrameAttachedReply struct {
@@ -50,8 +95,6 @@ func (a *FrameAttachedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventPageFrameClearedScheduledNavigation = "Page.frameClearedScheduledNavigation"
-
 // FrameClearedScheduledNavigationReply is the reply for FrameClearedScheduledNavigation events.
 type FrameClearedScheduledNavigationReply struct {
 	FrameID shared.FrameID `json:"frameId"` // Id of the frame that has cleared its scheduled navigation.
@@ -68,8 +111,6 @@ func (a *FrameClearedScheduledNavigationReply) UnmarshalJSON(b []byte) error {
 	*a = FrameClearedScheduledNavigationReply(*c)
 	return nil
 }
-
-const EventPageFrameDetached = "Page.frameDetached"
 
 // FrameDetachedReply is the reply for FrameDetached events.
 type FrameDetachedReply struct {
@@ -88,8 +129,6 @@ func (a *FrameDetachedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventPageFrameNavigated = "Page.frameNavigated"
-
 // FrameNavigatedReply is the reply for FrameNavigated events.
 type FrameNavigatedReply struct {
 	Frame Frame `json:"frame"` // Frame object.
@@ -107,8 +146,6 @@ func (a *FrameNavigatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventPageFrameResized = "Page.frameResized"
-
 // FrameResizedReply is the reply for FrameResized events.
 type FrameResizedReply struct {
 }
@@ -124,8 +161,6 @@ func (a *FrameResizedReply) UnmarshalJSON(b []byte) error {
 	*a = FrameResizedReply(*c)
 	return nil
 }
-
-const EventPageFrameScheduledNavigation = "Page.frameScheduledNavigation"
 
 // FrameScheduledNavigationReply is the reply for FrameScheduledNavigation events.
 type FrameScheduledNavigationReply struct {
@@ -150,8 +185,6 @@ func (a *FrameScheduledNavigationReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventPageFrameStartedLoading = "Page.frameStartedLoading"
-
 // FrameStartedLoadingReply is the reply for FrameStartedLoading events.
 type FrameStartedLoadingReply struct {
 	FrameID shared.FrameID `json:"frameId"` // Id of the frame that has started loading.
@@ -168,8 +201,6 @@ func (a *FrameStartedLoadingReply) UnmarshalJSON(b []byte) error {
 	*a = FrameStartedLoadingReply(*c)
 	return nil
 }
-
-const EventPageFrameStoppedLoading = "Page.frameStoppedLoading"
 
 // FrameStoppedLoadingReply is the reply for FrameStoppedLoading events.
 type FrameStoppedLoadingReply struct {
@@ -188,8 +219,6 @@ func (a *FrameStoppedLoadingReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventPageInterstitialHidden = "Page.interstitialHidden"
-
 // InterstitialHiddenReply is the reply for InterstitialHidden events.
 type InterstitialHiddenReply struct {
 }
@@ -206,8 +235,6 @@ func (a *InterstitialHiddenReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventPageInterstitialShown = "Page.interstitialShown"
-
 // InterstitialShownReply is the reply for InterstitialShown events.
 type InterstitialShownReply struct {
 }
@@ -223,8 +250,6 @@ func (a *InterstitialShownReply) UnmarshalJSON(b []byte) error {
 	*a = InterstitialShownReply(*c)
 	return nil
 }
-
-const EventPageJavascriptDialogClosed = "Page.javascriptDialogClosed"
 
 // JavascriptDialogClosedReply is the reply for JavascriptDialogClosed events.
 type JavascriptDialogClosedReply struct {
@@ -243,8 +268,6 @@ func (a *JavascriptDialogClosedReply) UnmarshalJSON(b []byte) error {
 	*a = JavascriptDialogClosedReply(*c)
 	return nil
 }
-
-const EventPageJavascriptDialogOpening = "Page.javascriptDialogOpening"
 
 // JavascriptDialogOpeningReply is the reply for JavascriptDialogOpening events.
 type JavascriptDialogOpeningReply struct {
@@ -267,8 +290,6 @@ func (a *JavascriptDialogOpeningReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventPageLifecycleEvent = "Page.lifecycleEvent"
-
 // LifecycleEventReply is the reply for LifecycleEvent events.
 type LifecycleEventReply struct {
 	FrameID   shared.FrameID        `json:"frameId"`   // Id of the frame.
@@ -289,8 +310,6 @@ func (a *LifecycleEventReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventPageLoadEventFired = "Page.loadEventFired"
-
 // LoadEventFiredReply is the reply for LoadEventFired events.
 type LoadEventFiredReply struct {
 	Timestamp network.MonotonicTime `json:"timestamp"` // No description.
@@ -307,8 +326,6 @@ func (a *LoadEventFiredReply) UnmarshalJSON(b []byte) error {
 	*a = LoadEventFiredReply(*c)
 	return nil
 }
-
-const EventPageNavigatedWithinDocument = "Page.navigatedWithinDocument"
 
 // NavigatedWithinDocumentReply is the reply for NavigatedWithinDocument events.
 type NavigatedWithinDocumentReply struct {
@@ -327,8 +344,6 @@ func (a *NavigatedWithinDocumentReply) UnmarshalJSON(b []byte) error {
 	*a = NavigatedWithinDocumentReply(*c)
 	return nil
 }
-
-const EventPageScreencastFrame = "Page.screencastFrame"
 
 // ScreencastFrameReply is the reply for ScreencastFrame events.
 type ScreencastFrameReply struct {
@@ -349,8 +364,6 @@ func (a *ScreencastFrameReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventPageScreencastVisibilityChanged = "Page.screencastVisibilityChanged"
-
 // ScreencastVisibilityChangedReply is the reply for ScreencastVisibilityChanged events.
 type ScreencastVisibilityChangedReply struct {
 	Visible bool `json:"visible"` // True if the page is visible.
@@ -367,8 +380,6 @@ func (a *ScreencastVisibilityChangedReply) UnmarshalJSON(b []byte) error {
 	*a = ScreencastVisibilityChangedReply(*c)
 	return nil
 }
-
-const EventPageWindowOpen = "Page.windowOpen"
 
 // WindowOpenReply is the reply for WindowOpen events.
 type WindowOpenReply struct {

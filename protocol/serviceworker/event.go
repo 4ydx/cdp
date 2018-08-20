@@ -6,7 +6,22 @@ import (
 	"encoding/json"
 )
 
-const EventServiceWorkerWorkerErrorReported = "ServiceWorker.workerErrorReported"
+const (
+	EventServiceWorkerWorkerErrorReported       = "ServiceWorker.workerErrorReported"
+	EventServiceWorkerWorkerRegistrationUpdated = "ServiceWorker.workerRegistrationUpdated"
+	EventServiceWorkerWorkerVersionUpdated      = "ServiceWorker.workerVersionUpdated"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventServiceWorkerWorkerErrorReported:       &WorkerErrorReportedReply{},
+	EventServiceWorkerWorkerRegistrationUpdated: &WorkerRegistrationUpdatedReply{},
+	EventServiceWorkerWorkerVersionUpdated:      &WorkerVersionUpdatedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // WorkerErrorReportedReply is the reply for WorkerErrorReported events.
 type WorkerErrorReportedReply struct {
@@ -25,8 +40,6 @@ func (a *WorkerErrorReportedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventServiceWorkerWorkerRegistrationUpdated = "ServiceWorker.workerRegistrationUpdated"
-
 // WorkerRegistrationUpdatedReply is the reply for WorkerRegistrationUpdated events.
 type WorkerRegistrationUpdatedReply struct {
 	Registrations []Registration `json:"registrations"` // No description.
@@ -43,8 +56,6 @@ func (a *WorkerRegistrationUpdatedReply) UnmarshalJSON(b []byte) error {
 	*a = WorkerRegistrationUpdatedReply(*c)
 	return nil
 }
-
-const EventServiceWorkerWorkerVersionUpdated = "ServiceWorker.workerVersionUpdated"
 
 // WorkerVersionUpdatedReply is the reply for WorkerVersionUpdated events.
 type WorkerVersionUpdatedReply struct {

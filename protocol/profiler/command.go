@@ -7,7 +7,20 @@ import (
 	"log"
 )
 
-const CommandProfilerDisable = "Profiler.disable"
+const (
+	CommandProfilerDisable               = "Profiler.disable"
+	CommandProfilerEnable                = "Profiler.enable"
+	CommandProfilerGetBestEffortCoverage = "Profiler.getBestEffortCoverage"
+	CommandProfilerSetSamplingInterval   = "Profiler.setSamplingInterval"
+	CommandProfilerStart                 = "Profiler.start"
+	CommandProfilerStartPreciseCoverage  = "Profiler.startPreciseCoverage"
+	CommandProfilerStartTypeProfile      = "Profiler.startTypeProfile"
+	CommandProfilerStop                  = "Profiler.stop"
+	CommandProfilerStopPreciseCoverage   = "Profiler.stopPreciseCoverage"
+	CommandProfilerStopTypeProfile       = "Profiler.stopTypeProfile"
+	CommandProfilerTakePreciseCoverage   = "Profiler.takePreciseCoverage"
+	CommandProfilerTakeTypeProfile       = "Profiler.takeTypeProfile"
+)
 
 // DisableArgs represents the arguments for Disable in the Profiler domain.
 type DisableArgs struct {
@@ -58,8 +71,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandProfilerEnable = "Profiler.enable"
-
 // EnableArgs represents the arguments for Enable in the Profiler domain.
 type EnableArgs struct {
 }
@@ -108,8 +119,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandProfilerGetBestEffortCoverage = "Profiler.getBestEffortCoverage"
 
 // GetBestEffortCoverageArgs represents the arguments for GetBestEffortCoverage in the Profiler domain.
 type GetBestEffortCoverageArgs struct {
@@ -161,8 +170,6 @@ func (a *GetBestEffortCoverageReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandProfilerSetSamplingInterval = "Profiler.setSamplingInterval"
-
 // SetSamplingIntervalArgs represents the arguments for SetSamplingInterval in the Profiler domain.
 type SetSamplingIntervalArgs struct {
 	Interval int `json:"interval"` // New sampling interval in microseconds.
@@ -213,8 +220,6 @@ func (a *SetSamplingIntervalReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandProfilerStart = "Profiler.start"
-
 // StartArgs represents the arguments for Start in the Profiler domain.
 type StartArgs struct {
 }
@@ -263,8 +268,6 @@ func (a *StartReply) UnmarshalJSON(b []byte) error {
 	*a = StartReply(*c)
 	return nil
 }
-
-const CommandProfilerStartPreciseCoverage = "Profiler.startPreciseCoverage"
 
 // StartPreciseCoverageArgs represents the arguments for StartPreciseCoverage in the Profiler domain.
 type StartPreciseCoverageArgs struct {
@@ -317,8 +320,6 @@ func (a *StartPreciseCoverageReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandProfilerStartTypeProfile = "Profiler.startTypeProfile"
-
 // StartTypeProfileArgs represents the arguments for StartTypeProfile in the Profiler domain.
 type StartTypeProfileArgs struct {
 }
@@ -367,8 +368,6 @@ func (a *StartTypeProfileReply) UnmarshalJSON(b []byte) error {
 	*a = StartTypeProfileReply(*c)
 	return nil
 }
-
-const CommandProfilerStop = "Profiler.stop"
 
 // StopArgs represents the arguments for Stop in the Profiler domain.
 type StopArgs struct {
@@ -420,8 +419,6 @@ func (a *StopReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandProfilerStopPreciseCoverage = "Profiler.stopPreciseCoverage"
-
 // StopPreciseCoverageArgs represents the arguments for StopPreciseCoverage in the Profiler domain.
 type StopPreciseCoverageArgs struct {
 }
@@ -470,8 +467,6 @@ func (a *StopPreciseCoverageReply) UnmarshalJSON(b []byte) error {
 	*a = StopPreciseCoverageReply(*c)
 	return nil
 }
-
-const CommandProfilerStopTypeProfile = "Profiler.stopTypeProfile"
 
 // StopTypeProfileArgs represents the arguments for StopTypeProfile in the Profiler domain.
 type StopTypeProfileArgs struct {
@@ -522,8 +517,6 @@ func (a *StopTypeProfileReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandProfilerTakePreciseCoverage = "Profiler.takePreciseCoverage"
-
 // TakePreciseCoverageArgs represents the arguments for TakePreciseCoverage in the Profiler domain.
 type TakePreciseCoverageArgs struct {
 }
@@ -573,8 +566,6 @@ func (a *TakePreciseCoverageReply) UnmarshalJSON(b []byte) error {
 	*a = TakePreciseCoverageReply(*c)
 	return nil
 }
-
-const CommandProfilerTakeTypeProfile = "Profiler.takeTypeProfile"
 
 // TakeTypeProfileArgs represents the arguments for TakeTypeProfile in the Profiler domain.
 type TakeTypeProfileArgs struct {

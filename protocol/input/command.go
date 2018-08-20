@@ -7,7 +7,16 @@ import (
 	"log"
 )
 
-const CommandInputDispatchKeyEvent = "Input.dispatchKeyEvent"
+const (
+	CommandInputDispatchKeyEvent           = "Input.dispatchKeyEvent"
+	CommandInputDispatchMouseEvent         = "Input.dispatchMouseEvent"
+	CommandInputDispatchTouchEvent         = "Input.dispatchTouchEvent"
+	CommandInputEmulateTouchFromMouseEvent = "Input.emulateTouchFromMouseEvent"
+	CommandInputSetIgnoreInputEvents       = "Input.setIgnoreInputEvents"
+	CommandInputSynthesizePinchGesture     = "Input.synthesizePinchGesture"
+	CommandInputSynthesizeScrollGesture    = "Input.synthesizeScrollGesture"
+	CommandInputSynthesizeTapGesture       = "Input.synthesizeTapGesture"
+)
 
 // DispatchKeyEventArgs represents the arguments for DispatchKeyEvent in the Input domain.
 type DispatchKeyEventArgs struct {
@@ -75,8 +84,6 @@ func (a *DispatchKeyEventReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandInputDispatchMouseEvent = "Input.dispatchMouseEvent"
-
 // DispatchMouseEventArgs represents the arguments for DispatchMouseEvent in the Input domain.
 type DispatchMouseEventArgs struct {
 	// Type Type of the mouse event.
@@ -141,8 +148,6 @@ func (a *DispatchMouseEventReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandInputDispatchTouchEvent = "Input.dispatchTouchEvent"
-
 // DispatchTouchEventArgs represents the arguments for DispatchTouchEvent in the Input domain.
 type DispatchTouchEventArgs struct {
 	// Type Type of the touch event. TouchEnd and TouchCancel must not
@@ -200,8 +205,6 @@ func (a *DispatchTouchEventReply) UnmarshalJSON(b []byte) error {
 	*a = DispatchTouchEventReply(*c)
 	return nil
 }
-
-const CommandInputEmulateTouchFromMouseEvent = "Input.emulateTouchFromMouseEvent"
 
 // EmulateTouchFromMouseEventArgs represents the arguments for EmulateTouchFromMouseEvent in the Input domain.
 type EmulateTouchFromMouseEventArgs struct {
@@ -267,8 +270,6 @@ func (a *EmulateTouchFromMouseEventReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandInputSetIgnoreInputEvents = "Input.setIgnoreInputEvents"
-
 // SetIgnoreInputEventsArgs represents the arguments for SetIgnoreInputEvents in the Input domain.
 type SetIgnoreInputEventsArgs struct {
 	Ignore bool `json:"ignore"` // Ignores input events processing when set to true.
@@ -318,8 +319,6 @@ func (a *SetIgnoreInputEventsReply) UnmarshalJSON(b []byte) error {
 	*a = SetIgnoreInputEventsReply(*c)
 	return nil
 }
-
-const CommandInputSynthesizePinchGesture = "Input.synthesizePinchGesture"
 
 // SynthesizePinchGestureArgs represents the arguments for SynthesizePinchGesture in the Input domain.
 type SynthesizePinchGestureArgs struct {
@@ -374,8 +373,6 @@ func (a *SynthesizePinchGestureReply) UnmarshalJSON(b []byte) error {
 	*a = SynthesizePinchGestureReply(*c)
 	return nil
 }
-
-const CommandInputSynthesizeScrollGesture = "Input.synthesizeScrollGesture"
 
 // SynthesizeScrollGestureArgs represents the arguments for SynthesizeScrollGesture in the Input domain.
 type SynthesizeScrollGestureArgs struct {
@@ -437,8 +434,6 @@ func (a *SynthesizeScrollGestureReply) UnmarshalJSON(b []byte) error {
 	*a = SynthesizeScrollGestureReply(*c)
 	return nil
 }
-
-const CommandInputSynthesizeTapGesture = "Input.synthesizeTapGesture"
 
 // SynthesizeTapGestureArgs represents the arguments for SynthesizeTapGesture in the Input domain.
 type SynthesizeTapGestureArgs struct {

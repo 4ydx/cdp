@@ -6,7 +6,24 @@ import (
 	"encoding/json"
 )
 
-const EventDOMStorageDomStorageItemAdded = "DOMStorage.domStorageItemAdded"
+const (
+	EventDOMStorageDomStorageItemAdded    = "DOMStorage.domStorageItemAdded"
+	EventDOMStorageDomStorageItemRemoved  = "DOMStorage.domStorageItemRemoved"
+	EventDOMStorageDomStorageItemUpdated  = "DOMStorage.domStorageItemUpdated"
+	EventDOMStorageDomStorageItemsCleared = "DOMStorage.domStorageItemsCleared"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventDOMStorageDomStorageItemAdded:    &ItemAddedReply{},
+	EventDOMStorageDomStorageItemRemoved:  &ItemRemovedReply{},
+	EventDOMStorageDomStorageItemUpdated:  &ItemUpdatedReply{},
+	EventDOMStorageDomStorageItemsCleared: &ItemsClearedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // ItemAddedReply is the reply for DOMStorageItemAdded events.
 type ItemAddedReply struct {
@@ -27,8 +44,6 @@ func (a *ItemAddedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventDOMStorageDomStorageItemRemoved = "DOMStorage.domStorageItemRemoved"
-
 // ItemRemovedReply is the reply for DOMStorageItemRemoved events.
 type ItemRemovedReply struct {
 	StorageID StorageID `json:"storageId"` // No description.
@@ -46,8 +61,6 @@ func (a *ItemRemovedReply) UnmarshalJSON(b []byte) error {
 	*a = ItemRemovedReply(*c)
 	return nil
 }
-
-const EventDOMStorageDomStorageItemUpdated = "DOMStorage.domStorageItemUpdated"
 
 // ItemUpdatedReply is the reply for DOMStorageItemUpdated events.
 type ItemUpdatedReply struct {
@@ -68,8 +81,6 @@ func (a *ItemUpdatedReply) UnmarshalJSON(b []byte) error {
 	*a = ItemUpdatedReply(*c)
 	return nil
 }
-
-const EventDOMStorageDomStorageItemsCleared = "DOMStorage.domStorageItemsCleared"
 
 // ItemsClearedReply is the reply for DOMStorageItemsCleared events.
 type ItemsClearedReply struct {

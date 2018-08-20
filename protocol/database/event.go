@@ -6,7 +6,18 @@ import (
 	"encoding/json"
 )
 
-const EventDatabaseAddDatabase = "Database.addDatabase"
+const (
+	EventDatabaseAddDatabase = "Database.addDatabase"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventDatabaseAddDatabase: &AddDatabaseReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // AddDatabaseReply is the reply for AddDatabase events.
 type AddDatabaseReply struct {

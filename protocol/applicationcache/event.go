@@ -8,7 +8,20 @@ import (
 	"github.com/4ydx/cdp/protocol"
 )
 
-const EventApplicationCacheApplicationCacheStatusUpdated = "ApplicationCache.applicationCacheStatusUpdated"
+const (
+	EventApplicationCacheApplicationCacheStatusUpdated = "ApplicationCache.applicationCacheStatusUpdated"
+	EventApplicationCacheNetworkStateUpdated           = "ApplicationCache.networkStateUpdated"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventApplicationCacheApplicationCacheStatusUpdated: &StatusUpdatedReply{},
+	EventApplicationCacheNetworkStateUpdated:           &NetworkStateUpdatedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // StatusUpdatedReply is the reply for ApplicationCacheStatusUpdated events.
 type StatusUpdatedReply struct {
@@ -28,8 +41,6 @@ func (a *StatusUpdatedReply) UnmarshalJSON(b []byte) error {
 	*a = StatusUpdatedReply(*c)
 	return nil
 }
-
-const EventApplicationCacheNetworkStateUpdated = "ApplicationCache.networkStateUpdated"
 
 // NetworkStateUpdatedReply is the reply for NetworkStateUpdated events.
 type NetworkStateUpdatedReply struct {

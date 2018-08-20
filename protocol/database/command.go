@@ -7,7 +7,12 @@ import (
 	"log"
 )
 
-const CommandDatabaseDisable = "Database.disable"
+const (
+	CommandDatabaseDisable               = "Database.disable"
+	CommandDatabaseEnable                = "Database.enable"
+	CommandDatabaseExecuteSQL            = "Database.executeSQL"
+	CommandDatabaseGetDatabaseTableNames = "Database.getDatabaseTableNames"
+)
 
 // DisableArgs represents the arguments for Disable in the Database domain.
 type DisableArgs struct {
@@ -58,8 +63,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandDatabaseEnable = "Database.enable"
-
 // EnableArgs represents the arguments for Enable in the Database domain.
 type EnableArgs struct {
 }
@@ -108,8 +111,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandDatabaseExecuteSQL = "Database.executeSQL"
 
 // ExecuteSQLArgs represents the arguments for ExecuteSQL in the Database domain.
 type ExecuteSQLArgs struct {
@@ -164,8 +165,6 @@ func (a *ExecuteSQLReply) UnmarshalJSON(b []byte) error {
 	*a = ExecuteSQLReply(*c)
 	return nil
 }
-
-const CommandDatabaseGetDatabaseTableNames = "Database.getDatabaseTableNames"
 
 // GetDatabaseTableNamesArgs represents the arguments for GetDatabaseTableNames in the Database domain.
 type GetDatabaseTableNamesArgs struct {

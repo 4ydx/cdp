@@ -9,7 +9,17 @@ import (
 	"github.com/4ydx/cdp/protocol/dom"
 )
 
-const CommandLayerTreeCompositingReasons = "LayerTree.compositingReasons"
+const (
+	CommandLayerTreeCompositingReasons = "LayerTree.compositingReasons"
+	CommandLayerTreeDisable            = "LayerTree.disable"
+	CommandLayerTreeEnable             = "LayerTree.enable"
+	CommandLayerTreeLoadSnapshot       = "LayerTree.loadSnapshot"
+	CommandLayerTreeMakeSnapshot       = "LayerTree.makeSnapshot"
+	CommandLayerTreeProfileSnapshot    = "LayerTree.profileSnapshot"
+	CommandLayerTreeReleaseSnapshot    = "LayerTree.releaseSnapshot"
+	CommandLayerTreeReplaySnapshot     = "LayerTree.replaySnapshot"
+	CommandLayerTreeSnapshotCommandLog = "LayerTree.snapshotCommandLog"
+)
 
 // CompositingReasonsArgs represents the arguments for CompositingReasons in the LayerTree domain.
 type CompositingReasonsArgs struct {
@@ -62,8 +72,6 @@ func (a *CompositingReasonsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandLayerTreeDisable = "LayerTree.disable"
-
 // DisableArgs represents the arguments for Disable in the LayerTree domain.
 type DisableArgs struct {
 }
@@ -113,8 +121,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandLayerTreeEnable = "LayerTree.enable"
-
 // EnableArgs represents the arguments for Enable in the LayerTree domain.
 type EnableArgs struct {
 }
@@ -163,8 +169,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandLayerTreeLoadSnapshot = "LayerTree.loadSnapshot"
 
 // LoadSnapshotArgs represents the arguments for LoadSnapshot in the LayerTree domain.
 type LoadSnapshotArgs struct {
@@ -217,8 +221,6 @@ func (a *LoadSnapshotReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandLayerTreeMakeSnapshot = "LayerTree.makeSnapshot"
-
 // MakeSnapshotArgs represents the arguments for MakeSnapshot in the LayerTree domain.
 type MakeSnapshotArgs struct {
 	LayerID LayerID `json:"layerId"` // The id of the layer.
@@ -269,8 +271,6 @@ func (a *MakeSnapshotReply) UnmarshalJSON(b []byte) error {
 	*a = MakeSnapshotReply(*c)
 	return nil
 }
-
-const CommandLayerTreeProfileSnapshot = "LayerTree.profileSnapshot"
 
 // ProfileSnapshotArgs represents the arguments for ProfileSnapshot in the LayerTree domain.
 type ProfileSnapshotArgs struct {
@@ -326,8 +326,6 @@ func (a *ProfileSnapshotReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandLayerTreeReleaseSnapshot = "LayerTree.releaseSnapshot"
-
 // ReleaseSnapshotArgs represents the arguments for ReleaseSnapshot in the LayerTree domain.
 type ReleaseSnapshotArgs struct {
 	SnapshotID SnapshotID `json:"snapshotId"` // The id of the layer snapshot.
@@ -377,8 +375,6 @@ func (a *ReleaseSnapshotReply) UnmarshalJSON(b []byte) error {
 	*a = ReleaseSnapshotReply(*c)
 	return nil
 }
-
-const CommandLayerTreeReplaySnapshot = "LayerTree.replaySnapshot"
 
 // ReplaySnapshotArgs represents the arguments for ReplaySnapshot in the LayerTree domain.
 type ReplaySnapshotArgs struct {
@@ -433,8 +429,6 @@ func (a *ReplaySnapshotReply) UnmarshalJSON(b []byte) error {
 	*a = ReplaySnapshotReply(*c)
 	return nil
 }
-
-const CommandLayerTreeSnapshotCommandLog = "LayerTree.snapshotCommandLog"
 
 // SnapshotCommandLogArgs represents the arguments for SnapshotCommandLog in the LayerTree domain.
 type SnapshotCommandLogArgs struct {

@@ -9,7 +9,16 @@ import (
 	"github.com/4ydx/cdp/protocol/target"
 )
 
-const CommandBrowserClose = "Browser.close"
+const (
+	CommandBrowserClose                 = "Browser.close"
+	CommandBrowserGetVersion            = "Browser.getVersion"
+	CommandBrowserGetBrowserCommandLine = "Browser.getBrowserCommandLine"
+	CommandBrowserGetHistograms         = "Browser.getHistograms"
+	CommandBrowserGetHistogram          = "Browser.getHistogram"
+	CommandBrowserGetWindowBounds       = "Browser.getWindowBounds"
+	CommandBrowserGetWindowForTarget    = "Browser.getWindowForTarget"
+	CommandBrowserSetWindowBounds       = "Browser.setWindowBounds"
+)
 
 // CloseArgs represents the arguments for Close in the Browser domain.
 type CloseArgs struct {
@@ -59,8 +68,6 @@ func (a *CloseReply) UnmarshalJSON(b []byte) error {
 	*a = CloseReply(*c)
 	return nil
 }
-
-const CommandBrowserGetVersion = "Browser.getVersion"
 
 // GetVersionArgs represents the arguments for GetVersion in the Browser domain.
 type GetVersionArgs struct {
@@ -116,8 +123,6 @@ func (a *GetVersionReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandBrowserGetBrowserCommandLine = "Browser.getBrowserCommandLine"
-
 // GetBrowserCommandLineArgs represents the arguments for GetBrowserCommandLine in the Browser domain.
 type GetBrowserCommandLineArgs struct {
 }
@@ -167,8 +172,6 @@ func (a *GetBrowserCommandLineReply) UnmarshalJSON(b []byte) error {
 	*a = GetBrowserCommandLineReply(*c)
 	return nil
 }
-
-const CommandBrowserGetHistograms = "Browser.getHistograms"
 
 // GetHistogramsArgs represents the arguments for GetHistograms in the Browser domain.
 type GetHistogramsArgs struct {
@@ -222,8 +225,6 @@ func (a *GetHistogramsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandBrowserGetHistogram = "Browser.getHistogram"
-
 // GetHistogramArgs represents the arguments for GetHistogram in the Browser domain.
 type GetHistogramArgs struct {
 	Name  string `json:"name"`            // Requested histogram name.
@@ -276,8 +277,6 @@ func (a *GetHistogramReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandBrowserGetWindowBounds = "Browser.getWindowBounds"
-
 // GetWindowBoundsArgs represents the arguments for GetWindowBounds in the Browser domain.
 type GetWindowBoundsArgs struct {
 	WindowID WindowID `json:"windowId"` // Browser window id.
@@ -328,8 +327,6 @@ func (a *GetWindowBoundsReply) UnmarshalJSON(b []byte) error {
 	*a = GetWindowBoundsReply(*c)
 	return nil
 }
-
-const CommandBrowserGetWindowForTarget = "Browser.getWindowForTarget"
 
 // GetWindowForTargetArgs represents the arguments for GetWindowForTarget in the Browser domain.
 type GetWindowForTargetArgs struct {
@@ -382,8 +379,6 @@ func (a *GetWindowForTargetReply) UnmarshalJSON(b []byte) error {
 	*a = GetWindowForTargetReply(*c)
 	return nil
 }
-
-const CommandBrowserSetWindowBounds = "Browser.setWindowBounds"
 
 // SetWindowBoundsArgs represents the arguments for SetWindowBounds in the Browser domain.
 type SetWindowBoundsArgs struct {

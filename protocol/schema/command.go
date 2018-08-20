@@ -7,7 +7,9 @@ import (
 	"log"
 )
 
-const CommandSchemaGetDomains = "Schema.getDomains"
+const (
+	CommandSchemaGetDomains = "Schema.getDomains"
+)
 
 // GetDomainsArgs represents the arguments for GetDomains in the Schema domain.
 type GetDomainsArgs struct {

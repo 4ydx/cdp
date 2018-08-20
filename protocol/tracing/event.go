@@ -8,7 +8,22 @@ import (
 	"github.com/4ydx/cdp/protocol/io"
 )
 
-const EventTracingBufferUsage = "Tracing.bufferUsage"
+const (
+	EventTracingBufferUsage     = "Tracing.bufferUsage"
+	EventTracingDataCollected   = "Tracing.dataCollected"
+	EventTracingTracingComplete = "Tracing.tracingComplete"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventTracingBufferUsage:     &BufferUsageReply{},
+	EventTracingDataCollected:   &DataCollectedReply{},
+	EventTracingTracingComplete: &CompleteReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // BufferUsageReply is the reply for BufferUsage events.
 type BufferUsageReply struct {
@@ -29,8 +44,6 @@ func (a *BufferUsageReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventTracingDataCollected = "Tracing.dataCollected"
-
 // DataCollectedReply is the reply for DataCollected events.
 type DataCollectedReply struct {
 	Value []json.RawMessage `json:"value"` // No description.
@@ -47,8 +60,6 @@ func (a *DataCollectedReply) UnmarshalJSON(b []byte) error {
 	*a = DataCollectedReply(*c)
 	return nil
 }
-
-const EventTracingTracingComplete = "Tracing.tracingComplete"
 
 // CompleteReply is the reply for TracingComplete events.
 type CompleteReply struct {

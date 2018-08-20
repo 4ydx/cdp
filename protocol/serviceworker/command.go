@@ -7,7 +7,20 @@ import (
 	"log"
 )
 
-const CommandServiceWorkerDeliverPushMessage = "ServiceWorker.deliverPushMessage"
+const (
+	CommandServiceWorkerDeliverPushMessage       = "ServiceWorker.deliverPushMessage"
+	CommandServiceWorkerDisable                  = "ServiceWorker.disable"
+	CommandServiceWorkerDispatchSyncEvent        = "ServiceWorker.dispatchSyncEvent"
+	CommandServiceWorkerEnable                   = "ServiceWorker.enable"
+	CommandServiceWorkerInspectWorker            = "ServiceWorker.inspectWorker"
+	CommandServiceWorkerSetForceUpdateOnPageLoad = "ServiceWorker.setForceUpdateOnPageLoad"
+	CommandServiceWorkerSkipWaiting              = "ServiceWorker.skipWaiting"
+	CommandServiceWorkerStartWorker              = "ServiceWorker.startWorker"
+	CommandServiceWorkerStopAllWorkers           = "ServiceWorker.stopAllWorkers"
+	CommandServiceWorkerStopWorker               = "ServiceWorker.stopWorker"
+	CommandServiceWorkerUnregister               = "ServiceWorker.unregister"
+	CommandServiceWorkerUpdateRegistration       = "ServiceWorker.updateRegistration"
+)
 
 // DeliverPushMessageArgs represents the arguments for DeliverPushMessage in the ServiceWorker domain.
 type DeliverPushMessageArgs struct {
@@ -61,8 +74,6 @@ func (a *DeliverPushMessageReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandServiceWorkerDisable = "ServiceWorker.disable"
-
 // DisableArgs represents the arguments for Disable in the ServiceWorker domain.
 type DisableArgs struct {
 }
@@ -111,8 +122,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	*a = DisableReply(*c)
 	return nil
 }
-
-const CommandServiceWorkerDispatchSyncEvent = "ServiceWorker.dispatchSyncEvent"
 
 // DispatchSyncEventArgs represents the arguments for DispatchSyncEvent in the ServiceWorker domain.
 type DispatchSyncEventArgs struct {
@@ -167,8 +176,6 @@ func (a *DispatchSyncEventReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandServiceWorkerEnable = "ServiceWorker.enable"
-
 // EnableArgs represents the arguments for Enable in the ServiceWorker domain.
 type EnableArgs struct {
 }
@@ -217,8 +224,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandServiceWorkerInspectWorker = "ServiceWorker.inspectWorker"
 
 // InspectWorkerArgs represents the arguments for InspectWorker in the ServiceWorker domain.
 type InspectWorkerArgs struct {
@@ -270,8 +275,6 @@ func (a *InspectWorkerReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandServiceWorkerSetForceUpdateOnPageLoad = "ServiceWorker.setForceUpdateOnPageLoad"
-
 // SetForceUpdateOnPageLoadArgs represents the arguments for SetForceUpdateOnPageLoad in the ServiceWorker domain.
 type SetForceUpdateOnPageLoadArgs struct {
 	ForceUpdateOnPageLoad bool `json:"forceUpdateOnPageLoad"` // No description.
@@ -321,8 +324,6 @@ func (a *SetForceUpdateOnPageLoadReply) UnmarshalJSON(b []byte) error {
 	*a = SetForceUpdateOnPageLoadReply(*c)
 	return nil
 }
-
-const CommandServiceWorkerSkipWaiting = "ServiceWorker.skipWaiting"
 
 // SkipWaitingArgs represents the arguments for SkipWaiting in the ServiceWorker domain.
 type SkipWaitingArgs struct {
@@ -374,8 +375,6 @@ func (a *SkipWaitingReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandServiceWorkerStartWorker = "ServiceWorker.startWorker"
-
 // StartWorkerArgs represents the arguments for StartWorker in the ServiceWorker domain.
 type StartWorkerArgs struct {
 	ScopeURL string `json:"scopeURL"` // No description.
@@ -426,8 +425,6 @@ func (a *StartWorkerReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandServiceWorkerStopAllWorkers = "ServiceWorker.stopAllWorkers"
-
 // StopAllWorkersArgs represents the arguments for StopAllWorkers in the ServiceWorker domain.
 type StopAllWorkersArgs struct {
 }
@@ -476,8 +473,6 @@ func (a *StopAllWorkersReply) UnmarshalJSON(b []byte) error {
 	*a = StopAllWorkersReply(*c)
 	return nil
 }
-
-const CommandServiceWorkerStopWorker = "ServiceWorker.stopWorker"
 
 // StopWorkerArgs represents the arguments for StopWorker in the ServiceWorker domain.
 type StopWorkerArgs struct {
@@ -529,8 +524,6 @@ func (a *StopWorkerReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandServiceWorkerUnregister = "ServiceWorker.unregister"
-
 // UnregisterArgs represents the arguments for Unregister in the ServiceWorker domain.
 type UnregisterArgs struct {
 	ScopeURL string `json:"scopeURL"` // No description.
@@ -580,8 +573,6 @@ func (a *UnregisterReply) UnmarshalJSON(b []byte) error {
 	*a = UnregisterReply(*c)
 	return nil
 }
-
-const CommandServiceWorkerUpdateRegistration = "ServiceWorker.updateRegistration"
 
 // UpdateRegistrationArgs represents the arguments for UpdateRegistration in the ServiceWorker domain.
 type UpdateRegistrationArgs struct {

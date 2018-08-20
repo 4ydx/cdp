@@ -8,7 +8,26 @@ import (
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
-const EventDebuggerBreakpointResolved = "Debugger.breakpointResolved"
+const (
+	EventDebuggerBreakpointResolved  = "Debugger.breakpointResolved"
+	EventDebuggerPaused              = "Debugger.paused"
+	EventDebuggerResumed             = "Debugger.resumed"
+	EventDebuggerScriptFailedToParse = "Debugger.scriptFailedToParse"
+	EventDebuggerScriptParsed        = "Debugger.scriptParsed"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventDebuggerBreakpointResolved:  &BreakpointResolvedReply{},
+	EventDebuggerPaused:              &PausedReply{},
+	EventDebuggerResumed:             &ResumedReply{},
+	EventDebuggerScriptFailedToParse: &ScriptFailedToParseReply{},
+	EventDebuggerScriptParsed:        &ScriptParsedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // BreakpointResolvedReply is the reply for BreakpointResolved events.
 type BreakpointResolvedReply struct {
@@ -27,8 +46,6 @@ func (a *BreakpointResolvedReply) UnmarshalJSON(b []byte) error {
 	*a = BreakpointResolvedReply(*c)
 	return nil
 }
-
-const EventDebuggerPaused = "Debugger.paused"
 
 // PausedReply is the reply for Paused events.
 type PausedReply struct {
@@ -65,8 +82,6 @@ func (a *PausedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventDebuggerResumed = "Debugger.resumed"
-
 // ResumedReply is the reply for Resumed events.
 type ResumedReply struct {
 }
@@ -82,8 +97,6 @@ func (a *ResumedReply) UnmarshalJSON(b []byte) error {
 	*a = ResumedReply(*c)
 	return nil
 }
-
-const EventDebuggerScriptFailedToParse = "Debugger.scriptFailedToParse"
 
 // ScriptFailedToParseReply is the reply for ScriptFailedToParse events.
 type ScriptFailedToParseReply struct {
@@ -118,8 +131,6 @@ func (a *ScriptFailedToParseReply) UnmarshalJSON(b []byte) error {
 	*a = ScriptFailedToParseReply(*c)
 	return nil
 }
-
-const EventDebuggerScriptParsed = "Debugger.scriptParsed"
 
 // ScriptParsedReply is the reply for ScriptParsed events.
 type ScriptParsedReply struct {

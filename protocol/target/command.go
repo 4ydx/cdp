@@ -7,7 +7,23 @@ import (
 	"log"
 )
 
-const CommandTargetActivateTarget = "Target.activateTarget"
+const (
+	CommandTargetActivateTarget         = "Target.activateTarget"
+	CommandTargetAttachToTarget         = "Target.attachToTarget"
+	CommandTargetCloseTarget            = "Target.closeTarget"
+	CommandTargetExposeDevToolsProtocol = "Target.exposeDevToolsProtocol"
+	CommandTargetCreateBrowserContext   = "Target.createBrowserContext"
+	CommandTargetGetBrowserContexts     = "Target.getBrowserContexts"
+	CommandTargetCreateTarget           = "Target.createTarget"
+	CommandTargetDetachFromTarget       = "Target.detachFromTarget"
+	CommandTargetDisposeBrowserContext  = "Target.disposeBrowserContext"
+	CommandTargetGetTargetInfo          = "Target.getTargetInfo"
+	CommandTargetGetTargets             = "Target.getTargets"
+	CommandTargetSendMessageToTarget    = "Target.sendMessageToTarget"
+	CommandTargetSetAutoAttach          = "Target.setAutoAttach"
+	CommandTargetSetDiscoverTargets     = "Target.setDiscoverTargets"
+	CommandTargetSetRemoteLocations     = "Target.setRemoteLocations"
+)
 
 // ActivateTargetArgs represents the arguments for ActivateTarget in the Target domain.
 type ActivateTargetArgs struct {
@@ -58,8 +74,6 @@ func (a *ActivateTargetReply) UnmarshalJSON(b []byte) error {
 	*a = ActivateTargetReply(*c)
 	return nil
 }
-
-const CommandTargetAttachToTarget = "Target.attachToTarget"
 
 // AttachToTargetArgs represents the arguments for AttachToTarget in the Target domain.
 type AttachToTargetArgs struct {
@@ -117,8 +131,6 @@ func (a *AttachToTargetReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandTargetCloseTarget = "Target.closeTarget"
-
 // CloseTargetArgs represents the arguments for CloseTarget in the Target domain.
 type CloseTargetArgs struct {
 	TargetID ID `json:"targetId"` // No description.
@@ -169,8 +181,6 @@ func (a *CloseTargetReply) UnmarshalJSON(b []byte) error {
 	*a = CloseTargetReply(*c)
 	return nil
 }
-
-const CommandTargetExposeDevToolsProtocol = "Target.exposeDevToolsProtocol"
 
 // ExposeDevToolsProtocolArgs represents the arguments for ExposeDevToolsProtocol in the Target domain.
 type ExposeDevToolsProtocolArgs struct {
@@ -223,8 +233,6 @@ func (a *ExposeDevToolsProtocolReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandTargetCreateBrowserContext = "Target.createBrowserContext"
-
 // CreateBrowserContextArgs represents the arguments for CreateBrowserContext in the Target domain.
 type CreateBrowserContextArgs struct {
 }
@@ -275,8 +283,6 @@ func (a *CreateBrowserContextReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandTargetGetBrowserContexts = "Target.getBrowserContexts"
-
 // GetBrowserContextsArgs represents the arguments for GetBrowserContexts in the Target domain.
 type GetBrowserContextsArgs struct {
 }
@@ -326,8 +332,6 @@ func (a *GetBrowserContextsReply) UnmarshalJSON(b []byte) error {
 	*a = GetBrowserContextsReply(*c)
 	return nil
 }
-
-const CommandTargetCreateTarget = "Target.createTarget"
 
 // CreateTargetArgs represents the arguments for CreateTarget in the Target domain.
 type CreateTargetArgs struct {
@@ -389,8 +393,6 @@ func (a *CreateTargetReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandTargetDetachFromTarget = "Target.detachFromTarget"
-
 // DetachFromTargetArgs represents the arguments for DetachFromTarget in the Target domain.
 type DetachFromTargetArgs struct {
 	SessionID SessionID `json:"sessionId,omitempty"` // Session to detach.
@@ -445,8 +447,6 @@ func (a *DetachFromTargetReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandTargetDisposeBrowserContext = "Target.disposeBrowserContext"
-
 // DisposeBrowserContextArgs represents the arguments for DisposeBrowserContext in the Target domain.
 type DisposeBrowserContextArgs struct {
 	BrowserContextID BrowserContextID `json:"browserContextId"` // No description.
@@ -496,8 +496,6 @@ func (a *DisposeBrowserContextReply) UnmarshalJSON(b []byte) error {
 	*a = DisposeBrowserContextReply(*c)
 	return nil
 }
-
-const CommandTargetGetTargetInfo = "Target.getTargetInfo"
 
 // GetTargetInfoArgs represents the arguments for GetTargetInfo in the Target domain.
 type GetTargetInfoArgs struct {
@@ -550,8 +548,6 @@ func (a *GetTargetInfoReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandTargetGetTargets = "Target.getTargets"
-
 // GetTargetsArgs represents the arguments for GetTargets in the Target domain.
 type GetTargetsArgs struct {
 }
@@ -601,8 +597,6 @@ func (a *GetTargetsReply) UnmarshalJSON(b []byte) error {
 	*a = GetTargetsReply(*c)
 	return nil
 }
-
-const CommandTargetSendMessageToTarget = "Target.sendMessageToTarget"
 
 // SendMessageToTargetArgs represents the arguments for SendMessageToTarget in the Target domain.
 type SendMessageToTargetArgs struct {
@@ -659,8 +653,6 @@ func (a *SendMessageToTargetReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandTargetSetAutoAttach = "Target.setAutoAttach"
-
 // SetAutoAttachArgs represents the arguments for SetAutoAttach in the Target domain.
 type SetAutoAttachArgs struct {
 	AutoAttach             bool `json:"autoAttach"`             // Whether to auto-attach to related targets.
@@ -712,8 +704,6 @@ func (a *SetAutoAttachReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandTargetSetDiscoverTargets = "Target.setDiscoverTargets"
-
 // SetDiscoverTargetsArgs represents the arguments for SetDiscoverTargets in the Target domain.
 type SetDiscoverTargetsArgs struct {
 	Discover bool `json:"discover"` // Whether to discover available targets.
@@ -763,8 +753,6 @@ func (a *SetDiscoverTargetsReply) UnmarshalJSON(b []byte) error {
 	*a = SetDiscoverTargetsReply(*c)
 	return nil
 }
-
-const CommandTargetSetRemoteLocations = "Target.setRemoteLocations"
 
 // SetRemoteLocationsArgs represents the arguments for SetRemoteLocations in the Target domain.
 type SetRemoteLocationsArgs struct {

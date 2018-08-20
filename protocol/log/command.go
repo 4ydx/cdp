@@ -7,7 +7,13 @@ import (
 	"log"
 )
 
-const CommandLogClear = "Log.clear"
+const (
+	CommandLogClear                 = "Log.clear"
+	CommandLogDisable               = "Log.disable"
+	CommandLogEnable                = "Log.enable"
+	CommandLogStartViolationsReport = "Log.startViolationsReport"
+	CommandLogStopViolationsReport  = "Log.stopViolationsReport"
+)
 
 // ClearArgs represents the arguments for Clear in the Log domain.
 type ClearArgs struct {
@@ -58,8 +64,6 @@ func (a *ClearReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandLogDisable = "Log.disable"
-
 // DisableArgs represents the arguments for Disable in the Log domain.
 type DisableArgs struct {
 }
@@ -108,8 +112,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	*a = DisableReply(*c)
 	return nil
 }
-
-const CommandLogEnable = "Log.enable"
 
 // EnableArgs represents the arguments for Enable in the Log domain.
 type EnableArgs struct {
@@ -160,8 +162,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandLogStartViolationsReport = "Log.startViolationsReport"
-
 // StartViolationsReportArgs represents the arguments for StartViolationsReport in the Log domain.
 type StartViolationsReportArgs struct {
 	Config []ViolationSetting `json:"config"` // Configuration for violations.
@@ -211,8 +211,6 @@ func (a *StartViolationsReportReply) UnmarshalJSON(b []byte) error {
 	*a = StartViolationsReportReply(*c)
 	return nil
 }
-
-const CommandLogStopViolationsReport = "Log.stopViolationsReport"
 
 // StopViolationsReportArgs represents the arguments for StopViolationsReport in the Log domain.
 type StopViolationsReportArgs struct {

@@ -9,7 +9,18 @@ import (
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
-const CommandAnimationDisable = "Animation.disable"
+const (
+	CommandAnimationDisable           = "Animation.disable"
+	CommandAnimationEnable            = "Animation.enable"
+	CommandAnimationGetCurrentTime    = "Animation.getCurrentTime"
+	CommandAnimationGetPlaybackRate   = "Animation.getPlaybackRate"
+	CommandAnimationReleaseAnimations = "Animation.releaseAnimations"
+	CommandAnimationResolveAnimation  = "Animation.resolveAnimation"
+	CommandAnimationSeekAnimations    = "Animation.seekAnimations"
+	CommandAnimationSetPaused         = "Animation.setPaused"
+	CommandAnimationSetPlaybackRate   = "Animation.setPlaybackRate"
+	CommandAnimationSetTiming         = "Animation.setTiming"
+)
 
 // DisableArgs represents the arguments for Disable in the Animation domain.
 type DisableArgs struct {
@@ -60,8 +71,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandAnimationEnable = "Animation.enable"
-
 // EnableArgs represents the arguments for Enable in the Animation domain.
 type EnableArgs struct {
 }
@@ -110,8 +119,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandAnimationGetCurrentTime = "Animation.getCurrentTime"
 
 // GetCurrentTimeArgs represents the arguments for GetCurrentTime in the Animation domain.
 type GetCurrentTimeArgs struct {
@@ -164,8 +171,6 @@ func (a *GetCurrentTimeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandAnimationGetPlaybackRate = "Animation.getPlaybackRate"
-
 // GetPlaybackRateArgs represents the arguments for GetPlaybackRate in the Animation domain.
 type GetPlaybackRateArgs struct {
 }
@@ -216,8 +221,6 @@ func (a *GetPlaybackRateReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandAnimationReleaseAnimations = "Animation.releaseAnimations"
-
 // ReleaseAnimationsArgs represents the arguments for ReleaseAnimations in the Animation domain.
 type ReleaseAnimationsArgs struct {
 	Animations []string `json:"animations"` // List of animation ids to seek.
@@ -267,8 +270,6 @@ func (a *ReleaseAnimationsReply) UnmarshalJSON(b []byte) error {
 	*a = ReleaseAnimationsReply(*c)
 	return nil
 }
-
-const CommandAnimationResolveAnimation = "Animation.resolveAnimation"
 
 // ResolveAnimationArgs represents the arguments for ResolveAnimation in the Animation domain.
 type ResolveAnimationArgs struct {
@@ -321,8 +322,6 @@ func (a *ResolveAnimationReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandAnimationSeekAnimations = "Animation.seekAnimations"
-
 // SeekAnimationsArgs represents the arguments for SeekAnimations in the Animation domain.
 type SeekAnimationsArgs struct {
 	Animations  []string `json:"animations"`  // List of animation ids to seek.
@@ -373,8 +372,6 @@ func (a *SeekAnimationsReply) UnmarshalJSON(b []byte) error {
 	*a = SeekAnimationsReply(*c)
 	return nil
 }
-
-const CommandAnimationSetPaused = "Animation.setPaused"
 
 // SetPausedArgs represents the arguments for SetPaused in the Animation domain.
 type SetPausedArgs struct {
@@ -427,8 +424,6 @@ func (a *SetPausedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandAnimationSetPlaybackRate = "Animation.setPlaybackRate"
-
 // SetPlaybackRateArgs represents the arguments for SetPlaybackRate in the Animation domain.
 type SetPlaybackRateArgs struct {
 	PlaybackRate float64 `json:"playbackRate"` // Playback rate for animations on page
@@ -478,8 +473,6 @@ func (a *SetPlaybackRateReply) UnmarshalJSON(b []byte) error {
 	*a = SetPlaybackRateReply(*c)
 	return nil
 }
-
-const CommandAnimationSetTiming = "Animation.setTiming"
 
 // SetTimingArgs represents the arguments for SetTiming in the Animation domain.
 type SetTimingArgs struct {

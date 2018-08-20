@@ -8,7 +8,20 @@ import (
 	"github.com/4ydx/cdp/protocol/debugger"
 )
 
-const EventProfilerConsoleProfileFinished = "Profiler.consoleProfileFinished"
+const (
+	EventProfilerConsoleProfileFinished = "Profiler.consoleProfileFinished"
+	EventProfilerConsoleProfileStarted  = "Profiler.consoleProfileStarted"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventProfilerConsoleProfileFinished: &ConsoleProfileFinishedReply{},
+	EventProfilerConsoleProfileStarted:  &ConsoleProfileStartedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // ConsoleProfileFinishedReply is the reply for ConsoleProfileFinished events.
 type ConsoleProfileFinishedReply struct {
@@ -29,8 +42,6 @@ func (a *ConsoleProfileFinishedReply) UnmarshalJSON(b []byte) error {
 	*a = ConsoleProfileFinishedReply(*c)
 	return nil
 }
-
-const EventProfilerConsoleProfileStarted = "Profiler.consoleProfileStarted"
 
 // ConsoleProfileStartedReply is the reply for ConsoleProfileStarted events.
 type ConsoleProfileStartedReply struct {

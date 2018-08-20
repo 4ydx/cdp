@@ -9,7 +9,30 @@ import (
 	"github.com/4ydx/cdp/protocol"
 )
 
-const CommandRuntimeAwaitPromise = "Runtime.awaitPromise"
+const (
+	CommandRuntimeAwaitPromise                    = "Runtime.awaitPromise"
+	CommandRuntimeCallFunctionOn                  = "Runtime.callFunctionOn"
+	CommandRuntimeCompileScript                   = "Runtime.compileScript"
+	CommandRuntimeDisable                         = "Runtime.disable"
+	CommandRuntimeDiscardConsoleEntries           = "Runtime.discardConsoleEntries"
+	CommandRuntimeEnable                          = "Runtime.enable"
+	CommandRuntimeEvaluate                        = "Runtime.evaluate"
+	CommandRuntimeGetIsolateId                    = "Runtime.getIsolateId"
+	CommandRuntimeGetHeapUsage                    = "Runtime.getHeapUsage"
+	CommandRuntimeGetProperties                   = "Runtime.getProperties"
+	CommandRuntimeGlobalLexicalScopeNames         = "Runtime.globalLexicalScopeNames"
+	CommandRuntimeQueryObjects                    = "Runtime.queryObjects"
+	CommandRuntimeReleaseObject                   = "Runtime.releaseObject"
+	CommandRuntimeReleaseObjectGroup              = "Runtime.releaseObjectGroup"
+	CommandRuntimeRunIfWaitingForDebugger         = "Runtime.runIfWaitingForDebugger"
+	CommandRuntimeRunScript                       = "Runtime.runScript"
+	CommandRuntimeSetAsyncCallStackDepth          = "Runtime.setAsyncCallStackDepth"
+	CommandRuntimeSetCustomObjectFormatterEnabled = "Runtime.setCustomObjectFormatterEnabled"
+	CommandRuntimeSetMaxCallStackSizeToCapture    = "Runtime.setMaxCallStackSizeToCapture"
+	CommandRuntimeTerminateExecution              = "Runtime.terminateExecution"
+	CommandRuntimeAddBinding                      = "Runtime.addBinding"
+	CommandRuntimeRemoveBinding                   = "Runtime.removeBinding"
+)
 
 // AwaitPromiseArgs represents the arguments for AwaitPromise in the Runtime domain.
 type AwaitPromiseArgs struct {
@@ -64,8 +87,6 @@ func (a *AwaitPromiseReply) UnmarshalJSON(b []byte) error {
 	*a = AwaitPromiseReply(*c)
 	return nil
 }
-
-const CommandRuntimeCallFunctionOn = "Runtime.callFunctionOn"
 
 // CallFunctionOnArgs represents the arguments for CallFunctionOn in the Runtime domain.
 type CallFunctionOnArgs struct {
@@ -131,8 +152,6 @@ func (a *CallFunctionOnReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandRuntimeCompileScript = "Runtime.compileScript"
-
 // CompileScriptArgs represents the arguments for CompileScript in the Runtime domain.
 type CompileScriptArgs struct {
 	Expression         string             `json:"expression"`                   // Expression to compile.
@@ -188,8 +207,6 @@ func (a *CompileScriptReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandRuntimeDisable = "Runtime.disable"
-
 // DisableArgs represents the arguments for Disable in the Runtime domain.
 type DisableArgs struct {
 }
@@ -238,8 +255,6 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 	*a = DisableReply(*c)
 	return nil
 }
-
-const CommandRuntimeDiscardConsoleEntries = "Runtime.discardConsoleEntries"
 
 // DiscardConsoleEntriesArgs represents the arguments for DiscardConsoleEntries in the Runtime domain.
 type DiscardConsoleEntriesArgs struct {
@@ -290,8 +305,6 @@ func (a *DiscardConsoleEntriesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandRuntimeEnable = "Runtime.enable"
-
 // EnableArgs represents the arguments for Enable in the Runtime domain.
 type EnableArgs struct {
 }
@@ -340,8 +353,6 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 	*a = EnableReply(*c)
 	return nil
 }
-
-const CommandRuntimeEvaluate = "Runtime.evaluate"
 
 // EvaluateArgs represents the arguments for Evaluate in the Runtime domain.
 type EvaluateArgs struct {
@@ -416,8 +427,6 @@ func (a *EvaluateReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandRuntimeGetIsolateId = "Runtime.getIsolateId"
-
 // GetIsolateIDArgs represents the arguments for GetIsolateID in the Runtime domain.
 type GetIsolateIDArgs struct {
 }
@@ -467,8 +476,6 @@ func (a *GetIsolateIDReply) UnmarshalJSON(b []byte) error {
 	*a = GetIsolateIDReply(*c)
 	return nil
 }
-
-const CommandRuntimeGetHeapUsage = "Runtime.getHeapUsage"
 
 // GetHeapUsageArgs represents the arguments for GetHeapUsage in the Runtime domain.
 type GetHeapUsageArgs struct {
@@ -520,8 +527,6 @@ func (a *GetHeapUsageReply) UnmarshalJSON(b []byte) error {
 	*a = GetHeapUsageReply(*c)
 	return nil
 }
-
-const CommandRuntimeGetProperties = "Runtime.getProperties"
 
 // GetPropertiesArgs represents the arguments for GetProperties in the Runtime domain.
 type GetPropertiesArgs struct {
@@ -587,8 +592,6 @@ func (a *GetPropertiesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandRuntimeGlobalLexicalScopeNames = "Runtime.globalLexicalScopeNames"
-
 // GlobalLexicalScopeNamesArgs represents the arguments for GlobalLexicalScopeNames in the Runtime domain.
 type GlobalLexicalScopeNamesArgs struct {
 	ExecutionContextID ExecutionContextID `json:"executionContextId,omitempty"` // Specifies in which execution context to lookup global scope variables.
@@ -639,8 +642,6 @@ func (a *GlobalLexicalScopeNamesReply) UnmarshalJSON(b []byte) error {
 	*a = GlobalLexicalScopeNamesReply(*c)
 	return nil
 }
-
-const CommandRuntimeQueryObjects = "Runtime.queryObjects"
 
 // QueryObjectsArgs represents the arguments for QueryObjects in the Runtime domain.
 type QueryObjectsArgs struct {
@@ -694,8 +695,6 @@ func (a *QueryObjectsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandRuntimeReleaseObject = "Runtime.releaseObject"
-
 // ReleaseObjectArgs represents the arguments for ReleaseObject in the Runtime domain.
 type ReleaseObjectArgs struct {
 	ObjectID shared.RemoteObjectID `json:"objectId"` // Identifier of the object to release.
@@ -745,8 +744,6 @@ func (a *ReleaseObjectReply) UnmarshalJSON(b []byte) error {
 	*a = ReleaseObjectReply(*c)
 	return nil
 }
-
-const CommandRuntimeReleaseObjectGroup = "Runtime.releaseObjectGroup"
 
 // ReleaseObjectGroupArgs represents the arguments for ReleaseObjectGroup in the Runtime domain.
 type ReleaseObjectGroupArgs struct {
@@ -798,8 +795,6 @@ func (a *ReleaseObjectGroupReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandRuntimeRunIfWaitingForDebugger = "Runtime.runIfWaitingForDebugger"
-
 // RunIfWaitingForDebuggerArgs represents the arguments for RunIfWaitingForDebugger in the Runtime domain.
 type RunIfWaitingForDebuggerArgs struct {
 }
@@ -848,8 +843,6 @@ func (a *RunIfWaitingForDebuggerReply) UnmarshalJSON(b []byte) error {
 	*a = RunIfWaitingForDebuggerReply(*c)
 	return nil
 }
-
-const CommandRuntimeRunScript = "Runtime.runScript"
 
 // RunScriptArgs represents the arguments for RunScript in the Runtime domain.
 type RunScriptArgs struct {
@@ -910,8 +903,6 @@ func (a *RunScriptReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandRuntimeSetCustomObjectFormatterEnabled = "Runtime.setCustomObjectFormatterEnabled"
-
 // SetCustomObjectFormatterEnabledArgs represents the arguments for SetCustomObjectFormatterEnabled in the Runtime domain.
 type SetCustomObjectFormatterEnabledArgs struct {
 	Enabled bool `json:"enabled"` // No description.
@@ -961,8 +952,6 @@ func (a *SetCustomObjectFormatterEnabledReply) UnmarshalJSON(b []byte) error {
 	*a = SetCustomObjectFormatterEnabledReply(*c)
 	return nil
 }
-
-const CommandRuntimeSetMaxCallStackSizeToCapture = "Runtime.setMaxCallStackSizeToCapture"
 
 // SetMaxCallStackSizeToCaptureArgs represents the arguments for SetMaxCallStackSizeToCapture in the Runtime domain.
 type SetMaxCallStackSizeToCaptureArgs struct {
@@ -1014,8 +1003,6 @@ func (a *SetMaxCallStackSizeToCaptureReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const CommandRuntimeTerminateExecution = "Runtime.terminateExecution"
-
 // TerminateExecutionArgs represents the arguments for TerminateExecution in the Runtime domain.
 type TerminateExecutionArgs struct {
 }
@@ -1064,8 +1051,6 @@ func (a *TerminateExecutionReply) UnmarshalJSON(b []byte) error {
 	*a = TerminateExecutionReply(*c)
 	return nil
 }
-
-const CommandRuntimeAddBinding = "Runtime.addBinding"
 
 // AddBindingArgs represents the arguments for AddBinding in the Runtime domain.
 type AddBindingArgs struct {
@@ -1117,8 +1102,6 @@ func (a *AddBindingReply) UnmarshalJSON(b []byte) error {
 	*a = AddBindingReply(*c)
 	return nil
 }
-
-const CommandRuntimeRemoveBinding = "Runtime.removeBinding"
 
 // RemoveBindingArgs represents the arguments for RemoveBinding in the Runtime domain.
 type RemoveBindingArgs struct {

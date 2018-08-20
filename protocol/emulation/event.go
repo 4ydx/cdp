@@ -6,7 +6,22 @@ import (
 	"encoding/json"
 )
 
-const EventEmulationVirtualTimeAdvanced = "Emulation.virtualTimeAdvanced"
+const (
+	EventEmulationVirtualTimeAdvanced      = "Emulation.virtualTimeAdvanced"
+	EventEmulationVirtualTimeBudgetExpired = "Emulation.virtualTimeBudgetExpired"
+	EventEmulationVirtualTimePaused        = "Emulation.virtualTimePaused"
+)
+
+var EventConstants = map[string]json.Unmarshaler{
+	EventEmulationVirtualTimeAdvanced:      &VirtualTimeAdvancedReply{},
+	EventEmulationVirtualTimeBudgetExpired: &VirtualTimeBudgetExpiredReply{},
+	EventEmulationVirtualTimePaused:        &VirtualTimePausedReply{},
+}
+
+func GetEventReply(event string) (json.Unmarshaler, bool) {
+	e, ok := EventConstants[event]
+	return e, ok
+}
 
 // VirtualTimeAdvancedReply is the reply for VirtualTimeAdvanced events.
 type VirtualTimeAdvancedReply struct {
@@ -25,8 +40,6 @@ func (a *VirtualTimeAdvancedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-const EventEmulationVirtualTimeBudgetExpired = "Emulation.virtualTimeBudgetExpired"
-
 // VirtualTimeBudgetExpiredReply is the reply for VirtualTimeBudgetExpired events.
 type VirtualTimeBudgetExpiredReply struct {
 }
@@ -42,8 +55,6 @@ func (a *VirtualTimeBudgetExpiredReply) UnmarshalJSON(b []byte) error {
 	*a = VirtualTimeBudgetExpiredReply(*c)
 	return nil
 }
-
-const EventEmulationVirtualTimePaused = "Emulation.virtualTimePaused"
 
 // VirtualTimePausedReply is the reply for VirtualTimePaused events.
 type VirtualTimePausedReply struct {
