@@ -9,11 +9,11 @@ Originally from https://github.com/mafredri/cdp but I have revised it to match m
 
 # Use
 
+```console
 cd cmd/cdpgen/
-
 go build
-
 ./run.sh
+```
 
 ## Installing
 
