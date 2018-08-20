@@ -10,6 +10,7 @@ Originally from https://github.com/mafredri/cdp but I have revised it to match m
 # Use
 
 cd cmd/cdpgen/
+
 ./run.sh
 
 ## Installing
