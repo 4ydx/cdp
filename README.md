@@ -1,4 +1,4 @@
-[![Go Report Card][goreportcard-badge]][goreportcard] [![GoDoc][godoc-badge]][godoc]
+[![](https://godoc.org/github.com/4ydx/cdp?status.svg)](http://godoc.org/github.com/4ydx/cdp)
 
 # About cdp
 
