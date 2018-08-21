@@ -13,15 +13,20 @@ const (
 	EventServiceWorkerWorkerVersionUpdated      = "ServiceWorker.workerVersionUpdated"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventServiceWorkerWorkerErrorReported:       &WorkerErrorReportedReply{},
-	EventServiceWorkerWorkerRegistrationUpdated: &WorkerRegistrationUpdatedReply{},
-	EventServiceWorkerWorkerVersionUpdated:      &WorkerVersionUpdatedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventServiceWorkerWorkerErrorReported:       func() json.Unmarshaler { return &WorkerErrorReportedReply{} },
+	EventServiceWorkerWorkerRegistrationUpdated: func() json.Unmarshaler { return &WorkerRegistrationUpdatedReply{} },
+	EventServiceWorkerWorkerVersionUpdated:      func() json.Unmarshaler { return &WorkerVersionUpdatedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // WorkerErrorReportedReply is the reply for WorkerErrorReported events.

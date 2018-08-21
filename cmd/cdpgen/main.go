@@ -1004,15 +1004,19 @@ func (g *Generator) domainEventConsts(d proto.Domain, events []proto.Event) {
 	}
 	g.Printf(")\n")
 
-	g.Printf("var EventConstants = map[string]json.Unmarshaler {\n")
+	g.Printf("type Unmarshaler func() json.Unmarshaler\n")
+	g.Printf("var EventConstants = map[string]Unmarshaler {\n")
 	for _, e := range events {
-		g.Printf("%[1]s : &%[2]s{},\n", "Event"+d.Domain+strings.Title(e.NameName), e.ReplyName(d))
+		g.Printf("%[1]s : func () json.Unmarshaler { return &%[2]s{} },\n", "Event"+d.Domain+strings.Title(e.NameName), e.ReplyName(d))
 	}
 	g.Printf("}\n")
 
-	g.Printf(`func GetEventReply(event string) (json.Unmarshaler,bool) {
+	g.Printf(`func GetEventReply(event string) (json.Unmarshaler, bool) {
 		e, ok := EventConstants[event]
-		return e, ok
+		if ok {
+			return e(), ok
+		}
+		return nil, ok
 				}
 				`)
 }

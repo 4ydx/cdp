@@ -18,20 +18,25 @@ const (
 	EventRuntimeInspectRequested          = "Runtime.inspectRequested"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventRuntimeBindingCalled:             &BindingCalledReply{},
-	EventRuntimeConsoleAPICalled:          &ConsoleAPICalledReply{},
-	EventRuntimeExceptionRevoked:          &ExceptionRevokedReply{},
-	EventRuntimeExceptionThrown:           &ExceptionThrownReply{},
-	EventRuntimeExecutionContextCreated:   &ExecutionContextCreatedReply{},
-	EventRuntimeExecutionContextDestroyed: &ExecutionContextDestroyedReply{},
-	EventRuntimeExecutionContextsCleared:  &ExecutionContextsClearedReply{},
-	EventRuntimeInspectRequested:          &InspectRequestedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventRuntimeBindingCalled:             func() json.Unmarshaler { return &BindingCalledReply{} },
+	EventRuntimeConsoleAPICalled:          func() json.Unmarshaler { return &ConsoleAPICalledReply{} },
+	EventRuntimeExceptionRevoked:          func() json.Unmarshaler { return &ExceptionRevokedReply{} },
+	EventRuntimeExceptionThrown:           func() json.Unmarshaler { return &ExceptionThrownReply{} },
+	EventRuntimeExecutionContextCreated:   func() json.Unmarshaler { return &ExecutionContextCreatedReply{} },
+	EventRuntimeExecutionContextDestroyed: func() json.Unmarshaler { return &ExecutionContextDestroyedReply{} },
+	EventRuntimeExecutionContextsCleared:  func() json.Unmarshaler { return &ExecutionContextsClearedReply{} },
+	EventRuntimeInspectRequested:          func() json.Unmarshaler { return &InspectRequestedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // BindingCalledReply is the reply for BindingCalled events.

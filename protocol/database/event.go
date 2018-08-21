@@ -11,13 +11,18 @@ const (
 	EventDatabaseAddDatabase = "Database.addDatabase"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventDatabaseAddDatabase: &AddDatabaseReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventDatabaseAddDatabase: func() json.Unmarshaler { return &AddDatabaseReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // AddDatabaseReply is the reply for AddDatabase events.

@@ -17,19 +17,24 @@ const (
 	EventTargetTargetInfoChanged         = "Target.targetInfoChanged"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventTargetAttachedToTarget:          &AttachedToTargetReply{},
-	EventTargetDetachedFromTarget:        &DetachedFromTargetReply{},
-	EventTargetReceivedMessageFromTarget: &ReceivedMessageFromTargetReply{},
-	EventTargetTargetCreated:             &CreatedReply{},
-	EventTargetTargetDestroyed:           &DestroyedReply{},
-	EventTargetTargetCrashed:             &CrashedReply{},
-	EventTargetTargetInfoChanged:         &InfoChangedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventTargetAttachedToTarget:          func() json.Unmarshaler { return &AttachedToTargetReply{} },
+	EventTargetDetachedFromTarget:        func() json.Unmarshaler { return &DetachedFromTargetReply{} },
+	EventTargetReceivedMessageFromTarget: func() json.Unmarshaler { return &ReceivedMessageFromTargetReply{} },
+	EventTargetTargetCreated:             func() json.Unmarshaler { return &CreatedReply{} },
+	EventTargetTargetDestroyed:           func() json.Unmarshaler { return &DestroyedReply{} },
+	EventTargetTargetCrashed:             func() json.Unmarshaler { return &CrashedReply{} },
+	EventTargetTargetInfoChanged:         func() json.Unmarshaler { return &InfoChangedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // AttachedToTargetReply is the reply for AttachedToTarget events.

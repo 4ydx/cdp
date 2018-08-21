@@ -13,15 +13,20 @@ const (
 	EventInspectorTargetReloadedAfterCrash = "Inspector.targetReloadedAfterCrash"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventInspectorDetached:                 &DetachedReply{},
-	EventInspectorTargetCrashed:            &TargetCrashedReply{},
-	EventInspectorTargetReloadedAfterCrash: &TargetReloadedAfterCrashReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventInspectorDetached:                 func() json.Unmarshaler { return &DetachedReply{} },
+	EventInspectorTargetCrashed:            func() json.Unmarshaler { return &TargetCrashedReply{} },
+	EventInspectorTargetReloadedAfterCrash: func() json.Unmarshaler { return &TargetReloadedAfterCrashReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // DetachedReply is the reply for Detached events.

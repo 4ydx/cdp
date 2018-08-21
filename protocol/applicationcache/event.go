@@ -14,14 +14,19 @@ const (
 	EventApplicationCacheNetworkStateUpdated           = "ApplicationCache.networkStateUpdated"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventApplicationCacheApplicationCacheStatusUpdated: &StatusUpdatedReply{},
-	EventApplicationCacheNetworkStateUpdated:           &NetworkStateUpdatedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventApplicationCacheApplicationCacheStatusUpdated: func() json.Unmarshaler { return &StatusUpdatedReply{} },
+	EventApplicationCacheNetworkStateUpdated:           func() json.Unmarshaler { return &NetworkStateUpdatedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // StatusUpdatedReply is the reply for ApplicationCacheStatusUpdated events.

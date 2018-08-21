@@ -14,14 +14,19 @@ const (
 	EventLayerTreeLayerTreeDidChange = "LayerTree.layerTreeDidChange"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventLayerTreeLayerPainted:       &LayerPaintedReply{},
-	EventLayerTreeLayerTreeDidChange: &DidChangeReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventLayerTreeLayerPainted:       func() json.Unmarshaler { return &LayerPaintedReply{} },
+	EventLayerTreeLayerTreeDidChange: func() json.Unmarshaler { return &DidChangeReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // LayerPaintedReply is the reply for LayerPainted events.

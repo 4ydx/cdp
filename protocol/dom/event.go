@@ -24,26 +24,31 @@ const (
 	EventDOMShadowRootPushed        = "DOM.shadowRootPushed"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventDOMAttributeModified:       &AttributeModifiedReply{},
-	EventDOMAttributeRemoved:        &AttributeRemovedReply{},
-	EventDOMCharacterDataModified:   &CharacterDataModifiedReply{},
-	EventDOMChildNodeCountUpdated:   &ChildNodeCountUpdatedReply{},
-	EventDOMChildNodeInserted:       &ChildNodeInsertedReply{},
-	EventDOMChildNodeRemoved:        &ChildNodeRemovedReply{},
-	EventDOMDistributedNodesUpdated: &DistributedNodesUpdatedReply{},
-	EventDOMDocumentUpdated:         &DocumentUpdatedReply{},
-	EventDOMInlineStyleInvalidated:  &InlineStyleInvalidatedReply{},
-	EventDOMPseudoElementAdded:      &PseudoElementAddedReply{},
-	EventDOMPseudoElementRemoved:    &PseudoElementRemovedReply{},
-	EventDOMSetChildNodes:           &SetChildNodesReply{},
-	EventDOMShadowRootPopped:        &ShadowRootPoppedReply{},
-	EventDOMShadowRootPushed:        &ShadowRootPushedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventDOMAttributeModified:       func() json.Unmarshaler { return &AttributeModifiedReply{} },
+	EventDOMAttributeRemoved:        func() json.Unmarshaler { return &AttributeRemovedReply{} },
+	EventDOMCharacterDataModified:   func() json.Unmarshaler { return &CharacterDataModifiedReply{} },
+	EventDOMChildNodeCountUpdated:   func() json.Unmarshaler { return &ChildNodeCountUpdatedReply{} },
+	EventDOMChildNodeInserted:       func() json.Unmarshaler { return &ChildNodeInsertedReply{} },
+	EventDOMChildNodeRemoved:        func() json.Unmarshaler { return &ChildNodeRemovedReply{} },
+	EventDOMDistributedNodesUpdated: func() json.Unmarshaler { return &DistributedNodesUpdatedReply{} },
+	EventDOMDocumentUpdated:         func() json.Unmarshaler { return &DocumentUpdatedReply{} },
+	EventDOMInlineStyleInvalidated:  func() json.Unmarshaler { return &InlineStyleInvalidatedReply{} },
+	EventDOMPseudoElementAdded:      func() json.Unmarshaler { return &PseudoElementAddedReply{} },
+	EventDOMPseudoElementRemoved:    func() json.Unmarshaler { return &PseudoElementRemovedReply{} },
+	EventDOMSetChildNodes:           func() json.Unmarshaler { return &SetChildNodesReply{} },
+	EventDOMShadowRootPopped:        func() json.Unmarshaler { return &ShadowRootPoppedReply{} },
+	EventDOMShadowRootPushed:        func() json.Unmarshaler { return &ShadowRootPushedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // AttributeModifiedReply is the reply for AttributeModified events.

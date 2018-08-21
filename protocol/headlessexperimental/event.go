@@ -11,13 +11,18 @@ const (
 	EventHeadlessExperimentalNeedsBeginFramesChanged = "HeadlessExperimental.needsBeginFramesChanged"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventHeadlessExperimentalNeedsBeginFramesChanged: &NeedsBeginFramesChangedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventHeadlessExperimentalNeedsBeginFramesChanged: func() json.Unmarshaler { return &NeedsBeginFramesChangedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // NeedsBeginFramesChangedReply is the reply for NeedsBeginFramesChanged events.

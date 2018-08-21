@@ -11,13 +11,18 @@ const (
 	EventPerformanceMetrics = "Performance.metrics"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventPerformanceMetrics: &MetricsReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventPerformanceMetrics: func() json.Unmarshaler { return &MetricsReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // MetricsReply is the reply for Metrics events.

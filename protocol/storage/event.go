@@ -14,16 +14,21 @@ const (
 	EventStorageIndexedDBListUpdated       = "Storage.indexedDBListUpdated"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventStorageCacheStorageContentUpdated: &CacheStorageContentUpdatedReply{},
-	EventStorageCacheStorageListUpdated:    &CacheStorageListUpdatedReply{},
-	EventStorageIndexedDBContentUpdated:    &IndexedDBContentUpdatedReply{},
-	EventStorageIndexedDBListUpdated:       &IndexedDBListUpdatedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventStorageCacheStorageContentUpdated: func() json.Unmarshaler { return &CacheStorageContentUpdatedReply{} },
+	EventStorageCacheStorageListUpdated:    func() json.Unmarshaler { return &CacheStorageListUpdatedReply{} },
+	EventStorageIndexedDBContentUpdated:    func() json.Unmarshaler { return &IndexedDBContentUpdatedReply{} },
+	EventStorageIndexedDBListUpdated:       func() json.Unmarshaler { return &IndexedDBListUpdatedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // CacheStorageContentUpdatedReply is the reply for CacheStorageContentUpdated events.

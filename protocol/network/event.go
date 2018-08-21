@@ -29,29 +29,34 @@ const (
 	EventNetworkWebSocketWillSendHandshakeRequest  = "Network.webSocketWillSendHandshakeRequest"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventNetworkDataReceived:                       &DataReceivedReply{},
-	EventNetworkEventSourceMessageReceived:         &EventSourceMessageReceivedReply{},
-	EventNetworkLoadingFailed:                      &LoadingFailedReply{},
-	EventNetworkLoadingFinished:                    &LoadingFinishedReply{},
-	EventNetworkRequestIntercepted:                 &RequestInterceptedReply{},
-	EventNetworkRequestServedFromCache:             &RequestServedFromCacheReply{},
-	EventNetworkRequestWillBeSent:                  &RequestWillBeSentReply{},
-	EventNetworkResourceChangedPriority:            &ResourceChangedPriorityReply{},
-	EventNetworkSignedExchangeReceived:             &SignedExchangeReceivedReply{},
-	EventNetworkResponseReceived:                   &ResponseReceivedReply{},
-	EventNetworkWebSocketClosed:                    &WebSocketClosedReply{},
-	EventNetworkWebSocketCreated:                   &WebSocketCreatedReply{},
-	EventNetworkWebSocketFrameError:                &WebSocketFrameErrorReply{},
-	EventNetworkWebSocketFrameReceived:             &WebSocketFrameReceivedReply{},
-	EventNetworkWebSocketFrameSent:                 &WebSocketFrameSentReply{},
-	EventNetworkWebSocketHandshakeResponseReceived: &WebSocketHandshakeResponseReceivedReply{},
-	EventNetworkWebSocketWillSendHandshakeRequest:  &WebSocketWillSendHandshakeRequestReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventNetworkDataReceived:                       func() json.Unmarshaler { return &DataReceivedReply{} },
+	EventNetworkEventSourceMessageReceived:         func() json.Unmarshaler { return &EventSourceMessageReceivedReply{} },
+	EventNetworkLoadingFailed:                      func() json.Unmarshaler { return &LoadingFailedReply{} },
+	EventNetworkLoadingFinished:                    func() json.Unmarshaler { return &LoadingFinishedReply{} },
+	EventNetworkRequestIntercepted:                 func() json.Unmarshaler { return &RequestInterceptedReply{} },
+	EventNetworkRequestServedFromCache:             func() json.Unmarshaler { return &RequestServedFromCacheReply{} },
+	EventNetworkRequestWillBeSent:                  func() json.Unmarshaler { return &RequestWillBeSentReply{} },
+	EventNetworkResourceChangedPriority:            func() json.Unmarshaler { return &ResourceChangedPriorityReply{} },
+	EventNetworkSignedExchangeReceived:             func() json.Unmarshaler { return &SignedExchangeReceivedReply{} },
+	EventNetworkResponseReceived:                   func() json.Unmarshaler { return &ResponseReceivedReply{} },
+	EventNetworkWebSocketClosed:                    func() json.Unmarshaler { return &WebSocketClosedReply{} },
+	EventNetworkWebSocketCreated:                   func() json.Unmarshaler { return &WebSocketCreatedReply{} },
+	EventNetworkWebSocketFrameError:                func() json.Unmarshaler { return &WebSocketFrameErrorReply{} },
+	EventNetworkWebSocketFrameReceived:             func() json.Unmarshaler { return &WebSocketFrameReceivedReply{} },
+	EventNetworkWebSocketFrameSent:                 func() json.Unmarshaler { return &WebSocketFrameSentReply{} },
+	EventNetworkWebSocketHandshakeResponseReceived: func() json.Unmarshaler { return &WebSocketHandshakeResponseReceivedReply{} },
+	EventNetworkWebSocketWillSendHandshakeRequest:  func() json.Unmarshaler { return &WebSocketWillSendHandshakeRequestReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // DataReceivedReply is the reply for DataReceived events.

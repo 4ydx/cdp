@@ -12,14 +12,19 @@ const (
 	EventSecuritySecurityStateChanged = "Security.securityStateChanged"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventSecurityCertificateError:     &CertificateErrorReply{},
-	EventSecuritySecurityStateChanged: &StateChangedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventSecurityCertificateError:     func() json.Unmarshaler { return &CertificateErrorReply{} },
+	EventSecuritySecurityStateChanged: func() json.Unmarshaler { return &StateChangedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // CertificateErrorReply is the reply for CertificateError events.

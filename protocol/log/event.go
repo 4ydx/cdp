@@ -11,13 +11,18 @@ const (
 	EventLogEntryAdded = "Log.entryAdded"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventLogEntryAdded: &EntryAddedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventLogEntryAdded: func() json.Unmarshaler { return &EntryAddedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // EntryAddedReply is the reply for EntryAdded events.

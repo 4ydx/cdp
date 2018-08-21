@@ -15,15 +15,20 @@ const (
 	EventTracingTracingComplete = "Tracing.tracingComplete"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventTracingBufferUsage:     &BufferUsageReply{},
-	EventTracingDataCollected:   &DataCollectedReply{},
-	EventTracingTracingComplete: &CompleteReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventTracingBufferUsage:     func() json.Unmarshaler { return &BufferUsageReply{} },
+	EventTracingDataCollected:   func() json.Unmarshaler { return &DataCollectedReply{} },
+	EventTracingTracingComplete: func() json.Unmarshaler { return &CompleteReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // BufferUsageReply is the reply for BufferUsage events.

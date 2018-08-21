@@ -16,15 +16,20 @@ const (
 	EventOverlayScreenshotRequested    = "Overlay.screenshotRequested"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventOverlayInspectNodeRequested:   &InspectNodeRequestedReply{},
-	EventOverlayNodeHighlightRequested: &NodeHighlightRequestedReply{},
-	EventOverlayScreenshotRequested:    &ScreenshotRequestedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventOverlayInspectNodeRequested:   func() json.Unmarshaler { return &InspectNodeRequestedReply{} },
+	EventOverlayNodeHighlightRequested: func() json.Unmarshaler { return &NodeHighlightRequestedReply{} },
+	EventOverlayScreenshotRequested:    func() json.Unmarshaler { return &ScreenshotRequestedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // InspectNodeRequestedReply is the reply for InspectNodeRequested events.

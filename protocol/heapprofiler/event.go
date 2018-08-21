@@ -15,17 +15,22 @@ const (
 	EventHeapProfilerResetProfiles              = "HeapProfiler.resetProfiles"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventHeapProfilerAddHeapSnapshotChunk:       &AddHeapSnapshotChunkReply{},
-	EventHeapProfilerHeapStatsUpdate:            &HeapStatsUpdateReply{},
-	EventHeapProfilerLastSeenObjectId:           &LastSeenObjectIDReply{},
-	EventHeapProfilerReportHeapSnapshotProgress: &ReportHeapSnapshotProgressReply{},
-	EventHeapProfilerResetProfiles:              &ResetProfilesReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventHeapProfilerAddHeapSnapshotChunk:       func() json.Unmarshaler { return &AddHeapSnapshotChunkReply{} },
+	EventHeapProfilerHeapStatsUpdate:            func() json.Unmarshaler { return &HeapStatsUpdateReply{} },
+	EventHeapProfilerLastSeenObjectId:           func() json.Unmarshaler { return &LastSeenObjectIDReply{} },
+	EventHeapProfilerReportHeapSnapshotProgress: func() json.Unmarshaler { return &ReportHeapSnapshotProgressReply{} },
+	EventHeapProfilerResetProfiles:              func() json.Unmarshaler { return &ResetProfilesReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // AddHeapSnapshotChunkReply is the reply for AddHeapSnapshotChunk events.

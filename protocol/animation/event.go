@@ -13,15 +13,20 @@ const (
 	EventAnimationAnimationStarted  = "Animation.animationStarted"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventAnimationAnimationCanceled: &CanceledReply{},
-	EventAnimationAnimationCreated:  &CreatedReply{},
-	EventAnimationAnimationStarted:  &StartedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventAnimationAnimationCanceled: func() json.Unmarshaler { return &CanceledReply{} },
+	EventAnimationAnimationCreated:  func() json.Unmarshaler { return &CreatedReply{} },
+	EventAnimationAnimationStarted:  func() json.Unmarshaler { return &StartedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // CanceledReply is the reply for AnimationCanceled events.

@@ -34,32 +34,37 @@ const (
 	EventPageCompilationCacheProduced        = "Page.compilationCacheProduced"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventPageDomContentEventFired:            &DOMContentEventFiredReply{},
-	EventPageFrameAttached:                   &FrameAttachedReply{},
-	EventPageFrameClearedScheduledNavigation: &FrameClearedScheduledNavigationReply{},
-	EventPageFrameDetached:                   &FrameDetachedReply{},
-	EventPageFrameNavigated:                  &FrameNavigatedReply{},
-	EventPageFrameResized:                    &FrameResizedReply{},
-	EventPageFrameScheduledNavigation:        &FrameScheduledNavigationReply{},
-	EventPageFrameStartedLoading:             &FrameStartedLoadingReply{},
-	EventPageFrameStoppedLoading:             &FrameStoppedLoadingReply{},
-	EventPageInterstitialHidden:              &InterstitialHiddenReply{},
-	EventPageInterstitialShown:               &InterstitialShownReply{},
-	EventPageJavascriptDialogClosed:          &JavascriptDialogClosedReply{},
-	EventPageJavascriptDialogOpening:         &JavascriptDialogOpeningReply{},
-	EventPageLifecycleEvent:                  &LifecycleEventReply{},
-	EventPageLoadEventFired:                  &LoadEventFiredReply{},
-	EventPageNavigatedWithinDocument:         &NavigatedWithinDocumentReply{},
-	EventPageScreencastFrame:                 &ScreencastFrameReply{},
-	EventPageScreencastVisibilityChanged:     &ScreencastVisibilityChangedReply{},
-	EventPageWindowOpen:                      &WindowOpenReply{},
-	EventPageCompilationCacheProduced:        &CompilationCacheProducedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventPageDomContentEventFired:            func() json.Unmarshaler { return &DOMContentEventFiredReply{} },
+	EventPageFrameAttached:                   func() json.Unmarshaler { return &FrameAttachedReply{} },
+	EventPageFrameClearedScheduledNavigation: func() json.Unmarshaler { return &FrameClearedScheduledNavigationReply{} },
+	EventPageFrameDetached:                   func() json.Unmarshaler { return &FrameDetachedReply{} },
+	EventPageFrameNavigated:                  func() json.Unmarshaler { return &FrameNavigatedReply{} },
+	EventPageFrameResized:                    func() json.Unmarshaler { return &FrameResizedReply{} },
+	EventPageFrameScheduledNavigation:        func() json.Unmarshaler { return &FrameScheduledNavigationReply{} },
+	EventPageFrameStartedLoading:             func() json.Unmarshaler { return &FrameStartedLoadingReply{} },
+	EventPageFrameStoppedLoading:             func() json.Unmarshaler { return &FrameStoppedLoadingReply{} },
+	EventPageInterstitialHidden:              func() json.Unmarshaler { return &InterstitialHiddenReply{} },
+	EventPageInterstitialShown:               func() json.Unmarshaler { return &InterstitialShownReply{} },
+	EventPageJavascriptDialogClosed:          func() json.Unmarshaler { return &JavascriptDialogClosedReply{} },
+	EventPageJavascriptDialogOpening:         func() json.Unmarshaler { return &JavascriptDialogOpeningReply{} },
+	EventPageLifecycleEvent:                  func() json.Unmarshaler { return &LifecycleEventReply{} },
+	EventPageLoadEventFired:                  func() json.Unmarshaler { return &LoadEventFiredReply{} },
+	EventPageNavigatedWithinDocument:         func() json.Unmarshaler { return &NavigatedWithinDocumentReply{} },
+	EventPageScreencastFrame:                 func() json.Unmarshaler { return &ScreencastFrameReply{} },
+	EventPageScreencastVisibilityChanged:     func() json.Unmarshaler { return &ScreencastVisibilityChangedReply{} },
+	EventPageWindowOpen:                      func() json.Unmarshaler { return &WindowOpenReply{} },
+	EventPageCompilationCacheProduced:        func() json.Unmarshaler { return &CompilationCacheProducedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // DOMContentEventFiredReply is the reply for DOMContentEventFired events.

@@ -11,13 +11,18 @@ const (
 	EventConsoleMessageAdded = "Console.messageAdded"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventConsoleMessageAdded: &MessageAddedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventConsoleMessageAdded: func() json.Unmarshaler { return &MessageAddedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // MessageAddedReply is the reply for MessageAdded events.

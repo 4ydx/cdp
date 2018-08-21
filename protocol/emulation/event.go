@@ -13,15 +13,20 @@ const (
 	EventEmulationVirtualTimePaused        = "Emulation.virtualTimePaused"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventEmulationVirtualTimeAdvanced:      &VirtualTimeAdvancedReply{},
-	EventEmulationVirtualTimeBudgetExpired: &VirtualTimeBudgetExpiredReply{},
-	EventEmulationVirtualTimePaused:        &VirtualTimePausedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventEmulationVirtualTimeAdvanced:      func() json.Unmarshaler { return &VirtualTimeAdvancedReply{} },
+	EventEmulationVirtualTimeBudgetExpired: func() json.Unmarshaler { return &VirtualTimeBudgetExpiredReply{} },
+	EventEmulationVirtualTimePaused:        func() json.Unmarshaler { return &VirtualTimePausedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // VirtualTimeAdvancedReply is the reply for VirtualTimeAdvanced events.

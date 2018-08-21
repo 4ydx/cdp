@@ -14,14 +14,19 @@ const (
 	EventProfilerConsoleProfileStarted  = "Profiler.consoleProfileStarted"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventProfilerConsoleProfileFinished: &ConsoleProfileFinishedReply{},
-	EventProfilerConsoleProfileStarted:  &ConsoleProfileStartedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventProfilerConsoleProfileFinished: func() json.Unmarshaler { return &ConsoleProfileFinishedReply{} },
+	EventProfilerConsoleProfileStarted:  func() json.Unmarshaler { return &ConsoleProfileStartedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // ConsoleProfileFinishedReply is the reply for ConsoleProfileFinished events.

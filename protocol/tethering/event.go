@@ -11,13 +11,18 @@ const (
 	EventTetheringAccepted = "Tethering.accepted"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventTetheringAccepted: &AcceptedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventTetheringAccepted: func() json.Unmarshaler { return &AcceptedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // AcceptedReply is the reply for Accepted events.

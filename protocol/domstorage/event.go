@@ -14,16 +14,21 @@ const (
 	EventDOMStorageDomStorageItemsCleared = "DOMStorage.domStorageItemsCleared"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventDOMStorageDomStorageItemAdded:    &ItemAddedReply{},
-	EventDOMStorageDomStorageItemRemoved:  &ItemRemovedReply{},
-	EventDOMStorageDomStorageItemUpdated:  &ItemUpdatedReply{},
-	EventDOMStorageDomStorageItemsCleared: &ItemsClearedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventDOMStorageDomStorageItemAdded:    func() json.Unmarshaler { return &ItemAddedReply{} },
+	EventDOMStorageDomStorageItemRemoved:  func() json.Unmarshaler { return &ItemRemovedReply{} },
+	EventDOMStorageDomStorageItemUpdated:  func() json.Unmarshaler { return &ItemUpdatedReply{} },
+	EventDOMStorageDomStorageItemsCleared: func() json.Unmarshaler { return &ItemsClearedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // ItemAddedReply is the reply for DOMStorageItemAdded events.

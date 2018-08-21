@@ -17,17 +17,22 @@ const (
 	EventDebuggerScriptParsed        = "Debugger.scriptParsed"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventDebuggerBreakpointResolved:  &BreakpointResolvedReply{},
-	EventDebuggerPaused:              &PausedReply{},
-	EventDebuggerResumed:             &ResumedReply{},
-	EventDebuggerScriptFailedToParse: &ScriptFailedToParseReply{},
-	EventDebuggerScriptParsed:        &ScriptParsedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventDebuggerBreakpointResolved:  func() json.Unmarshaler { return &BreakpointResolvedReply{} },
+	EventDebuggerPaused:              func() json.Unmarshaler { return &PausedReply{} },
+	EventDebuggerResumed:             func() json.Unmarshaler { return &ResumedReply{} },
+	EventDebuggerScriptFailedToParse: func() json.Unmarshaler { return &ScriptFailedToParseReply{} },
+	EventDebuggerScriptParsed:        func() json.Unmarshaler { return &ScriptParsedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // BreakpointResolvedReply is the reply for BreakpointResolved events.

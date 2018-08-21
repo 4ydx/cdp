@@ -15,17 +15,22 @@ const (
 	EventCSSStyleSheetRemoved       = "CSS.styleSheetRemoved"
 )
 
-var EventConstants = map[string]json.Unmarshaler{
-	EventCSSFontsUpdated:            &FontsUpdatedReply{},
-	EventCSSMediaQueryResultChanged: &MediaQueryResultChangedReply{},
-	EventCSSStyleSheetAdded:         &StyleSheetAddedReply{},
-	EventCSSStyleSheetChanged:       &StyleSheetChangedReply{},
-	EventCSSStyleSheetRemoved:       &StyleSheetRemovedReply{},
+type Unmarshaler func() json.Unmarshaler
+
+var EventConstants = map[string]Unmarshaler{
+	EventCSSFontsUpdated:            func() json.Unmarshaler { return &FontsUpdatedReply{} },
+	EventCSSMediaQueryResultChanged: func() json.Unmarshaler { return &MediaQueryResultChangedReply{} },
+	EventCSSStyleSheetAdded:         func() json.Unmarshaler { return &StyleSheetAddedReply{} },
+	EventCSSStyleSheetChanged:       func() json.Unmarshaler { return &StyleSheetChangedReply{} },
+	EventCSSStyleSheetRemoved:       func() json.Unmarshaler { return &StyleSheetRemovedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
 	e, ok := EventConstants[event]
-	return e, ok
+	if ok {
+		return e(), ok
+	}
+	return nil, ok
 }
 
 // FontsUpdatedReply is the reply for FontsUpdated events.
