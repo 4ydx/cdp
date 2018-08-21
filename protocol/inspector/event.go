@@ -45,7 +45,7 @@ func (a *DetachedReply) UnmarshalJSON(b []byte) error {
 func (a *DetachedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: Detached", err)
 	}
 	return true
 }
@@ -75,7 +75,7 @@ func (a *TargetCrashedReply) UnmarshalJSON(b []byte) error {
 func (a *TargetCrashedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: TargetCrashed", err)
 	}
 	return true
 }
@@ -105,7 +105,7 @@ func (a *TargetReloadedAfterCrashReply) UnmarshalJSON(b []byte) error {
 func (a *TargetReloadedAfterCrashReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: TargetReloadedAfterCrash", err)
 	}
 	return true
 }

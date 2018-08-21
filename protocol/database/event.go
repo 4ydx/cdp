@@ -41,7 +41,7 @@ func (a *AddDatabaseReply) UnmarshalJSON(b []byte) error {
 func (a *AddDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: AddDatabase", err)
 	}
 	return true
 }

@@ -41,7 +41,7 @@ func (a *EntryAddedReply) UnmarshalJSON(b []byte) error {
 func (a *EntryAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: EntryAdded", err)
 	}
 	return true
 }

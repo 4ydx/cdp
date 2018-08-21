@@ -49,7 +49,7 @@ func (a *BufferUsageReply) UnmarshalJSON(b []byte) error {
 func (a *BufferUsageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: BufferUsage", err)
 	}
 	return true
 }
@@ -80,7 +80,7 @@ func (a *DataCollectedReply) UnmarshalJSON(b []byte) error {
 func (a *DataCollectedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: DataCollected", err)
 	}
 	return true
 }
@@ -112,7 +112,7 @@ func (a *CompleteReply) UnmarshalJSON(b []byte) error {
 func (a *CompleteReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: TracingComplete", err)
 	}
 	return true
 }

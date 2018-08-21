@@ -45,11 +45,16 @@ func (a *StatusUpdatedReply) UnmarshalJSON(b []byte) error {
 
 // StatusUpdatedReply returns whether or not the FrameID matches the reply value for ApplicationCacheStatusUpdated in the ApplicationCacheStatusUpdated domain.
 func (a *StatusUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &StatusUpdatedReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: StatusUpdatedReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // StatusUpdatedReply returns the FrameID for ApplicationCacheStatusUpdated in the ApplicationCacheStatusUpdated domain.
@@ -78,7 +83,7 @@ func (a *NetworkStateUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *NetworkStateUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: NetworkStateUpdated", err)
 	}
 	return true
 }

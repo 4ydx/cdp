@@ -45,7 +45,7 @@ func (a *VirtualTimeAdvancedReply) UnmarshalJSON(b []byte) error {
 func (a *VirtualTimeAdvancedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: VirtualTimeAdvanced", err)
 	}
 	return true
 }
@@ -75,7 +75,7 @@ func (a *VirtualTimeBudgetExpiredReply) UnmarshalJSON(b []byte) error {
 func (a *VirtualTimeBudgetExpiredReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: VirtualTimeBudgetExpired", err)
 	}
 	return true
 }
@@ -106,7 +106,7 @@ func (a *VirtualTimePausedReply) UnmarshalJSON(b []byte) error {
 func (a *VirtualTimePausedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: VirtualTimePaused", err)
 	}
 	return true
 }

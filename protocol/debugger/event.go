@@ -52,7 +52,7 @@ func (a *BreakpointResolvedReply) UnmarshalJSON(b []byte) error {
 func (a *BreakpointResolvedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: BreakpointResolved", err)
 	}
 	return true
 }
@@ -101,7 +101,7 @@ func (a *PausedReply) UnmarshalJSON(b []byte) error {
 func (a *PausedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: Paused", err)
 	}
 	return true
 }
@@ -131,7 +131,7 @@ func (a *ResumedReply) UnmarshalJSON(b []byte) error {
 func (a *ResumedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: Resumed", err)
 	}
 	return true
 }
@@ -179,7 +179,7 @@ func (a *ScriptFailedToParseReply) UnmarshalJSON(b []byte) error {
 func (a *ScriptFailedToParseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: ScriptFailedToParse", err)
 	}
 	return true
 }
@@ -232,7 +232,7 @@ func (a *ScriptParsedReply) UnmarshalJSON(b []byte) error {
 func (a *ScriptParsedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: ScriptParsed", err)
 	}
 	return true
 }

@@ -83,7 +83,7 @@ func (a *DOMContentEventFiredReply) UnmarshalJSON(b []byte) error {
 func (a *DOMContentEventFiredReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: DOMContentEventFired", err)
 	}
 	return true
 }
@@ -114,11 +114,16 @@ func (a *FrameAttachedReply) UnmarshalJSON(b []byte) error {
 
 // FrameAttachedReply returns whether or not the FrameID matches the reply value for FrameAttached in the FrameAttached domain.
 func (a *FrameAttachedReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &FrameAttachedReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: FrameAttachedReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // FrameAttachedReply returns the FrameID for FrameAttached in the FrameAttached domain.
@@ -145,11 +150,16 @@ func (a *FrameClearedScheduledNavigationReply) UnmarshalJSON(b []byte) error {
 
 // FrameClearedScheduledNavigationReply returns whether or not the FrameID matches the reply value for FrameClearedScheduledNavigation in the FrameClearedScheduledNavigation domain.
 func (a *FrameClearedScheduledNavigationReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &FrameClearedScheduledNavigationReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: FrameClearedScheduledNavigationReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // FrameClearedScheduledNavigationReply returns the FrameID for FrameClearedScheduledNavigation in the FrameClearedScheduledNavigation domain.
@@ -176,11 +186,16 @@ func (a *FrameDetachedReply) UnmarshalJSON(b []byte) error {
 
 // FrameDetachedReply returns whether or not the FrameID matches the reply value for FrameDetached in the FrameDetached domain.
 func (a *FrameDetachedReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &FrameDetachedReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: FrameDetachedReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // FrameDetachedReply returns the FrameID for FrameDetached in the FrameDetached domain.
@@ -207,11 +222,16 @@ func (a *FrameNavigatedReply) UnmarshalJSON(b []byte) error {
 
 // FrameNavigatedReply returns whether or not the FrameID matches the reply value for FrameNavigated in the FrameNavigated domain.
 func (a *FrameNavigatedReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &FrameNavigatedReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: FrameNavigatedReply", err)
 	}
-	return a.Frame.ID == shared.FrameID(frameID)
+	if v.Frame.ID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // FrameNavigatedReply returns the FrameID for FrameNavigated in the FrameNavigated domain.
@@ -239,7 +259,7 @@ func (a *FrameResizedReply) UnmarshalJSON(b []byte) error {
 func (a *FrameResizedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: FrameResized", err)
 	}
 	return true
 }
@@ -274,11 +294,16 @@ func (a *FrameScheduledNavigationReply) UnmarshalJSON(b []byte) error {
 
 // FrameScheduledNavigationReply returns whether or not the FrameID matches the reply value for FrameScheduledNavigation in the FrameScheduledNavigation domain.
 func (a *FrameScheduledNavigationReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &FrameScheduledNavigationReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: FrameScheduledNavigationReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // FrameScheduledNavigationReply returns the FrameID for FrameScheduledNavigation in the FrameScheduledNavigation domain.
@@ -305,11 +330,16 @@ func (a *FrameStartedLoadingReply) UnmarshalJSON(b []byte) error {
 
 // FrameStartedLoadingReply returns whether or not the FrameID matches the reply value for FrameStartedLoading in the FrameStartedLoading domain.
 func (a *FrameStartedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &FrameStartedLoadingReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: FrameStartedLoadingReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // FrameStartedLoadingReply returns the FrameID for FrameStartedLoading in the FrameStartedLoading domain.
@@ -336,11 +366,16 @@ func (a *FrameStoppedLoadingReply) UnmarshalJSON(b []byte) error {
 
 // FrameStoppedLoadingReply returns whether or not the FrameID matches the reply value for FrameStoppedLoading in the FrameStoppedLoading domain.
 func (a *FrameStoppedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &FrameStoppedLoadingReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: FrameStoppedLoadingReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // FrameStoppedLoadingReply returns the FrameID for FrameStoppedLoading in the FrameStoppedLoading domain.
@@ -368,7 +403,7 @@ func (a *InterstitialHiddenReply) UnmarshalJSON(b []byte) error {
 func (a *InterstitialHiddenReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: InterstitialHidden", err)
 	}
 	return true
 }
@@ -398,7 +433,7 @@ func (a *InterstitialShownReply) UnmarshalJSON(b []byte) error {
 func (a *InterstitialShownReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: InterstitialShown", err)
 	}
 	return true
 }
@@ -430,7 +465,7 @@ func (a *JavascriptDialogClosedReply) UnmarshalJSON(b []byte) error {
 func (a *JavascriptDialogClosedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: JavascriptDialogClosed", err)
 	}
 	return true
 }
@@ -465,7 +500,7 @@ func (a *JavascriptDialogOpeningReply) UnmarshalJSON(b []byte) error {
 func (a *JavascriptDialogOpeningReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: JavascriptDialogOpening", err)
 	}
 	return true
 }
@@ -497,11 +532,16 @@ func (a *LifecycleEventReply) UnmarshalJSON(b []byte) error {
 
 // LifecycleEventReply returns whether or not the FrameID matches the reply value for LifecycleEvent in the LifecycleEvent domain.
 func (a *LifecycleEventReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &LifecycleEventReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: LifecycleEventReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // LifecycleEventReply returns the FrameID for LifecycleEvent in the LifecycleEvent domain.
@@ -530,7 +570,7 @@ func (a *LoadEventFiredReply) UnmarshalJSON(b []byte) error {
 func (a *LoadEventFiredReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: LoadEventFired", err)
 	}
 	return true
 }
@@ -560,11 +600,16 @@ func (a *NavigatedWithinDocumentReply) UnmarshalJSON(b []byte) error {
 
 // NavigatedWithinDocumentReply returns whether or not the FrameID matches the reply value for NavigatedWithinDocument in the NavigatedWithinDocument domain.
 func (a *NavigatedWithinDocumentReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &NavigatedWithinDocumentReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: NavigatedWithinDocumentReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // NavigatedWithinDocumentReply returns the FrameID for NavigatedWithinDocument in the NavigatedWithinDocument domain.
@@ -595,7 +640,7 @@ func (a *ScreencastFrameReply) UnmarshalJSON(b []byte) error {
 func (a *ScreencastFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: ScreencastFrame", err)
 	}
 	return true
 }
@@ -626,7 +671,7 @@ func (a *ScreencastVisibilityChangedReply) UnmarshalJSON(b []byte) error {
 func (a *ScreencastVisibilityChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: ScreencastVisibilityChanged", err)
 	}
 	return true
 }
@@ -660,7 +705,7 @@ func (a *WindowOpenReply) UnmarshalJSON(b []byte) error {
 func (a *WindowOpenReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: WindowOpen", err)
 	}
 	return true
 }
@@ -692,7 +737,7 @@ func (a *CompilationCacheProducedReply) UnmarshalJSON(b []byte) error {
 func (a *CompilationCacheProducedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: CompilationCacheProduced", err)
 	}
 	return true
 }

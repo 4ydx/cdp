@@ -49,7 +49,7 @@ func (a *AddHeapSnapshotChunkReply) UnmarshalJSON(b []byte) error {
 func (a *AddHeapSnapshotChunkReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: AddHeapSnapshotChunk", err)
 	}
 	return true
 }
@@ -80,7 +80,7 @@ func (a *HeapStatsUpdateReply) UnmarshalJSON(b []byte) error {
 func (a *HeapStatsUpdateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: HeapStatsUpdate", err)
 	}
 	return true
 }
@@ -112,7 +112,7 @@ func (a *LastSeenObjectIDReply) UnmarshalJSON(b []byte) error {
 func (a *LastSeenObjectIDReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: LastSeenObjectID", err)
 	}
 	return true
 }
@@ -145,7 +145,7 @@ func (a *ReportHeapSnapshotProgressReply) UnmarshalJSON(b []byte) error {
 func (a *ReportHeapSnapshotProgressReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: ReportHeapSnapshotProgress", err)
 	}
 	return true
 }
@@ -175,7 +175,7 @@ func (a *ResetProfilesReply) UnmarshalJSON(b []byte) error {
 func (a *ResetProfilesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: ResetProfiles", err)
 	}
 	return true
 }

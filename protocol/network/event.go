@@ -78,7 +78,7 @@ func (a *DataReceivedReply) UnmarshalJSON(b []byte) error {
 func (a *DataReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: DataReceived", err)
 	}
 	return true
 }
@@ -113,7 +113,7 @@ func (a *EventSourceMessageReceivedReply) UnmarshalJSON(b []byte) error {
 func (a *EventSourceMessageReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: EventSourceMessageReceived", err)
 	}
 	return true
 }
@@ -149,7 +149,7 @@ func (a *LoadingFailedReply) UnmarshalJSON(b []byte) error {
 func (a *LoadingFailedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: LoadingFailed", err)
 	}
 	return true
 }
@@ -183,7 +183,7 @@ func (a *LoadingFinishedReply) UnmarshalJSON(b []byte) error {
 func (a *LoadingFinishedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: LoadingFinished", err)
 	}
 	return true
 }
@@ -222,11 +222,16 @@ func (a *RequestInterceptedReply) UnmarshalJSON(b []byte) error {
 
 // RequestInterceptedReply returns whether or not the FrameID matches the reply value for RequestIntercepted in the RequestIntercepted domain.
 func (a *RequestInterceptedReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &RequestInterceptedReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: RequestInterceptedReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // RequestInterceptedReply returns the FrameID for RequestIntercepted in the RequestIntercepted domain.
@@ -255,7 +260,7 @@ func (a *RequestServedFromCacheReply) UnmarshalJSON(b []byte) error {
 func (a *RequestServedFromCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: RequestServedFromCache", err)
 	}
 	return true
 }
@@ -294,11 +299,16 @@ func (a *RequestWillBeSentReply) UnmarshalJSON(b []byte) error {
 
 // RequestWillBeSentReply returns whether or not the FrameID matches the reply value for RequestWillBeSent in the RequestWillBeSent domain.
 func (a *RequestWillBeSentReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &RequestWillBeSentReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: RequestWillBeSentReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // RequestWillBeSentReply returns the FrameID for RequestWillBeSent in the RequestWillBeSent domain.
@@ -329,7 +339,7 @@ func (a *ResourceChangedPriorityReply) UnmarshalJSON(b []byte) error {
 func (a *ResourceChangedPriorityReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: ResourceChangedPriority", err)
 	}
 	return true
 }
@@ -361,7 +371,7 @@ func (a *SignedExchangeReceivedReply) UnmarshalJSON(b []byte) error {
 func (a *SignedExchangeReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: SignedExchangeReceived", err)
 	}
 	return true
 }
@@ -395,11 +405,16 @@ func (a *ResponseReceivedReply) UnmarshalJSON(b []byte) error {
 
 // ResponseReceivedReply returns whether or not the FrameID matches the reply value for ResponseReceived in the ResponseReceived domain.
 func (a *ResponseReceivedReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &ResponseReceivedReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: ResponseReceivedReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // ResponseReceivedReply returns the FrameID for ResponseReceived in the ResponseReceived domain.
@@ -429,7 +444,7 @@ func (a *WebSocketClosedReply) UnmarshalJSON(b []byte) error {
 func (a *WebSocketClosedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: WebSocketClosed", err)
 	}
 	return true
 }
@@ -462,7 +477,7 @@ func (a *WebSocketCreatedReply) UnmarshalJSON(b []byte) error {
 func (a *WebSocketCreatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: WebSocketCreated", err)
 	}
 	return true
 }
@@ -495,7 +510,7 @@ func (a *WebSocketFrameErrorReply) UnmarshalJSON(b []byte) error {
 func (a *WebSocketFrameErrorReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: WebSocketFrameError", err)
 	}
 	return true
 }
@@ -528,7 +543,7 @@ func (a *WebSocketFrameReceivedReply) UnmarshalJSON(b []byte) error {
 func (a *WebSocketFrameReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: WebSocketFrameReceived", err)
 	}
 	return true
 }
@@ -561,7 +576,7 @@ func (a *WebSocketFrameSentReply) UnmarshalJSON(b []byte) error {
 func (a *WebSocketFrameSentReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: WebSocketFrameSent", err)
 	}
 	return true
 }
@@ -594,7 +609,7 @@ func (a *WebSocketHandshakeResponseReceivedReply) UnmarshalJSON(b []byte) error 
 func (a *WebSocketHandshakeResponseReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: WebSocketHandshakeResponseReceived", err)
 	}
 	return true
 }
@@ -628,7 +643,7 @@ func (a *WebSocketWillSendHandshakeRequestReply) UnmarshalJSON(b []byte) error {
 func (a *WebSocketWillSendHandshakeRequestReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: WebSocketWillSendHandshakeRequest", err)
 	}
 	return true
 }

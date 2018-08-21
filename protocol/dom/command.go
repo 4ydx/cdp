@@ -204,11 +204,16 @@ type DescribeNodeReply struct {
 
 // DescribeNodeReply returns whether or not the FrameID matches the reply value for DescribeNode in the DOM domain.
 func (a *DescribeNodeReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &DescribeNodeReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: DescribeNodeReply", err)
 	}
-	return a.Node.FrameID == shared.FrameID(frameID)
+	if v.Node.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // DescribeNodeReply returns the FrameID for DescribeNode in the DOM domain.
@@ -710,17 +715,22 @@ type GetFlattenedDocumentReply struct {
 
 // GetFlattenedDocumentReply returns whether or not the FrameID matches the reply value for GetFlattenedDocument in the DOM domain.
 func (a *GetFlattenedDocumentReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &GetFlattenedDocumentReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: GetFlattenedDocumentReply", err)
 	}
 	fid := ""
-	for _, n := range a.Nodes {
+	for _, n := range v.Nodes {
 		if n.FrameID != "" {
 			fid = string(n.FrameID)
 		}
 	}
-	return fid == frameID
+	if fid != frameID {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // GetFlattenedDocumentReply returns the FrameID for GetFlattenedDocument in the DOM domain.

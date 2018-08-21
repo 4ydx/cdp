@@ -46,7 +46,7 @@ func (a *LayerPaintedReply) UnmarshalJSON(b []byte) error {
 func (a *LayerPaintedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: LayerPainted", err)
 	}
 	return true
 }
@@ -77,7 +77,7 @@ func (a *DidChangeReply) UnmarshalJSON(b []byte) error {
 func (a *DidChangeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: LayerTreeDidChange", err)
 	}
 	return true
 }

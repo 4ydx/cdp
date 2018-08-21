@@ -41,7 +41,7 @@ func (a *NeedsBeginFramesChangedReply) UnmarshalJSON(b []byte) error {
 func (a *NeedsBeginFramesChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: NeedsBeginFramesChanged", err)
 	}
 	return true
 }

@@ -893,11 +893,16 @@ type NavigateReply struct {
 
 // NavigateReply returns whether or not the FrameID matches the reply value for Navigate in the Page domain.
 func (a *NavigateReply) MatchFrameID(frameID string, m []byte) bool {
-	err := a.UnmarshalJSON(m)
+	v := &NavigateReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Fatalf("unmarshal error: NavigateReply", err)
 	}
-	return a.FrameID == shared.FrameID(frameID)
+	if v.FrameID != shared.FrameID(frameID) {
+		return false
+	}
+	*a = *v
+	return true
 }
 
 // NavigateReply returns the FrameID for Navigate in the Page domain.

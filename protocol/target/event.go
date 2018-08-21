@@ -55,7 +55,7 @@ func (a *AttachedToTargetReply) UnmarshalJSON(b []byte) error {
 func (a *AttachedToTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: AttachedToTarget", err)
 	}
 	return true
 }
@@ -90,7 +90,7 @@ func (a *DetachedFromTargetReply) UnmarshalJSON(b []byte) error {
 func (a *DetachedFromTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: DetachedFromTarget", err)
 	}
 	return true
 }
@@ -126,7 +126,7 @@ func (a *ReceivedMessageFromTargetReply) UnmarshalJSON(b []byte) error {
 func (a *ReceivedMessageFromTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: ReceivedMessageFromTarget", err)
 	}
 	return true
 }
@@ -157,7 +157,7 @@ func (a *CreatedReply) UnmarshalJSON(b []byte) error {
 func (a *CreatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: TargetCreated", err)
 	}
 	return true
 }
@@ -188,7 +188,7 @@ func (a *DestroyedReply) UnmarshalJSON(b []byte) error {
 func (a *DestroyedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: TargetDestroyed", err)
 	}
 	return true
 }
@@ -221,7 +221,7 @@ func (a *CrashedReply) UnmarshalJSON(b []byte) error {
 func (a *CrashedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: TargetCrashed", err)
 	}
 	return true
 }
@@ -252,7 +252,7 @@ func (a *InfoChangedReply) UnmarshalJSON(b []byte) error {
 func (a *InfoChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: %!s(MISSING)", err)
+		log.Fatalf("unmarshal error: TargetInfoChanged", err)
 	}
 	return true
 }
