@@ -50,7 +50,7 @@ func (a *AddHeapSnapshotChunkReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// AddHeapSnapshotChunkReply returns whether or not the FrameID matches the reply value for AddHeapSnapshotChunk in the AddHeapSnapshotChunk domain.
+// AddHeapSnapshotChunkReply returns whether or not the FrameID matches the reply value for AddHeapSnapshotChunk in the HeapProfiler domain.
 func (a *AddHeapSnapshotChunkReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -59,7 +59,7 @@ func (a *AddHeapSnapshotChunkReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
-// AddHeapSnapshotChunkReply returns the FrameID for AddHeapSnapshotChunk in the AddHeapSnapshotChunk domain.
+// AddHeapSnapshotChunkReply returns the FrameID for AddHeapSnapshotChunk in the HeapProfiler domain.
 func (a *AddHeapSnapshotChunkReply) GetFrameID() string {
 	return ""
 }
@@ -81,7 +81,7 @@ func (a *HeapStatsUpdateReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// HeapStatsUpdateReply returns whether or not the FrameID matches the reply value for HeapStatsUpdate in the HeapStatsUpdate domain.
+// HeapStatsUpdateReply returns whether or not the FrameID matches the reply value for HeapStatsUpdate in the HeapProfiler domain.
 func (a *HeapStatsUpdateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -90,7 +90,7 @@ func (a *HeapStatsUpdateReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// HeapStatsUpdateReply returns the FrameID for HeapStatsUpdate in the HeapStatsUpdate domain.
+// HeapStatsUpdateReply returns the FrameID for HeapStatsUpdate in the HeapProfiler domain.
 func (a *HeapStatsUpdateReply) GetFrameID() string {
 	return ""
 }
@@ -113,7 +113,7 @@ func (a *LastSeenObjectIDReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// LastSeenObjectIDReply returns whether or not the FrameID matches the reply value for LastSeenObjectID in the LastSeenObjectID domain.
+// LastSeenObjectIDReply returns whether or not the FrameID matches the reply value for LastSeenObjectID in the HeapProfiler domain.
 func (a *LastSeenObjectIDReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -122,7 +122,7 @@ func (a *LastSeenObjectIDReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// LastSeenObjectIDReply returns the FrameID for LastSeenObjectID in the LastSeenObjectID domain.
+// LastSeenObjectIDReply returns the FrameID for LastSeenObjectID in the HeapProfiler domain.
 func (a *LastSeenObjectIDReply) GetFrameID() string {
 	return ""
 }
@@ -146,7 +146,7 @@ func (a *ReportHeapSnapshotProgressReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ReportHeapSnapshotProgressReply returns whether or not the FrameID matches the reply value for ReportHeapSnapshotProgress in the ReportHeapSnapshotProgress domain.
+// ReportHeapSnapshotProgressReply returns whether or not the FrameID matches the reply value for ReportHeapSnapshotProgress in the HeapProfiler domain.
 func (a *ReportHeapSnapshotProgressReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -155,7 +155,7 @@ func (a *ReportHeapSnapshotProgressReply) MatchFrameID(frameID string, m []byte)
 	return true
 }
 
-// ReportHeapSnapshotProgressReply returns the FrameID for ReportHeapSnapshotProgress in the ReportHeapSnapshotProgress domain.
+// ReportHeapSnapshotProgressReply returns the FrameID for ReportHeapSnapshotProgress in the HeapProfiler domain.
 func (a *ReportHeapSnapshotProgressReply) GetFrameID() string {
 	return ""
 }
@@ -176,7 +176,7 @@ func (a *ResetProfilesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ResetProfilesReply returns whether or not the FrameID matches the reply value for ResetProfiles in the ResetProfiles domain.
+// ResetProfilesReply returns whether or not the FrameID matches the reply value for ResetProfiles in the HeapProfiler domain.
 func (a *ResetProfilesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -185,7 +185,7 @@ func (a *ResetProfilesReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ResetProfilesReply returns the FrameID for ResetProfiles in the ResetProfiles domain.
+// ResetProfilesReply returns the FrameID for ResetProfiles in the HeapProfiler domain.
 func (a *ResetProfilesReply) GetFrameID() string {
 	return ""
 }

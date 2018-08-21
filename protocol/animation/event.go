@@ -46,7 +46,7 @@ func (a *CanceledReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// CanceledReply returns whether or not the FrameID matches the reply value for AnimationCanceled in the AnimationCanceled domain.
+// CanceledReply returns whether or not the FrameID matches the reply value for AnimationCanceled in the Animation domain.
 func (a *CanceledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -55,7 +55,7 @@ func (a *CanceledReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// CanceledReply returns the FrameID for AnimationCanceled in the AnimationCanceled domain.
+// CanceledReply returns the FrameID for AnimationCanceled in the Animation domain.
 func (a *CanceledReply) GetFrameID() string {
 	return ""
 }
@@ -77,7 +77,7 @@ func (a *CreatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// CreatedReply returns whether or not the FrameID matches the reply value for AnimationCreated in the AnimationCreated domain.
+// CreatedReply returns whether or not the FrameID matches the reply value for AnimationCreated in the Animation domain.
 func (a *CreatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -86,7 +86,7 @@ func (a *CreatedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// CreatedReply returns the FrameID for AnimationCreated in the AnimationCreated domain.
+// CreatedReply returns the FrameID for AnimationCreated in the Animation domain.
 func (a *CreatedReply) GetFrameID() string {
 	return ""
 }
@@ -108,7 +108,7 @@ func (a *StartedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// StartedReply returns whether or not the FrameID matches the reply value for AnimationStarted in the AnimationStarted domain.
+// StartedReply returns whether or not the FrameID matches the reply value for AnimationStarted in the Animation domain.
 func (a *StartedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -117,7 +117,7 @@ func (a *StartedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// StartedReply returns the FrameID for AnimationStarted in the AnimationStarted domain.
+// StartedReply returns the FrameID for AnimationStarted in the Animation domain.
 func (a *StartedReply) GetFrameID() string {
 	return ""
 }

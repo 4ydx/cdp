@@ -50,7 +50,7 @@ func (a *BufferUsageReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// BufferUsageReply returns whether or not the FrameID matches the reply value for BufferUsage in the BufferUsage domain.
+// BufferUsageReply returns whether or not the FrameID matches the reply value for BufferUsage in the Tracing domain.
 func (a *BufferUsageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -59,7 +59,7 @@ func (a *BufferUsageReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// BufferUsageReply returns the FrameID for BufferUsage in the BufferUsage domain.
+// BufferUsageReply returns the FrameID for BufferUsage in the Tracing domain.
 func (a *BufferUsageReply) GetFrameID() string {
 	return ""
 }
@@ -81,7 +81,7 @@ func (a *DataCollectedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// DataCollectedReply returns whether or not the FrameID matches the reply value for DataCollected in the DataCollected domain.
+// DataCollectedReply returns whether or not the FrameID matches the reply value for DataCollected in the Tracing domain.
 func (a *DataCollectedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -90,7 +90,7 @@ func (a *DataCollectedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// DataCollectedReply returns the FrameID for DataCollected in the DataCollected domain.
+// DataCollectedReply returns the FrameID for DataCollected in the Tracing domain.
 func (a *DataCollectedReply) GetFrameID() string {
 	return ""
 }
@@ -113,7 +113,7 @@ func (a *CompleteReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// CompleteReply returns whether or not the FrameID matches the reply value for TracingComplete in the TracingComplete domain.
+// CompleteReply returns whether or not the FrameID matches the reply value for TracingComplete in the Tracing domain.
 func (a *CompleteReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -122,7 +122,7 @@ func (a *CompleteReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// CompleteReply returns the FrameID for TracingComplete in the TracingComplete domain.
+// CompleteReply returns the FrameID for TracingComplete in the Tracing domain.
 func (a *CompleteReply) GetFrameID() string {
 	return ""
 }

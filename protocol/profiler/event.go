@@ -49,7 +49,7 @@ func (a *ConsoleProfileFinishedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ConsoleProfileFinishedReply returns whether or not the FrameID matches the reply value for ConsoleProfileFinished in the ConsoleProfileFinished domain.
+// ConsoleProfileFinishedReply returns whether or not the FrameID matches the reply value for ConsoleProfileFinished in the Profiler domain.
 func (a *ConsoleProfileFinishedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -58,7 +58,7 @@ func (a *ConsoleProfileFinishedReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
-// ConsoleProfileFinishedReply returns the FrameID for ConsoleProfileFinished in the ConsoleProfileFinished domain.
+// ConsoleProfileFinishedReply returns the FrameID for ConsoleProfileFinished in the Profiler domain.
 func (a *ConsoleProfileFinishedReply) GetFrameID() string {
 	return ""
 }
@@ -82,7 +82,7 @@ func (a *ConsoleProfileStartedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ConsoleProfileStartedReply returns whether or not the FrameID matches the reply value for ConsoleProfileStarted in the ConsoleProfileStarted domain.
+// ConsoleProfileStartedReply returns whether or not the FrameID matches the reply value for ConsoleProfileStarted in the Profiler domain.
 func (a *ConsoleProfileStartedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -91,7 +91,7 @@ func (a *ConsoleProfileStartedReply) MatchFrameID(frameID string, m []byte) bool
 	return true
 }
 
-// ConsoleProfileStartedReply returns the FrameID for ConsoleProfileStarted in the ConsoleProfileStarted domain.
+// ConsoleProfileStartedReply returns the FrameID for ConsoleProfileStarted in the Profiler domain.
 func (a *ConsoleProfileStartedReply) GetFrameID() string {
 	return ""
 }

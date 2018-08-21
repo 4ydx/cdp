@@ -49,7 +49,7 @@ func (a *CacheStorageContentUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// CacheStorageContentUpdatedReply returns whether or not the FrameID matches the reply value for CacheStorageContentUpdated in the CacheStorageContentUpdated domain.
+// CacheStorageContentUpdatedReply returns whether or not the FrameID matches the reply value for CacheStorageContentUpdated in the Storage domain.
 func (a *CacheStorageContentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -58,7 +58,7 @@ func (a *CacheStorageContentUpdatedReply) MatchFrameID(frameID string, m []byte)
 	return true
 }
 
-// CacheStorageContentUpdatedReply returns the FrameID for CacheStorageContentUpdated in the CacheStorageContentUpdated domain.
+// CacheStorageContentUpdatedReply returns the FrameID for CacheStorageContentUpdated in the Storage domain.
 func (a *CacheStorageContentUpdatedReply) GetFrameID() string {
 	return ""
 }
@@ -80,7 +80,7 @@ func (a *CacheStorageListUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// CacheStorageListUpdatedReply returns whether or not the FrameID matches the reply value for CacheStorageListUpdated in the CacheStorageListUpdated domain.
+// CacheStorageListUpdatedReply returns whether or not the FrameID matches the reply value for CacheStorageListUpdated in the Storage domain.
 func (a *CacheStorageListUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -89,7 +89,7 @@ func (a *CacheStorageListUpdatedReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
-// CacheStorageListUpdatedReply returns the FrameID for CacheStorageListUpdated in the CacheStorageListUpdated domain.
+// CacheStorageListUpdatedReply returns the FrameID for CacheStorageListUpdated in the Storage domain.
 func (a *CacheStorageListUpdatedReply) GetFrameID() string {
 	return ""
 }
@@ -113,7 +113,7 @@ func (a *IndexedDBContentUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// IndexedDBContentUpdatedReply returns whether or not the FrameID matches the reply value for IndexedDBContentUpdated in the IndexedDBContentUpdated domain.
+// IndexedDBContentUpdatedReply returns whether or not the FrameID matches the reply value for IndexedDBContentUpdated in the Storage domain.
 func (a *IndexedDBContentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -122,7 +122,7 @@ func (a *IndexedDBContentUpdatedReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
-// IndexedDBContentUpdatedReply returns the FrameID for IndexedDBContentUpdated in the IndexedDBContentUpdated domain.
+// IndexedDBContentUpdatedReply returns the FrameID for IndexedDBContentUpdated in the Storage domain.
 func (a *IndexedDBContentUpdatedReply) GetFrameID() string {
 	return ""
 }
@@ -144,7 +144,7 @@ func (a *IndexedDBListUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// IndexedDBListUpdatedReply returns whether or not the FrameID matches the reply value for IndexedDBListUpdated in the IndexedDBListUpdated domain.
+// IndexedDBListUpdatedReply returns whether or not the FrameID matches the reply value for IndexedDBListUpdated in the Storage domain.
 func (a *IndexedDBListUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -153,7 +153,7 @@ func (a *IndexedDBListUpdatedReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
-// IndexedDBListUpdatedReply returns the FrameID for IndexedDBListUpdated in the IndexedDBListUpdated domain.
+// IndexedDBListUpdatedReply returns the FrameID for IndexedDBListUpdated in the Storage domain.
 func (a *IndexedDBListUpdatedReply) GetFrameID() string {
 	return ""
 }

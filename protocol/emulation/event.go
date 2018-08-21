@@ -46,7 +46,7 @@ func (a *VirtualTimeAdvancedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// VirtualTimeAdvancedReply returns whether or not the FrameID matches the reply value for VirtualTimeAdvanced in the VirtualTimeAdvanced domain.
+// VirtualTimeAdvancedReply returns whether or not the FrameID matches the reply value for VirtualTimeAdvanced in the Emulation domain.
 func (a *VirtualTimeAdvancedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -55,7 +55,7 @@ func (a *VirtualTimeAdvancedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// VirtualTimeAdvancedReply returns the FrameID for VirtualTimeAdvanced in the VirtualTimeAdvanced domain.
+// VirtualTimeAdvancedReply returns the FrameID for VirtualTimeAdvanced in the Emulation domain.
 func (a *VirtualTimeAdvancedReply) GetFrameID() string {
 	return ""
 }
@@ -76,7 +76,7 @@ func (a *VirtualTimeBudgetExpiredReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// VirtualTimeBudgetExpiredReply returns whether or not the FrameID matches the reply value for VirtualTimeBudgetExpired in the VirtualTimeBudgetExpired domain.
+// VirtualTimeBudgetExpiredReply returns whether or not the FrameID matches the reply value for VirtualTimeBudgetExpired in the Emulation domain.
 func (a *VirtualTimeBudgetExpiredReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -85,7 +85,7 @@ func (a *VirtualTimeBudgetExpiredReply) MatchFrameID(frameID string, m []byte) b
 	return true
 }
 
-// VirtualTimeBudgetExpiredReply returns the FrameID for VirtualTimeBudgetExpired in the VirtualTimeBudgetExpired domain.
+// VirtualTimeBudgetExpiredReply returns the FrameID for VirtualTimeBudgetExpired in the Emulation domain.
 func (a *VirtualTimeBudgetExpiredReply) GetFrameID() string {
 	return ""
 }
@@ -107,7 +107,7 @@ func (a *VirtualTimePausedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// VirtualTimePausedReply returns whether or not the FrameID matches the reply value for VirtualTimePaused in the VirtualTimePaused domain.
+// VirtualTimePausedReply returns whether or not the FrameID matches the reply value for VirtualTimePaused in the Emulation domain.
 func (a *VirtualTimePausedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -116,7 +116,7 @@ func (a *VirtualTimePausedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// VirtualTimePausedReply returns the FrameID for VirtualTimePaused in the VirtualTimePaused domain.
+// VirtualTimePausedReply returns the FrameID for VirtualTimePaused in the Emulation domain.
 func (a *VirtualTimePausedReply) GetFrameID() string {
 	return ""
 }

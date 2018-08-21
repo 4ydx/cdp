@@ -84,7 +84,7 @@ func (a *DOMContentEventFiredReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// DOMContentEventFiredReply returns whether or not the FrameID matches the reply value for DOMContentEventFired in the DOMContentEventFired domain.
+// DOMContentEventFiredReply returns whether or not the FrameID matches the reply value for DOMContentEventFired in the Page domain.
 func (a *DOMContentEventFiredReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -93,7 +93,7 @@ func (a *DOMContentEventFiredReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
-// DOMContentEventFiredReply returns the FrameID for DOMContentEventFired in the DOMContentEventFired domain.
+// DOMContentEventFiredReply returns the FrameID for DOMContentEventFired in the Page domain.
 func (a *DOMContentEventFiredReply) GetFrameID() string {
 	return ""
 }
@@ -117,7 +117,7 @@ func (a *FrameAttachedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// FrameAttachedReply returns whether or not the FrameID matches the reply value for FrameAttached in the FrameAttached domain.
+// FrameAttachedReply returns whether or not the FrameID matches the reply value for FrameAttached in the Page domain.
 func (a *FrameAttachedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameAttachedReply{}
 	err := v.UnmarshalJSON(m)
@@ -131,7 +131,7 @@ func (a *FrameAttachedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// FrameAttachedReply returns the FrameID for FrameAttached in the FrameAttached domain.
+// FrameAttachedReply returns the FrameID for FrameAttached in the Page domain.
 func (a *FrameAttachedReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -153,7 +153,7 @@ func (a *FrameClearedScheduledNavigationReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// FrameClearedScheduledNavigationReply returns whether or not the FrameID matches the reply value for FrameClearedScheduledNavigation in the FrameClearedScheduledNavigation domain.
+// FrameClearedScheduledNavigationReply returns whether or not the FrameID matches the reply value for FrameClearedScheduledNavigation in the Page domain.
 func (a *FrameClearedScheduledNavigationReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameClearedScheduledNavigationReply{}
 	err := v.UnmarshalJSON(m)
@@ -167,7 +167,7 @@ func (a *FrameClearedScheduledNavigationReply) MatchFrameID(frameID string, m []
 	return true
 }
 
-// FrameClearedScheduledNavigationReply returns the FrameID for FrameClearedScheduledNavigation in the FrameClearedScheduledNavigation domain.
+// FrameClearedScheduledNavigationReply returns the FrameID for FrameClearedScheduledNavigation in the Page domain.
 func (a *FrameClearedScheduledNavigationReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -189,7 +189,7 @@ func (a *FrameDetachedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// FrameDetachedReply returns whether or not the FrameID matches the reply value for FrameDetached in the FrameDetached domain.
+// FrameDetachedReply returns whether or not the FrameID matches the reply value for FrameDetached in the Page domain.
 func (a *FrameDetachedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameDetachedReply{}
 	err := v.UnmarshalJSON(m)
@@ -203,7 +203,7 @@ func (a *FrameDetachedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// FrameDetachedReply returns the FrameID for FrameDetached in the FrameDetached domain.
+// FrameDetachedReply returns the FrameID for FrameDetached in the Page domain.
 func (a *FrameDetachedReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -225,7 +225,7 @@ func (a *FrameNavigatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// FrameNavigatedReply returns whether or not the FrameID matches the reply value for FrameNavigated in the FrameNavigated domain.
+// FrameNavigatedReply returns whether or not the FrameID matches the reply value for FrameNavigated in the Page domain.
 func (a *FrameNavigatedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameNavigatedReply{}
 	err := v.UnmarshalJSON(m)
@@ -239,7 +239,7 @@ func (a *FrameNavigatedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// FrameNavigatedReply returns the FrameID for FrameNavigated in the FrameNavigated domain.
+// FrameNavigatedReply returns the FrameID for FrameNavigated in the Page domain.
 func (a *FrameNavigatedReply) GetFrameID() string {
 	return string(a.Frame.ID)
 }
@@ -260,7 +260,7 @@ func (a *FrameResizedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// FrameResizedReply returns whether or not the FrameID matches the reply value for FrameResized in the FrameResized domain.
+// FrameResizedReply returns whether or not the FrameID matches the reply value for FrameResized in the Page domain.
 func (a *FrameResizedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -269,7 +269,7 @@ func (a *FrameResizedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// FrameResizedReply returns the FrameID for FrameResized in the FrameResized domain.
+// FrameResizedReply returns the FrameID for FrameResized in the Page domain.
 func (a *FrameResizedReply) GetFrameID() string {
 	return ""
 }
@@ -297,7 +297,7 @@ func (a *FrameScheduledNavigationReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// FrameScheduledNavigationReply returns whether or not the FrameID matches the reply value for FrameScheduledNavigation in the FrameScheduledNavigation domain.
+// FrameScheduledNavigationReply returns whether or not the FrameID matches the reply value for FrameScheduledNavigation in the Page domain.
 func (a *FrameScheduledNavigationReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameScheduledNavigationReply{}
 	err := v.UnmarshalJSON(m)
@@ -311,7 +311,7 @@ func (a *FrameScheduledNavigationReply) MatchFrameID(frameID string, m []byte) b
 	return true
 }
 
-// FrameScheduledNavigationReply returns the FrameID for FrameScheduledNavigation in the FrameScheduledNavigation domain.
+// FrameScheduledNavigationReply returns the FrameID for FrameScheduledNavigation in the Page domain.
 func (a *FrameScheduledNavigationReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -333,7 +333,7 @@ func (a *FrameStartedLoadingReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// FrameStartedLoadingReply returns whether or not the FrameID matches the reply value for FrameStartedLoading in the FrameStartedLoading domain.
+// FrameStartedLoadingReply returns whether or not the FrameID matches the reply value for FrameStartedLoading in the Page domain.
 func (a *FrameStartedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameStartedLoadingReply{}
 	err := v.UnmarshalJSON(m)
@@ -347,7 +347,7 @@ func (a *FrameStartedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// FrameStartedLoadingReply returns the FrameID for FrameStartedLoading in the FrameStartedLoading domain.
+// FrameStartedLoadingReply returns the FrameID for FrameStartedLoading in the Page domain.
 func (a *FrameStartedLoadingReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -369,7 +369,7 @@ func (a *FrameStoppedLoadingReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// FrameStoppedLoadingReply returns whether or not the FrameID matches the reply value for FrameStoppedLoading in the FrameStoppedLoading domain.
+// FrameStoppedLoadingReply returns whether or not the FrameID matches the reply value for FrameStoppedLoading in the Page domain.
 func (a *FrameStoppedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameStoppedLoadingReply{}
 	err := v.UnmarshalJSON(m)
@@ -383,7 +383,7 @@ func (a *FrameStoppedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// FrameStoppedLoadingReply returns the FrameID for FrameStoppedLoading in the FrameStoppedLoading domain.
+// FrameStoppedLoadingReply returns the FrameID for FrameStoppedLoading in the Page domain.
 func (a *FrameStoppedLoadingReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -404,7 +404,7 @@ func (a *InterstitialHiddenReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// InterstitialHiddenReply returns whether or not the FrameID matches the reply value for InterstitialHidden in the InterstitialHidden domain.
+// InterstitialHiddenReply returns whether or not the FrameID matches the reply value for InterstitialHidden in the Page domain.
 func (a *InterstitialHiddenReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -413,7 +413,7 @@ func (a *InterstitialHiddenReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// InterstitialHiddenReply returns the FrameID for InterstitialHidden in the InterstitialHidden domain.
+// InterstitialHiddenReply returns the FrameID for InterstitialHidden in the Page domain.
 func (a *InterstitialHiddenReply) GetFrameID() string {
 	return ""
 }
@@ -434,7 +434,7 @@ func (a *InterstitialShownReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// InterstitialShownReply returns whether or not the FrameID matches the reply value for InterstitialShown in the InterstitialShown domain.
+// InterstitialShownReply returns whether or not the FrameID matches the reply value for InterstitialShown in the Page domain.
 func (a *InterstitialShownReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -443,7 +443,7 @@ func (a *InterstitialShownReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// InterstitialShownReply returns the FrameID for InterstitialShown in the InterstitialShown domain.
+// InterstitialShownReply returns the FrameID for InterstitialShown in the Page domain.
 func (a *InterstitialShownReply) GetFrameID() string {
 	return ""
 }
@@ -466,7 +466,7 @@ func (a *JavascriptDialogClosedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// JavascriptDialogClosedReply returns whether or not the FrameID matches the reply value for JavascriptDialogClosed in the JavascriptDialogClosed domain.
+// JavascriptDialogClosedReply returns whether or not the FrameID matches the reply value for JavascriptDialogClosed in the Page domain.
 func (a *JavascriptDialogClosedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -475,7 +475,7 @@ func (a *JavascriptDialogClosedReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
-// JavascriptDialogClosedReply returns the FrameID for JavascriptDialogClosed in the JavascriptDialogClosed domain.
+// JavascriptDialogClosedReply returns the FrameID for JavascriptDialogClosed in the Page domain.
 func (a *JavascriptDialogClosedReply) GetFrameID() string {
 	return ""
 }
@@ -501,7 +501,7 @@ func (a *JavascriptDialogOpeningReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// JavascriptDialogOpeningReply returns whether or not the FrameID matches the reply value for JavascriptDialogOpening in the JavascriptDialogOpening domain.
+// JavascriptDialogOpeningReply returns whether or not the FrameID matches the reply value for JavascriptDialogOpening in the Page domain.
 func (a *JavascriptDialogOpeningReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -510,7 +510,7 @@ func (a *JavascriptDialogOpeningReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
-// JavascriptDialogOpeningReply returns the FrameID for JavascriptDialogOpening in the JavascriptDialogOpening domain.
+// JavascriptDialogOpeningReply returns the FrameID for JavascriptDialogOpening in the Page domain.
 func (a *JavascriptDialogOpeningReply) GetFrameID() string {
 	return ""
 }
@@ -535,7 +535,7 @@ func (a *LifecycleEventReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// LifecycleEventReply returns whether or not the FrameID matches the reply value for LifecycleEvent in the LifecycleEvent domain.
+// LifecycleEventReply returns whether or not the FrameID matches the reply value for LifecycleEvent in the Page domain.
 func (a *LifecycleEventReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &LifecycleEventReply{}
 	err := v.UnmarshalJSON(m)
@@ -549,7 +549,7 @@ func (a *LifecycleEventReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// LifecycleEventReply returns the FrameID for LifecycleEvent in the LifecycleEvent domain.
+// LifecycleEventReply returns the FrameID for LifecycleEvent in the Page domain.
 func (a *LifecycleEventReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -571,7 +571,7 @@ func (a *LoadEventFiredReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// LoadEventFiredReply returns whether or not the FrameID matches the reply value for LoadEventFired in the LoadEventFired domain.
+// LoadEventFiredReply returns whether or not the FrameID matches the reply value for LoadEventFired in the Page domain.
 func (a *LoadEventFiredReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -580,7 +580,7 @@ func (a *LoadEventFiredReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// LoadEventFiredReply returns the FrameID for LoadEventFired in the LoadEventFired domain.
+// LoadEventFiredReply returns the FrameID for LoadEventFired in the Page domain.
 func (a *LoadEventFiredReply) GetFrameID() string {
 	return ""
 }
@@ -603,7 +603,7 @@ func (a *NavigatedWithinDocumentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// NavigatedWithinDocumentReply returns whether or not the FrameID matches the reply value for NavigatedWithinDocument in the NavigatedWithinDocument domain.
+// NavigatedWithinDocumentReply returns whether or not the FrameID matches the reply value for NavigatedWithinDocument in the Page domain.
 func (a *NavigatedWithinDocumentReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &NavigatedWithinDocumentReply{}
 	err := v.UnmarshalJSON(m)
@@ -617,7 +617,7 @@ func (a *NavigatedWithinDocumentReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
-// NavigatedWithinDocumentReply returns the FrameID for NavigatedWithinDocument in the NavigatedWithinDocument domain.
+// NavigatedWithinDocumentReply returns the FrameID for NavigatedWithinDocument in the Page domain.
 func (a *NavigatedWithinDocumentReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -641,7 +641,7 @@ func (a *ScreencastFrameReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ScreencastFrameReply returns whether or not the FrameID matches the reply value for ScreencastFrame in the ScreencastFrame domain.
+// ScreencastFrameReply returns whether or not the FrameID matches the reply value for ScreencastFrame in the Page domain.
 func (a *ScreencastFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -650,7 +650,7 @@ func (a *ScreencastFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ScreencastFrameReply returns the FrameID for ScreencastFrame in the ScreencastFrame domain.
+// ScreencastFrameReply returns the FrameID for ScreencastFrame in the Page domain.
 func (a *ScreencastFrameReply) GetFrameID() string {
 	return ""
 }
@@ -672,7 +672,7 @@ func (a *ScreencastVisibilityChangedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ScreencastVisibilityChangedReply returns whether or not the FrameID matches the reply value for ScreencastVisibilityChanged in the ScreencastVisibilityChanged domain.
+// ScreencastVisibilityChangedReply returns whether or not the FrameID matches the reply value for ScreencastVisibilityChanged in the Page domain.
 func (a *ScreencastVisibilityChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -681,7 +681,7 @@ func (a *ScreencastVisibilityChangedReply) MatchFrameID(frameID string, m []byte
 	return true
 }
 
-// ScreencastVisibilityChangedReply returns the FrameID for ScreencastVisibilityChanged in the ScreencastVisibilityChanged domain.
+// ScreencastVisibilityChangedReply returns the FrameID for ScreencastVisibilityChanged in the Page domain.
 func (a *ScreencastVisibilityChangedReply) GetFrameID() string {
 	return ""
 }
@@ -706,7 +706,7 @@ func (a *WindowOpenReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WindowOpenReply returns whether or not the FrameID matches the reply value for WindowOpen in the WindowOpen domain.
+// WindowOpenReply returns whether or not the FrameID matches the reply value for WindowOpen in the Page domain.
 func (a *WindowOpenReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -715,7 +715,7 @@ func (a *WindowOpenReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// WindowOpenReply returns the FrameID for WindowOpen in the WindowOpen domain.
+// WindowOpenReply returns the FrameID for WindowOpen in the Page domain.
 func (a *WindowOpenReply) GetFrameID() string {
 	return ""
 }
@@ -738,7 +738,7 @@ func (a *CompilationCacheProducedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// CompilationCacheProducedReply returns whether or not the FrameID matches the reply value for CompilationCacheProduced in the CompilationCacheProduced domain.
+// CompilationCacheProducedReply returns whether or not the FrameID matches the reply value for CompilationCacheProduced in the Page domain.
 func (a *CompilationCacheProducedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -747,7 +747,7 @@ func (a *CompilationCacheProducedReply) MatchFrameID(frameID string, m []byte) b
 	return true
 }
 
-// CompilationCacheProducedReply returns the FrameID for CompilationCacheProduced in the CompilationCacheProduced domain.
+// CompilationCacheProducedReply returns the FrameID for CompilationCacheProduced in the Page domain.
 func (a *CompilationCacheProducedReply) GetFrameID() string {
 	return ""
 }

@@ -50,7 +50,7 @@ func (a *ItemAddedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ItemAddedReply returns whether or not the FrameID matches the reply value for DOMStorageItemAdded in the DOMStorageItemAdded domain.
+// ItemAddedReply returns whether or not the FrameID matches the reply value for DOMStorageItemAdded in the DOMStorage domain.
 func (a *ItemAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -59,7 +59,7 @@ func (a *ItemAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ItemAddedReply returns the FrameID for DOMStorageItemAdded in the DOMStorageItemAdded domain.
+// ItemAddedReply returns the FrameID for DOMStorageItemAdded in the DOMStorage domain.
 func (a *ItemAddedReply) GetFrameID() string {
 	return ""
 }
@@ -82,7 +82,7 @@ func (a *ItemRemovedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ItemRemovedReply returns whether or not the FrameID matches the reply value for DOMStorageItemRemoved in the DOMStorageItemRemoved domain.
+// ItemRemovedReply returns whether or not the FrameID matches the reply value for DOMStorageItemRemoved in the DOMStorage domain.
 func (a *ItemRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -91,7 +91,7 @@ func (a *ItemRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ItemRemovedReply returns the FrameID for DOMStorageItemRemoved in the DOMStorageItemRemoved domain.
+// ItemRemovedReply returns the FrameID for DOMStorageItemRemoved in the DOMStorage domain.
 func (a *ItemRemovedReply) GetFrameID() string {
 	return ""
 }
@@ -116,7 +116,7 @@ func (a *ItemUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ItemUpdatedReply returns whether or not the FrameID matches the reply value for DOMStorageItemUpdated in the DOMStorageItemUpdated domain.
+// ItemUpdatedReply returns whether or not the FrameID matches the reply value for DOMStorageItemUpdated in the DOMStorage domain.
 func (a *ItemUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -125,7 +125,7 @@ func (a *ItemUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ItemUpdatedReply returns the FrameID for DOMStorageItemUpdated in the DOMStorageItemUpdated domain.
+// ItemUpdatedReply returns the FrameID for DOMStorageItemUpdated in the DOMStorage domain.
 func (a *ItemUpdatedReply) GetFrameID() string {
 	return ""
 }
@@ -147,7 +147,7 @@ func (a *ItemsClearedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ItemsClearedReply returns whether or not the FrameID matches the reply value for DOMStorageItemsCleared in the DOMStorageItemsCleared domain.
+// ItemsClearedReply returns whether or not the FrameID matches the reply value for DOMStorageItemsCleared in the DOMStorage domain.
 func (a *ItemsClearedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -156,7 +156,7 @@ func (a *ItemsClearedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ItemsClearedReply returns the FrameID for DOMStorageItemsCleared in the DOMStorageItemsCleared domain.
+// ItemsClearedReply returns the FrameID for DOMStorageItemsCleared in the DOMStorage domain.
 func (a *ItemsClearedReply) GetFrameID() string {
 	return ""
 }

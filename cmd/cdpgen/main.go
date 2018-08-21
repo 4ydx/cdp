@@ -945,7 +945,7 @@ func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes 
 				func (a * %[1]s) GetFrameID() string {
 					return string(a.FrameID)
 				}
-				`, e.ReplyName(d), e.Name(), e.Name())
+				`, e.ReplyName(d), e.Name(), d.Name())
 
 	} else if hasFrame {
 		g.Printf(`
@@ -967,7 +967,7 @@ func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes 
 				func (a * %[1]s) GetFrameID() string {
 					return string(a.Frame.ID)
 				}
-				`, e.ReplyName(d), e.Name(), e.Name())
+				`, e.ReplyName(d), e.Name(), d.Name())
 
 	} else {
 		g.Printf(`
@@ -984,7 +984,7 @@ func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes 
 				func (a * %[1]s) GetFrameID() string {
 					return ""
 				}
-				`, e.ReplyName(d), e.Name(), e.Name())
+				`, e.ReplyName(d), e.Name(), d.Name())
 	}
 }
 

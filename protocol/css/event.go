@@ -50,7 +50,7 @@ func (a *FontsUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// FontsUpdatedReply returns whether or not the FrameID matches the reply value for FontsUpdated in the FontsUpdated domain.
+// FontsUpdatedReply returns whether or not the FrameID matches the reply value for FontsUpdated in the CSS domain.
 func (a *FontsUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -59,7 +59,7 @@ func (a *FontsUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// FontsUpdatedReply returns the FrameID for FontsUpdated in the FontsUpdated domain.
+// FontsUpdatedReply returns the FrameID for FontsUpdated in the CSS domain.
 func (a *FontsUpdatedReply) GetFrameID() string {
 	return ""
 }
@@ -80,7 +80,7 @@ func (a *MediaQueryResultChangedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// MediaQueryResultChangedReply returns whether or not the FrameID matches the reply value for MediaQueryResultChanged in the MediaQueryResultChanged domain.
+// MediaQueryResultChangedReply returns whether or not the FrameID matches the reply value for MediaQueryResultChanged in the CSS domain.
 func (a *MediaQueryResultChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -89,7 +89,7 @@ func (a *MediaQueryResultChangedReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
-// MediaQueryResultChangedReply returns the FrameID for MediaQueryResultChanged in the MediaQueryResultChanged domain.
+// MediaQueryResultChangedReply returns the FrameID for MediaQueryResultChanged in the CSS domain.
 func (a *MediaQueryResultChangedReply) GetFrameID() string {
 	return ""
 }
@@ -111,7 +111,7 @@ func (a *StyleSheetAddedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// StyleSheetAddedReply returns whether or not the FrameID matches the reply value for StyleSheetAdded in the StyleSheetAdded domain.
+// StyleSheetAddedReply returns whether or not the FrameID matches the reply value for StyleSheetAdded in the CSS domain.
 func (a *StyleSheetAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -120,7 +120,7 @@ func (a *StyleSheetAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// StyleSheetAddedReply returns the FrameID for StyleSheetAdded in the StyleSheetAdded domain.
+// StyleSheetAddedReply returns the FrameID for StyleSheetAdded in the CSS domain.
 func (a *StyleSheetAddedReply) GetFrameID() string {
 	return ""
 }
@@ -142,7 +142,7 @@ func (a *StyleSheetChangedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// StyleSheetChangedReply returns whether or not the FrameID matches the reply value for StyleSheetChanged in the StyleSheetChanged domain.
+// StyleSheetChangedReply returns whether or not the FrameID matches the reply value for StyleSheetChanged in the CSS domain.
 func (a *StyleSheetChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -151,7 +151,7 @@ func (a *StyleSheetChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// StyleSheetChangedReply returns the FrameID for StyleSheetChanged in the StyleSheetChanged domain.
+// StyleSheetChangedReply returns the FrameID for StyleSheetChanged in the CSS domain.
 func (a *StyleSheetChangedReply) GetFrameID() string {
 	return ""
 }
@@ -173,7 +173,7 @@ func (a *StyleSheetRemovedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// StyleSheetRemovedReply returns whether or not the FrameID matches the reply value for StyleSheetRemoved in the StyleSheetRemoved domain.
+// StyleSheetRemovedReply returns whether or not the FrameID matches the reply value for StyleSheetRemoved in the CSS domain.
 func (a *StyleSheetRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -182,7 +182,7 @@ func (a *StyleSheetRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// StyleSheetRemovedReply returns the FrameID for StyleSheetRemoved in the StyleSheetRemoved domain.
+// StyleSheetRemovedReply returns the FrameID for StyleSheetRemoved in the CSS domain.
 func (a *StyleSheetRemovedReply) GetFrameID() string {
 	return ""
 }

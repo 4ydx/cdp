@@ -79,7 +79,7 @@ func (a *DataReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// DataReceivedReply returns whether or not the FrameID matches the reply value for DataReceived in the DataReceived domain.
+// DataReceivedReply returns whether or not the FrameID matches the reply value for DataReceived in the Network domain.
 func (a *DataReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -88,7 +88,7 @@ func (a *DataReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// DataReceivedReply returns the FrameID for DataReceived in the DataReceived domain.
+// DataReceivedReply returns the FrameID for DataReceived in the Network domain.
 func (a *DataReceivedReply) GetFrameID() string {
 	return ""
 }
@@ -114,7 +114,7 @@ func (a *EventSourceMessageReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// EventSourceMessageReceivedReply returns whether or not the FrameID matches the reply value for EventSourceMessageReceived in the EventSourceMessageReceived domain.
+// EventSourceMessageReceivedReply returns whether or not the FrameID matches the reply value for EventSourceMessageReceived in the Network domain.
 func (a *EventSourceMessageReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -123,7 +123,7 @@ func (a *EventSourceMessageReceivedReply) MatchFrameID(frameID string, m []byte)
 	return true
 }
 
-// EventSourceMessageReceivedReply returns the FrameID for EventSourceMessageReceived in the EventSourceMessageReceived domain.
+// EventSourceMessageReceivedReply returns the FrameID for EventSourceMessageReceived in the Network domain.
 func (a *EventSourceMessageReceivedReply) GetFrameID() string {
 	return ""
 }
@@ -150,7 +150,7 @@ func (a *LoadingFailedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// LoadingFailedReply returns whether or not the FrameID matches the reply value for LoadingFailed in the LoadingFailed domain.
+// LoadingFailedReply returns whether or not the FrameID matches the reply value for LoadingFailed in the Network domain.
 func (a *LoadingFailedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -159,7 +159,7 @@ func (a *LoadingFailedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// LoadingFailedReply returns the FrameID for LoadingFailed in the LoadingFailed domain.
+// LoadingFailedReply returns the FrameID for LoadingFailed in the Network domain.
 func (a *LoadingFailedReply) GetFrameID() string {
 	return ""
 }
@@ -184,7 +184,7 @@ func (a *LoadingFinishedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// LoadingFinishedReply returns whether or not the FrameID matches the reply value for LoadingFinished in the LoadingFinished domain.
+// LoadingFinishedReply returns whether or not the FrameID matches the reply value for LoadingFinished in the Network domain.
 func (a *LoadingFinishedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -193,7 +193,7 @@ func (a *LoadingFinishedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// LoadingFinishedReply returns the FrameID for LoadingFinished in the LoadingFinished domain.
+// LoadingFinishedReply returns the FrameID for LoadingFinished in the Network domain.
 func (a *LoadingFinishedReply) GetFrameID() string {
 	return ""
 }
@@ -225,7 +225,7 @@ func (a *RequestInterceptedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// RequestInterceptedReply returns whether or not the FrameID matches the reply value for RequestIntercepted in the RequestIntercepted domain.
+// RequestInterceptedReply returns whether or not the FrameID matches the reply value for RequestIntercepted in the Network domain.
 func (a *RequestInterceptedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &RequestInterceptedReply{}
 	err := v.UnmarshalJSON(m)
@@ -239,7 +239,7 @@ func (a *RequestInterceptedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// RequestInterceptedReply returns the FrameID for RequestIntercepted in the RequestIntercepted domain.
+// RequestInterceptedReply returns the FrameID for RequestIntercepted in the Network domain.
 func (a *RequestInterceptedReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -261,7 +261,7 @@ func (a *RequestServedFromCacheReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// RequestServedFromCacheReply returns whether or not the FrameID matches the reply value for RequestServedFromCache in the RequestServedFromCache domain.
+// RequestServedFromCacheReply returns whether or not the FrameID matches the reply value for RequestServedFromCache in the Network domain.
 func (a *RequestServedFromCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -270,7 +270,7 @@ func (a *RequestServedFromCacheReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
-// RequestServedFromCacheReply returns the FrameID for RequestServedFromCache in the RequestServedFromCache domain.
+// RequestServedFromCacheReply returns the FrameID for RequestServedFromCache in the Network domain.
 func (a *RequestServedFromCacheReply) GetFrameID() string {
 	return ""
 }
@@ -302,7 +302,7 @@ func (a *RequestWillBeSentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// RequestWillBeSentReply returns whether or not the FrameID matches the reply value for RequestWillBeSent in the RequestWillBeSent domain.
+// RequestWillBeSentReply returns whether or not the FrameID matches the reply value for RequestWillBeSent in the Network domain.
 func (a *RequestWillBeSentReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &RequestWillBeSentReply{}
 	err := v.UnmarshalJSON(m)
@@ -316,7 +316,7 @@ func (a *RequestWillBeSentReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// RequestWillBeSentReply returns the FrameID for RequestWillBeSent in the RequestWillBeSent domain.
+// RequestWillBeSentReply returns the FrameID for RequestWillBeSent in the Network domain.
 func (a *RequestWillBeSentReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -340,7 +340,7 @@ func (a *ResourceChangedPriorityReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ResourceChangedPriorityReply returns whether or not the FrameID matches the reply value for ResourceChangedPriority in the ResourceChangedPriority domain.
+// ResourceChangedPriorityReply returns whether or not the FrameID matches the reply value for ResourceChangedPriority in the Network domain.
 func (a *ResourceChangedPriorityReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -349,7 +349,7 @@ func (a *ResourceChangedPriorityReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
-// ResourceChangedPriorityReply returns the FrameID for ResourceChangedPriority in the ResourceChangedPriority domain.
+// ResourceChangedPriorityReply returns the FrameID for ResourceChangedPriority in the Network domain.
 func (a *ResourceChangedPriorityReply) GetFrameID() string {
 	return ""
 }
@@ -372,7 +372,7 @@ func (a *SignedExchangeReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// SignedExchangeReceivedReply returns whether or not the FrameID matches the reply value for SignedExchangeReceived in the SignedExchangeReceived domain.
+// SignedExchangeReceivedReply returns whether or not the FrameID matches the reply value for SignedExchangeReceived in the Network domain.
 func (a *SignedExchangeReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -381,7 +381,7 @@ func (a *SignedExchangeReceivedReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
-// SignedExchangeReceivedReply returns the FrameID for SignedExchangeReceived in the SignedExchangeReceived domain.
+// SignedExchangeReceivedReply returns the FrameID for SignedExchangeReceived in the Network domain.
 func (a *SignedExchangeReceivedReply) GetFrameID() string {
 	return ""
 }
@@ -408,7 +408,7 @@ func (a *ResponseReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ResponseReceivedReply returns whether or not the FrameID matches the reply value for ResponseReceived in the ResponseReceived domain.
+// ResponseReceivedReply returns whether or not the FrameID matches the reply value for ResponseReceived in the Network domain.
 func (a *ResponseReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &ResponseReceivedReply{}
 	err := v.UnmarshalJSON(m)
@@ -422,7 +422,7 @@ func (a *ResponseReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ResponseReceivedReply returns the FrameID for ResponseReceived in the ResponseReceived domain.
+// ResponseReceivedReply returns the FrameID for ResponseReceived in the Network domain.
 func (a *ResponseReceivedReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -445,7 +445,7 @@ func (a *WebSocketClosedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WebSocketClosedReply returns whether or not the FrameID matches the reply value for WebSocketClosed in the WebSocketClosed domain.
+// WebSocketClosedReply returns whether or not the FrameID matches the reply value for WebSocketClosed in the Network domain.
 func (a *WebSocketClosedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -454,7 +454,7 @@ func (a *WebSocketClosedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// WebSocketClosedReply returns the FrameID for WebSocketClosed in the WebSocketClosed domain.
+// WebSocketClosedReply returns the FrameID for WebSocketClosed in the Network domain.
 func (a *WebSocketClosedReply) GetFrameID() string {
 	return ""
 }
@@ -478,7 +478,7 @@ func (a *WebSocketCreatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WebSocketCreatedReply returns whether or not the FrameID matches the reply value for WebSocketCreated in the WebSocketCreated domain.
+// WebSocketCreatedReply returns whether or not the FrameID matches the reply value for WebSocketCreated in the Network domain.
 func (a *WebSocketCreatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -487,7 +487,7 @@ func (a *WebSocketCreatedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// WebSocketCreatedReply returns the FrameID for WebSocketCreated in the WebSocketCreated domain.
+// WebSocketCreatedReply returns the FrameID for WebSocketCreated in the Network domain.
 func (a *WebSocketCreatedReply) GetFrameID() string {
 	return ""
 }
@@ -511,7 +511,7 @@ func (a *WebSocketFrameErrorReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WebSocketFrameErrorReply returns whether or not the FrameID matches the reply value for WebSocketFrameError in the WebSocketFrameError domain.
+// WebSocketFrameErrorReply returns whether or not the FrameID matches the reply value for WebSocketFrameError in the Network domain.
 func (a *WebSocketFrameErrorReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -520,7 +520,7 @@ func (a *WebSocketFrameErrorReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// WebSocketFrameErrorReply returns the FrameID for WebSocketFrameError in the WebSocketFrameError domain.
+// WebSocketFrameErrorReply returns the FrameID for WebSocketFrameError in the Network domain.
 func (a *WebSocketFrameErrorReply) GetFrameID() string {
 	return ""
 }
@@ -544,7 +544,7 @@ func (a *WebSocketFrameReceivedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WebSocketFrameReceivedReply returns whether or not the FrameID matches the reply value for WebSocketFrameReceived in the WebSocketFrameReceived domain.
+// WebSocketFrameReceivedReply returns whether or not the FrameID matches the reply value for WebSocketFrameReceived in the Network domain.
 func (a *WebSocketFrameReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -553,7 +553,7 @@ func (a *WebSocketFrameReceivedReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
-// WebSocketFrameReceivedReply returns the FrameID for WebSocketFrameReceived in the WebSocketFrameReceived domain.
+// WebSocketFrameReceivedReply returns the FrameID for WebSocketFrameReceived in the Network domain.
 func (a *WebSocketFrameReceivedReply) GetFrameID() string {
 	return ""
 }
@@ -577,7 +577,7 @@ func (a *WebSocketFrameSentReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WebSocketFrameSentReply returns whether or not the FrameID matches the reply value for WebSocketFrameSent in the WebSocketFrameSent domain.
+// WebSocketFrameSentReply returns whether or not the FrameID matches the reply value for WebSocketFrameSent in the Network domain.
 func (a *WebSocketFrameSentReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -586,7 +586,7 @@ func (a *WebSocketFrameSentReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// WebSocketFrameSentReply returns the FrameID for WebSocketFrameSent in the WebSocketFrameSent domain.
+// WebSocketFrameSentReply returns the FrameID for WebSocketFrameSent in the Network domain.
 func (a *WebSocketFrameSentReply) GetFrameID() string {
 	return ""
 }
@@ -610,7 +610,7 @@ func (a *WebSocketHandshakeResponseReceivedReply) UnmarshalJSON(b []byte) error 
 	return nil
 }
 
-// WebSocketHandshakeResponseReceivedReply returns whether or not the FrameID matches the reply value for WebSocketHandshakeResponseReceived in the WebSocketHandshakeResponseReceived domain.
+// WebSocketHandshakeResponseReceivedReply returns whether or not the FrameID matches the reply value for WebSocketHandshakeResponseReceived in the Network domain.
 func (a *WebSocketHandshakeResponseReceivedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -619,7 +619,7 @@ func (a *WebSocketHandshakeResponseReceivedReply) MatchFrameID(frameID string, m
 	return true
 }
 
-// WebSocketHandshakeResponseReceivedReply returns the FrameID for WebSocketHandshakeResponseReceived in the WebSocketHandshakeResponseReceived domain.
+// WebSocketHandshakeResponseReceivedReply returns the FrameID for WebSocketHandshakeResponseReceived in the Network domain.
 func (a *WebSocketHandshakeResponseReceivedReply) GetFrameID() string {
 	return ""
 }
@@ -644,7 +644,7 @@ func (a *WebSocketWillSendHandshakeRequestReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WebSocketWillSendHandshakeRequestReply returns whether or not the FrameID matches the reply value for WebSocketWillSendHandshakeRequest in the WebSocketWillSendHandshakeRequest domain.
+// WebSocketWillSendHandshakeRequestReply returns whether or not the FrameID matches the reply value for WebSocketWillSendHandshakeRequest in the Network domain.
 func (a *WebSocketWillSendHandshakeRequestReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -653,7 +653,7 @@ func (a *WebSocketWillSendHandshakeRequestReply) MatchFrameID(frameID string, m 
 	return true
 }
 
-// WebSocketWillSendHandshakeRequestReply returns the FrameID for WebSocketWillSendHandshakeRequest in the WebSocketWillSendHandshakeRequest domain.
+// WebSocketWillSendHandshakeRequestReply returns the FrameID for WebSocketWillSendHandshakeRequest in the Network domain.
 func (a *WebSocketWillSendHandshakeRequestReply) GetFrameID() string {
 	return ""
 }

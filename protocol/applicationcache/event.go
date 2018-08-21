@@ -48,7 +48,7 @@ func (a *StatusUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// StatusUpdatedReply returns whether or not the FrameID matches the reply value for ApplicationCacheStatusUpdated in the ApplicationCacheStatusUpdated domain.
+// StatusUpdatedReply returns whether or not the FrameID matches the reply value for ApplicationCacheStatusUpdated in the ApplicationCache domain.
 func (a *StatusUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &StatusUpdatedReply{}
 	err := v.UnmarshalJSON(m)
@@ -62,7 +62,7 @@ func (a *StatusUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// StatusUpdatedReply returns the FrameID for ApplicationCacheStatusUpdated in the ApplicationCacheStatusUpdated domain.
+// StatusUpdatedReply returns the FrameID for ApplicationCacheStatusUpdated in the ApplicationCache domain.
 func (a *StatusUpdatedReply) GetFrameID() string {
 	return string(a.FrameID)
 }
@@ -84,7 +84,7 @@ func (a *NetworkStateUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// NetworkStateUpdatedReply returns whether or not the FrameID matches the reply value for NetworkStateUpdated in the NetworkStateUpdated domain.
+// NetworkStateUpdatedReply returns whether or not the FrameID matches the reply value for NetworkStateUpdated in the ApplicationCache domain.
 func (a *NetworkStateUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -93,7 +93,7 @@ func (a *NetworkStateUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// NetworkStateUpdatedReply returns the FrameID for NetworkStateUpdated in the NetworkStateUpdated domain.
+// NetworkStateUpdatedReply returns the FrameID for NetworkStateUpdated in the ApplicationCache domain.
 func (a *NetworkStateUpdatedReply) GetFrameID() string {
 	return ""
 }

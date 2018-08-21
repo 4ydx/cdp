@@ -43,7 +43,7 @@ func (a *AcceptedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// AcceptedReply returns whether or not the FrameID matches the reply value for Accepted in the Accepted domain.
+// AcceptedReply returns whether or not the FrameID matches the reply value for Accepted in the Tethering domain.
 func (a *AcceptedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -52,7 +52,7 @@ func (a *AcceptedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// AcceptedReply returns the FrameID for Accepted in the Accepted domain.
+// AcceptedReply returns the FrameID for Accepted in the Tethering domain.
 func (a *AcceptedReply) GetFrameID() string {
 	return ""
 }

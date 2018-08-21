@@ -49,7 +49,7 @@ func (a *InspectNodeRequestedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// InspectNodeRequestedReply returns whether or not the FrameID matches the reply value for InspectNodeRequested in the InspectNodeRequested domain.
+// InspectNodeRequestedReply returns whether or not the FrameID matches the reply value for InspectNodeRequested in the Overlay domain.
 func (a *InspectNodeRequestedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -58,7 +58,7 @@ func (a *InspectNodeRequestedReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
-// InspectNodeRequestedReply returns the FrameID for InspectNodeRequested in the InspectNodeRequested domain.
+// InspectNodeRequestedReply returns the FrameID for InspectNodeRequested in the Overlay domain.
 func (a *InspectNodeRequestedReply) GetFrameID() string {
 	return ""
 }
@@ -80,7 +80,7 @@ func (a *NodeHighlightRequestedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// NodeHighlightRequestedReply returns whether or not the FrameID matches the reply value for NodeHighlightRequested in the NodeHighlightRequested domain.
+// NodeHighlightRequestedReply returns whether or not the FrameID matches the reply value for NodeHighlightRequested in the Overlay domain.
 func (a *NodeHighlightRequestedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -89,7 +89,7 @@ func (a *NodeHighlightRequestedReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
-// NodeHighlightRequestedReply returns the FrameID for NodeHighlightRequested in the NodeHighlightRequested domain.
+// NodeHighlightRequestedReply returns the FrameID for NodeHighlightRequested in the Overlay domain.
 func (a *NodeHighlightRequestedReply) GetFrameID() string {
 	return ""
 }
@@ -111,7 +111,7 @@ func (a *ScreenshotRequestedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ScreenshotRequestedReply returns whether or not the FrameID matches the reply value for ScreenshotRequested in the ScreenshotRequested domain.
+// ScreenshotRequestedReply returns whether or not the FrameID matches the reply value for ScreenshotRequested in the Overlay domain.
 func (a *ScreenshotRequestedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -120,7 +120,7 @@ func (a *ScreenshotRequestedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ScreenshotRequestedReply returns the FrameID for ScreenshotRequested in the ScreenshotRequested domain.
+// ScreenshotRequestedReply returns the FrameID for ScreenshotRequested in the Overlay domain.
 func (a *ScreenshotRequestedReply) GetFrameID() string {
 	return ""
 }

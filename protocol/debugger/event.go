@@ -53,7 +53,7 @@ func (a *BreakpointResolvedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// BreakpointResolvedReply returns whether or not the FrameID matches the reply value for BreakpointResolved in the BreakpointResolved domain.
+// BreakpointResolvedReply returns whether or not the FrameID matches the reply value for BreakpointResolved in the Debugger domain.
 func (a *BreakpointResolvedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -62,7 +62,7 @@ func (a *BreakpointResolvedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// BreakpointResolvedReply returns the FrameID for BreakpointResolved in the BreakpointResolved domain.
+// BreakpointResolvedReply returns the FrameID for BreakpointResolved in the Debugger domain.
 func (a *BreakpointResolvedReply) GetFrameID() string {
 	return ""
 }
@@ -102,7 +102,7 @@ func (a *PausedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// PausedReply returns whether or not the FrameID matches the reply value for Paused in the Paused domain.
+// PausedReply returns whether or not the FrameID matches the reply value for Paused in the Debugger domain.
 func (a *PausedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -111,7 +111,7 @@ func (a *PausedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// PausedReply returns the FrameID for Paused in the Paused domain.
+// PausedReply returns the FrameID for Paused in the Debugger domain.
 func (a *PausedReply) GetFrameID() string {
 	return ""
 }
@@ -132,7 +132,7 @@ func (a *ResumedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ResumedReply returns whether or not the FrameID matches the reply value for Resumed in the Resumed domain.
+// ResumedReply returns whether or not the FrameID matches the reply value for Resumed in the Debugger domain.
 func (a *ResumedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -141,7 +141,7 @@ func (a *ResumedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ResumedReply returns the FrameID for Resumed in the Resumed domain.
+// ResumedReply returns the FrameID for Resumed in the Debugger domain.
 func (a *ResumedReply) GetFrameID() string {
 	return ""
 }
@@ -180,7 +180,7 @@ func (a *ScriptFailedToParseReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ScriptFailedToParseReply returns whether or not the FrameID matches the reply value for ScriptFailedToParse in the ScriptFailedToParse domain.
+// ScriptFailedToParseReply returns whether or not the FrameID matches the reply value for ScriptFailedToParse in the Debugger domain.
 func (a *ScriptFailedToParseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -189,7 +189,7 @@ func (a *ScriptFailedToParseReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ScriptFailedToParseReply returns the FrameID for ScriptFailedToParse in the ScriptFailedToParse domain.
+// ScriptFailedToParseReply returns the FrameID for ScriptFailedToParse in the Debugger domain.
 func (a *ScriptFailedToParseReply) GetFrameID() string {
 	return ""
 }
@@ -233,7 +233,7 @@ func (a *ScriptParsedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ScriptParsedReply returns whether or not the FrameID matches the reply value for ScriptParsed in the ScriptParsed domain.
+// ScriptParsedReply returns whether or not the FrameID matches the reply value for ScriptParsed in the Debugger domain.
 func (a *ScriptParsedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -242,7 +242,7 @@ func (a *ScriptParsedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ScriptParsedReply returns the FrameID for ScriptParsed in the ScriptParsed domain.
+// ScriptParsedReply returns the FrameID for ScriptParsed in the Debugger domain.
 func (a *ScriptParsedReply) GetFrameID() string {
 	return ""
 }

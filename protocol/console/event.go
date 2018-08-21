@@ -42,7 +42,7 @@ func (a *MessageAddedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// MessageAddedReply returns whether or not the FrameID matches the reply value for MessageAdded in the MessageAdded domain.
+// MessageAddedReply returns whether or not the FrameID matches the reply value for MessageAdded in the Console domain.
 func (a *MessageAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -51,7 +51,7 @@ func (a *MessageAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// MessageAddedReply returns the FrameID for MessageAdded in the MessageAdded domain.
+// MessageAddedReply returns the FrameID for MessageAdded in the Console domain.
 func (a *MessageAddedReply) GetFrameID() string {
 	return ""
 }

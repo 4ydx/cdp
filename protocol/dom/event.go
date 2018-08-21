@@ -70,7 +70,7 @@ func (a *AttributeModifiedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// AttributeModifiedReply returns whether or not the FrameID matches the reply value for AttributeModified in the AttributeModified domain.
+// AttributeModifiedReply returns whether or not the FrameID matches the reply value for AttributeModified in the DOM domain.
 func (a *AttributeModifiedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -79,7 +79,7 @@ func (a *AttributeModifiedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// AttributeModifiedReply returns the FrameID for AttributeModified in the AttributeModified domain.
+// AttributeModifiedReply returns the FrameID for AttributeModified in the DOM domain.
 func (a *AttributeModifiedReply) GetFrameID() string {
 	return ""
 }
@@ -102,7 +102,7 @@ func (a *AttributeRemovedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// AttributeRemovedReply returns whether or not the FrameID matches the reply value for AttributeRemoved in the AttributeRemoved domain.
+// AttributeRemovedReply returns whether or not the FrameID matches the reply value for AttributeRemoved in the DOM domain.
 func (a *AttributeRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -111,7 +111,7 @@ func (a *AttributeRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// AttributeRemovedReply returns the FrameID for AttributeRemoved in the AttributeRemoved domain.
+// AttributeRemovedReply returns the FrameID for AttributeRemoved in the DOM domain.
 func (a *AttributeRemovedReply) GetFrameID() string {
 	return ""
 }
@@ -134,7 +134,7 @@ func (a *CharacterDataModifiedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// CharacterDataModifiedReply returns whether or not the FrameID matches the reply value for CharacterDataModified in the CharacterDataModified domain.
+// CharacterDataModifiedReply returns whether or not the FrameID matches the reply value for CharacterDataModified in the DOM domain.
 func (a *CharacterDataModifiedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -143,7 +143,7 @@ func (a *CharacterDataModifiedReply) MatchFrameID(frameID string, m []byte) bool
 	return true
 }
 
-// CharacterDataModifiedReply returns the FrameID for CharacterDataModified in the CharacterDataModified domain.
+// CharacterDataModifiedReply returns the FrameID for CharacterDataModified in the DOM domain.
 func (a *CharacterDataModifiedReply) GetFrameID() string {
 	return ""
 }
@@ -166,7 +166,7 @@ func (a *ChildNodeCountUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ChildNodeCountUpdatedReply returns whether or not the FrameID matches the reply value for ChildNodeCountUpdated in the ChildNodeCountUpdated domain.
+// ChildNodeCountUpdatedReply returns whether or not the FrameID matches the reply value for ChildNodeCountUpdated in the DOM domain.
 func (a *ChildNodeCountUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -175,7 +175,7 @@ func (a *ChildNodeCountUpdatedReply) MatchFrameID(frameID string, m []byte) bool
 	return true
 }
 
-// ChildNodeCountUpdatedReply returns the FrameID for ChildNodeCountUpdated in the ChildNodeCountUpdated domain.
+// ChildNodeCountUpdatedReply returns the FrameID for ChildNodeCountUpdated in the DOM domain.
 func (a *ChildNodeCountUpdatedReply) GetFrameID() string {
 	return ""
 }
@@ -199,7 +199,7 @@ func (a *ChildNodeInsertedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ChildNodeInsertedReply returns whether or not the FrameID matches the reply value for ChildNodeInserted in the ChildNodeInserted domain.
+// ChildNodeInsertedReply returns whether or not the FrameID matches the reply value for ChildNodeInserted in the DOM domain.
 func (a *ChildNodeInsertedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -208,7 +208,7 @@ func (a *ChildNodeInsertedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ChildNodeInsertedReply returns the FrameID for ChildNodeInserted in the ChildNodeInserted domain.
+// ChildNodeInsertedReply returns the FrameID for ChildNodeInserted in the DOM domain.
 func (a *ChildNodeInsertedReply) GetFrameID() string {
 	return ""
 }
@@ -231,7 +231,7 @@ func (a *ChildNodeRemovedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ChildNodeRemovedReply returns whether or not the FrameID matches the reply value for ChildNodeRemoved in the ChildNodeRemoved domain.
+// ChildNodeRemovedReply returns whether or not the FrameID matches the reply value for ChildNodeRemoved in the DOM domain.
 func (a *ChildNodeRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -240,7 +240,7 @@ func (a *ChildNodeRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ChildNodeRemovedReply returns the FrameID for ChildNodeRemoved in the ChildNodeRemoved domain.
+// ChildNodeRemovedReply returns the FrameID for ChildNodeRemoved in the DOM domain.
 func (a *ChildNodeRemovedReply) GetFrameID() string {
 	return ""
 }
@@ -263,7 +263,7 @@ func (a *DistributedNodesUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// DistributedNodesUpdatedReply returns whether or not the FrameID matches the reply value for DistributedNodesUpdated in the DistributedNodesUpdated domain.
+// DistributedNodesUpdatedReply returns whether or not the FrameID matches the reply value for DistributedNodesUpdated in the DOM domain.
 func (a *DistributedNodesUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -272,7 +272,7 @@ func (a *DistributedNodesUpdatedReply) MatchFrameID(frameID string, m []byte) bo
 	return true
 }
 
-// DistributedNodesUpdatedReply returns the FrameID for DistributedNodesUpdated in the DistributedNodesUpdated domain.
+// DistributedNodesUpdatedReply returns the FrameID for DistributedNodesUpdated in the DOM domain.
 func (a *DistributedNodesUpdatedReply) GetFrameID() string {
 	return ""
 }
@@ -293,7 +293,7 @@ func (a *DocumentUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// DocumentUpdatedReply returns whether or not the FrameID matches the reply value for DocumentUpdated in the DocumentUpdated domain.
+// DocumentUpdatedReply returns whether or not the FrameID matches the reply value for DocumentUpdated in the DOM domain.
 func (a *DocumentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -302,7 +302,7 @@ func (a *DocumentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// DocumentUpdatedReply returns the FrameID for DocumentUpdated in the DocumentUpdated domain.
+// DocumentUpdatedReply returns the FrameID for DocumentUpdated in the DOM domain.
 func (a *DocumentUpdatedReply) GetFrameID() string {
 	return ""
 }
@@ -324,7 +324,7 @@ func (a *InlineStyleInvalidatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// InlineStyleInvalidatedReply returns whether or not the FrameID matches the reply value for InlineStyleInvalidated in the InlineStyleInvalidated domain.
+// InlineStyleInvalidatedReply returns whether or not the FrameID matches the reply value for InlineStyleInvalidated in the DOM domain.
 func (a *InlineStyleInvalidatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -333,7 +333,7 @@ func (a *InlineStyleInvalidatedReply) MatchFrameID(frameID string, m []byte) boo
 	return true
 }
 
-// InlineStyleInvalidatedReply returns the FrameID for InlineStyleInvalidated in the InlineStyleInvalidated domain.
+// InlineStyleInvalidatedReply returns the FrameID for InlineStyleInvalidated in the DOM domain.
 func (a *InlineStyleInvalidatedReply) GetFrameID() string {
 	return ""
 }
@@ -356,7 +356,7 @@ func (a *PseudoElementAddedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// PseudoElementAddedReply returns whether or not the FrameID matches the reply value for PseudoElementAdded in the PseudoElementAdded domain.
+// PseudoElementAddedReply returns whether or not the FrameID matches the reply value for PseudoElementAdded in the DOM domain.
 func (a *PseudoElementAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -365,7 +365,7 @@ func (a *PseudoElementAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// PseudoElementAddedReply returns the FrameID for PseudoElementAdded in the PseudoElementAdded domain.
+// PseudoElementAddedReply returns the FrameID for PseudoElementAdded in the DOM domain.
 func (a *PseudoElementAddedReply) GetFrameID() string {
 	return ""
 }
@@ -388,7 +388,7 @@ func (a *PseudoElementRemovedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// PseudoElementRemovedReply returns whether or not the FrameID matches the reply value for PseudoElementRemoved in the PseudoElementRemoved domain.
+// PseudoElementRemovedReply returns whether or not the FrameID matches the reply value for PseudoElementRemoved in the DOM domain.
 func (a *PseudoElementRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -397,7 +397,7 @@ func (a *PseudoElementRemovedReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
-// PseudoElementRemovedReply returns the FrameID for PseudoElementRemoved in the PseudoElementRemoved domain.
+// PseudoElementRemovedReply returns the FrameID for PseudoElementRemoved in the DOM domain.
 func (a *PseudoElementRemovedReply) GetFrameID() string {
 	return ""
 }
@@ -420,7 +420,7 @@ func (a *SetChildNodesReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// SetChildNodesReply returns whether or not the FrameID matches the reply value for SetChildNodes in the SetChildNodes domain.
+// SetChildNodesReply returns whether or not the FrameID matches the reply value for SetChildNodes in the DOM domain.
 func (a *SetChildNodesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -429,7 +429,7 @@ func (a *SetChildNodesReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// SetChildNodesReply returns the FrameID for SetChildNodes in the SetChildNodes domain.
+// SetChildNodesReply returns the FrameID for SetChildNodes in the DOM domain.
 func (a *SetChildNodesReply) GetFrameID() string {
 	return ""
 }
@@ -452,7 +452,7 @@ func (a *ShadowRootPoppedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ShadowRootPoppedReply returns whether or not the FrameID matches the reply value for ShadowRootPopped in the ShadowRootPopped domain.
+// ShadowRootPoppedReply returns whether or not the FrameID matches the reply value for ShadowRootPopped in the DOM domain.
 func (a *ShadowRootPoppedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -461,7 +461,7 @@ func (a *ShadowRootPoppedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ShadowRootPoppedReply returns the FrameID for ShadowRootPopped in the ShadowRootPopped domain.
+// ShadowRootPoppedReply returns the FrameID for ShadowRootPopped in the DOM domain.
 func (a *ShadowRootPoppedReply) GetFrameID() string {
 	return ""
 }
@@ -484,7 +484,7 @@ func (a *ShadowRootPushedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// ShadowRootPushedReply returns whether or not the FrameID matches the reply value for ShadowRootPushed in the ShadowRootPushed domain.
+// ShadowRootPushedReply returns whether or not the FrameID matches the reply value for ShadowRootPushed in the DOM domain.
 func (a *ShadowRootPushedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -493,7 +493,7 @@ func (a *ShadowRootPushedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// ShadowRootPushedReply returns the FrameID for ShadowRootPushed in the ShadowRootPushed domain.
+// ShadowRootPushedReply returns the FrameID for ShadowRootPushed in the DOM domain.
 func (a *ShadowRootPushedReply) GetFrameID() string {
 	return ""
 }

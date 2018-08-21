@@ -46,7 +46,7 @@ func (a *WorkerErrorReportedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WorkerErrorReportedReply returns whether or not the FrameID matches the reply value for WorkerErrorReported in the WorkerErrorReported domain.
+// WorkerErrorReportedReply returns whether or not the FrameID matches the reply value for WorkerErrorReported in the ServiceWorker domain.
 func (a *WorkerErrorReportedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -55,7 +55,7 @@ func (a *WorkerErrorReportedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// WorkerErrorReportedReply returns the FrameID for WorkerErrorReported in the WorkerErrorReported domain.
+// WorkerErrorReportedReply returns the FrameID for WorkerErrorReported in the ServiceWorker domain.
 func (a *WorkerErrorReportedReply) GetFrameID() string {
 	return ""
 }
@@ -77,7 +77,7 @@ func (a *WorkerRegistrationUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WorkerRegistrationUpdatedReply returns whether or not the FrameID matches the reply value for WorkerRegistrationUpdated in the WorkerRegistrationUpdated domain.
+// WorkerRegistrationUpdatedReply returns whether or not the FrameID matches the reply value for WorkerRegistrationUpdated in the ServiceWorker domain.
 func (a *WorkerRegistrationUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -86,7 +86,7 @@ func (a *WorkerRegistrationUpdatedReply) MatchFrameID(frameID string, m []byte) 
 	return true
 }
 
-// WorkerRegistrationUpdatedReply returns the FrameID for WorkerRegistrationUpdated in the WorkerRegistrationUpdated domain.
+// WorkerRegistrationUpdatedReply returns the FrameID for WorkerRegistrationUpdated in the ServiceWorker domain.
 func (a *WorkerRegistrationUpdatedReply) GetFrameID() string {
 	return ""
 }
@@ -108,7 +108,7 @@ func (a *WorkerVersionUpdatedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// WorkerVersionUpdatedReply returns whether or not the FrameID matches the reply value for WorkerVersionUpdated in the WorkerVersionUpdated domain.
+// WorkerVersionUpdatedReply returns whether or not the FrameID matches the reply value for WorkerVersionUpdated in the ServiceWorker domain.
 func (a *WorkerVersionUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -117,7 +117,7 @@ func (a *WorkerVersionUpdatedReply) MatchFrameID(frameID string, m []byte) bool 
 	return true
 }
 
-// WorkerVersionUpdatedReply returns the FrameID for WorkerVersionUpdated in the WorkerVersionUpdated domain.
+// WorkerVersionUpdatedReply returns the FrameID for WorkerVersionUpdated in the ServiceWorker domain.
 func (a *WorkerVersionUpdatedReply) GetFrameID() string {
 	return ""
 }

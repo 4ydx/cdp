@@ -46,7 +46,7 @@ func (a *DetachedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// DetachedReply returns whether or not the FrameID matches the reply value for Detached in the Detached domain.
+// DetachedReply returns whether or not the FrameID matches the reply value for Detached in the Inspector domain.
 func (a *DetachedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -55,7 +55,7 @@ func (a *DetachedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// DetachedReply returns the FrameID for Detached in the Detached domain.
+// DetachedReply returns the FrameID for Detached in the Inspector domain.
 func (a *DetachedReply) GetFrameID() string {
 	return ""
 }
@@ -76,7 +76,7 @@ func (a *TargetCrashedReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// TargetCrashedReply returns whether or not the FrameID matches the reply value for TargetCrashed in the TargetCrashed domain.
+// TargetCrashedReply returns whether or not the FrameID matches the reply value for TargetCrashed in the Inspector domain.
 func (a *TargetCrashedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -85,7 +85,7 @@ func (a *TargetCrashedReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// TargetCrashedReply returns the FrameID for TargetCrashed in the TargetCrashed domain.
+// TargetCrashedReply returns the FrameID for TargetCrashed in the Inspector domain.
 func (a *TargetCrashedReply) GetFrameID() string {
 	return ""
 }
@@ -106,7 +106,7 @@ func (a *TargetReloadedAfterCrashReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// TargetReloadedAfterCrashReply returns whether or not the FrameID matches the reply value for TargetReloadedAfterCrash in the TargetReloadedAfterCrash domain.
+// TargetReloadedAfterCrashReply returns whether or not the FrameID matches the reply value for TargetReloadedAfterCrash in the Inspector domain.
 func (a *TargetReloadedAfterCrashReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -115,7 +115,7 @@ func (a *TargetReloadedAfterCrashReply) MatchFrameID(frameID string, m []byte) b
 	return true
 }
 
-// TargetReloadedAfterCrashReply returns the FrameID for TargetReloadedAfterCrash in the TargetReloadedAfterCrash domain.
+// TargetReloadedAfterCrashReply returns the FrameID for TargetReloadedAfterCrash in the Inspector domain.
 func (a *TargetReloadedAfterCrashReply) GetFrameID() string {
 	return ""
 }

@@ -42,7 +42,7 @@ func (a *AddDatabaseReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
-// AddDatabaseReply returns whether or not the FrameID matches the reply value for AddDatabase in the AddDatabase domain.
+// AddDatabaseReply returns whether or not the FrameID matches the reply value for AddDatabase in the Database domain.
 func (a *AddDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
@@ -51,7 +51,7 @@ func (a *AddDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
 	return true
 }
 
-// AddDatabaseReply returns the FrameID for AddDatabase in the AddDatabase domain.
+// AddDatabaseReply returns the FrameID for AddDatabase in the Database domain.
 func (a *AddDatabaseReply) GetFrameID() string {
 	return ""
 }
