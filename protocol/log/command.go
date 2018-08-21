@@ -47,7 +47,7 @@ type ClearReply struct {
 func (a *ClearReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearReply", err)
+		log.Fatalf("unmarshal error: ClearReply %s", err)
 	}
 	return true
 }
@@ -101,7 +101,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -155,7 +155,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -210,7 +210,7 @@ type StartViolationsReportReply struct {
 func (a *StartViolationsReportReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartViolationsReportReply", err)
+		log.Fatalf("unmarshal error: StartViolationsReportReply %s", err)
 	}
 	return true
 }
@@ -264,7 +264,7 @@ type StopViolationsReportReply struct {
 func (a *StopViolationsReportReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopViolationsReportReply", err)
+		log.Fatalf("unmarshal error: StopViolationsReportReply %s", err)
 	}
 	return true
 }

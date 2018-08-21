@@ -53,7 +53,7 @@ func (a *ConsoleProfileFinishedReply) UnmarshalJSON(b []byte) error {
 func (a *ConsoleProfileFinishedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ConsoleProfileFinished", err)
+		log.Fatalf("unmarshal error: ConsoleProfileFinishedReply %s", err)
 	}
 	return true
 }
@@ -86,7 +86,7 @@ func (a *ConsoleProfileStartedReply) UnmarshalJSON(b []byte) error {
 func (a *ConsoleProfileStartedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ConsoleProfileStarted", err)
+		log.Fatalf("unmarshal error: ConsoleProfileStartedReply %s", err)
 	}
 	return true
 }

@@ -54,7 +54,7 @@ type GetDOMCountersReply struct {
 func (a *GetDOMCountersReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetDOMCountersReply", err)
+		log.Fatalf("unmarshal error: GetDOMCountersReply %s", err)
 	}
 	return true
 }
@@ -108,7 +108,7 @@ type PrepareForLeakDetectionReply struct {
 func (a *PrepareForLeakDetectionReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PrepareForLeakDetectionReply", err)
+		log.Fatalf("unmarshal error: PrepareForLeakDetectionReply %s", err)
 	}
 	return true
 }
@@ -163,7 +163,7 @@ type SetPressureNotificationsSuppressedReply struct {
 func (a *SetPressureNotificationsSuppressedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPressureNotificationsSuppressedReply", err)
+		log.Fatalf("unmarshal error: SetPressureNotificationsSuppressedReply %s", err)
 	}
 	return true
 }
@@ -218,7 +218,7 @@ type SimulatePressureNotificationReply struct {
 func (a *SimulatePressureNotificationReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SimulatePressureNotificationReply", err)
+		log.Fatalf("unmarshal error: SimulatePressureNotificationReply %s", err)
 	}
 	return true
 }
@@ -274,7 +274,7 @@ type StartSamplingReply struct {
 func (a *StartSamplingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartSamplingReply", err)
+		log.Fatalf("unmarshal error: StartSamplingReply %s", err)
 	}
 	return true
 }
@@ -328,7 +328,7 @@ type StopSamplingReply struct {
 func (a *StopSamplingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopSamplingReply", err)
+		log.Fatalf("unmarshal error: StopSamplingReply %s", err)
 	}
 	return true
 }
@@ -383,7 +383,7 @@ type GetAllTimeSamplingProfileReply struct {
 func (a *GetAllTimeSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetAllTimeSamplingProfileReply", err)
+		log.Fatalf("unmarshal error: GetAllTimeSamplingProfileReply %s", err)
 	}
 	return true
 }
@@ -438,7 +438,7 @@ type GetBrowserSamplingProfileReply struct {
 func (a *GetBrowserSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBrowserSamplingProfileReply", err)
+		log.Fatalf("unmarshal error: GetBrowserSamplingProfileReply %s", err)
 	}
 	return true
 }
@@ -493,7 +493,7 @@ type GetSamplingProfileReply struct {
 func (a *GetSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetSamplingProfileReply", err)
+		log.Fatalf("unmarshal error: GetSamplingProfileReply %s", err)
 	}
 	return true
 }

@@ -44,7 +44,7 @@ type GetDomainsReply struct {
 func (a *GetDomainsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetDomainsReply", err)
+		log.Fatalf("unmarshal error: GetDomainsReply %s", err)
 	}
 	return true
 }

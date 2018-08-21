@@ -52,7 +52,7 @@ type CloseReply struct {
 func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CloseReply", err)
+		log.Fatalf("unmarshal error: CloseReply %s", err)
 	}
 	return true
 }
@@ -111,7 +111,7 @@ type GetVersionReply struct {
 func (a *GetVersionReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetVersionReply", err)
+		log.Fatalf("unmarshal error: GetVersionReply %s", err)
 	}
 	return true
 }
@@ -166,7 +166,7 @@ type GetBrowserCommandLineReply struct {
 func (a *GetBrowserCommandLineReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBrowserCommandLineReply", err)
+		log.Fatalf("unmarshal error: GetBrowserCommandLineReply %s", err)
 	}
 	return true
 }
@@ -223,7 +223,7 @@ type GetHistogramsReply struct {
 func (a *GetHistogramsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHistogramsReply", err)
+		log.Fatalf("unmarshal error: GetHistogramsReply %s", err)
 	}
 	return true
 }
@@ -280,7 +280,7 @@ type GetHistogramReply struct {
 func (a *GetHistogramReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHistogramReply", err)
+		log.Fatalf("unmarshal error: GetHistogramReply %s", err)
 	}
 	return true
 }
@@ -336,7 +336,7 @@ type GetWindowBoundsReply struct {
 func (a *GetWindowBoundsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetWindowBoundsReply", err)
+		log.Fatalf("unmarshal error: GetWindowBoundsReply %s", err)
 	}
 	return true
 }
@@ -393,7 +393,7 @@ type GetWindowForTargetReply struct {
 func (a *GetWindowForTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetWindowForTargetReply", err)
+		log.Fatalf("unmarshal error: GetWindowForTargetReply %s", err)
 	}
 	return true
 }
@@ -449,7 +449,7 @@ type SetWindowBoundsReply struct {
 func (a *SetWindowBoundsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetWindowBoundsReply", err)
+		log.Fatalf("unmarshal error: SetWindowBoundsReply %s", err)
 	}
 	return true
 }

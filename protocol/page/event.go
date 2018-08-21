@@ -88,7 +88,7 @@ func (a *DOMContentEventFiredReply) UnmarshalJSON(b []byte) error {
 func (a *DOMContentEventFiredReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DOMContentEventFired", err)
+		log.Fatalf("unmarshal error: DOMContentEventFiredReply %s", err)
 	}
 	return true
 }
@@ -122,7 +122,7 @@ func (a *FrameAttachedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameAttachedReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FrameAttachedReply", err)
+		log.Fatalf("unmarshal error: FrameAttachedReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -158,7 +158,7 @@ func (a *FrameClearedScheduledNavigationReply) MatchFrameID(frameID string, m []
 	v := &FrameClearedScheduledNavigationReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FrameClearedScheduledNavigationReply", err)
+		log.Fatalf("unmarshal error: FrameClearedScheduledNavigationReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -194,7 +194,7 @@ func (a *FrameDetachedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameDetachedReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FrameDetachedReply", err)
+		log.Fatalf("unmarshal error: FrameDetachedReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -230,7 +230,7 @@ func (a *FrameNavigatedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameNavigatedReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FrameNavigatedReply", err)
+		log.Fatalf("unmarshal error: FrameNavigatedReply %s", err)
 	}
 	if v.Frame.ID != shared.FrameID(frameID) {
 		return false
@@ -264,7 +264,7 @@ func (a *FrameResizedReply) UnmarshalJSON(b []byte) error {
 func (a *FrameResizedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FrameResized", err)
+		log.Fatalf("unmarshal error: FrameResizedReply %s", err)
 	}
 	return true
 }
@@ -302,7 +302,7 @@ func (a *FrameScheduledNavigationReply) MatchFrameID(frameID string, m []byte) b
 	v := &FrameScheduledNavigationReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FrameScheduledNavigationReply", err)
+		log.Fatalf("unmarshal error: FrameScheduledNavigationReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -338,7 +338,7 @@ func (a *FrameStartedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameStartedLoadingReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FrameStartedLoadingReply", err)
+		log.Fatalf("unmarshal error: FrameStartedLoadingReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -374,7 +374,7 @@ func (a *FrameStoppedLoadingReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &FrameStoppedLoadingReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FrameStoppedLoadingReply", err)
+		log.Fatalf("unmarshal error: FrameStoppedLoadingReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -408,7 +408,7 @@ func (a *InterstitialHiddenReply) UnmarshalJSON(b []byte) error {
 func (a *InterstitialHiddenReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InterstitialHidden", err)
+		log.Fatalf("unmarshal error: InterstitialHiddenReply %s", err)
 	}
 	return true
 }
@@ -438,7 +438,7 @@ func (a *InterstitialShownReply) UnmarshalJSON(b []byte) error {
 func (a *InterstitialShownReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InterstitialShown", err)
+		log.Fatalf("unmarshal error: InterstitialShownReply %s", err)
 	}
 	return true
 }
@@ -470,7 +470,7 @@ func (a *JavascriptDialogClosedReply) UnmarshalJSON(b []byte) error {
 func (a *JavascriptDialogClosedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: JavascriptDialogClosed", err)
+		log.Fatalf("unmarshal error: JavascriptDialogClosedReply %s", err)
 	}
 	return true
 }
@@ -505,7 +505,7 @@ func (a *JavascriptDialogOpeningReply) UnmarshalJSON(b []byte) error {
 func (a *JavascriptDialogOpeningReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: JavascriptDialogOpening", err)
+		log.Fatalf("unmarshal error: JavascriptDialogOpeningReply %s", err)
 	}
 	return true
 }
@@ -540,7 +540,7 @@ func (a *LifecycleEventReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &LifecycleEventReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: LifecycleEventReply", err)
+		log.Fatalf("unmarshal error: LifecycleEventReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -575,7 +575,7 @@ func (a *LoadEventFiredReply) UnmarshalJSON(b []byte) error {
 func (a *LoadEventFiredReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: LoadEventFired", err)
+		log.Fatalf("unmarshal error: LoadEventFiredReply %s", err)
 	}
 	return true
 }
@@ -608,7 +608,7 @@ func (a *NavigatedWithinDocumentReply) MatchFrameID(frameID string, m []byte) bo
 	v := &NavigatedWithinDocumentReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: NavigatedWithinDocumentReply", err)
+		log.Fatalf("unmarshal error: NavigatedWithinDocumentReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -645,7 +645,7 @@ func (a *ScreencastFrameReply) UnmarshalJSON(b []byte) error {
 func (a *ScreencastFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ScreencastFrame", err)
+		log.Fatalf("unmarshal error: ScreencastFrameReply %s", err)
 	}
 	return true
 }
@@ -676,7 +676,7 @@ func (a *ScreencastVisibilityChangedReply) UnmarshalJSON(b []byte) error {
 func (a *ScreencastVisibilityChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ScreencastVisibilityChanged", err)
+		log.Fatalf("unmarshal error: ScreencastVisibilityChangedReply %s", err)
 	}
 	return true
 }
@@ -710,7 +710,7 @@ func (a *WindowOpenReply) UnmarshalJSON(b []byte) error {
 func (a *WindowOpenReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: WindowOpen", err)
+		log.Fatalf("unmarshal error: WindowOpenReply %s", err)
 	}
 	return true
 }
@@ -742,7 +742,7 @@ func (a *CompilationCacheProducedReply) UnmarshalJSON(b []byte) error {
 func (a *CompilationCacheProducedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CompilationCacheProduced", err)
+		log.Fatalf("unmarshal error: CompilationCacheProducedReply %s", err)
 	}
 	return true
 }

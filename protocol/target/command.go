@@ -59,7 +59,7 @@ type ActivateTargetReply struct {
 func (a *ActivateTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ActivateTargetReply", err)
+		log.Fatalf("unmarshal error: ActivateTargetReply %s", err)
 	}
 	return true
 }
@@ -120,7 +120,7 @@ type AttachToTargetReply struct {
 func (a *AttachToTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AttachToTargetReply", err)
+		log.Fatalf("unmarshal error: AttachToTargetReply %s", err)
 	}
 	return true
 }
@@ -175,7 +175,7 @@ type AttachToBrowserTargetReply struct {
 func (a *AttachToBrowserTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AttachToBrowserTargetReply", err)
+		log.Fatalf("unmarshal error: AttachToBrowserTargetReply %s", err)
 	}
 	return true
 }
@@ -231,7 +231,7 @@ type CloseTargetReply struct {
 func (a *CloseTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CloseTargetReply", err)
+		log.Fatalf("unmarshal error: CloseTargetReply %s", err)
 	}
 	return true
 }
@@ -287,7 +287,7 @@ type ExposeDevToolsProtocolReply struct {
 func (a *ExposeDevToolsProtocolReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExposeDevToolsProtocolReply", err)
+		log.Fatalf("unmarshal error: ExposeDevToolsProtocolReply %s", err)
 	}
 	return true
 }
@@ -342,7 +342,7 @@ type CreateBrowserContextReply struct {
 func (a *CreateBrowserContextReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CreateBrowserContextReply", err)
+		log.Fatalf("unmarshal error: CreateBrowserContextReply %s", err)
 	}
 	return true
 }
@@ -397,7 +397,7 @@ type GetBrowserContextsReply struct {
 func (a *GetBrowserContextsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBrowserContextsReply", err)
+		log.Fatalf("unmarshal error: GetBrowserContextsReply %s", err)
 	}
 	return true
 }
@@ -462,7 +462,7 @@ type CreateTargetReply struct {
 func (a *CreateTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CreateTargetReply", err)
+		log.Fatalf("unmarshal error: CreateTargetReply %s", err)
 	}
 	return true
 }
@@ -521,7 +521,7 @@ type DetachFromTargetReply struct {
 func (a *DetachFromTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DetachFromTargetReply", err)
+		log.Fatalf("unmarshal error: DetachFromTargetReply %s", err)
 	}
 	return true
 }
@@ -576,7 +576,7 @@ type DisposeBrowserContextReply struct {
 func (a *DisposeBrowserContextReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisposeBrowserContextReply", err)
+		log.Fatalf("unmarshal error: DisposeBrowserContextReply %s", err)
 	}
 	return true
 }
@@ -632,7 +632,7 @@ type GetTargetInfoReply struct {
 func (a *GetTargetInfoReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetTargetInfoReply", err)
+		log.Fatalf("unmarshal error: GetTargetInfoReply %s", err)
 	}
 	return true
 }
@@ -687,7 +687,7 @@ type GetTargetsReply struct {
 func (a *GetTargetsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetTargetsReply", err)
+		log.Fatalf("unmarshal error: GetTargetsReply %s", err)
 	}
 	return true
 }
@@ -747,7 +747,7 @@ type SendMessageToTargetReply struct {
 func (a *SendMessageToTargetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SendMessageToTargetReply", err)
+		log.Fatalf("unmarshal error: SendMessageToTargetReply %s", err)
 	}
 	return true
 }
@@ -808,7 +808,7 @@ type SetAutoAttachReply struct {
 func (a *SetAutoAttachReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetAutoAttachReply", err)
+		log.Fatalf("unmarshal error: SetAutoAttachReply %s", err)
 	}
 	return true
 }
@@ -863,7 +863,7 @@ type SetDiscoverTargetsReply struct {
 func (a *SetDiscoverTargetsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDiscoverTargetsReply", err)
+		log.Fatalf("unmarshal error: SetDiscoverTargetsReply %s", err)
 	}
 	return true
 }
@@ -918,7 +918,7 @@ type SetRemoteLocationsReply struct {
 func (a *SetRemoteLocationsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetRemoteLocationsReply", err)
+		log.Fatalf("unmarshal error: SetRemoteLocationsReply %s", err)
 	}
 	return true
 }

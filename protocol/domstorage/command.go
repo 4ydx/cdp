@@ -49,7 +49,7 @@ type ClearReply struct {
 func (a *ClearReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearReply", err)
+		log.Fatalf("unmarshal error: ClearReply %s", err)
 	}
 	return true
 }
@@ -103,7 +103,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -157,7 +157,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -213,7 +213,7 @@ type GetDOMStorageItemsReply struct {
 func (a *GetDOMStorageItemsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetDOMStorageItemsReply", err)
+		log.Fatalf("unmarshal error: GetDOMStorageItemsReply %s", err)
 	}
 	return true
 }
@@ -269,7 +269,7 @@ type RemoveDOMStorageItemReply struct {
 func (a *RemoveDOMStorageItemReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveDOMStorageItemReply", err)
+		log.Fatalf("unmarshal error: RemoveDOMStorageItemReply %s", err)
 	}
 	return true
 }
@@ -326,7 +326,7 @@ type SetDOMStorageItemReply struct {
 func (a *SetDOMStorageItemReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDOMStorageItemReply", err)
+		log.Fatalf("unmarshal error: SetDOMStorageItemReply %s", err)
 	}
 	return true
 }

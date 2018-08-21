@@ -54,7 +54,7 @@ func (a *FontsUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *FontsUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FontsUpdated", err)
+		log.Fatalf("unmarshal error: FontsUpdatedReply %s", err)
 	}
 	return true
 }
@@ -84,7 +84,7 @@ func (a *MediaQueryResultChangedReply) UnmarshalJSON(b []byte) error {
 func (a *MediaQueryResultChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: MediaQueryResultChanged", err)
+		log.Fatalf("unmarshal error: MediaQueryResultChangedReply %s", err)
 	}
 	return true
 }
@@ -115,7 +115,7 @@ func (a *StyleSheetAddedReply) UnmarshalJSON(b []byte) error {
 func (a *StyleSheetAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StyleSheetAdded", err)
+		log.Fatalf("unmarshal error: StyleSheetAddedReply %s", err)
 	}
 	return true
 }
@@ -146,7 +146,7 @@ func (a *StyleSheetChangedReply) UnmarshalJSON(b []byte) error {
 func (a *StyleSheetChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StyleSheetChanged", err)
+		log.Fatalf("unmarshal error: StyleSheetChangedReply %s", err)
 	}
 	return true
 }
@@ -177,7 +177,7 @@ func (a *StyleSheetRemovedReply) UnmarshalJSON(b []byte) error {
 func (a *StyleSheetRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StyleSheetRemoved", err)
+		log.Fatalf("unmarshal error: StyleSheetRemovedReply %s", err)
 	}
 	return true
 }

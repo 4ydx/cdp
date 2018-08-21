@@ -280,7 +280,7 @@ func (g *Generator) format() []byte {
 		// Should never happen, but can arise when developing this code.
 		// The user can compile the output to see the error.
 		log.Printf("warning: internal error: invalid Go generated: %s", err)
-		log.Printf("warning: compile the package to analyze the error")
+		log.Print("warning: compile the package to analyze the error")
 		return g.buf.Bytes()
 	}
 	return src
@@ -745,7 +745,7 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 					v := &%[1]s{}
 					err := v.UnmarshalJSON(m)
 					if err != nil {
-						log.Fatalf("unmarshal error: %[1]s", err)
+						log.Fatalf("unmarshal error: %[1]s %%s", err)
 					}
 					if v.FrameID != shared.FrameID(frameID) {
 						return false
@@ -767,7 +767,7 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 					v := &%[1]s{}
 					err := v.UnmarshalJSON(m)
 					if err != nil {
-						log.Fatalf("unmarshal error: %[1]s", err)
+						log.Fatalf("unmarshal error: %[1]s %%s", err)
 					}
 					if v.Node.FrameID != shared.FrameID(frameID) {
 						return false
@@ -789,7 +789,7 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 					v := &%[1]s{}
 					err := v.UnmarshalJSON(m)
 					if err != nil {
-						log.Fatalf("unmarshal error: %[1]s", err)
+						log.Fatalf("unmarshal error: %[1]s %%s", err)
 					}
 					fid := ""
 					for _, n := range v.Nodes {
@@ -822,7 +822,7 @@ func (g *Generator) domainCmdReply(d proto.Domain, c proto.Command, sharedTypes 
 				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
 					err := a.UnmarshalJSON(m)
 					if err != nil {
-						log.Fatalf("unmarshal error: %[1]s", err)
+						log.Fatalf("unmarshal error: %[1]s %%s", err)
 					}
 					return true
 				}
@@ -932,7 +932,7 @@ func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes 
 					v := &%[1]s{}
 					err := v.UnmarshalJSON(m)
 					if err != nil {
-						log.Fatalf("unmarshal error: %[1]s", err)
+						log.Fatalf("unmarshal error: %[1]s %%s", err)
 					}
 					if v.FrameID != shared.FrameID(frameID) {
 						return false
@@ -954,7 +954,7 @@ func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes 
 					v := &%[1]s{}
 					err := v.UnmarshalJSON(m)
 					if err != nil {
-						log.Fatalf("unmarshal error: %[1]s", err)
+						log.Fatalf("unmarshal error: %[1]s %%s", err)
 					}
 					if v.Frame.ID != shared.FrameID(frameID) {
 						return false
@@ -975,7 +975,7 @@ func (g *Generator) domainEventReply(d proto.Domain, e proto.Event, sharedTypes 
 				func (a * %[1]s) MatchFrameID(frameID string, m []byte) bool {
 					err := a.UnmarshalJSON(m)
 					if err != nil {
-						log.Fatalf("unmarshal error: %s", err)
+						log.Fatalf("unmarshal error: %[1]s %%s", err)
 					}
 					return true
 				}

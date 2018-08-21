@@ -47,7 +47,7 @@ type EndReply struct {
 func (a *EndReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EndReply", err)
+		log.Fatalf("unmarshal error: EndReply %s", err)
 	}
 	return true
 }
@@ -102,7 +102,7 @@ type GetCategoriesReply struct {
 func (a *GetCategoriesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetCategoriesReply", err)
+		log.Fatalf("unmarshal error: GetCategoriesReply %s", err)
 	}
 	return true
 }
@@ -157,7 +157,7 @@ type RecordClockSyncMarkerReply struct {
 func (a *RecordClockSyncMarkerReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RecordClockSyncMarkerReply", err)
+		log.Fatalf("unmarshal error: RecordClockSyncMarkerReply %s", err)
 	}
 	return true
 }
@@ -213,7 +213,7 @@ type RequestMemoryDumpReply struct {
 func (a *RequestMemoryDumpReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestMemoryDumpReply", err)
+		log.Fatalf("unmarshal error: RequestMemoryDumpReply %s", err)
 	}
 	return true
 }
@@ -284,7 +284,7 @@ type StartReply struct {
 func (a *StartReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartReply", err)
+		log.Fatalf("unmarshal error: StartReply %s", err)
 	}
 	return true
 }

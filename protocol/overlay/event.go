@@ -53,7 +53,7 @@ func (a *InspectNodeRequestedReply) UnmarshalJSON(b []byte) error {
 func (a *InspectNodeRequestedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InspectNodeRequested", err)
+		log.Fatalf("unmarshal error: InspectNodeRequestedReply %s", err)
 	}
 	return true
 }
@@ -84,7 +84,7 @@ func (a *NodeHighlightRequestedReply) UnmarshalJSON(b []byte) error {
 func (a *NodeHighlightRequestedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: NodeHighlightRequested", err)
+		log.Fatalf("unmarshal error: NodeHighlightRequestedReply %s", err)
 	}
 	return true
 }
@@ -115,7 +115,7 @@ func (a *ScreenshotRequestedReply) UnmarshalJSON(b []byte) error {
 func (a *ScreenshotRequestedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ScreenshotRequested", err)
+		log.Fatalf("unmarshal error: ScreenshotRequestedReply %s", err)
 	}
 	return true
 }

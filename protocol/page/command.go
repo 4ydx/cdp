@@ -98,7 +98,7 @@ type AddScriptToEvaluateOnLoadReply struct {
 func (a *AddScriptToEvaluateOnLoadReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddScriptToEvaluateOnLoadReply", err)
+		log.Fatalf("unmarshal error: AddScriptToEvaluateOnLoadReply %s", err)
 	}
 	return true
 }
@@ -154,7 +154,7 @@ type AddScriptToEvaluateOnNewDocumentReply struct {
 func (a *AddScriptToEvaluateOnNewDocumentReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddScriptToEvaluateOnNewDocumentReply", err)
+		log.Fatalf("unmarshal error: AddScriptToEvaluateOnNewDocumentReply %s", err)
 	}
 	return true
 }
@@ -208,7 +208,7 @@ type BringToFrontReply struct {
 func (a *BringToFrontReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: BringToFrontReply", err)
+		log.Fatalf("unmarshal error: BringToFrontReply %s", err)
 	}
 	return true
 }
@@ -274,7 +274,7 @@ type CaptureScreenshotReply struct {
 func (a *CaptureScreenshotReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CaptureScreenshotReply", err)
+		log.Fatalf("unmarshal error: CaptureScreenshotReply %s", err)
 	}
 	return true
 }
@@ -332,7 +332,7 @@ type CreateIsolatedWorldReply struct {
 func (a *CreateIsolatedWorldReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CreateIsolatedWorldReply", err)
+		log.Fatalf("unmarshal error: CreateIsolatedWorldReply %s", err)
 	}
 	return true
 }
@@ -386,7 +386,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -440,7 +440,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -497,7 +497,7 @@ type GetAppManifestReply struct {
 func (a *GetAppManifestReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetAppManifestReply", err)
+		log.Fatalf("unmarshal error: GetAppManifestReply %s", err)
 	}
 	return true
 }
@@ -552,7 +552,7 @@ type GetFrameTreeReply struct {
 func (a *GetFrameTreeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetFrameTreeReply", err)
+		log.Fatalf("unmarshal error: GetFrameTreeReply %s", err)
 	}
 	return true
 }
@@ -609,7 +609,7 @@ type GetLayoutMetricsReply struct {
 func (a *GetLayoutMetricsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetLayoutMetricsReply", err)
+		log.Fatalf("unmarshal error: GetLayoutMetricsReply %s", err)
 	}
 	return true
 }
@@ -665,7 +665,7 @@ type GetNavigationHistoryReply struct {
 func (a *GetNavigationHistoryReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetNavigationHistoryReply", err)
+		log.Fatalf("unmarshal error: GetNavigationHistoryReply %s", err)
 	}
 	return true
 }
@@ -723,7 +723,7 @@ type GetResourceContentReply struct {
 func (a *GetResourceContentReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetResourceContentReply", err)
+		log.Fatalf("unmarshal error: GetResourceContentReply %s", err)
 	}
 	return true
 }
@@ -778,7 +778,7 @@ type GetResourceTreeReply struct {
 func (a *GetResourceTreeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetResourceTreeReply", err)
+		log.Fatalf("unmarshal error: GetResourceTreeReply %s", err)
 	}
 	return true
 }
@@ -834,7 +834,7 @@ type HandleJavaScriptDialogReply struct {
 func (a *HandleJavaScriptDialogReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HandleJavaScriptDialogReply", err)
+		log.Fatalf("unmarshal error: HandleJavaScriptDialogReply %s", err)
 	}
 	return true
 }
@@ -896,7 +896,7 @@ func (a *NavigateReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &NavigateReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: NavigateReply", err)
+		log.Fatalf("unmarshal error: NavigateReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -955,7 +955,7 @@ type NavigateToHistoryEntryReply struct {
 func (a *NavigateToHistoryEntryReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: NavigateToHistoryEntryReply", err)
+		log.Fatalf("unmarshal error: NavigateToHistoryEntryReply %s", err)
 	}
 	return true
 }
@@ -1025,7 +1025,7 @@ type PrintToPDFReply struct {
 func (a *PrintToPDFReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PrintToPDFReply", err)
+		log.Fatalf("unmarshal error: PrintToPDFReply %s", err)
 	}
 	return true
 }
@@ -1081,7 +1081,7 @@ type ReloadReply struct {
 func (a *ReloadReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReloadReply", err)
+		log.Fatalf("unmarshal error: ReloadReply %s", err)
 	}
 	return true
 }
@@ -1136,7 +1136,7 @@ type RemoveScriptToEvaluateOnLoadReply struct {
 func (a *RemoveScriptToEvaluateOnLoadReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveScriptToEvaluateOnLoadReply", err)
+		log.Fatalf("unmarshal error: RemoveScriptToEvaluateOnLoadReply %s", err)
 	}
 	return true
 }
@@ -1191,7 +1191,7 @@ type RemoveScriptToEvaluateOnNewDocumentReply struct {
 func (a *RemoveScriptToEvaluateOnNewDocumentReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveScriptToEvaluateOnNewDocumentReply", err)
+		log.Fatalf("unmarshal error: RemoveScriptToEvaluateOnNewDocumentReply %s", err)
 	}
 	return true
 }
@@ -1245,7 +1245,7 @@ type RequestAppBannerReply struct {
 func (a *RequestAppBannerReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestAppBannerReply", err)
+		log.Fatalf("unmarshal error: RequestAppBannerReply %s", err)
 	}
 	return true
 }
@@ -1300,7 +1300,7 @@ type ScreencastFrameAckReply struct {
 func (a *ScreencastFrameAckReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ScreencastFrameAckReply", err)
+		log.Fatalf("unmarshal error: ScreencastFrameAckReply %s", err)
 	}
 	return true
 }
@@ -1360,7 +1360,7 @@ type SearchInResourceReply struct {
 func (a *SearchInResourceReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SearchInResourceReply", err)
+		log.Fatalf("unmarshal error: SearchInResourceReply %s", err)
 	}
 	return true
 }
@@ -1415,7 +1415,7 @@ type SetAdBlockingEnabledReply struct {
 func (a *SetAdBlockingEnabledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetAdBlockingEnabledReply", err)
+		log.Fatalf("unmarshal error: SetAdBlockingEnabledReply %s", err)
 	}
 	return true
 }
@@ -1470,7 +1470,7 @@ type SetBypassCSPReply struct {
 func (a *SetBypassCSPReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBypassCSPReply", err)
+		log.Fatalf("unmarshal error: SetBypassCSPReply %s", err)
 	}
 	return true
 }
@@ -1525,7 +1525,7 @@ type SetFontFamiliesReply struct {
 func (a *SetFontFamiliesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetFontFamiliesReply", err)
+		log.Fatalf("unmarshal error: SetFontFamiliesReply %s", err)
 	}
 	return true
 }
@@ -1580,7 +1580,7 @@ type SetFontSizesReply struct {
 func (a *SetFontSizesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetFontSizesReply", err)
+		log.Fatalf("unmarshal error: SetFontSizesReply %s", err)
 	}
 	return true
 }
@@ -1636,7 +1636,7 @@ type SetDocumentContentReply struct {
 func (a *SetDocumentContentReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDocumentContentReply", err)
+		log.Fatalf("unmarshal error: SetDocumentContentReply %s", err)
 	}
 	return true
 }
@@ -1696,7 +1696,7 @@ type SetDownloadBehaviorReply struct {
 func (a *SetDownloadBehaviorReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDownloadBehaviorReply", err)
+		log.Fatalf("unmarshal error: SetDownloadBehaviorReply %s", err)
 	}
 	return true
 }
@@ -1751,7 +1751,7 @@ type SetLifecycleEventsEnabledReply struct {
 func (a *SetLifecycleEventsEnabledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetLifecycleEventsEnabledReply", err)
+		log.Fatalf("unmarshal error: SetLifecycleEventsEnabledReply %s", err)
 	}
 	return true
 }
@@ -1813,7 +1813,7 @@ type StartScreencastReply struct {
 func (a *StartScreencastReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartScreencastReply", err)
+		log.Fatalf("unmarshal error: StartScreencastReply %s", err)
 	}
 	return true
 }
@@ -1867,7 +1867,7 @@ type StopLoadingReply struct {
 func (a *StopLoadingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopLoadingReply", err)
+		log.Fatalf("unmarshal error: StopLoadingReply %s", err)
 	}
 	return true
 }
@@ -1921,7 +1921,7 @@ type CrashReply struct {
 func (a *CrashReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CrashReply", err)
+		log.Fatalf("unmarshal error: CrashReply %s", err)
 	}
 	return true
 }
@@ -1975,7 +1975,7 @@ type CloseReply struct {
 func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CloseReply", err)
+		log.Fatalf("unmarshal error: CloseReply %s", err)
 	}
 	return true
 }
@@ -2033,7 +2033,7 @@ type SetWebLifecycleStateReply struct {
 func (a *SetWebLifecycleStateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetWebLifecycleStateReply", err)
+		log.Fatalf("unmarshal error: SetWebLifecycleStateReply %s", err)
 	}
 	return true
 }
@@ -2087,7 +2087,7 @@ type StopScreencastReply struct {
 func (a *StopScreencastReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopScreencastReply", err)
+		log.Fatalf("unmarshal error: StopScreencastReply %s", err)
 	}
 	return true
 }
@@ -2142,7 +2142,7 @@ type SetProduceCompilationCacheReply struct {
 func (a *SetProduceCompilationCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetProduceCompilationCacheReply", err)
+		log.Fatalf("unmarshal error: SetProduceCompilationCacheReply %s", err)
 	}
 	return true
 }
@@ -2198,7 +2198,7 @@ type AddCompilationCacheReply struct {
 func (a *AddCompilationCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddCompilationCacheReply", err)
+		log.Fatalf("unmarshal error: AddCompilationCacheReply %s", err)
 	}
 	return true
 }
@@ -2252,7 +2252,7 @@ type ClearCompilationCacheReply struct {
 func (a *ClearCompilationCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearCompilationCacheReply", err)
+		log.Fatalf("unmarshal error: ClearCompilationCacheReply %s", err)
 	}
 	return true
 }

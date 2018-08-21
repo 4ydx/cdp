@@ -71,7 +71,7 @@ type AwaitPromiseReply struct {
 func (a *AwaitPromiseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AwaitPromiseReply", err)
+		log.Fatalf("unmarshal error: AwaitPromiseReply %s", err)
 	}
 	return true
 }
@@ -140,7 +140,7 @@ type CallFunctionOnReply struct {
 func (a *CallFunctionOnReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CallFunctionOnReply", err)
+		log.Fatalf("unmarshal error: CallFunctionOnReply %s", err)
 	}
 	return true
 }
@@ -200,7 +200,7 @@ type CompileScriptReply struct {
 func (a *CompileScriptReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CompileScriptReply", err)
+		log.Fatalf("unmarshal error: CompileScriptReply %s", err)
 	}
 	return true
 }
@@ -254,7 +254,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -308,7 +308,7 @@ type DiscardConsoleEntriesReply struct {
 func (a *DiscardConsoleEntriesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DiscardConsoleEntriesReply", err)
+		log.Fatalf("unmarshal error: DiscardConsoleEntriesReply %s", err)
 	}
 	return true
 }
@@ -362,7 +362,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -440,7 +440,7 @@ type EvaluateReply struct {
 func (a *EvaluateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EvaluateReply", err)
+		log.Fatalf("unmarshal error: EvaluateReply %s", err)
 	}
 	return true
 }
@@ -495,7 +495,7 @@ type GetIsolateIDReply struct {
 func (a *GetIsolateIDReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetIsolateIDReply", err)
+		log.Fatalf("unmarshal error: GetIsolateIDReply %s", err)
 	}
 	return true
 }
@@ -551,7 +551,7 @@ type GetHeapUsageReply struct {
 func (a *GetHeapUsageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHeapUsageReply", err)
+		log.Fatalf("unmarshal error: GetHeapUsageReply %s", err)
 	}
 	return true
 }
@@ -620,7 +620,7 @@ type GetPropertiesReply struct {
 func (a *GetPropertiesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetPropertiesReply", err)
+		log.Fatalf("unmarshal error: GetPropertiesReply %s", err)
 	}
 	return true
 }
@@ -676,7 +676,7 @@ type GlobalLexicalScopeNamesReply struct {
 func (a *GlobalLexicalScopeNamesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GlobalLexicalScopeNamesReply", err)
+		log.Fatalf("unmarshal error: GlobalLexicalScopeNamesReply %s", err)
 	}
 	return true
 }
@@ -733,7 +733,7 @@ type QueryObjectsReply struct {
 func (a *QueryObjectsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: QueryObjectsReply", err)
+		log.Fatalf("unmarshal error: QueryObjectsReply %s", err)
 	}
 	return true
 }
@@ -788,7 +788,7 @@ type ReleaseObjectReply struct {
 func (a *ReleaseObjectReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReleaseObjectReply", err)
+		log.Fatalf("unmarshal error: ReleaseObjectReply %s", err)
 	}
 	return true
 }
@@ -843,7 +843,7 @@ type ReleaseObjectGroupReply struct {
 func (a *ReleaseObjectGroupReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReleaseObjectGroupReply", err)
+		log.Fatalf("unmarshal error: ReleaseObjectGroupReply %s", err)
 	}
 	return true
 }
@@ -897,7 +897,7 @@ type RunIfWaitingForDebuggerReply struct {
 func (a *RunIfWaitingForDebuggerReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RunIfWaitingForDebuggerReply", err)
+		log.Fatalf("unmarshal error: RunIfWaitingForDebuggerReply %s", err)
 	}
 	return true
 }
@@ -961,7 +961,7 @@ type RunScriptReply struct {
 func (a *RunScriptReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RunScriptReply", err)
+		log.Fatalf("unmarshal error: RunScriptReply %s", err)
 	}
 	return true
 }
@@ -1016,7 +1016,7 @@ type SetCustomObjectFormatterEnabledReply struct {
 func (a *SetCustomObjectFormatterEnabledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCustomObjectFormatterEnabledReply", err)
+		log.Fatalf("unmarshal error: SetCustomObjectFormatterEnabledReply %s", err)
 	}
 	return true
 }
@@ -1071,7 +1071,7 @@ type SetMaxCallStackSizeToCaptureReply struct {
 func (a *SetMaxCallStackSizeToCaptureReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetMaxCallStackSizeToCaptureReply", err)
+		log.Fatalf("unmarshal error: SetMaxCallStackSizeToCaptureReply %s", err)
 	}
 	return true
 }
@@ -1125,7 +1125,7 @@ type TerminateExecutionReply struct {
 func (a *TerminateExecutionReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TerminateExecutionReply", err)
+		log.Fatalf("unmarshal error: TerminateExecutionReply %s", err)
 	}
 	return true
 }
@@ -1181,7 +1181,7 @@ type AddBindingReply struct {
 func (a *AddBindingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddBindingReply", err)
+		log.Fatalf("unmarshal error: AddBindingReply %s", err)
 	}
 	return true
 }
@@ -1236,7 +1236,7 @@ type RemoveBindingReply struct {
 func (a *RemoveBindingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveBindingReply", err)
+		log.Fatalf("unmarshal error: RemoveBindingReply %s", err)
 	}
 	return true
 }

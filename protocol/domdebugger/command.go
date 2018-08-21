@@ -58,7 +58,7 @@ type GetEventListenersReply struct {
 func (a *GetEventListenersReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetEventListenersReply", err)
+		log.Fatalf("unmarshal error: GetEventListenersReply %s", err)
 	}
 	return true
 }
@@ -114,7 +114,7 @@ type RemoveDOMBreakpointReply struct {
 func (a *RemoveDOMBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveDOMBreakpointReply", err)
+		log.Fatalf("unmarshal error: RemoveDOMBreakpointReply %s", err)
 	}
 	return true
 }
@@ -173,7 +173,7 @@ type RemoveEventListenerBreakpointReply struct {
 func (a *RemoveEventListenerBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveEventListenerBreakpointReply", err)
+		log.Fatalf("unmarshal error: RemoveEventListenerBreakpointReply %s", err)
 	}
 	return true
 }
@@ -228,7 +228,7 @@ type RemoveInstrumentationBreakpointReply struct {
 func (a *RemoveInstrumentationBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveInstrumentationBreakpointReply", err)
+		log.Fatalf("unmarshal error: RemoveInstrumentationBreakpointReply %s", err)
 	}
 	return true
 }
@@ -283,7 +283,7 @@ type RemoveXHRBreakpointReply struct {
 func (a *RemoveXHRBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveXHRBreakpointReply", err)
+		log.Fatalf("unmarshal error: RemoveXHRBreakpointReply %s", err)
 	}
 	return true
 }
@@ -339,7 +339,7 @@ type SetDOMBreakpointReply struct {
 func (a *SetDOMBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDOMBreakpointReply", err)
+		log.Fatalf("unmarshal error: SetDOMBreakpointReply %s", err)
 	}
 	return true
 }
@@ -399,7 +399,7 @@ type SetEventListenerBreakpointReply struct {
 func (a *SetEventListenerBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetEventListenerBreakpointReply", err)
+		log.Fatalf("unmarshal error: SetEventListenerBreakpointReply %s", err)
 	}
 	return true
 }
@@ -454,7 +454,7 @@ type SetInstrumentationBreakpointReply struct {
 func (a *SetInstrumentationBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetInstrumentationBreakpointReply", err)
+		log.Fatalf("unmarshal error: SetInstrumentationBreakpointReply %s", err)
 	}
 	return true
 }
@@ -509,7 +509,7 @@ type SetXHRBreakpointReply struct {
 func (a *SetXHRBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetXHRBreakpointReply", err)
+		log.Fatalf("unmarshal error: SetXHRBreakpointReply %s", err)
 	}
 	return true
 }

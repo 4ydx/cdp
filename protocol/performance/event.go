@@ -47,7 +47,7 @@ func (a *MetricsReply) UnmarshalJSON(b []byte) error {
 func (a *MetricsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: Metrics", err)
+		log.Fatalf("unmarshal error: MetricsReply %s", err)
 	}
 	return true
 }

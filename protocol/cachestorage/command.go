@@ -48,7 +48,7 @@ type DeleteCacheReply struct {
 func (a *DeleteCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteCacheReply", err)
+		log.Fatalf("unmarshal error: DeleteCacheReply %s", err)
 	}
 	return true
 }
@@ -104,7 +104,7 @@ type DeleteEntryReply struct {
 func (a *DeleteEntryReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteEntryReply", err)
+		log.Fatalf("unmarshal error: DeleteEntryReply %s", err)
 	}
 	return true
 }
@@ -160,7 +160,7 @@ type RequestCacheNamesReply struct {
 func (a *RequestCacheNamesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestCacheNamesReply", err)
+		log.Fatalf("unmarshal error: RequestCacheNamesReply %s", err)
 	}
 	return true
 }
@@ -217,7 +217,7 @@ type RequestCachedResponseReply struct {
 func (a *RequestCachedResponseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestCachedResponseReply", err)
+		log.Fatalf("unmarshal error: RequestCachedResponseReply %s", err)
 	}
 	return true
 }
@@ -276,7 +276,7 @@ type RequestEntriesReply struct {
 func (a *RequestEntriesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestEntriesReply", err)
+		log.Fatalf("unmarshal error: RequestEntriesReply %s", err)
 	}
 	return true
 }

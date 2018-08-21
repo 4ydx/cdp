@@ -68,7 +68,7 @@ type DispatchKeyEventReply struct {
 func (a *DispatchKeyEventReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DispatchKeyEventReply", err)
+		log.Fatalf("unmarshal error: DispatchKeyEventReply %s", err)
 	}
 	return true
 }
@@ -123,7 +123,7 @@ type InsertTextReply struct {
 func (a *InsertTextReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InsertTextReply", err)
+		log.Fatalf("unmarshal error: InsertTextReply %s", err)
 	}
 	return true
 }
@@ -192,7 +192,7 @@ type DispatchMouseEventReply struct {
 func (a *DispatchMouseEventReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DispatchMouseEventReply", err)
+		log.Fatalf("unmarshal error: DispatchMouseEventReply %s", err)
 	}
 	return true
 }
@@ -255,7 +255,7 @@ type DispatchTouchEventReply struct {
 func (a *DispatchTouchEventReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DispatchTouchEventReply", err)
+		log.Fatalf("unmarshal error: DispatchTouchEventReply %s", err)
 	}
 	return true
 }
@@ -324,7 +324,7 @@ type EmulateTouchFromMouseEventReply struct {
 func (a *EmulateTouchFromMouseEventReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EmulateTouchFromMouseEventReply", err)
+		log.Fatalf("unmarshal error: EmulateTouchFromMouseEventReply %s", err)
 	}
 	return true
 }
@@ -379,7 +379,7 @@ type SetIgnoreInputEventsReply struct {
 func (a *SetIgnoreInputEventsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetIgnoreInputEventsReply", err)
+		log.Fatalf("unmarshal error: SetIgnoreInputEventsReply %s", err)
 	}
 	return true
 }
@@ -438,7 +438,7 @@ type SynthesizePinchGestureReply struct {
 func (a *SynthesizePinchGestureReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SynthesizePinchGestureReply", err)
+		log.Fatalf("unmarshal error: SynthesizePinchGestureReply %s", err)
 	}
 	return true
 }
@@ -504,7 +504,7 @@ type SynthesizeScrollGestureReply struct {
 func (a *SynthesizeScrollGestureReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SynthesizeScrollGestureReply", err)
+		log.Fatalf("unmarshal error: SynthesizeScrollGestureReply %s", err)
 	}
 	return true
 }
@@ -563,7 +563,7 @@ type SynthesizeTapGestureReply struct {
 func (a *SynthesizeTapGestureReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SynthesizeTapGestureReply", err)
+		log.Fatalf("unmarshal error: SynthesizeTapGestureReply %s", err)
 	}
 	return true
 }

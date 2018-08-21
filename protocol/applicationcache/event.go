@@ -53,7 +53,7 @@ func (a *StatusUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	v := &StatusUpdatedReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StatusUpdatedReply", err)
+		log.Fatalf("unmarshal error: StatusUpdatedReply %s", err)
 	}
 	if v.FrameID != shared.FrameID(frameID) {
 		return false
@@ -88,7 +88,7 @@ func (a *NetworkStateUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *NetworkStateUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: NetworkStateUpdated", err)
+		log.Fatalf("unmarshal error: NetworkStateUpdatedReply %s", err)
 	}
 	return true
 }

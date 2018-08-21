@@ -71,7 +71,7 @@ type AddRuleReply struct {
 func (a *AddRuleReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddRuleReply", err)
+		log.Fatalf("unmarshal error: AddRuleReply %s", err)
 	}
 	return true
 }
@@ -127,7 +127,7 @@ type CollectClassNamesReply struct {
 func (a *CollectClassNamesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CollectClassNamesReply", err)
+		log.Fatalf("unmarshal error: CollectClassNamesReply %s", err)
 	}
 	return true
 }
@@ -183,7 +183,7 @@ type CreateStyleSheetReply struct {
 func (a *CreateStyleSheetReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CreateStyleSheetReply", err)
+		log.Fatalf("unmarshal error: CreateStyleSheetReply %s", err)
 	}
 	return true
 }
@@ -237,7 +237,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -291,7 +291,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -347,7 +347,7 @@ type ForcePseudoStateReply struct {
 func (a *ForcePseudoStateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ForcePseudoStateReply", err)
+		log.Fatalf("unmarshal error: ForcePseudoStateReply %s", err)
 	}
 	return true
 }
@@ -406,7 +406,7 @@ type GetBackgroundColorsReply struct {
 func (a *GetBackgroundColorsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBackgroundColorsReply", err)
+		log.Fatalf("unmarshal error: GetBackgroundColorsReply %s", err)
 	}
 	return true
 }
@@ -462,7 +462,7 @@ type GetComputedStyleForNodeReply struct {
 func (a *GetComputedStyleForNodeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetComputedStyleForNodeReply", err)
+		log.Fatalf("unmarshal error: GetComputedStyleForNodeReply %s", err)
 	}
 	return true
 }
@@ -519,7 +519,7 @@ type GetInlineStylesForNodeReply struct {
 func (a *GetInlineStylesForNodeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetInlineStylesForNodeReply", err)
+		log.Fatalf("unmarshal error: GetInlineStylesForNodeReply %s", err)
 	}
 	return true
 }
@@ -580,7 +580,7 @@ type GetMatchedStylesForNodeReply struct {
 func (a *GetMatchedStylesForNodeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetMatchedStylesForNodeReply", err)
+		log.Fatalf("unmarshal error: GetMatchedStylesForNodeReply %s", err)
 	}
 	return true
 }
@@ -635,7 +635,7 @@ type GetMediaQueriesReply struct {
 func (a *GetMediaQueriesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetMediaQueriesReply", err)
+		log.Fatalf("unmarshal error: GetMediaQueriesReply %s", err)
 	}
 	return true
 }
@@ -691,7 +691,7 @@ type GetPlatformFontsForNodeReply struct {
 func (a *GetPlatformFontsForNodeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetPlatformFontsForNodeReply", err)
+		log.Fatalf("unmarshal error: GetPlatformFontsForNodeReply %s", err)
 	}
 	return true
 }
@@ -747,7 +747,7 @@ type GetStyleSheetTextReply struct {
 func (a *GetStyleSheetTextReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetStyleSheetTextReply", err)
+		log.Fatalf("unmarshal error: GetStyleSheetTextReply %s", err)
 	}
 	return true
 }
@@ -804,7 +804,7 @@ type SetEffectivePropertyValueForNodeReply struct {
 func (a *SetEffectivePropertyValueForNodeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetEffectivePropertyValueForNodeReply", err)
+		log.Fatalf("unmarshal error: SetEffectivePropertyValueForNodeReply %s", err)
 	}
 	return true
 }
@@ -862,7 +862,7 @@ type SetKeyframeKeyReply struct {
 func (a *SetKeyframeKeyReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetKeyframeKeyReply", err)
+		log.Fatalf("unmarshal error: SetKeyframeKeyReply %s", err)
 	}
 	return true
 }
@@ -920,7 +920,7 @@ type SetMediaTextReply struct {
 func (a *SetMediaTextReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetMediaTextReply", err)
+		log.Fatalf("unmarshal error: SetMediaTextReply %s", err)
 	}
 	return true
 }
@@ -978,7 +978,7 @@ type SetRuleSelectorReply struct {
 func (a *SetRuleSelectorReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetRuleSelectorReply", err)
+		log.Fatalf("unmarshal error: SetRuleSelectorReply %s", err)
 	}
 	return true
 }
@@ -1035,7 +1035,7 @@ type SetStyleSheetTextReply struct {
 func (a *SetStyleSheetTextReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetStyleSheetTextReply", err)
+		log.Fatalf("unmarshal error: SetStyleSheetTextReply %s", err)
 	}
 	return true
 }
@@ -1091,7 +1091,7 @@ type SetStyleTextsReply struct {
 func (a *SetStyleTextsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetStyleTextsReply", err)
+		log.Fatalf("unmarshal error: SetStyleTextsReply %s", err)
 	}
 	return true
 }
@@ -1145,7 +1145,7 @@ type StartRuleUsageTrackingReply struct {
 func (a *StartRuleUsageTrackingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartRuleUsageTrackingReply", err)
+		log.Fatalf("unmarshal error: StartRuleUsageTrackingReply %s", err)
 	}
 	return true
 }
@@ -1200,7 +1200,7 @@ type StopRuleUsageTrackingReply struct {
 func (a *StopRuleUsageTrackingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopRuleUsageTrackingReply", err)
+		log.Fatalf("unmarshal error: StopRuleUsageTrackingReply %s", err)
 	}
 	return true
 }
@@ -1255,7 +1255,7 @@ type TakeCoverageDeltaReply struct {
 func (a *TakeCoverageDeltaReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakeCoverageDeltaReply", err)
+		log.Fatalf("unmarshal error: TakeCoverageDeltaReply %s", err)
 	}
 	return true
 }

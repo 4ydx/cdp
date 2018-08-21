@@ -62,7 +62,7 @@ func (a *BindingCalledReply) UnmarshalJSON(b []byte) error {
 func (a *BindingCalledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: BindingCalled", err)
+		log.Fatalf("unmarshal error: BindingCalledReply %s", err)
 	}
 	return true
 }
@@ -106,7 +106,7 @@ func (a *ConsoleAPICalledReply) UnmarshalJSON(b []byte) error {
 func (a *ConsoleAPICalledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ConsoleAPICalled", err)
+		log.Fatalf("unmarshal error: ConsoleAPICalledReply %s", err)
 	}
 	return true
 }
@@ -138,7 +138,7 @@ func (a *ExceptionRevokedReply) UnmarshalJSON(b []byte) error {
 func (a *ExceptionRevokedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExceptionRevoked", err)
+		log.Fatalf("unmarshal error: ExceptionRevokedReply %s", err)
 	}
 	return true
 }
@@ -170,7 +170,7 @@ func (a *ExceptionThrownReply) UnmarshalJSON(b []byte) error {
 func (a *ExceptionThrownReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExceptionThrown", err)
+		log.Fatalf("unmarshal error: ExceptionThrownReply %s", err)
 	}
 	return true
 }
@@ -201,7 +201,7 @@ func (a *ExecutionContextCreatedReply) UnmarshalJSON(b []byte) error {
 func (a *ExecutionContextCreatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExecutionContextCreated", err)
+		log.Fatalf("unmarshal error: ExecutionContextCreatedReply %s", err)
 	}
 	return true
 }
@@ -232,7 +232,7 @@ func (a *ExecutionContextDestroyedReply) UnmarshalJSON(b []byte) error {
 func (a *ExecutionContextDestroyedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExecutionContextDestroyed", err)
+		log.Fatalf("unmarshal error: ExecutionContextDestroyedReply %s", err)
 	}
 	return true
 }
@@ -262,7 +262,7 @@ func (a *ExecutionContextsClearedReply) UnmarshalJSON(b []byte) error {
 func (a *ExecutionContextsClearedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExecutionContextsCleared", err)
+		log.Fatalf("unmarshal error: ExecutionContextsClearedReply %s", err)
 	}
 	return true
 }
@@ -294,7 +294,7 @@ func (a *InspectRequestedReply) UnmarshalJSON(b []byte) error {
 func (a *InspectRequestedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InspectRequested", err)
+		log.Fatalf("unmarshal error: InspectRequestedReply %s", err)
 	}
 	return true
 }

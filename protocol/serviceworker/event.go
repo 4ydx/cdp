@@ -50,7 +50,7 @@ func (a *WorkerErrorReportedReply) UnmarshalJSON(b []byte) error {
 func (a *WorkerErrorReportedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: WorkerErrorReported", err)
+		log.Fatalf("unmarshal error: WorkerErrorReportedReply %s", err)
 	}
 	return true
 }
@@ -81,7 +81,7 @@ func (a *WorkerRegistrationUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *WorkerRegistrationUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: WorkerRegistrationUpdated", err)
+		log.Fatalf("unmarshal error: WorkerRegistrationUpdatedReply %s", err)
 	}
 	return true
 }
@@ -112,7 +112,7 @@ func (a *WorkerVersionUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *WorkerVersionUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: WorkerVersionUpdated", err)
+		log.Fatalf("unmarshal error: WorkerVersionUpdatedReply %s", err)
 	}
 	return true
 }

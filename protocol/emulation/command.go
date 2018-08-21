@@ -66,7 +66,7 @@ type CanEmulateReply struct {
 func (a *CanEmulateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CanEmulateReply", err)
+		log.Fatalf("unmarshal error: CanEmulateReply %s", err)
 	}
 	return true
 }
@@ -120,7 +120,7 @@ type ClearDeviceMetricsOverrideReply struct {
 func (a *ClearDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearDeviceMetricsOverrideReply", err)
+		log.Fatalf("unmarshal error: ClearDeviceMetricsOverrideReply %s", err)
 	}
 	return true
 }
@@ -174,7 +174,7 @@ type ClearGeolocationOverrideReply struct {
 func (a *ClearGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearGeolocationOverrideReply", err)
+		log.Fatalf("unmarshal error: ClearGeolocationOverrideReply %s", err)
 	}
 	return true
 }
@@ -228,7 +228,7 @@ type ResetPageScaleFactorReply struct {
 func (a *ResetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ResetPageScaleFactorReply", err)
+		log.Fatalf("unmarshal error: ResetPageScaleFactorReply %s", err)
 	}
 	return true
 }
@@ -283,7 +283,7 @@ type SetCPUThrottlingRateReply struct {
 func (a *SetCPUThrottlingRateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCPUThrottlingRateReply", err)
+		log.Fatalf("unmarshal error: SetCPUThrottlingRateReply %s", err)
 	}
 	return true
 }
@@ -338,7 +338,7 @@ type SetDefaultBackgroundColorOverrideReply struct {
 func (a *SetDefaultBackgroundColorOverrideReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDefaultBackgroundColorOverrideReply", err)
+		log.Fatalf("unmarshal error: SetDefaultBackgroundColorOverrideReply %s", err)
 	}
 	return true
 }
@@ -432,7 +432,7 @@ type SetDeviceMetricsOverrideReply struct {
 func (a *SetDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDeviceMetricsOverrideReply", err)
+		log.Fatalf("unmarshal error: SetDeviceMetricsOverrideReply %s", err)
 	}
 	return true
 }
@@ -487,7 +487,7 @@ type SetScrollbarsHiddenReply struct {
 func (a *SetScrollbarsHiddenReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetScrollbarsHiddenReply", err)
+		log.Fatalf("unmarshal error: SetScrollbarsHiddenReply %s", err)
 	}
 	return true
 }
@@ -542,7 +542,7 @@ type SetDocumentCookieDisabledReply struct {
 func (a *SetDocumentCookieDisabledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDocumentCookieDisabledReply", err)
+		log.Fatalf("unmarshal error: SetDocumentCookieDisabledReply %s", err)
 	}
 	return true
 }
@@ -602,7 +602,7 @@ type SetEmitTouchEventsForMouseReply struct {
 func (a *SetEmitTouchEventsForMouseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetEmitTouchEventsForMouseReply", err)
+		log.Fatalf("unmarshal error: SetEmitTouchEventsForMouseReply %s", err)
 	}
 	return true
 }
@@ -657,7 +657,7 @@ type SetEmulatedMediaReply struct {
 func (a *SetEmulatedMediaReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetEmulatedMediaReply", err)
+		log.Fatalf("unmarshal error: SetEmulatedMediaReply %s", err)
 	}
 	return true
 }
@@ -714,7 +714,7 @@ type SetGeolocationOverrideReply struct {
 func (a *SetGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetGeolocationOverrideReply", err)
+		log.Fatalf("unmarshal error: SetGeolocationOverrideReply %s", err)
 	}
 	return true
 }
@@ -769,7 +769,7 @@ type SetNavigatorOverridesReply struct {
 func (a *SetNavigatorOverridesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetNavigatorOverridesReply", err)
+		log.Fatalf("unmarshal error: SetNavigatorOverridesReply %s", err)
 	}
 	return true
 }
@@ -824,7 +824,7 @@ type SetPageScaleFactorReply struct {
 func (a *SetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPageScaleFactorReply", err)
+		log.Fatalf("unmarshal error: SetPageScaleFactorReply %s", err)
 	}
 	return true
 }
@@ -879,7 +879,7 @@ type SetScriptExecutionDisabledReply struct {
 func (a *SetScriptExecutionDisabledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetScriptExecutionDisabledReply", err)
+		log.Fatalf("unmarshal error: SetScriptExecutionDisabledReply %s", err)
 	}
 	return true
 }
@@ -935,7 +935,7 @@ type SetTouchEmulationEnabledReply struct {
 func (a *SetTouchEmulationEnabledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetTouchEmulationEnabledReply", err)
+		log.Fatalf("unmarshal error: SetTouchEmulationEnabledReply %s", err)
 	}
 	return true
 }
@@ -995,7 +995,7 @@ type SetVirtualTimePolicyReply struct {
 func (a *SetVirtualTimePolicyReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetVirtualTimePolicyReply", err)
+		log.Fatalf("unmarshal error: SetVirtualTimePolicyReply %s", err)
 	}
 	return true
 }
@@ -1051,7 +1051,7 @@ type SetVisibleSizeReply struct {
 func (a *SetVisibleSizeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetVisibleSizeReply", err)
+		log.Fatalf("unmarshal error: SetVisibleSizeReply %s", err)
 	}
 	return true
 }
@@ -1108,7 +1108,7 @@ type SetUserAgentOverrideReply struct {
 func (a *SetUserAgentOverrideReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetUserAgentOverrideReply", err)
+		log.Fatalf("unmarshal error: SetUserAgentOverrideReply %s", err)
 	}
 	return true
 }

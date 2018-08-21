@@ -48,7 +48,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -104,7 +104,7 @@ type GetApplicationCacheForFrameReply struct {
 func (a *GetApplicationCacheForFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetApplicationCacheForFrameReply", err)
+		log.Fatalf("unmarshal error: GetApplicationCacheForFrameReply %s", err)
 	}
 	return true
 }
@@ -159,7 +159,7 @@ type GetFramesWithManifestsReply struct {
 func (a *GetFramesWithManifestsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetFramesWithManifestsReply", err)
+		log.Fatalf("unmarshal error: GetFramesWithManifestsReply %s", err)
 	}
 	return true
 }
@@ -215,7 +215,7 @@ type GetManifestForFrameReply struct {
 func (a *GetManifestForFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetManifestForFrameReply", err)
+		log.Fatalf("unmarshal error: GetManifestForFrameReply %s", err)
 	}
 	return true
 }

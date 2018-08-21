@@ -54,7 +54,7 @@ func (a *ItemAddedReply) UnmarshalJSON(b []byte) error {
 func (a *ItemAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DOMStorageItemAdded", err)
+		log.Fatalf("unmarshal error: ItemAddedReply %s", err)
 	}
 	return true
 }
@@ -86,7 +86,7 @@ func (a *ItemRemovedReply) UnmarshalJSON(b []byte) error {
 func (a *ItemRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DOMStorageItemRemoved", err)
+		log.Fatalf("unmarshal error: ItemRemovedReply %s", err)
 	}
 	return true
 }
@@ -120,7 +120,7 @@ func (a *ItemUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *ItemUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DOMStorageItemUpdated", err)
+		log.Fatalf("unmarshal error: ItemUpdatedReply %s", err)
 	}
 	return true
 }
@@ -151,7 +151,7 @@ func (a *ItemsClearedReply) UnmarshalJSON(b []byte) error {
 func (a *ItemsClearedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DOMStorageItemsCleared", err)
+		log.Fatalf("unmarshal error: ItemsClearedReply %s", err)
 	}
 	return true
 }

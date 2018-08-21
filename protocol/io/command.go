@@ -48,7 +48,7 @@ type CloseReply struct {
 func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CloseReply", err)
+		log.Fatalf("unmarshal error: CloseReply %s", err)
 	}
 	return true
 }
@@ -108,7 +108,7 @@ type ReadReply struct {
 func (a *ReadReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReadReply", err)
+		log.Fatalf("unmarshal error: ReadReply %s", err)
 	}
 	return true
 }
@@ -164,7 +164,7 @@ type ResolveBlobReply struct {
 func (a *ResolveBlobReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ResolveBlobReply", err)
+		log.Fatalf("unmarshal error: ResolveBlobReply %s", err)
 	}
 	return true
 }

@@ -44,7 +44,7 @@ type ClearDeviceOrientationOverrideReply struct {
 func (a *ClearDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearDeviceOrientationOverrideReply", err)
+		log.Fatalf("unmarshal error: ClearDeviceOrientationOverrideReply %s", err)
 	}
 	return true
 }
@@ -101,7 +101,7 @@ type SetDeviceOrientationOverrideReply struct {
 func (a *SetDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDeviceOrientationOverrideReply", err)
+		log.Fatalf("unmarshal error: SetDeviceOrientationOverrideReply %s", err)
 	}
 	return true
 }

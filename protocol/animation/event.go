@@ -50,7 +50,7 @@ func (a *CanceledReply) UnmarshalJSON(b []byte) error {
 func (a *CanceledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AnimationCanceled", err)
+		log.Fatalf("unmarshal error: CanceledReply %s", err)
 	}
 	return true
 }
@@ -81,7 +81,7 @@ func (a *CreatedReply) UnmarshalJSON(b []byte) error {
 func (a *CreatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AnimationCreated", err)
+		log.Fatalf("unmarshal error: CreatedReply %s", err)
 	}
 	return true
 }
@@ -112,7 +112,7 @@ func (a *StartedReply) UnmarshalJSON(b []byte) error {
 func (a *StartedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AnimationStarted", err)
+		log.Fatalf("unmarshal error: StartedReply %s", err)
 	}
 	return true
 }

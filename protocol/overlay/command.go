@@ -61,7 +61,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -115,7 +115,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -171,7 +171,7 @@ type GetHighlightObjectForTestReply struct {
 func (a *GetHighlightObjectForTestReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHighlightObjectForTestReply", err)
+		log.Fatalf("unmarshal error: GetHighlightObjectForTestReply %s", err)
 	}
 	return true
 }
@@ -225,7 +225,7 @@ type HideHighlightReply struct {
 func (a *HideHighlightReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HideHighlightReply", err)
+		log.Fatalf("unmarshal error: HideHighlightReply %s", err)
 	}
 	return true
 }
@@ -282,7 +282,7 @@ type HighlightFrameReply struct {
 func (a *HighlightFrameReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HighlightFrameReply", err)
+		log.Fatalf("unmarshal error: HighlightFrameReply %s", err)
 	}
 	return true
 }
@@ -340,7 +340,7 @@ type HighlightNodeReply struct {
 func (a *HighlightNodeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HighlightNodeReply", err)
+		log.Fatalf("unmarshal error: HighlightNodeReply %s", err)
 	}
 	return true
 }
@@ -397,7 +397,7 @@ type HighlightQuadReply struct {
 func (a *HighlightQuadReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HighlightQuadReply", err)
+		log.Fatalf("unmarshal error: HighlightQuadReply %s", err)
 	}
 	return true
 }
@@ -457,7 +457,7 @@ type HighlightRectReply struct {
 func (a *HighlightRectReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HighlightRectReply", err)
+		log.Fatalf("unmarshal error: HighlightRectReply %s", err)
 	}
 	return true
 }
@@ -513,7 +513,7 @@ type SetInspectModeReply struct {
 func (a *SetInspectModeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetInspectModeReply", err)
+		log.Fatalf("unmarshal error: SetInspectModeReply %s", err)
 	}
 	return true
 }
@@ -568,7 +568,7 @@ type SetPausedInDebuggerMessageReply struct {
 func (a *SetPausedInDebuggerMessageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPausedInDebuggerMessageReply", err)
+		log.Fatalf("unmarshal error: SetPausedInDebuggerMessageReply %s", err)
 	}
 	return true
 }
@@ -623,7 +623,7 @@ type SetShowDebugBordersReply struct {
 func (a *SetShowDebugBordersReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowDebugBordersReply", err)
+		log.Fatalf("unmarshal error: SetShowDebugBordersReply %s", err)
 	}
 	return true
 }
@@ -678,7 +678,7 @@ type SetShowFPSCounterReply struct {
 func (a *SetShowFPSCounterReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowFPSCounterReply", err)
+		log.Fatalf("unmarshal error: SetShowFPSCounterReply %s", err)
 	}
 	return true
 }
@@ -733,7 +733,7 @@ type SetShowPaintRectsReply struct {
 func (a *SetShowPaintRectsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowPaintRectsReply", err)
+		log.Fatalf("unmarshal error: SetShowPaintRectsReply %s", err)
 	}
 	return true
 }
@@ -788,7 +788,7 @@ type SetShowScrollBottleneckRectsReply struct {
 func (a *SetShowScrollBottleneckRectsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowScrollBottleneckRectsReply", err)
+		log.Fatalf("unmarshal error: SetShowScrollBottleneckRectsReply %s", err)
 	}
 	return true
 }
@@ -843,7 +843,7 @@ type SetShowViewportSizeOnResizeReply struct {
 func (a *SetShowViewportSizeOnResizeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowViewportSizeOnResizeReply", err)
+		log.Fatalf("unmarshal error: SetShowViewportSizeOnResizeReply %s", err)
 	}
 	return true
 }
@@ -898,7 +898,7 @@ type SetSuspendedReply struct {
 func (a *SetSuspendedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetSuspendedReply", err)
+		log.Fatalf("unmarshal error: SetSuspendedReply %s", err)
 	}
 	return true
 }

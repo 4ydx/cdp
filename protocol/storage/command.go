@@ -50,7 +50,7 @@ type ClearDataForOriginReply struct {
 func (a *ClearDataForOriginReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearDataForOriginReply", err)
+		log.Fatalf("unmarshal error: ClearDataForOriginReply %s", err)
 	}
 	return true
 }
@@ -108,7 +108,7 @@ type GetUsageAndQuotaReply struct {
 func (a *GetUsageAndQuotaReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetUsageAndQuotaReply", err)
+		log.Fatalf("unmarshal error: GetUsageAndQuotaReply %s", err)
 	}
 	return true
 }
@@ -163,7 +163,7 @@ type TrackCacheStorageForOriginReply struct {
 func (a *TrackCacheStorageForOriginReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TrackCacheStorageForOriginReply", err)
+		log.Fatalf("unmarshal error: TrackCacheStorageForOriginReply %s", err)
 	}
 	return true
 }
@@ -218,7 +218,7 @@ type TrackIndexedDBForOriginReply struct {
 func (a *TrackIndexedDBForOriginReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TrackIndexedDBForOriginReply", err)
+		log.Fatalf("unmarshal error: TrackIndexedDBForOriginReply %s", err)
 	}
 	return true
 }
@@ -273,7 +273,7 @@ type UntrackCacheStorageForOriginReply struct {
 func (a *UntrackCacheStorageForOriginReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UntrackCacheStorageForOriginReply", err)
+		log.Fatalf("unmarshal error: UntrackCacheStorageForOriginReply %s", err)
 	}
 	return true
 }
@@ -328,7 +328,7 @@ type UntrackIndexedDBForOriginReply struct {
 func (a *UntrackIndexedDBForOriginReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UntrackIndexedDBForOriginReply", err)
+		log.Fatalf("unmarshal error: UntrackIndexedDBForOriginReply %s", err)
 	}
 	return true
 }

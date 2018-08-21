@@ -53,7 +53,7 @@ func (a *CacheStorageContentUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *CacheStorageContentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CacheStorageContentUpdated", err)
+		log.Fatalf("unmarshal error: CacheStorageContentUpdatedReply %s", err)
 	}
 	return true
 }
@@ -84,7 +84,7 @@ func (a *CacheStorageListUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *CacheStorageListUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CacheStorageListUpdated", err)
+		log.Fatalf("unmarshal error: CacheStorageListUpdatedReply %s", err)
 	}
 	return true
 }
@@ -117,7 +117,7 @@ func (a *IndexedDBContentUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *IndexedDBContentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: IndexedDBContentUpdated", err)
+		log.Fatalf("unmarshal error: IndexedDBContentUpdatedReply %s", err)
 	}
 	return true
 }
@@ -148,7 +148,7 @@ func (a *IndexedDBListUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *IndexedDBListUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: IndexedDBListUpdated", err)
+		log.Fatalf("unmarshal error: IndexedDBListUpdatedReply %s", err)
 	}
 	return true
 }

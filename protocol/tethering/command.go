@@ -45,7 +45,7 @@ type BindReply struct {
 func (a *BindReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: BindReply", err)
+		log.Fatalf("unmarshal error: BindReply %s", err)
 	}
 	return true
 }
@@ -100,7 +100,7 @@ type UnbindReply struct {
 func (a *UnbindReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UnbindReply", err)
+		log.Fatalf("unmarshal error: UnbindReply %s", err)
 	}
 	return true
 }

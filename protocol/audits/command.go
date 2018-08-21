@@ -55,7 +55,7 @@ type GetEncodedResponseReply struct {
 func (a *GetEncodedResponseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetEncodedResponseReply", err)
+		log.Fatalf("unmarshal error: GetEncodedResponseReply %s", err)
 	}
 	return true
 }

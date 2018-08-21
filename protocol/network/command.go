@@ -74,7 +74,7 @@ type CanClearBrowserCacheReply struct {
 func (a *CanClearBrowserCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CanClearBrowserCacheReply", err)
+		log.Fatalf("unmarshal error: CanClearBrowserCacheReply %s", err)
 	}
 	return true
 }
@@ -129,7 +129,7 @@ type CanClearBrowserCookiesReply struct {
 func (a *CanClearBrowserCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CanClearBrowserCookiesReply", err)
+		log.Fatalf("unmarshal error: CanClearBrowserCookiesReply %s", err)
 	}
 	return true
 }
@@ -184,7 +184,7 @@ type CanEmulateNetworkConditionsReply struct {
 func (a *CanEmulateNetworkConditionsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CanEmulateNetworkConditionsReply", err)
+		log.Fatalf("unmarshal error: CanEmulateNetworkConditionsReply %s", err)
 	}
 	return true
 }
@@ -238,7 +238,7 @@ type ClearBrowserCacheReply struct {
 func (a *ClearBrowserCacheReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearBrowserCacheReply", err)
+		log.Fatalf("unmarshal error: ClearBrowserCacheReply %s", err)
 	}
 	return true
 }
@@ -292,7 +292,7 @@ type ClearBrowserCookiesReply struct {
 func (a *ClearBrowserCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearBrowserCookiesReply", err)
+		log.Fatalf("unmarshal error: ClearBrowserCookiesReply %s", err)
 	}
 	return true
 }
@@ -354,7 +354,7 @@ type ContinueInterceptedRequestReply struct {
 func (a *ContinueInterceptedRequestReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ContinueInterceptedRequestReply", err)
+		log.Fatalf("unmarshal error: ContinueInterceptedRequestReply %s", err)
 	}
 	return true
 }
@@ -412,7 +412,7 @@ type DeleteCookiesReply struct {
 func (a *DeleteCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteCookiesReply", err)
+		log.Fatalf("unmarshal error: DeleteCookiesReply %s", err)
 	}
 	return true
 }
@@ -466,7 +466,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -525,7 +525,7 @@ type EmulateNetworkConditionsReply struct {
 func (a *EmulateNetworkConditionsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EmulateNetworkConditionsReply", err)
+		log.Fatalf("unmarshal error: EmulateNetworkConditionsReply %s", err)
 	}
 	return true
 }
@@ -590,7 +590,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -645,7 +645,7 @@ type GetAllCookiesReply struct {
 func (a *GetAllCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetAllCookiesReply", err)
+		log.Fatalf("unmarshal error: GetAllCookiesReply %s", err)
 	}
 	return true
 }
@@ -701,7 +701,7 @@ type GetCertificateReply struct {
 func (a *GetCertificateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetCertificateReply", err)
+		log.Fatalf("unmarshal error: GetCertificateReply %s", err)
 	}
 	return true
 }
@@ -757,7 +757,7 @@ type GetCookiesReply struct {
 func (a *GetCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetCookiesReply", err)
+		log.Fatalf("unmarshal error: GetCookiesReply %s", err)
 	}
 	return true
 }
@@ -814,7 +814,7 @@ type GetResponseBodyReply struct {
 func (a *GetResponseBodyReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetResponseBodyReply", err)
+		log.Fatalf("unmarshal error: GetResponseBodyReply %s", err)
 	}
 	return true
 }
@@ -870,7 +870,7 @@ type GetRequestPostDataReply struct {
 func (a *GetRequestPostDataReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetRequestPostDataReply", err)
+		log.Fatalf("unmarshal error: GetRequestPostDataReply %s", err)
 	}
 	return true
 }
@@ -927,7 +927,7 @@ type GetResponseBodyForInterceptionReply struct {
 func (a *GetResponseBodyForInterceptionReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetResponseBodyForInterceptionReply", err)
+		log.Fatalf("unmarshal error: GetResponseBodyForInterceptionReply %s", err)
 	}
 	return true
 }
@@ -983,7 +983,7 @@ type TakeResponseBodyForInterceptionAsStreamReply struct {
 func (a *TakeResponseBodyForInterceptionAsStreamReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakeResponseBodyForInterceptionAsStreamReply", err)
+		log.Fatalf("unmarshal error: TakeResponseBodyForInterceptionAsStreamReply %s", err)
 	}
 	return true
 }
@@ -1038,7 +1038,7 @@ type ReplayXHRReply struct {
 func (a *ReplayXHRReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReplayXHRReply", err)
+		log.Fatalf("unmarshal error: ReplayXHRReply %s", err)
 	}
 	return true
 }
@@ -1097,7 +1097,7 @@ type SearchInResponseBodyReply struct {
 func (a *SearchInResponseBodyReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SearchInResponseBodyReply", err)
+		log.Fatalf("unmarshal error: SearchInResponseBodyReply %s", err)
 	}
 	return true
 }
@@ -1152,7 +1152,7 @@ type SetBlockedURLsReply struct {
 func (a *SetBlockedURLsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBlockedURLsReply", err)
+		log.Fatalf("unmarshal error: SetBlockedURLsReply %s", err)
 	}
 	return true
 }
@@ -1207,7 +1207,7 @@ type SetBypassServiceWorkerReply struct {
 func (a *SetBypassServiceWorkerReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBypassServiceWorkerReply", err)
+		log.Fatalf("unmarshal error: SetBypassServiceWorkerReply %s", err)
 	}
 	return true
 }
@@ -1262,7 +1262,7 @@ type SetCacheDisabledReply struct {
 func (a *SetCacheDisabledReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCacheDisabledReply", err)
+		log.Fatalf("unmarshal error: SetCacheDisabledReply %s", err)
 	}
 	return true
 }
@@ -1326,7 +1326,7 @@ type SetCookieReply struct {
 func (a *SetCookieReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCookieReply", err)
+		log.Fatalf("unmarshal error: SetCookieReply %s", err)
 	}
 	return true
 }
@@ -1381,7 +1381,7 @@ type SetCookiesReply struct {
 func (a *SetCookiesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCookiesReply", err)
+		log.Fatalf("unmarshal error: SetCookiesReply %s", err)
 	}
 	return true
 }
@@ -1437,7 +1437,7 @@ type SetDataSizeLimitsForTestReply struct {
 func (a *SetDataSizeLimitsForTestReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDataSizeLimitsForTestReply", err)
+		log.Fatalf("unmarshal error: SetDataSizeLimitsForTestReply %s", err)
 	}
 	return true
 }
@@ -1492,7 +1492,7 @@ type SetExtraHTTPHeadersReply struct {
 func (a *SetExtraHTTPHeadersReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetExtraHTTPHeadersReply", err)
+		log.Fatalf("unmarshal error: SetExtraHTTPHeadersReply %s", err)
 	}
 	return true
 }
@@ -1547,7 +1547,7 @@ type SetRequestInterceptionReply struct {
 func (a *SetRequestInterceptionReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetRequestInterceptionReply", err)
+		log.Fatalf("unmarshal error: SetRequestInterceptionReply %s", err)
 	}
 	return true
 }

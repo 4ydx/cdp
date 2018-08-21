@@ -74,7 +74,7 @@ func (a *AttributeModifiedReply) UnmarshalJSON(b []byte) error {
 func (a *AttributeModifiedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AttributeModified", err)
+		log.Fatalf("unmarshal error: AttributeModifiedReply %s", err)
 	}
 	return true
 }
@@ -106,7 +106,7 @@ func (a *AttributeRemovedReply) UnmarshalJSON(b []byte) error {
 func (a *AttributeRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AttributeRemoved", err)
+		log.Fatalf("unmarshal error: AttributeRemovedReply %s", err)
 	}
 	return true
 }
@@ -138,7 +138,7 @@ func (a *CharacterDataModifiedReply) UnmarshalJSON(b []byte) error {
 func (a *CharacterDataModifiedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CharacterDataModified", err)
+		log.Fatalf("unmarshal error: CharacterDataModifiedReply %s", err)
 	}
 	return true
 }
@@ -170,7 +170,7 @@ func (a *ChildNodeCountUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *ChildNodeCountUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ChildNodeCountUpdated", err)
+		log.Fatalf("unmarshal error: ChildNodeCountUpdatedReply %s", err)
 	}
 	return true
 }
@@ -203,7 +203,7 @@ func (a *ChildNodeInsertedReply) UnmarshalJSON(b []byte) error {
 func (a *ChildNodeInsertedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ChildNodeInserted", err)
+		log.Fatalf("unmarshal error: ChildNodeInsertedReply %s", err)
 	}
 	return true
 }
@@ -235,7 +235,7 @@ func (a *ChildNodeRemovedReply) UnmarshalJSON(b []byte) error {
 func (a *ChildNodeRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ChildNodeRemoved", err)
+		log.Fatalf("unmarshal error: ChildNodeRemovedReply %s", err)
 	}
 	return true
 }
@@ -267,7 +267,7 @@ func (a *DistributedNodesUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *DistributedNodesUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DistributedNodesUpdated", err)
+		log.Fatalf("unmarshal error: DistributedNodesUpdatedReply %s", err)
 	}
 	return true
 }
@@ -297,7 +297,7 @@ func (a *DocumentUpdatedReply) UnmarshalJSON(b []byte) error {
 func (a *DocumentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DocumentUpdated", err)
+		log.Fatalf("unmarshal error: DocumentUpdatedReply %s", err)
 	}
 	return true
 }
@@ -328,7 +328,7 @@ func (a *InlineStyleInvalidatedReply) UnmarshalJSON(b []byte) error {
 func (a *InlineStyleInvalidatedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InlineStyleInvalidated", err)
+		log.Fatalf("unmarshal error: InlineStyleInvalidatedReply %s", err)
 	}
 	return true
 }
@@ -360,7 +360,7 @@ func (a *PseudoElementAddedReply) UnmarshalJSON(b []byte) error {
 func (a *PseudoElementAddedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PseudoElementAdded", err)
+		log.Fatalf("unmarshal error: PseudoElementAddedReply %s", err)
 	}
 	return true
 }
@@ -392,7 +392,7 @@ func (a *PseudoElementRemovedReply) UnmarshalJSON(b []byte) error {
 func (a *PseudoElementRemovedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PseudoElementRemoved", err)
+		log.Fatalf("unmarshal error: PseudoElementRemovedReply %s", err)
 	}
 	return true
 }
@@ -424,7 +424,7 @@ func (a *SetChildNodesReply) UnmarshalJSON(b []byte) error {
 func (a *SetChildNodesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetChildNodes", err)
+		log.Fatalf("unmarshal error: SetChildNodesReply %s", err)
 	}
 	return true
 }
@@ -456,7 +456,7 @@ func (a *ShadowRootPoppedReply) UnmarshalJSON(b []byte) error {
 func (a *ShadowRootPoppedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ShadowRootPopped", err)
+		log.Fatalf("unmarshal error: ShadowRootPoppedReply %s", err)
 	}
 	return true
 }
@@ -488,7 +488,7 @@ func (a *ShadowRootPushedReply) UnmarshalJSON(b []byte) error {
 func (a *ShadowRootPushedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ShadowRootPushed", err)
+		log.Fatalf("unmarshal error: ShadowRootPushedReply %s", err)
 	}
 	return true
 }

@@ -58,7 +58,7 @@ type AddInspectedHeapObjectReply struct {
 func (a *AddInspectedHeapObjectReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddInspectedHeapObjectReply", err)
+		log.Fatalf("unmarshal error: AddInspectedHeapObjectReply %s", err)
 	}
 	return true
 }
@@ -112,7 +112,7 @@ type CollectGarbageReply struct {
 func (a *CollectGarbageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CollectGarbageReply", err)
+		log.Fatalf("unmarshal error: CollectGarbageReply %s", err)
 	}
 	return true
 }
@@ -166,7 +166,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -220,7 +220,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -276,7 +276,7 @@ type GetHeapObjectIDReply struct {
 func (a *GetHeapObjectIDReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHeapObjectIDReply", err)
+		log.Fatalf("unmarshal error: GetHeapObjectIDReply %s", err)
 	}
 	return true
 }
@@ -333,7 +333,7 @@ type GetObjectByHeapObjectIDReply struct {
 func (a *GetObjectByHeapObjectIDReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetObjectByHeapObjectIDReply", err)
+		log.Fatalf("unmarshal error: GetObjectByHeapObjectIDReply %s", err)
 	}
 	return true
 }
@@ -388,7 +388,7 @@ type GetSamplingProfileReply struct {
 func (a *GetSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetSamplingProfileReply", err)
+		log.Fatalf("unmarshal error: GetSamplingProfileReply %s", err)
 	}
 	return true
 }
@@ -443,7 +443,7 @@ type StartSamplingReply struct {
 func (a *StartSamplingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartSamplingReply", err)
+		log.Fatalf("unmarshal error: StartSamplingReply %s", err)
 	}
 	return true
 }
@@ -498,7 +498,7 @@ type StartTrackingHeapObjectsReply struct {
 func (a *StartTrackingHeapObjectsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartTrackingHeapObjectsReply", err)
+		log.Fatalf("unmarshal error: StartTrackingHeapObjectsReply %s", err)
 	}
 	return true
 }
@@ -553,7 +553,7 @@ type StopSamplingReply struct {
 func (a *StopSamplingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopSamplingReply", err)
+		log.Fatalf("unmarshal error: StopSamplingReply %s", err)
 	}
 	return true
 }
@@ -608,7 +608,7 @@ type StopTrackingHeapObjectsReply struct {
 func (a *StopTrackingHeapObjectsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopTrackingHeapObjectsReply", err)
+		log.Fatalf("unmarshal error: StopTrackingHeapObjectsReply %s", err)
 	}
 	return true
 }
@@ -663,7 +663,7 @@ type TakeHeapSnapshotReply struct {
 func (a *TakeHeapSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakeHeapSnapshotReply", err)
+		log.Fatalf("unmarshal error: TakeHeapSnapshotReply %s", err)
 	}
 	return true
 }

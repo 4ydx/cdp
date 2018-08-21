@@ -54,7 +54,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -108,7 +108,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -164,7 +164,7 @@ type GetCurrentTimeReply struct {
 func (a *GetCurrentTimeReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetCurrentTimeReply", err)
+		log.Fatalf("unmarshal error: GetCurrentTimeReply %s", err)
 	}
 	return true
 }
@@ -219,7 +219,7 @@ type GetPlaybackRateReply struct {
 func (a *GetPlaybackRateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetPlaybackRateReply", err)
+		log.Fatalf("unmarshal error: GetPlaybackRateReply %s", err)
 	}
 	return true
 }
@@ -274,7 +274,7 @@ type ReleaseAnimationsReply struct {
 func (a *ReleaseAnimationsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReleaseAnimationsReply", err)
+		log.Fatalf("unmarshal error: ReleaseAnimationsReply %s", err)
 	}
 	return true
 }
@@ -330,7 +330,7 @@ type ResolveAnimationReply struct {
 func (a *ResolveAnimationReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ResolveAnimationReply", err)
+		log.Fatalf("unmarshal error: ResolveAnimationReply %s", err)
 	}
 	return true
 }
@@ -386,7 +386,7 @@ type SeekAnimationsReply struct {
 func (a *SeekAnimationsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SeekAnimationsReply", err)
+		log.Fatalf("unmarshal error: SeekAnimationsReply %s", err)
 	}
 	return true
 }
@@ -442,7 +442,7 @@ type SetPausedReply struct {
 func (a *SetPausedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPausedReply", err)
+		log.Fatalf("unmarshal error: SetPausedReply %s", err)
 	}
 	return true
 }
@@ -497,7 +497,7 @@ type SetPlaybackRateReply struct {
 func (a *SetPlaybackRateReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPlaybackRateReply", err)
+		log.Fatalf("unmarshal error: SetPlaybackRateReply %s", err)
 	}
 	return true
 }
@@ -554,7 +554,7 @@ type SetTimingReply struct {
 func (a *SetTimingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetTimingReply", err)
+		log.Fatalf("unmarshal error: SetTimingReply %s", err)
 	}
 	return true
 }

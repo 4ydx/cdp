@@ -54,7 +54,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -108,7 +108,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -163,7 +163,7 @@ type GetBestEffortCoverageReply struct {
 func (a *GetBestEffortCoverageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBestEffortCoverageReply", err)
+		log.Fatalf("unmarshal error: GetBestEffortCoverageReply %s", err)
 	}
 	return true
 }
@@ -218,7 +218,7 @@ type SetSamplingIntervalReply struct {
 func (a *SetSamplingIntervalReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetSamplingIntervalReply", err)
+		log.Fatalf("unmarshal error: SetSamplingIntervalReply %s", err)
 	}
 	return true
 }
@@ -272,7 +272,7 @@ type StartReply struct {
 func (a *StartReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartReply", err)
+		log.Fatalf("unmarshal error: StartReply %s", err)
 	}
 	return true
 }
@@ -328,7 +328,7 @@ type StartPreciseCoverageReply struct {
 func (a *StartPreciseCoverageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartPreciseCoverageReply", err)
+		log.Fatalf("unmarshal error: StartPreciseCoverageReply %s", err)
 	}
 	return true
 }
@@ -382,7 +382,7 @@ type StartTypeProfileReply struct {
 func (a *StartTypeProfileReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartTypeProfileReply", err)
+		log.Fatalf("unmarshal error: StartTypeProfileReply %s", err)
 	}
 	return true
 }
@@ -437,7 +437,7 @@ type StopReply struct {
 func (a *StopReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopReply", err)
+		log.Fatalf("unmarshal error: StopReply %s", err)
 	}
 	return true
 }
@@ -491,7 +491,7 @@ type StopPreciseCoverageReply struct {
 func (a *StopPreciseCoverageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopPreciseCoverageReply", err)
+		log.Fatalf("unmarshal error: StopPreciseCoverageReply %s", err)
 	}
 	return true
 }
@@ -545,7 +545,7 @@ type StopTypeProfileReply struct {
 func (a *StopTypeProfileReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopTypeProfileReply", err)
+		log.Fatalf("unmarshal error: StopTypeProfileReply %s", err)
 	}
 	return true
 }
@@ -600,7 +600,7 @@ type TakePreciseCoverageReply struct {
 func (a *TakePreciseCoverageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakePreciseCoverageReply", err)
+		log.Fatalf("unmarshal error: TakePreciseCoverageReply %s", err)
 	}
 	return true
 }
@@ -655,7 +655,7 @@ type TakeTypeProfileReply struct {
 func (a *TakeTypeProfileReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakeTypeProfileReply", err)
+		log.Fatalf("unmarshal error: TakeTypeProfileReply %s", err)
 	}
 	return true
 }

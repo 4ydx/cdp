@@ -50,7 +50,7 @@ func (a *CertificateErrorReply) UnmarshalJSON(b []byte) error {
 func (a *CertificateErrorReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CertificateError", err)
+		log.Fatalf("unmarshal error: CertificateErrorReply %s", err)
 	}
 	return true
 }
@@ -85,7 +85,7 @@ func (a *StateChangedReply) UnmarshalJSON(b []byte) error {
 func (a *StateChangedReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SecurityStateChanged", err)
+		log.Fatalf("unmarshal error: StateChangedReply %s", err)
 	}
 	return true
 }

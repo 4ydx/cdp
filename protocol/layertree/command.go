@@ -55,7 +55,7 @@ type CompositingReasonsReply struct {
 func (a *CompositingReasonsReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CompositingReasonsReply", err)
+		log.Fatalf("unmarshal error: CompositingReasonsReply %s", err)
 	}
 	return true
 }
@@ -109,7 +109,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -163,7 +163,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -219,7 +219,7 @@ type LoadSnapshotReply struct {
 func (a *LoadSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: LoadSnapshotReply", err)
+		log.Fatalf("unmarshal error: LoadSnapshotReply %s", err)
 	}
 	return true
 }
@@ -275,7 +275,7 @@ type MakeSnapshotReply struct {
 func (a *MakeSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: MakeSnapshotReply", err)
+		log.Fatalf("unmarshal error: MakeSnapshotReply %s", err)
 	}
 	return true
 }
@@ -334,7 +334,7 @@ type ProfileSnapshotReply struct {
 func (a *ProfileSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ProfileSnapshotReply", err)
+		log.Fatalf("unmarshal error: ProfileSnapshotReply %s", err)
 	}
 	return true
 }
@@ -389,7 +389,7 @@ type ReleaseSnapshotReply struct {
 func (a *ReleaseSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReleaseSnapshotReply", err)
+		log.Fatalf("unmarshal error: ReleaseSnapshotReply %s", err)
 	}
 	return true
 }
@@ -448,7 +448,7 @@ type ReplaySnapshotReply struct {
 func (a *ReplaySnapshotReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReplaySnapshotReply", err)
+		log.Fatalf("unmarshal error: ReplaySnapshotReply %s", err)
 	}
 	return true
 }
@@ -504,7 +504,7 @@ type SnapshotCommandLogReply struct {
 func (a *SnapshotCommandLogReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SnapshotCommandLogReply", err)
+		log.Fatalf("unmarshal error: SnapshotCommandLogReply %s", err)
 	}
 	return true
 }

@@ -53,7 +53,7 @@ type ClearObjectStoreReply struct {
 func (a *ClearObjectStoreReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearObjectStoreReply", err)
+		log.Fatalf("unmarshal error: ClearObjectStoreReply %s", err)
 	}
 	return true
 }
@@ -109,7 +109,7 @@ type DeleteDatabaseReply struct {
 func (a *DeleteDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteDatabaseReply", err)
+		log.Fatalf("unmarshal error: DeleteDatabaseReply %s", err)
 	}
 	return true
 }
@@ -167,7 +167,7 @@ type DeleteObjectStoreEntriesReply struct {
 func (a *DeleteObjectStoreEntriesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteObjectStoreEntriesReply", err)
+		log.Fatalf("unmarshal error: DeleteObjectStoreEntriesReply %s", err)
 	}
 	return true
 }
@@ -221,7 +221,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -275,7 +275,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -338,7 +338,7 @@ type RequestDataReply struct {
 func (a *RequestDataReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestDataReply", err)
+		log.Fatalf("unmarshal error: RequestDataReply %s", err)
 	}
 	return true
 }
@@ -395,7 +395,7 @@ type RequestDatabaseReply struct {
 func (a *RequestDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestDatabaseReply", err)
+		log.Fatalf("unmarshal error: RequestDatabaseReply %s", err)
 	}
 	return true
 }
@@ -451,7 +451,7 @@ type RequestDatabaseNamesReply struct {
 func (a *RequestDatabaseNamesReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestDatabaseNamesReply", err)
+		log.Fatalf("unmarshal error: RequestDatabaseNamesReply %s", err)
 	}
 	return true
 }

@@ -57,7 +57,7 @@ type DeliverPushMessageReply struct {
 func (a *DeliverPushMessageReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeliverPushMessageReply", err)
+		log.Fatalf("unmarshal error: DeliverPushMessageReply %s", err)
 	}
 	return true
 }
@@ -111,7 +111,7 @@ type DisableReply struct {
 func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply", err)
+		log.Fatalf("unmarshal error: DisableReply %s", err)
 	}
 	return true
 }
@@ -169,7 +169,7 @@ type DispatchSyncEventReply struct {
 func (a *DispatchSyncEventReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DispatchSyncEventReply", err)
+		log.Fatalf("unmarshal error: DispatchSyncEventReply %s", err)
 	}
 	return true
 }
@@ -223,7 +223,7 @@ type EnableReply struct {
 func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply", err)
+		log.Fatalf("unmarshal error: EnableReply %s", err)
 	}
 	return true
 }
@@ -278,7 +278,7 @@ type InspectWorkerReply struct {
 func (a *InspectWorkerReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InspectWorkerReply", err)
+		log.Fatalf("unmarshal error: InspectWorkerReply %s", err)
 	}
 	return true
 }
@@ -333,7 +333,7 @@ type SetForceUpdateOnPageLoadReply struct {
 func (a *SetForceUpdateOnPageLoadReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetForceUpdateOnPageLoadReply", err)
+		log.Fatalf("unmarshal error: SetForceUpdateOnPageLoadReply %s", err)
 	}
 	return true
 }
@@ -388,7 +388,7 @@ type SkipWaitingReply struct {
 func (a *SkipWaitingReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SkipWaitingReply", err)
+		log.Fatalf("unmarshal error: SkipWaitingReply %s", err)
 	}
 	return true
 }
@@ -443,7 +443,7 @@ type StartWorkerReply struct {
 func (a *StartWorkerReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartWorkerReply", err)
+		log.Fatalf("unmarshal error: StartWorkerReply %s", err)
 	}
 	return true
 }
@@ -497,7 +497,7 @@ type StopAllWorkersReply struct {
 func (a *StopAllWorkersReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopAllWorkersReply", err)
+		log.Fatalf("unmarshal error: StopAllWorkersReply %s", err)
 	}
 	return true
 }
@@ -552,7 +552,7 @@ type StopWorkerReply struct {
 func (a *StopWorkerReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopWorkerReply", err)
+		log.Fatalf("unmarshal error: StopWorkerReply %s", err)
 	}
 	return true
 }
@@ -607,7 +607,7 @@ type UnregisterReply struct {
 func (a *UnregisterReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UnregisterReply", err)
+		log.Fatalf("unmarshal error: UnregisterReply %s", err)
 	}
 	return true
 }
@@ -662,7 +662,7 @@ type UpdateRegistrationReply struct {
 func (a *UpdateRegistrationReply) MatchFrameID(frameID string, m []byte) bool {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UpdateRegistrationReply", err)
+		log.Fatalf("unmarshal error: UpdateRegistrationReply %s", err)
 	}
 	return true
 }
