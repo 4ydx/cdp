@@ -16,8 +16,8 @@ type GPUDevice struct {
 
 // GPUInfo Provides information about the GPU(s) on the system.
 type GPUInfo struct {
-	Devices              []GPUDevice     `json:"devices"`                 // The graphics devices on the system. Element 0 is the primary GPU.
-	AuxAttributes        json.RawMessage `json:"auxAttributes,omitempty"` // An optional dictionary of additional GPU related attributes.
-	FeatureStatus        json.RawMessage `json:"featureStatus,omitempty"` // An optional dictionary of graphics features and their status.
-	DriverBugWorkarounds []string        `json:"driverBugWorkarounds"`    // An optional array of GPU driver bug workarounds.
+	Devices              []GPUDevice      `json:"devices"`                 // The graphics devices on the system. Element 0 is the primary GPU.
+	AuxAttributes        *json.RawMessage `json:"auxAttributes,omitempty"` // An optional dictionary of additional GPU related attributes.
+	FeatureStatus        *json.RawMessage `json:"featureStatus,omitempty"` // An optional dictionary of graphics features and their status.
+	DriverBugWorkarounds []string         `json:"driverBugWorkarounds"`    // An optional array of GPU driver bug workarounds.
 }

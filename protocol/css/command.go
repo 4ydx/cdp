@@ -396,10 +396,10 @@ func (a *GetBackgroundColorsArgs) MarshalJSON() ([]byte, error) {
 
 // GetBackgroundColorsReply represents the return values for GetBackgroundColors in the CSS domain.
 type GetBackgroundColorsReply struct {
-	BackgroundColors     []string `json:"backgroundColors,omitempty"`     // The range of background colors behind this element, if it contains any visible text. If no visible text is present, this will be undefined. In the case of a flat background color, this will consist of simply that color. In the case of a gradient, this will consist of each of the color stops. For anything more complicated, this will be an empty array. Images will be ignored (as if the image had failed to load).
-	ComputedFontSize     string   `json:"computedFontSize,omitempty"`     // The computed font size for this node, as a CSS computed value string (e.g. '12px').
-	ComputedFontWeight   string   `json:"computedFontWeight,omitempty"`   // The computed font weight for this node, as a CSS computed value string (e.g. 'normal' or '100').
-	ComputedBodyFontSize string   `json:"computedBodyFontSize,omitempty"` // The computed font size for the document body, as a computed CSS value string (e.g. '16px').
+	BackgroundColors     *[]string `json:"backgroundColors,omitempty"`     // The range of background colors behind this element, if it contains any visible text. If no visible text is present, this will be undefined. In the case of a flat background color, this will consist of simply that color. In the case of a gradient, this will consist of each of the color stops. For anything more complicated, this will be an empty array. Images will be ignored (as if the image had failed to load).
+	ComputedFontSize     string    `json:"computedFontSize,omitempty"`     // The computed font size for this node, as a CSS computed value string (e.g. '12px').
+	ComputedFontWeight   string    `json:"computedFontWeight,omitempty"`   // The computed font weight for this node, as a CSS computed value string (e.g. 'normal' or '100').
+	ComputedBodyFontSize string    `json:"computedBodyFontSize,omitempty"` // The computed font size for the document body, as a computed CSS value string (e.g. '16px').
 }
 
 // GetBackgroundColorsReply returns whether or not the FrameID matches the reply value for GetBackgroundColors in the CSS domain.
@@ -511,8 +511,8 @@ func (a *GetInlineStylesForNodeArgs) MarshalJSON() ([]byte, error) {
 
 // GetInlineStylesForNodeReply represents the return values for GetInlineStylesForNode in the CSS domain.
 type GetInlineStylesForNodeReply struct {
-	InlineStyle     Style `json:"inlineStyle,omitempty"`     // Inline style for the specified DOM node.
-	AttributesStyle Style `json:"attributesStyle,omitempty"` // Attribute-defined element style (e.g. resulting from "width=20 height=100%").
+	InlineStyle     *Style `json:"inlineStyle,omitempty"`     // Inline style for the specified DOM node.
+	AttributesStyle *Style `json:"attributesStyle,omitempty"` // Attribute-defined element style (e.g. resulting from "width=20 height=100%").
 }
 
 // GetInlineStylesForNodeReply returns whether or not the FrameID matches the reply value for GetInlineStylesForNode in the CSS domain.
@@ -568,12 +568,12 @@ func (a *GetMatchedStylesForNodeArgs) MarshalJSON() ([]byte, error) {
 
 // GetMatchedStylesForNodeReply represents the return values for GetMatchedStylesForNode in the CSS domain.
 type GetMatchedStylesForNodeReply struct {
-	InlineStyle       Style                  `json:"inlineStyle,omitempty"`       // Inline style for the specified DOM node.
-	AttributesStyle   Style                  `json:"attributesStyle,omitempty"`   // Attribute-defined element style (e.g. resulting from "width=20 height=100%").
-	MatchedCSSRules   []RuleMatch            `json:"matchedCSSRules,omitempty"`   // CSS rules matching this node, from all applicable stylesheets.
-	PseudoElements    []PseudoElementMatches `json:"pseudoElements,omitempty"`    // Pseudo style matches for this node.
-	Inherited         []InheritedStyleEntry  `json:"inherited,omitempty"`         // A chain of inherited styles (from the immediate node parent up to the DOM tree root).
-	CSSKeyframesRules []KeyframesRule        `json:"cssKeyframesRules,omitempty"` // A list of CSS keyframed animations matching this node.
+	InlineStyle       *Style                  `json:"inlineStyle,omitempty"`       // Inline style for the specified DOM node.
+	AttributesStyle   *Style                  `json:"attributesStyle,omitempty"`   // Attribute-defined element style (e.g. resulting from "width=20 height=100%").
+	MatchedCSSRules   *[]RuleMatch            `json:"matchedCSSRules,omitempty"`   // CSS rules matching this node, from all applicable stylesheets.
+	PseudoElements    *[]PseudoElementMatches `json:"pseudoElements,omitempty"`    // Pseudo style matches for this node.
+	Inherited         *[]InheritedStyleEntry  `json:"inherited,omitempty"`         // A chain of inherited styles (from the immediate node parent up to the DOM tree root).
+	CSSKeyframesRules *[]KeyframesRule        `json:"cssKeyframesRules,omitempty"` // A list of CSS keyframed animations matching this node.
 }
 
 // GetMatchedStylesForNodeReply returns whether or not the FrameID matches the reply value for GetMatchedStylesForNode in the CSS domain.

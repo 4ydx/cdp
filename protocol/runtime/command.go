@@ -63,8 +63,8 @@ func (a *AwaitPromiseArgs) MarshalJSON() ([]byte, error) {
 
 // AwaitPromiseReply represents the return values for AwaitPromise in the Runtime domain.
 type AwaitPromiseReply struct {
-	Result           RemoteObject     `json:"result"`                     // Promise result. Will contain rejected value if promise was rejected.
-	ExceptionDetails ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details if stack strace is available.
+	Result           RemoteObject      `json:"result"`                     // Promise result. Will contain rejected value if promise was rejected.
+	ExceptionDetails *ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details if stack strace is available.
 }
 
 // AwaitPromiseReply returns whether or not the FrameID matches the reply value for AwaitPromise in the Runtime domain.
@@ -97,7 +97,7 @@ func (a *AwaitPromiseReply) UnmarshalJSON(b []byte) error {
 type CallFunctionOnArgs struct {
 	FunctionDeclaration string                `json:"functionDeclaration"`     // Declaration of the function to call.
 	ObjectID            shared.RemoteObjectID `json:"objectId,omitempty"`      // Identifier of the object to call function on. Either objectId or executionContextId should be specified.
-	Arguments           []CallArgument        `json:"arguments,omitempty"`     // Call arguments. All call arguments must belong to the same JavaScript world as the target object.
+	Arguments           *[]CallArgument       `json:"arguments,omitempty"`     // Call arguments. All call arguments must belong to the same JavaScript world as the target object.
 	Silent              bool                  `json:"silent,omitempty"`        // In silent mode exceptions thrown during evaluation are not reported and do not pause execution. Overrides `setPauseOnException` state.
 	ReturnByValue       bool                  `json:"returnByValue,omitempty"` // Whether the result is expected to be a JSON object which should be sent by value.
 	// GeneratePreview Whether preview should be generated for the result.
@@ -132,8 +132,8 @@ func (a *CallFunctionOnArgs) MarshalJSON() ([]byte, error) {
 
 // CallFunctionOnReply represents the return values for CallFunctionOn in the Runtime domain.
 type CallFunctionOnReply struct {
-	Result           RemoteObject     `json:"result"`                     // Call result.
-	ExceptionDetails ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
+	Result           RemoteObject      `json:"result"`                     // Call result.
+	ExceptionDetails *ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
 }
 
 // CallFunctionOnReply returns whether or not the FrameID matches the reply value for CallFunctionOn in the Runtime domain.
@@ -192,8 +192,8 @@ func (a *CompileScriptArgs) MarshalJSON() ([]byte, error) {
 
 // CompileScriptReply represents the return values for CompileScript in the Runtime domain.
 type CompileScriptReply struct {
-	ScriptID         ScriptID         `json:"scriptId,omitempty"`         // Id of the script.
-	ExceptionDetails ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
+	ScriptID         ScriptID          `json:"scriptId,omitempty"`         // Id of the script.
+	ExceptionDetails *ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
 }
 
 // CompileScriptReply returns whether or not the FrameID matches the reply value for CompileScript in the Runtime domain.
@@ -407,7 +407,7 @@ type EvaluateArgs struct {
 	// milliseconds).
 	//
 	// Note: This property is experimental.
-	Timeout TimeDelta `json:"timeout,omitempty"`
+	Timeout *TimeDelta `json:"timeout,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for Evaluate in the Runtime domain.
@@ -432,8 +432,8 @@ func (a *EvaluateArgs) MarshalJSON() ([]byte, error) {
 
 // EvaluateReply represents the return values for Evaluate in the Runtime domain.
 type EvaluateReply struct {
-	Result           RemoteObject     `json:"result"`                     // Evaluation result.
-	ExceptionDetails ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
+	Result           RemoteObject      `json:"result"`                     // Evaluation result.
+	ExceptionDetails *ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
 }
 
 // EvaluateReply returns whether or not the FrameID matches the reply value for Evaluate in the Runtime domain.
@@ -611,9 +611,9 @@ func (a *GetPropertiesArgs) MarshalJSON() ([]byte, error) {
 
 // GetPropertiesReply represents the return values for GetProperties in the Runtime domain.
 type GetPropertiesReply struct {
-	Result             []PropertyDescriptor         `json:"result"`                       // Object properties.
-	InternalProperties []InternalPropertyDescriptor `json:"internalProperties,omitempty"` // Internal object properties (only of the element itself).
-	ExceptionDetails   ExceptionDetails             `json:"exceptionDetails,omitempty"`   // Exception details.
+	Result             []PropertyDescriptor          `json:"result"`                       // Object properties.
+	InternalProperties *[]InternalPropertyDescriptor `json:"internalProperties,omitempty"` // Internal object properties (only of the element itself).
+	ExceptionDetails   *ExceptionDetails             `json:"exceptionDetails,omitempty"`   // Exception details.
 }
 
 // GetPropertiesReply returns whether or not the FrameID matches the reply value for GetProperties in the Runtime domain.
@@ -953,8 +953,8 @@ func (a *RunScriptArgs) MarshalJSON() ([]byte, error) {
 
 // RunScriptReply represents the return values for RunScript in the Runtime domain.
 type RunScriptReply struct {
-	Result           RemoteObject     `json:"result"`                     // Run result.
-	ExceptionDetails ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
+	Result           RemoteObject      `json:"result"`                     // Run result.
+	ExceptionDetails *ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
 }
 
 // RunScriptReply returns whether or not the FrameID matches the reply value for RunScript in the Runtime domain.

@@ -251,9 +251,9 @@ type StartArgs struct {
 	// `ReportEvents`).
 	//
 	// Values: "ReportEvents", "ReturnAsStream".
-	TransferMode      string            `json:"transferMode,omitempty"`
-	StreamCompression StreamCompression `json:"streamCompression,omitempty"` // Compression format to use. This only applies when using `ReturnAsStream` transfer mode (defaults to `none`)
-	TraceConfig       TraceConfig       `json:"traceConfig,omitempty"`       // No description.
+	TransferMode      string             `json:"transferMode,omitempty"`
+	StreamCompression *StreamCompression `json:"streamCompression,omitempty"` // Compression format to use. This only applies when using `ReturnAsStream` transfer mode (defaults to `none`)
+	TraceConfig       *TraceConfig       `json:"traceConfig,omitempty"`       // No description.
 }
 
 // Unmarshal the byte array into a return value for Start in the Tracing domain.

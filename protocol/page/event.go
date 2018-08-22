@@ -100,9 +100,9 @@ func (a *DOMContentEventFiredReply) GetFrameID() string {
 
 // FrameAttachedReply is the reply for FrameAttached events.
 type FrameAttachedReply struct {
-	FrameID       shared.FrameID     `json:"frameId"`         // Id of the frame that has been attached.
-	ParentFrameID shared.FrameID     `json:"parentFrameId"`   // Parent frame identifier.
-	Stack         runtime.StackTrace `json:"stack,omitempty"` // JavaScript stack trace of when frame was attached, only set if frame initiated from script.
+	FrameID       shared.FrameID      `json:"frameId"`         // Id of the frame that has been attached.
+	ParentFrameID shared.FrameID      `json:"parentFrameId"`   // Parent frame identifier.
+	Stack         *runtime.StackTrace `json:"stack,omitempty"` // JavaScript stack trace of when frame was attached, only set if frame initiated from script.
 }
 
 // Unmarshal the byte array into a return value for FrameAttached in the Page domain.

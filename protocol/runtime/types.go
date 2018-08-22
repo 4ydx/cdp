@@ -29,19 +29,19 @@ type RemoteObject struct {
 	// Values: "array", "null", "node", "regexp", "date", "map", "set", "weakmap", "weakset", "iterator", "generator", "error", "proxy", "promise", "typedarray".
 	Subtype             string                `json:"subtype,omitempty"`
 	ClassName           string                `json:"className,omitempty"`           // Object class (constructor) name. Specified for `object` type values only.
-	Value               json.RawMessage       `json:"value,omitempty"`               // Remote object value in case of primitive values or JSON values (if it was requested).
-	UnserializableValue UnserializableValue   `json:"unserializableValue,omitempty"` // Primitive value which can not be JSON-stringified does not have `value`, but gets this property.
+	Value               *json.RawMessage      `json:"value,omitempty"`               // Remote object value in case of primitive values or JSON values (if it was requested).
+	UnserializableValue *UnserializableValue  `json:"unserializableValue,omitempty"` // Primitive value which can not be JSON-stringified does not have `value`, but gets this property.
 	Description         string                `json:"description,omitempty"`         // String representation of the object.
 	ObjectID            shared.RemoteObjectID `json:"objectId,omitempty"`            // Unique object identifier (for non-primitive values).
 	// Preview Preview containing abbreviated property values. Specified
 	// for `object` type values only.
 	//
 	// Note: This property is experimental.
-	Preview ObjectPreview `json:"preview,omitempty"`
+	Preview *ObjectPreview `json:"preview,omitempty"`
 	// CustomPreview
 	//
 	// Note: This property is experimental.
-	CustomPreview CustomPreview `json:"customPreview,omitempty"`
+	CustomPreview *CustomPreview `json:"customPreview,omitempty"`
 }
 
 // CustomPreview
@@ -71,7 +71,7 @@ type ObjectPreview struct {
 	Description string            `json:"description,omitempty"` // String representation of the object.
 	Overflow    bool              `json:"overflow"`              // True iff some of the properties or entries of the original object did not fit.
 	Properties  []PropertyPreview `json:"properties"`            // List of the properties.
-	Entries     []EntryPreview    `json:"entries,omitempty"`     // List of the entries. Specified for `map` and `set` subtype values only.
+	Entries     *[]EntryPreview   `json:"entries,omitempty"`     // List of the entries. Specified for `map` and `set` subtype values only.
 }
 
 // PropertyPreview
@@ -83,9 +83,9 @@ type PropertyPreview struct {
 	// accessor property.
 	//
 	// Values: "object", "function", "undefined", "string", "number", "boolean", "symbol", "accessor", "bigint".
-	Type         string        `json:"type"`
-	Value        string        `json:"value,omitempty"`        // User-friendly property value string.
-	ValuePreview ObjectPreview `json:"valuePreview,omitempty"` // Nested value preview.
+	Type         string         `json:"type"`
+	Value        string         `json:"value,omitempty"`        // User-friendly property value string.
+	ValuePreview *ObjectPreview `json:"valuePreview,omitempty"` // Nested value preview.
 	// Subtype Object subtype hint. Specified for `object` type values
 	// only.
 	//
@@ -97,37 +97,37 @@ type PropertyPreview struct {
 //
 // Note: This type is experimental.
 type EntryPreview struct {
-	Key   ObjectPreview `json:"key,omitempty"` // Preview of the key. Specified for map-like collection entries.
-	Value ObjectPreview `json:"value"`         // Preview of the value.
+	Key   *ObjectPreview `json:"key,omitempty"` // Preview of the key. Specified for map-like collection entries.
+	Value ObjectPreview  `json:"value"`         // Preview of the value.
 }
 
 // PropertyDescriptor Object property descriptor.
 type PropertyDescriptor struct {
-	Name         string       `json:"name"`                // Property name or symbol description.
-	Value        RemoteObject `json:"value,omitempty"`     // The value associated with the property.
-	Writable     bool         `json:"writable,omitempty"`  // True if the value associated with the property may be changed (data descriptors only).
-	Get          RemoteObject `json:"get,omitempty"`       // A function which serves as a getter for the property, or `undefined` if there is no getter (accessor descriptors only).
-	Set          RemoteObject `json:"set,omitempty"`       // A function which serves as a setter for the property, or `undefined` if there is no setter (accessor descriptors only).
-	Configurable bool         `json:"configurable"`        // True if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.
-	Enumerable   bool         `json:"enumerable"`          // True if this property shows up during enumeration of the properties on the corresponding object.
-	WasThrown    bool         `json:"wasThrown,omitempty"` // True if the result was thrown during the evaluation.
-	IsOwn        bool         `json:"isOwn,omitempty"`     // True if the property is owned for the object.
-	Symbol       RemoteObject `json:"symbol,omitempty"`    // Property symbol object, if the property is of the `symbol` type.
+	Name         string        `json:"name"`                // Property name or symbol description.
+	Value        *RemoteObject `json:"value,omitempty"`     // The value associated with the property.
+	Writable     bool          `json:"writable,omitempty"`  // True if the value associated with the property may be changed (data descriptors only).
+	Get          *RemoteObject `json:"get,omitempty"`       // A function which serves as a getter for the property, or `undefined` if there is no getter (accessor descriptors only).
+	Set          *RemoteObject `json:"set,omitempty"`       // A function which serves as a setter for the property, or `undefined` if there is no setter (accessor descriptors only).
+	Configurable bool          `json:"configurable"`        // True if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.
+	Enumerable   bool          `json:"enumerable"`          // True if this property shows up during enumeration of the properties on the corresponding object.
+	WasThrown    bool          `json:"wasThrown,omitempty"` // True if the result was thrown during the evaluation.
+	IsOwn        bool          `json:"isOwn,omitempty"`     // True if the property is owned for the object.
+	Symbol       *RemoteObject `json:"symbol,omitempty"`    // Property symbol object, if the property is of the `symbol` type.
 }
 
 // InternalPropertyDescriptor Object internal property descriptor. This
 // property isn't normally visible in JavaScript code.
 type InternalPropertyDescriptor struct {
-	Name  string       `json:"name"`            // Conventional property name.
-	Value RemoteObject `json:"value,omitempty"` // The value associated with the property.
+	Name  string        `json:"name"`            // Conventional property name.
+	Value *RemoteObject `json:"value,omitempty"` // The value associated with the property.
 }
 
 // CallArgument Represents function call argument. Either remote object id
 // `objectId`, primitive `value`, unserializable primitive value or neither of
 // (for undefined) them should be specified.
 type CallArgument struct {
-	Value               json.RawMessage       `json:"value,omitempty"`               // Primitive value or serializable javascript object.
-	UnserializableValue UnserializableValue   `json:"unserializableValue,omitempty"` // Primitive value which can not be JSON-stringified.
+	Value               *json.RawMessage      `json:"value,omitempty"`               // Primitive value or serializable javascript object.
+	UnserializableValue *UnserializableValue  `json:"unserializableValue,omitempty"` // Primitive value which can not be JSON-stringified.
 	ObjectID            shared.RemoteObjectID `json:"objectId,omitempty"`            // Remote object handle.
 }
 
@@ -139,7 +139,7 @@ type ExecutionContextDescription struct {
 	ID      ExecutionContextID `json:"id"`                // Unique id of the execution context. It can be used to specify in which execution context script evaluation should be performed.
 	Origin  string             `json:"origin"`            // Execution context origin.
 	Name    string             `json:"name"`              // Human readable name describing given context.
-	AuxData json.RawMessage    `json:"auxData,omitempty"` // Embedder-specific auxiliary data.
+	AuxData *json.RawMessage   `json:"auxData,omitempty"` // Embedder-specific auxiliary data.
 }
 
 // ExceptionDetails Detailed information about exception (or error) that was
@@ -151,8 +151,8 @@ type ExceptionDetails struct {
 	ColumnNumber       int                `json:"columnNumber"`                 // Column number of the exception location (0-based).
 	ScriptID           ScriptID           `json:"scriptId,omitempty"`           // Script ID of the exception location.
 	URL                string             `json:"url,omitempty"`                // URL of the exception location, to be used when the script was not reported.
-	StackTrace         StackTrace         `json:"stackTrace,omitempty"`         // JavaScript stack trace if available.
-	Exception          RemoteObject       `json:"exception,omitempty"`          // Exception object if available.
+	StackTrace         *StackTrace        `json:"stackTrace,omitempty"`         // JavaScript stack trace if available.
+	Exception          *RemoteObject      `json:"exception,omitempty"`          // Exception object if available.
 	ExecutionContextID ExecutionContextID `json:"executionContextId,omitempty"` // Identifier of the context where exception happened.
 }
 

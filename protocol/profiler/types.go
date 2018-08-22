@@ -7,12 +7,12 @@ import "github.com/4ydx/cdp/protocol/runtime"
 // ProfileNode Profile node. Holds callsite information, execution statistics
 // and child nodes.
 type ProfileNode struct {
-	ID            int                `json:"id"`                      // Unique id of the node.
-	CallFrame     runtime.CallFrame  `json:"callFrame"`               // Function location.
-	HitCount      int                `json:"hitCount,omitempty"`      // Number of samples where this node was on top of the call stack.
-	Children      []int              `json:"children,omitempty"`      // Child node ids.
-	DeoptReason   string             `json:"deoptReason,omitempty"`   // The reason of being not optimized. The function may be deoptimized or marked as don't optimize.
-	PositionTicks []PositionTickInfo `json:"positionTicks,omitempty"` // An array of source position ticks.
+	ID            int                 `json:"id"`                      // Unique id of the node.
+	CallFrame     runtime.CallFrame   `json:"callFrame"`               // Function location.
+	HitCount      int                 `json:"hitCount,omitempty"`      // Number of samples where this node was on top of the call stack.
+	Children      *[]int              `json:"children,omitempty"`      // Child node ids.
+	DeoptReason   string              `json:"deoptReason,omitempty"`   // The reason of being not optimized. The function may be deoptimized or marked as don't optimize.
+	PositionTicks *[]PositionTickInfo `json:"positionTicks,omitempty"` // An array of source position ticks.
 }
 
 // Profile Profile.
@@ -20,8 +20,8 @@ type Profile struct {
 	Nodes      []ProfileNode `json:"nodes"`                // The list of profile nodes. First item is the root node.
 	StartTime  float64       `json:"startTime"`            // Profiling start timestamp in microseconds.
 	EndTime    float64       `json:"endTime"`              // Profiling end timestamp in microseconds.
-	Samples    []int         `json:"samples,omitempty"`    // Ids of samples top nodes.
-	TimeDeltas []int         `json:"timeDeltas,omitempty"` // Time intervals between adjacent samples in microseconds. The first delta is relative to the profile startTime.
+	Samples    *[]int        `json:"samples,omitempty"`    // Ids of samples top nodes.
+	TimeDeltas *[]int        `json:"timeDeltas,omitempty"` // Time intervals between adjacent samples in microseconds. The first delta is relative to the profile startTime.
 }
 
 // PositionTickInfo Specifies a number of samples attributed to a certain

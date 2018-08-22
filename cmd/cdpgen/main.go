@@ -401,6 +401,9 @@ func (g *Generator) printStructProperties(d proto.Domain, name string, props []p
 		// Make all optional properties into pointers, unless they are slices.
 		if prop.Optional {
 			jsontag += ",omitempty"
+			if ptrOptional && isPointer(g.pkg, d, prop) {
+				ptype = "*" + ptype
+			}
 		}
 
 		// Avoid recursive type definitions.
@@ -1028,17 +1031,27 @@ func quotedImports(imports []string) string {
 	return "\"" + strings.Join(imports, "\"\n\"") + "\""
 }
 
-func isNonPointer(pkg string, d proto.Domain, t proto.AnyType) bool {
+func isPointer(pkg string, d proto.Domain, t proto.AnyType) bool {
 	typ := t.GoType(pkg, d)
 	switch {
-	case t.IsEnum():
 	case strings.HasPrefix(typ, "[]"):
-	case strings.HasPrefix(typ, "map["):
-	case typ == "time.Time":
-	case typ == "json.RawMessage":
-	case typ == "RawMessage":
-	case typ == "interface{}":
-	default:
+		return true
+
+	case strings.HasSuffix(typ, "ID"):
+		return false
+	case typ == "int":
+		return false
+	case typ == "float64":
+		return false
+	case typ == "int64":
+		return false
+	case typ == "page.FrameID":
+		return false
+	case typ == "FrameID":
+		return false
+	case typ == "bool":
+		return false
+	case typ == "string":
 		return false
 	}
 	return true

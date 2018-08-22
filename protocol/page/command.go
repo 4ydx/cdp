@@ -235,9 +235,9 @@ type CaptureScreenshotArgs struct {
 	// Format Image compression format (defaults to png).
 	//
 	// Values: "jpeg", "png".
-	Format  string   `json:"format,omitempty"`
-	Quality int      `json:"quality,omitempty"` // Compression quality from range [0..100] (jpeg only).
-	Clip    Viewport `json:"clip,omitempty"`    // Capture the screenshot of a given region only.
+	Format  string    `json:"format,omitempty"`
+	Quality int       `json:"quality,omitempty"` // Compression quality from range [0..100] (jpeg only).
+	Clip    *Viewport `json:"clip,omitempty"`    // Capture the screenshot of a given region only.
 	// FromSurface Capture the screenshot from the surface, rather than
 	// the view. Defaults to true.
 	//
@@ -858,10 +858,10 @@ func (a *HandleJavaScriptDialogReply) UnmarshalJSON(b []byte) error {
 
 // NavigateArgs represents the arguments for Navigate in the Page domain.
 type NavigateArgs struct {
-	URL            string         `json:"url"`                      // URL to navigate the page to.
-	Referrer       string         `json:"referrer,omitempty"`       // Referrer URL.
-	TransitionType TransitionType `json:"transitionType,omitempty"` // Intended transition type.
-	FrameID        shared.FrameID `json:"frameId,omitempty"`        // Frame id to navigate, if not specified navigates the top frame.
+	URL            string          `json:"url"`                      // URL to navigate the page to.
+	Referrer       string          `json:"referrer,omitempty"`       // Referrer URL.
+	TransitionType *TransitionType `json:"transitionType,omitempty"` // Intended transition type.
+	FrameID        shared.FrameID  `json:"frameId,omitempty"`        // Frame id to navigate, if not specified navigates the top frame.
 }
 
 // Unmarshal the byte array into a return value for Navigate in the Page domain.

@@ -73,10 +73,10 @@ type PausedReply struct {
 	// Reason Pause reason.
 	//
 	// Values: "XHR", "DOM", "EventListener", "exception", "assert", "debugCommand", "promiseRejection", "OOM", "other", "ambiguous".
-	Reason          string             `json:"reason"`
-	Data            json.RawMessage    `json:"data,omitempty"`            // Object containing break-specific auxiliary properties.
-	HitBreakpoints  []string           `json:"hitBreakpoints,omitempty"`  // Hit breakpoints IDs
-	AsyncStackTrace runtime.StackTrace `json:"asyncStackTrace,omitempty"` // Async stack trace, if any.
+	Reason          string              `json:"reason"`
+	Data            *json.RawMessage    `json:"data,omitempty"`            // Object containing break-specific auxiliary properties.
+	HitBreakpoints  *[]string           `json:"hitBreakpoints,omitempty"`  // Hit breakpoints IDs
+	AsyncStackTrace *runtime.StackTrace `json:"asyncStackTrace,omitempty"` // Async stack trace, if any.
 	// AsyncStackTraceID Async stack trace, if any.
 	//
 	// Note: This property is experimental.
@@ -156,7 +156,7 @@ type ScriptFailedToParseReply struct {
 	EndColumn               int                        `json:"endColumn"`                         // Length of the last line of the script.
 	ExecutionContextID      runtime.ExecutionContextID `json:"executionContextId"`                // Specifies script creation context.
 	Hash                    string                     `json:"hash"`                              // Content hash of the script.
-	ExecutionContextAuxData json.RawMessage            `json:"executionContextAuxData,omitempty"` // Embedder-specific auxiliary data.
+	ExecutionContextAuxData *json.RawMessage           `json:"executionContextAuxData,omitempty"` // Embedder-specific auxiliary data.
 	SourceMapURL            string                     `json:"sourceMapURL,omitempty"`            // URL of source map associated with script (if any).
 	HasSourceURL            bool                       `json:"hasSourceURL,omitempty"`            // True, if this script has sourceURL.
 	IsModule                bool                       `json:"isModule,omitempty"`                // True, if this script is ES6 module.
@@ -165,7 +165,7 @@ type ScriptFailedToParseReply struct {
 	// event was triggered if available.
 	//
 	// Note: This property is experimental.
-	StackTrace runtime.StackTrace `json:"stackTrace,omitempty"`
+	StackTrace *runtime.StackTrace `json:"stackTrace,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for ScriptFailedToParse in the Debugger domain.
@@ -204,7 +204,7 @@ type ScriptParsedReply struct {
 	EndColumn               int                        `json:"endColumn"`                         // Length of the last line of the script.
 	ExecutionContextID      runtime.ExecutionContextID `json:"executionContextId"`                // Specifies script creation context.
 	Hash                    string                     `json:"hash"`                              // Content hash of the script.
-	ExecutionContextAuxData json.RawMessage            `json:"executionContextAuxData,omitempty"` // Embedder-specific auxiliary data.
+	ExecutionContextAuxData *json.RawMessage           `json:"executionContextAuxData,omitempty"` // Embedder-specific auxiliary data.
 	// IsLiveEdit True, if this script is generated as a result of the
 	// live edit operation.
 	//
@@ -218,7 +218,7 @@ type ScriptParsedReply struct {
 	// event was triggered if available.
 	//
 	// Note: This property is experimental.
-	StackTrace runtime.StackTrace `json:"stackTrace,omitempty"`
+	StackTrace *runtime.StackTrace `json:"stackTrace,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for ScriptParsed in the Debugger domain.

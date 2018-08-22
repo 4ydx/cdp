@@ -101,46 +101,6 @@ func (c Command) ReplyName(d Domain) string {
 	return c.Name() + "Reply"
 }
 
-// ArgsSignature returns the signature (for use as function parameters).
-func (c Command) ArgsSignature(d Domain) string {
-	var args []string
-	for _, arg := range filter(optional(false), c.Parameters...) {
-		name := arg.Name(d)
-		if name == "range" || name == "type" {
-			name = name[0 : len(name)-1]
-		}
-		name += " "
-		args = append(args, name+arg.GoType("cdp", d))
-	}
-	return strings.Join(args, ", ")
-}
-
-// ArgsInit returns the code for initializing arguments.
-func (c Command) ArgsInit(d Domain) string {
-	var args []string
-	for _, arg := range filter(optional(false), c.Parameters...) {
-		name := arg.Name(d)
-		if name == "range" || name == "type" {
-			name = name[0 : len(name)-1]
-		}
-		args = append(args, arg.ExportedName(d)+": "+name+",")
-	}
-	return strings.Join(args, "\n")
-}
-
-// ArgsAssign returns the argument assignment for args.
-func (c Command) ArgsAssign(receiver string, d Domain) string {
-	var args []string
-	for _, arg := range filter(optional(false), c.Parameters...) {
-		name := arg.Name(d)
-		if name == "range" || name == "type" {
-			name = name[0 : len(name)-1]
-		}
-		args = append(args, receiver+"."+arg.ExportedName(d)+" = "+name)
-	}
-	return strings.Join(args, "\n")
-}
-
 // Event represents an subscribeable event.
 type Event struct {
 	NameName     string    `json:"name,omitempty"`

@@ -46,7 +46,7 @@ type PseudoElementMatches struct {
 
 // InheritedStyleEntry Inherited CSS rule collection from ancestor node.
 type InheritedStyleEntry struct {
-	InlineStyle     Style       `json:"inlineStyle,omitempty"` // The ancestor node's inline style, if any, in the style inheritance chain.
+	InlineStyle     *Style      `json:"inlineStyle,omitempty"` // The ancestor node's inline style, if any, in the style inheritance chain.
 	MatchedCSSRules []RuleMatch `json:"matchedCSSRules"`       // Matches of CSS rules matching the ancestor node in the style inheritance chain.
 }
 
@@ -59,8 +59,8 @@ type RuleMatch struct {
 // Value Data for a simple selector (these are delimited by commas in a
 // selector list).
 type Value struct {
-	Text  string      `json:"text"`            // Value text.
-	Range SourceRange `json:"range,omitempty"` // Value range in the underlying resource (if available).
+	Text  string       `json:"text"`            // Value text.
+	Range *SourceRange `json:"range,omitempty"` // Value range in the underlying resource (if available).
 }
 
 // SelectorList Selector list data.
@@ -92,7 +92,7 @@ type Rule struct {
 	SelectorList SelectorList     `json:"selectorList"`           // Rule selector data.
 	Origin       StyleSheetOrigin `json:"origin"`                 // Parent stylesheet's origin.
 	Style        Style            `json:"style"`                  // Associated style declaration.
-	Media        []Media          `json:"media,omitempty"`        // Media list array (for rules involving media queries). The array enumerates media queries starting with the innermost one, going outwards.
+	Media        *[]Media         `json:"media,omitempty"`        // Media list array (for rules involving media queries). The array enumerates media queries starting with the innermost one, going outwards.
 }
 
 // RuleUsage CSS coverage information.
@@ -130,19 +130,19 @@ type Style struct {
 	CSSProperties    []Property       `json:"cssProperties"`          // CSS properties in the style.
 	ShorthandEntries []ShorthandEntry `json:"shorthandEntries"`       // Computed values for all shorthands found in the style.
 	CSSText          string           `json:"cssText,omitempty"`      // Style declaration text (if available).
-	Range            SourceRange      `json:"range,omitempty"`        // Style declaration range in the enclosing stylesheet (if available).
+	Range            *SourceRange     `json:"range,omitempty"`        // Style declaration range in the enclosing stylesheet (if available).
 }
 
 // Property CSS property declaration data.
 type Property struct {
-	Name      string      `json:"name"`                // The property name.
-	Value     string      `json:"value"`               // The property value.
-	Important bool        `json:"important,omitempty"` // Whether the property has "!important" annotation (implies `false` if absent).
-	Implicit  bool        `json:"implicit,omitempty"`  // Whether the property is implicit (implies `false` if absent).
-	Text      string      `json:"text,omitempty"`      // The full property text as specified in the style.
-	ParsedOk  bool        `json:"parsedOk,omitempty"`  // Whether the property is understood by the browser (implies `true` if absent).
-	Disabled  bool        `json:"disabled,omitempty"`  // Whether the property is disabled by the user (present for source-based properties only).
-	Range     SourceRange `json:"range,omitempty"`     // The entire property range in the enclosing style declaration (if available).
+	Name      string       `json:"name"`                // The property name.
+	Value     string       `json:"value"`               // The property value.
+	Important bool         `json:"important,omitempty"` // Whether the property has "!important" annotation (implies `false` if absent).
+	Implicit  bool         `json:"implicit,omitempty"`  // Whether the property is implicit (implies `false` if absent).
+	Text      string       `json:"text,omitempty"`      // The full property text as specified in the style.
+	ParsedOk  bool         `json:"parsedOk,omitempty"`  // Whether the property is understood by the browser (implies `true` if absent).
+	Disabled  bool         `json:"disabled,omitempty"`  // Whether the property is disabled by the user (present for source-based properties only).
+	Range     *SourceRange `json:"range,omitempty"`     // The entire property range in the enclosing style declaration (if available).
 }
 
 // Media CSS media rule descriptor.
@@ -155,11 +155,11 @@ type Media struct {
 	// attribute in an inline stylesheet's STYLE tag.
 	//
 	// Values: "mediaRule", "importRule", "linkedSheet", "inlineSheet".
-	Source       string       `json:"source"`
-	SourceURL    string       `json:"sourceURL,omitempty"`    // URL of the document containing the media query description.
-	Range        SourceRange  `json:"range,omitempty"`        // The associated rule (@media or @import) header range in the enclosing stylesheet (if available).
-	StyleSheetID StyleSheetID `json:"styleSheetId,omitempty"` // Identifier of the stylesheet containing this object (if exists).
-	MediaList    []MediaQuery `json:"mediaList,omitempty"`    // Array of media queries.
+	Source       string        `json:"source"`
+	SourceURL    string        `json:"sourceURL,omitempty"`    // URL of the document containing the media query description.
+	Range        *SourceRange  `json:"range,omitempty"`        // The associated rule (@media or @import) header range in the enclosing stylesheet (if available).
+	StyleSheetID StyleSheetID  `json:"styleSheetId,omitempty"` // Identifier of the stylesheet containing this object (if exists).
+	MediaList    *[]MediaQuery `json:"mediaList,omitempty"`    // Array of media queries.
 }
 
 // MediaQuery Media query descriptor.
@@ -170,11 +170,11 @@ type MediaQuery struct {
 
 // MediaQueryExpression Media query expression descriptor.
 type MediaQueryExpression struct {
-	Value          float64     `json:"value"`                    // Media query expression value.
-	Unit           string      `json:"unit"`                     // Media query expression units.
-	Feature        string      `json:"feature"`                  // Media query expression feature.
-	ValueRange     SourceRange `json:"valueRange,omitempty"`     // The associated range of the value text in the enclosing stylesheet (if available).
-	ComputedLength float64     `json:"computedLength,omitempty"` // Computed length of media query expression (if applicable).
+	Value          float64      `json:"value"`                    // Media query expression value.
+	Unit           string       `json:"unit"`                     // Media query expression units.
+	Feature        string       `json:"feature"`                  // Media query expression feature.
+	ValueRange     *SourceRange `json:"valueRange,omitempty"`     // The associated range of the value text in the enclosing stylesheet (if available).
+	ComputedLength float64      `json:"computedLength,omitempty"` // Computed length of media query expression (if applicable).
 }
 
 // PlatformFontUsage Information about amount of glyphs that were rendered

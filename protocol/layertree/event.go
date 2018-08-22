@@ -63,7 +63,7 @@ func (a *LayerPaintedReply) GetFrameID() string {
 
 // DidChangeReply is the reply for LayerTreeDidChange events.
 type DidChangeReply struct {
-	Layers []Layer `json:"layers,omitempty"` // Layer tree, absent if not in the comspositing mode.
+	Layers *[]Layer `json:"layers,omitempty"` // Layer tree, absent if not in the comspositing mode.
 }
 
 // Unmarshal the byte array into a return value for LayerTreeDidChange in the LayerTree domain.

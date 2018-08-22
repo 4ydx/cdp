@@ -307,7 +307,7 @@ func (a *SetCPUThrottlingRateReply) UnmarshalJSON(b []byte) error {
 
 // SetDefaultBackgroundColorOverrideArgs represents the arguments for SetDefaultBackgroundColorOverride in the Emulation domain.
 type SetDefaultBackgroundColorOverrideArgs struct {
-	Color dom.RGBA `json:"color,omitempty"` // RGBA of the default background color. If not specified, any existing override will be cleared.
+	Color *dom.RGBA `json:"color,omitempty"` // RGBA of the default background color. If not specified, any existing override will be cleared.
 }
 
 // Unmarshal the byte array into a return value for SetDefaultBackgroundColorOverride in the Emulation domain.
@@ -394,14 +394,14 @@ type SetDeviceMetricsOverrideArgs struct {
 	// setVisibleSize call.
 	//
 	// Note: This property is experimental.
-	DontSetVisibleSize bool              `json:"dontSetVisibleSize,omitempty"`
-	ScreenOrientation  ScreenOrientation `json:"screenOrientation,omitempty"` // Screen orientation override.
+	DontSetVisibleSize bool               `json:"dontSetVisibleSize,omitempty"`
+	ScreenOrientation  *ScreenOrientation `json:"screenOrientation,omitempty"` // Screen orientation override.
 	// Viewport If set, the visible area of the page will be overridden to
 	// this viewport. This viewport change is not observed by the page,
 	// e.g. viewport-relative elements do not change positions.
 	//
 	// Note: This property is experimental.
-	Viewport page.Viewport `json:"viewport,omitempty"`
+	Viewport *page.Viewport `json:"viewport,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for SetDeviceMetricsOverride in the Emulation domain.
@@ -959,11 +959,11 @@ func (a *SetTouchEmulationEnabledReply) UnmarshalJSON(b []byte) error {
 
 // SetVirtualTimePolicyArgs represents the arguments for SetVirtualTimePolicy in the Emulation domain.
 type SetVirtualTimePolicyArgs struct {
-	Policy                            VirtualTimePolicy      `json:"policy"`                                      // No description.
-	Budget                            float64                `json:"budget,omitempty"`                            // If set, after this many virtual milliseconds have elapsed virtual time will be paused and a virtualTimeBudgetExpired event is sent.
-	MaxVirtualTimeTaskStarvationCount int                    `json:"maxVirtualTimeTaskStarvationCount,omitempty"` // If set this specifies the maximum number of tasks that can be run before virtual is forced forwards to prevent deadlock.
-	WaitForNavigation                 bool                   `json:"waitForNavigation,omitempty"`                 // If set the virtual time policy change should be deferred until any frame starts navigating. Note any previous deferred policy change is superseded.
-	InitialVirtualTime                network.TimeSinceEpoch `json:"initialVirtualTime,omitempty"`                // If set, base::Time::Now will be overridden to initially return this value.
+	Policy                            VirtualTimePolicy       `json:"policy"`                                      // No description.
+	Budget                            float64                 `json:"budget,omitempty"`                            // If set, after this many virtual milliseconds have elapsed virtual time will be paused and a virtualTimeBudgetExpired event is sent.
+	MaxVirtualTimeTaskStarvationCount int                     `json:"maxVirtualTimeTaskStarvationCount,omitempty"` // If set this specifies the maximum number of tasks that can be run before virtual is forced forwards to prevent deadlock.
+	WaitForNavigation                 bool                    `json:"waitForNavigation,omitempty"`                 // If set the virtual time policy change should be deferred until any frame starts navigating. Note any previous deferred policy change is superseded.
+	InitialVirtualTime                *network.TimeSinceEpoch `json:"initialVirtualTime,omitempty"`                // If set, base::Time::Now will be overridden to initially return this value.
 }
 
 // Unmarshal the byte array into a return value for SetVirtualTimePolicy in the Emulation domain.

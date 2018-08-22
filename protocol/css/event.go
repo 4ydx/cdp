@@ -35,7 +35,7 @@ func GetEventReply(event string) (json.Unmarshaler, bool) {
 
 // FontsUpdatedReply is the reply for FontsUpdated events.
 type FontsUpdatedReply struct {
-	Font FontFace `json:"font,omitempty"` // The web font that has loaded.
+	Font *FontFace `json:"font,omitempty"` // The web font that has loaded.
 }
 
 // Unmarshal the byte array into a return value for FontsUpdated in the CSS domain.

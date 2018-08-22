@@ -302,7 +302,7 @@ type ProfileSnapshotArgs struct {
 	SnapshotID     SnapshotID `json:"snapshotId"`               // The id of the layer snapshot.
 	MinRepeatCount int        `json:"minRepeatCount,omitempty"` // The maximum number of times to replay the snapshot (1, if not specified).
 	MinDuration    float64    `json:"minDuration,omitempty"`    // The minimum duration (in seconds) to replay the snapshot.
-	ClipRect       dom.Rect   `json:"clipRect,omitempty"`       // The clip rectangle to apply when replaying the snapshot.
+	ClipRect       *dom.Rect  `json:"clipRect,omitempty"`       // The clip rectangle to apply when replaying the snapshot.
 }
 
 // Unmarshal the byte array into a return value for ProfileSnapshot in the LayerTree domain.

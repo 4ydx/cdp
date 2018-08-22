@@ -135,7 +135,7 @@ type LoadingFailedReply struct {
 	Type          shared.ResourceType `json:"type"`                    // Resource type.
 	ErrorText     string              `json:"errorText"`               // User friendly error message.
 	Canceled      bool                `json:"canceled,omitempty"`      // True if loading was canceled.
-	BlockedReason BlockedReason       `json:"blockedReason,omitempty"` // The reason why loading was blocked, if any.
+	BlockedReason *BlockedReason      `json:"blockedReason,omitempty"` // The reason why loading was blocked, if any.
 }
 
 // Unmarshal the byte array into a return value for LoadingFailed in the Network domain.
@@ -207,10 +207,10 @@ type RequestInterceptedReply struct {
 	IsNavigationRequest bool                `json:"isNavigationRequest"`           // Whether this is a navigation request, which can abort the navigation completely.
 	IsDownload          bool                `json:"isDownload,omitempty"`          // Set if the request is a navigation that will result in a download. Only present after response is received from the server (i.e. HeadersReceived stage).
 	RedirectURL         string              `json:"redirectUrl,omitempty"`         // Redirect location, only sent if a redirect was intercepted.
-	AuthChallenge       AuthChallenge       `json:"authChallenge,omitempty"`       // Details of the Authorization Challenge encountered. If this is set then continueInterceptedRequest must contain an authChallengeResponse.
-	ResponseErrorReason ErrorReason         `json:"responseErrorReason,omitempty"` // Response error if intercepted at response stage or if redirect occurred while intercepting request.
+	AuthChallenge       *AuthChallenge      `json:"authChallenge,omitempty"`       // Details of the Authorization Challenge encountered. If this is set then continueInterceptedRequest must contain an authChallengeResponse.
+	ResponseErrorReason *ErrorReason        `json:"responseErrorReason,omitempty"` // Response error if intercepted at response stage or if redirect occurred while intercepting request.
 	ResponseStatusCode  int                 `json:"responseStatusCode,omitempty"`  // Response code if intercepted at response stage or if redirect occurred while intercepting request or auth retry occurred.
-	ResponseHeaders     Headers             `json:"responseHeaders,omitempty"`     // Response headers if intercepted at the response stage or if redirect occurred while intercepting request or auth retry occurred.
+	ResponseHeaders     *Headers            `json:"responseHeaders,omitempty"`     // Response headers if intercepted at the response stage or if redirect occurred while intercepting request or auth retry occurred.
 }
 
 // Unmarshal the byte array into a return value for RequestIntercepted in the Network domain.
@@ -277,17 +277,17 @@ func (a *RequestServedFromCacheReply) GetFrameID() string {
 
 // RequestWillBeSentReply is the reply for RequestWillBeSent events.
 type RequestWillBeSentReply struct {
-	RequestID        RequestID           `json:"requestId"`                  // Request identifier.
-	LoaderID         LoaderID            `json:"loaderId"`                   // Loader identifier. Empty string if the request is fetched from worker.
-	DocumentURL      string              `json:"documentURL"`                // URL of the document this request is loaded for.
-	Request          Request             `json:"request"`                    // Request data.
-	Timestamp        MonotonicTime       `json:"timestamp"`                  // Timestamp.
-	WallTime         TimeSinceEpoch      `json:"wallTime"`                   // Timestamp.
-	Initiator        Initiator           `json:"initiator"`                  // Request initiator.
-	RedirectResponse Response            `json:"redirectResponse,omitempty"` // Redirect response data.
-	Type             shared.ResourceType `json:"type,omitempty"`             // Type of this resource.
-	FrameID          shared.FrameID      `json:"frameId,omitempty"`          // Frame identifier.
-	HasUserGesture   bool                `json:"hasUserGesture,omitempty"`   // Whether the request is initiated by a user gesture. Defaults to false.
+	RequestID        RequestID            `json:"requestId"`                  // Request identifier.
+	LoaderID         LoaderID             `json:"loaderId"`                   // Loader identifier. Empty string if the request is fetched from worker.
+	DocumentURL      string               `json:"documentURL"`                // URL of the document this request is loaded for.
+	Request          Request              `json:"request"`                    // Request data.
+	Timestamp        MonotonicTime        `json:"timestamp"`                  // Timestamp.
+	WallTime         TimeSinceEpoch       `json:"wallTime"`                   // Timestamp.
+	Initiator        Initiator            `json:"initiator"`                  // Request initiator.
+	RedirectResponse *Response            `json:"redirectResponse,omitempty"` // Redirect response data.
+	Type             *shared.ResourceType `json:"type,omitempty"`             // Type of this resource.
+	FrameID          shared.FrameID       `json:"frameId,omitempty"`          // Frame identifier.
+	HasUserGesture   bool                 `json:"hasUserGesture,omitempty"`   // Whether the request is initiated by a user gesture. Defaults to false.
 }
 
 // Unmarshal the byte array into a return value for RequestWillBeSent in the Network domain.
@@ -461,9 +461,9 @@ func (a *WebSocketClosedReply) GetFrameID() string {
 
 // WebSocketCreatedReply is the reply for WebSocketCreated events.
 type WebSocketCreatedReply struct {
-	RequestID RequestID `json:"requestId"`           // Request identifier.
-	URL       string    `json:"url"`                 // WebSocket request URL.
-	Initiator Initiator `json:"initiator,omitempty"` // Request initiator.
+	RequestID RequestID  `json:"requestId"`           // Request identifier.
+	URL       string     `json:"url"`                 // WebSocket request URL.
+	Initiator *Initiator `json:"initiator,omitempty"` // Request initiator.
 }
 
 // Unmarshal the byte array into a return value for WebSocketCreated in the Network domain.

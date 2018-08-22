@@ -230,7 +230,7 @@ type EvaluateOnCallFrameArgs struct {
 	// milliseconds).
 	//
 	// Note: This property is experimental.
-	Timeout runtime.TimeDelta `json:"timeout,omitempty"`
+	Timeout *runtime.TimeDelta `json:"timeout,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for EvaluateOnCallFrame in the Debugger domain.
@@ -255,8 +255,8 @@ func (a *EvaluateOnCallFrameArgs) MarshalJSON() ([]byte, error) {
 
 // EvaluateOnCallFrameReply represents the return values for EvaluateOnCallFrame in the Debugger domain.
 type EvaluateOnCallFrameReply struct {
-	Result           runtime.RemoteObject     `json:"result"`                     // Object wrapper for the evaluation result.
-	ExceptionDetails runtime.ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
+	Result           runtime.RemoteObject      `json:"result"`                     // Object wrapper for the evaluation result.
+	ExceptionDetails *runtime.ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details.
 }
 
 // EvaluateOnCallFrameReply returns whether or not the FrameID matches the reply value for EvaluateOnCallFrame in the Debugger domain.
@@ -287,9 +287,9 @@ func (a *EvaluateOnCallFrameReply) UnmarshalJSON(b []byte) error {
 
 // GetPossibleBreakpointsArgs represents the arguments for GetPossibleBreakpoints in the Debugger domain.
 type GetPossibleBreakpointsArgs struct {
-	Start              Location `json:"start"`                        // Start of range to search possible breakpoint locations in.
-	End                Location `json:"end,omitempty"`                // End of range to search possible breakpoint locations in (excluding). When not specified, end of scripts is used as end of range.
-	RestrictToFunction bool     `json:"restrictToFunction,omitempty"` // Only consider locations which are in the same (non-nested) function as start.
+	Start              Location  `json:"start"`                        // Start of range to search possible breakpoint locations in.
+	End                *Location `json:"end,omitempty"`                // End of range to search possible breakpoint locations in (excluding). When not specified, end of scripts is used as end of range.
+	RestrictToFunction bool      `json:"restrictToFunction,omitempty"` // Only consider locations which are in the same (non-nested) function as start.
 }
 
 // Unmarshal the byte array into a return value for GetPossibleBreakpoints in the Debugger domain.
@@ -646,8 +646,8 @@ func (a *RestartFrameArgs) MarshalJSON() ([]byte, error) {
 
 // RestartFrameReply represents the return values for RestartFrame in the Debugger domain.
 type RestartFrameReply struct {
-	CallFrames      []CallFrame        `json:"callFrames"`                // New stack trace.
-	AsyncStackTrace runtime.StackTrace `json:"asyncStackTrace,omitempty"` // Async stack trace, if any.
+	CallFrames      []CallFrame         `json:"callFrames"`                // New stack trace.
+	AsyncStackTrace *runtime.StackTrace `json:"asyncStackTrace,omitempty"` // Async stack trace, if any.
 	// AsyncStackTraceID Async stack trace, if any.
 	//
 	// Note: This property is experimental.
@@ -1387,14 +1387,14 @@ func (a *SetScriptSourceArgs) MarshalJSON() ([]byte, error) {
 
 // SetScriptSourceReply represents the return values for SetScriptSource in the Debugger domain.
 type SetScriptSourceReply struct {
-	CallFrames      []CallFrame        `json:"callFrames,omitempty"`      // New stack trace in case editing has happened while VM was stopped.
-	StackChanged    bool               `json:"stackChanged,omitempty"`    // Whether current call stack was modified after applying the changes.
-	AsyncStackTrace runtime.StackTrace `json:"asyncStackTrace,omitempty"` // Async stack trace, if any.
+	CallFrames      *[]CallFrame        `json:"callFrames,omitempty"`      // New stack trace in case editing has happened while VM was stopped.
+	StackChanged    bool                `json:"stackChanged,omitempty"`    // Whether current call stack was modified after applying the changes.
+	AsyncStackTrace *runtime.StackTrace `json:"asyncStackTrace,omitempty"` // Async stack trace, if any.
 	// AsyncStackTraceID Async stack trace, if any.
 	//
 	// Note: This property is experimental.
-	AsyncStackTraceID runtime.StackTraceID     `json:"asyncStackTraceId,omitempty"`
-	ExceptionDetails  runtime.ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details if any.
+	AsyncStackTraceID runtime.StackTraceID      `json:"asyncStackTraceId,omitempty"`
+	ExceptionDetails  *runtime.ExceptionDetails `json:"exceptionDetails,omitempty"` // Exception details if any.
 }
 
 // SetScriptSourceReply returns whether or not the FrameID matches the reply value for SetScriptSource in the Debugger domain.

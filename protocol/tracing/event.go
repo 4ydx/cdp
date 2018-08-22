@@ -97,8 +97,8 @@ func (a *DataCollectedReply) GetFrameID() string {
 
 // CompleteReply is the reply for TracingComplete events.
 type CompleteReply struct {
-	Stream            io.StreamHandle   `json:"stream,omitempty"`            // A handle of the stream that holds resulting trace data.
-	StreamCompression StreamCompression `json:"streamCompression,omitempty"` // Compression format of returned stream.
+	Stream            *io.StreamHandle   `json:"stream,omitempty"`            // A handle of the stream that holds resulting trace data.
+	StreamCompression *StreamCompression `json:"streamCompression,omitempty"` // Compression format of returned stream.
 }
 
 // Unmarshal the byte array into a return value for TracingComplete in the Tracing domain.

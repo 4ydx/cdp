@@ -299,13 +299,13 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 
 // RequestDataArgs represents the arguments for RequestData in the IndexedDB domain.
 type RequestDataArgs struct {
-	SecurityOrigin  string   `json:"securityOrigin"`     // Security origin.
-	DatabaseName    string   `json:"databaseName"`       // Database name.
-	ObjectStoreName string   `json:"objectStoreName"`    // Object store name.
-	IndexName       string   `json:"indexName"`          // Index name, empty string for object store data requests.
-	SkipCount       int      `json:"skipCount"`          // Number of records to skip.
-	PageSize        int      `json:"pageSize"`           // Number of records to fetch.
-	KeyRange        KeyRange `json:"keyRange,omitempty"` // Key range.
+	SecurityOrigin  string    `json:"securityOrigin"`     // Security origin.
+	DatabaseName    string    `json:"databaseName"`       // Database name.
+	ObjectStoreName string    `json:"objectStoreName"`    // Object store name.
+	IndexName       string    `json:"indexName"`          // Index name, empty string for object store data requests.
+	SkipCount       int       `json:"skipCount"`          // Number of records to skip.
+	PageSize        int       `json:"pageSize"`           // Number of records to fetch.
+	KeyRange        *KeyRange `json:"keyRange,omitempty"` // Key range.
 }
 
 // Unmarshal the byte array into a return value for RequestData in the IndexedDB domain.

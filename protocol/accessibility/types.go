@@ -108,15 +108,15 @@ func (e AXValueNativeSourceType) String() string {
 
 // AXValueSource A single source for a computed AX property.
 type AXValueSource struct {
-	Type              AXValueSourceType       `json:"type"`                        // What type of source this is.
-	Value             AXValue                 `json:"value,omitempty"`             // The value of this property source.
-	Attribute         string                  `json:"attribute,omitempty"`         // The name of the relevant attribute, if any.
-	AttributeValue    AXValue                 `json:"attributeValue,omitempty"`    // The value of the relevant attribute, if any.
-	Superseded        bool                    `json:"superseded,omitempty"`        // Whether this source is superseded by a higher priority source.
-	NativeSource      AXValueNativeSourceType `json:"nativeSource,omitempty"`      // The native markup source for this value, e.g. a <label> element.
-	NativeSourceValue AXValue                 `json:"nativeSourceValue,omitempty"` // The value, such as a node or node list, of the native source.
-	Invalid           bool                    `json:"invalid,omitempty"`           // Whether the value for this property is invalid.
-	InvalidReason     string                  `json:"invalidReason,omitempty"`     // Reason for the value being invalid, if it is.
+	Type              AXValueSourceType        `json:"type"`                        // What type of source this is.
+	Value             *AXValue                 `json:"value,omitempty"`             // The value of this property source.
+	Attribute         string                   `json:"attribute,omitempty"`         // The name of the relevant attribute, if any.
+	AttributeValue    *AXValue                 `json:"attributeValue,omitempty"`    // The value of the relevant attribute, if any.
+	Superseded        bool                     `json:"superseded,omitempty"`        // Whether this source is superseded by a higher priority source.
+	NativeSource      *AXValueNativeSourceType `json:"nativeSource,omitempty"`      // The native markup source for this value, e.g. a <label> element.
+	NativeSourceValue *AXValue                 `json:"nativeSourceValue,omitempty"` // The value, such as a node or node list, of the native source.
+	Invalid           bool                     `json:"invalid,omitempty"`           // Whether the value for this property is invalid.
+	InvalidReason     string                   `json:"invalidReason,omitempty"`     // Reason for the value being invalid, if it is.
 }
 
 // AXRelatedNode
@@ -134,10 +134,10 @@ type AXProperty struct {
 
 // AXValue A single computed AX property.
 type AXValue struct {
-	Type         AXValueType     `json:"type"`                   // The type of this value.
-	Value        json.RawMessage `json:"value,omitempty"`        // The computed value of this property.
-	RelatedNodes []AXRelatedNode `json:"relatedNodes,omitempty"` // One or more related nodes, if applicable.
-	Sources      []AXValueSource `json:"sources,omitempty"`      // The sources which contributed to the computation of this property.
+	Type         AXValueType      `json:"type"`                   // The type of this value.
+	Value        *json.RawMessage `json:"value,omitempty"`        // The computed value of this property.
+	RelatedNodes *[]AXRelatedNode `json:"relatedNodes,omitempty"` // One or more related nodes, if applicable.
+	Sources      *[]AXValueSource `json:"sources,omitempty"`      // The sources which contributed to the computation of this property.
 }
 
 // AXPropertyName Values of AXProperty name: from 'busy' to 'roledescription'
@@ -205,12 +205,12 @@ func (e AXPropertyName) String() string {
 type AXNode struct {
 	NodeID           AXNodeID          `json:"nodeId"`                     // Unique identifier for this node.
 	Ignored          bool              `json:"ignored"`                    // Whether this node is ignored for accessibility
-	IgnoredReasons   []AXProperty      `json:"ignoredReasons,omitempty"`   // Collection of reasons why this node is hidden.
-	Role             AXValue           `json:"role,omitempty"`             // This `Node`'s role, whether explicit or implicit.
-	Name             AXValue           `json:"name,omitempty"`             // The accessible name for this `Node`.
-	Description      AXValue           `json:"description,omitempty"`      // The accessible description for this `Node`.
-	Value            AXValue           `json:"value,omitempty"`            // The value for this `Node`.
-	Properties       []AXProperty      `json:"properties,omitempty"`       // All other properties
-	ChildIDs         []AXNodeID        `json:"childIds,omitempty"`         // IDs for each of this node's child nodes.
+	IgnoredReasons   *[]AXProperty     `json:"ignoredReasons,omitempty"`   // Collection of reasons why this node is hidden.
+	Role             *AXValue          `json:"role,omitempty"`             // This `Node`'s role, whether explicit or implicit.
+	Name             *AXValue          `json:"name,omitempty"`             // The accessible name for this `Node`.
+	Description      *AXValue          `json:"description,omitempty"`      // The accessible description for this `Node`.
+	Value            *AXValue          `json:"value,omitempty"`            // The value for this `Node`.
+	Properties       *[]AXProperty     `json:"properties,omitempty"`       // All other properties
+	ChildIDs         *[]AXNodeID       `json:"childIds,omitempty"`         // IDs for each of this node's child nodes.
 	BackendDOMNodeID dom.BackendNodeID `json:"backendDOMNodeId,omitempty"` // The backend ID for the associated DOM node, if any.
 }

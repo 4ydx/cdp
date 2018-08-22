@@ -279,14 +279,14 @@ func (e ResourcePriority) String() string {
 
 // Request HTTP request data.
 type Request struct {
-	URL              string                    `json:"url"`                        // Request URL (without fragment).
-	URLFragment      string                    `json:"urlFragment,omitempty"`      // Fragment of the requested URL starting with hash, if present.
-	Method           string                    `json:"method"`                     // HTTP request method.
-	Headers          Headers                   `json:"headers"`                    // HTTP request headers.
-	PostData         string                    `json:"postData,omitempty"`         // HTTP POST request data.
-	HasPostData      bool                      `json:"hasPostData,omitempty"`      // True when the request has POST data. Note that postData might still be omitted when this flag is true when the data is too long.
-	MixedContentType security.MixedContentType `json:"mixedContentType,omitempty"` // The mixed content type of the request.
-	InitialPriority  ResourcePriority          `json:"initialPriority"`            // Priority of the resource request at the time request is sent.
+	URL              string                     `json:"url"`                        // Request URL (without fragment).
+	URLFragment      string                     `json:"urlFragment,omitempty"`      // Fragment of the requested URL starting with hash, if present.
+	Method           string                     `json:"method"`                     // HTTP request method.
+	Headers          Headers                    `json:"headers"`                    // HTTP request headers.
+	PostData         string                     `json:"postData,omitempty"`         // HTTP POST request data.
+	HasPostData      bool                       `json:"hasPostData,omitempty"`      // True when the request has POST data. Note that postData might still be omitted when this flag is true when the data is too long.
+	MixedContentType *security.MixedContentType `json:"mixedContentType,omitempty"` // The mixed content type of the request.
+	InitialPriority  ResourcePriority           `json:"initialPriority"`            // Priority of the resource request at the time request is sent.
 	// ReferrerPolicy The referrer policy of the request, as defined in
 	// https://www.w3.org/TR/referrer-policy/
 	//
@@ -380,25 +380,25 @@ func (e BlockedReason) String() string {
 
 // Response HTTP response data.
 type Response struct {
-	URL                string          `json:"url"`                          // Response URL. This URL can be different from CachedResource.url in case of redirect.
-	Status             int             `json:"status"`                       // HTTP response status code.
-	StatusText         string          `json:"statusText"`                   // HTTP response status text.
-	Headers            Headers         `json:"headers"`                      // HTTP response headers.
-	HeadersText        string          `json:"headersText,omitempty"`        // HTTP response headers text.
-	MimeType           string          `json:"mimeType"`                     // Resource mimeType as determined by the browser.
-	RequestHeaders     Headers         `json:"requestHeaders,omitempty"`     // Refined HTTP request headers that were actually transmitted over the network.
-	RequestHeadersText string          `json:"requestHeadersText,omitempty"` // HTTP request headers text.
-	ConnectionReused   bool            `json:"connectionReused"`             // Specifies whether physical connection was actually reused for this request.
-	ConnectionID       float64         `json:"connectionId"`                 // Physical connection id that was actually used for this request.
-	RemoteIPAddress    string          `json:"remoteIPAddress,omitempty"`    // Remote IP address.
-	RemotePort         int             `json:"remotePort,omitempty"`         // Remote port.
-	FromDiskCache      bool            `json:"fromDiskCache,omitempty"`      // Specifies that the request was served from the disk cache.
-	FromServiceWorker  bool            `json:"fromServiceWorker,omitempty"`  // Specifies that the request was served from the ServiceWorker.
-	EncodedDataLength  float64         `json:"encodedDataLength"`            // Total number of bytes received for this request so far.
-	Timing             ResourceTiming  `json:"timing,omitempty"`             // Timing information for the given request.
-	Protocol           string          `json:"protocol,omitempty"`           // Protocol used to fetch this request.
-	SecurityState      security.State  `json:"securityState"`                // Security state of the request resource.
-	SecurityDetails    SecurityDetails `json:"securityDetails,omitempty"`    // Security details for the request.
+	URL                string           `json:"url"`                          // Response URL. This URL can be different from CachedResource.url in case of redirect.
+	Status             int              `json:"status"`                       // HTTP response status code.
+	StatusText         string           `json:"statusText"`                   // HTTP response status text.
+	Headers            Headers          `json:"headers"`                      // HTTP response headers.
+	HeadersText        string           `json:"headersText,omitempty"`        // HTTP response headers text.
+	MimeType           string           `json:"mimeType"`                     // Resource mimeType as determined by the browser.
+	RequestHeaders     *Headers         `json:"requestHeaders,omitempty"`     // Refined HTTP request headers that were actually transmitted over the network.
+	RequestHeadersText string           `json:"requestHeadersText,omitempty"` // HTTP request headers text.
+	ConnectionReused   bool             `json:"connectionReused"`             // Specifies whether physical connection was actually reused for this request.
+	ConnectionID       float64          `json:"connectionId"`                 // Physical connection id that was actually used for this request.
+	RemoteIPAddress    string           `json:"remoteIPAddress,omitempty"`    // Remote IP address.
+	RemotePort         int              `json:"remotePort,omitempty"`         // Remote port.
+	FromDiskCache      bool             `json:"fromDiskCache,omitempty"`      // Specifies that the request was served from the disk cache.
+	FromServiceWorker  bool             `json:"fromServiceWorker,omitempty"`  // Specifies that the request was served from the ServiceWorker.
+	EncodedDataLength  float64          `json:"encodedDataLength"`            // Total number of bytes received for this request so far.
+	Timing             *ResourceTiming  `json:"timing,omitempty"`             // Timing information for the given request.
+	Protocol           string           `json:"protocol,omitempty"`           // Protocol used to fetch this request.
+	SecurityState      security.State   `json:"securityState"`                // Security state of the request resource.
+	SecurityDetails    *SecurityDetails `json:"securityDetails,omitempty"`    // Security details for the request.
 }
 
 // WebSocketRequest WebSocket request data.
@@ -408,12 +408,12 @@ type WebSocketRequest struct {
 
 // WebSocketResponse WebSocket response data.
 type WebSocketResponse struct {
-	Status             int     `json:"status"`                       // HTTP response status code.
-	StatusText         string  `json:"statusText"`                   // HTTP response status text.
-	Headers            Headers `json:"headers"`                      // HTTP response headers.
-	HeadersText        string  `json:"headersText,omitempty"`        // HTTP response headers text.
-	RequestHeaders     Headers `json:"requestHeaders,omitempty"`     // HTTP request headers.
-	RequestHeadersText string  `json:"requestHeadersText,omitempty"` // HTTP request headers text.
+	Status             int      `json:"status"`                       // HTTP response status code.
+	StatusText         string   `json:"statusText"`                   // HTTP response status text.
+	Headers            Headers  `json:"headers"`                      // HTTP response headers.
+	HeadersText        string   `json:"headersText,omitempty"`        // HTTP response headers text.
+	RequestHeaders     *Headers `json:"requestHeaders,omitempty"`     // HTTP request headers.
+	RequestHeadersText string   `json:"requestHeadersText,omitempty"` // HTTP request headers text.
 }
 
 // WebSocketFrame WebSocket frame data.
@@ -427,7 +427,7 @@ type WebSocketFrame struct {
 type CachedResource struct {
 	URL      string              `json:"url"`                // Resource URL. This is the url of the original network request.
 	Type     shared.ResourceType `json:"type"`               // Type of this resource.
-	Response Response            `json:"response,omitempty"` // Cached response data.
+	Response *Response           `json:"response,omitempty"` // Cached response data.
 	BodySize float64             `json:"bodySize"`           // Cached response body size.
 }
 
@@ -436,37 +436,37 @@ type Initiator struct {
 	// Type Type of this initiator.
 	//
 	// Values: "parser", "script", "preload", "SignedExchange", "other".
-	Type       string             `json:"type"`
-	Stack      runtime.StackTrace `json:"stack,omitempty"`      // Initiator JavaScript stack trace, set for Script only.
-	URL        string             `json:"url,omitempty"`        // Initiator URL, set for Parser type or for Script type (when script is importing module) or for SignedExchange type.
-	LineNumber float64            `json:"lineNumber,omitempty"` // Initiator line number, set for Parser type or for Script type (when script is importing module) (0-based).
+	Type       string              `json:"type"`
+	Stack      *runtime.StackTrace `json:"stack,omitempty"`      // Initiator JavaScript stack trace, set for Script only.
+	URL        string              `json:"url,omitempty"`        // Initiator URL, set for Parser type or for Script type (when script is importing module) or for SignedExchange type.
+	LineNumber float64             `json:"lineNumber,omitempty"` // Initiator line number, set for Parser type or for Script type (when script is importing module) (0-based).
 }
 
 // Cookie Cookie object
 type Cookie struct {
-	Name     string         `json:"name"`               // Cookie name.
-	Value    string         `json:"value"`              // Cookie value.
-	Domain   string         `json:"domain"`             // Cookie domain.
-	Path     string         `json:"path"`               // Cookie path.
-	Expires  float64        `json:"expires"`            // Cookie expiration date as the number of seconds since the UNIX epoch.
-	Size     int            `json:"size"`               // Cookie size.
-	HTTPOnly bool           `json:"httpOnly"`           // True if cookie is http-only.
-	Secure   bool           `json:"secure"`             // True if cookie is secure.
-	Session  bool           `json:"session"`            // True in case of session cookie.
-	SameSite CookieSameSite `json:"sameSite,omitempty"` // Cookie SameSite type.
+	Name     string          `json:"name"`               // Cookie name.
+	Value    string          `json:"value"`              // Cookie value.
+	Domain   string          `json:"domain"`             // Cookie domain.
+	Path     string          `json:"path"`               // Cookie path.
+	Expires  float64         `json:"expires"`            // Cookie expiration date as the number of seconds since the UNIX epoch.
+	Size     int             `json:"size"`               // Cookie size.
+	HTTPOnly bool            `json:"httpOnly"`           // True if cookie is http-only.
+	Secure   bool            `json:"secure"`             // True if cookie is secure.
+	Session  bool            `json:"session"`            // True in case of session cookie.
+	SameSite *CookieSameSite `json:"sameSite,omitempty"` // Cookie SameSite type.
 }
 
 // CookieParam Cookie parameter object
 type CookieParam struct {
-	Name     string         `json:"name"`               // Cookie name.
-	Value    string         `json:"value"`              // Cookie value.
-	URL      string         `json:"url,omitempty"`      // The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
-	Domain   string         `json:"domain,omitempty"`   // Cookie domain.
-	Path     string         `json:"path,omitempty"`     // Cookie path.
-	Secure   bool           `json:"secure,omitempty"`   // True if cookie is secure.
-	HTTPOnly bool           `json:"httpOnly,omitempty"` // True if cookie is http-only.
-	SameSite CookieSameSite `json:"sameSite,omitempty"` // Cookie SameSite type.
-	Expires  TimeSinceEpoch `json:"expires,omitempty"`  // Cookie expiration date, session cookie if not set
+	Name     string          `json:"name"`               // Cookie name.
+	Value    string          `json:"value"`              // Cookie value.
+	URL      string          `json:"url,omitempty"`      // The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
+	Domain   string          `json:"domain,omitempty"`   // Cookie domain.
+	Path     string          `json:"path,omitempty"`     // Cookie path.
+	Secure   bool            `json:"secure,omitempty"`   // True if cookie is secure.
+	HTTPOnly bool            `json:"httpOnly,omitempty"` // True if cookie is http-only.
+	SameSite *CookieSameSite `json:"sameSite,omitempty"` // Cookie SameSite type.
+	Expires  *TimeSinceEpoch `json:"expires,omitempty"`  // Cookie expiration date, session cookie if not set
 }
 
 // AuthChallenge Authorization challenge for HTTP status code 401 or 407.
@@ -528,9 +528,9 @@ func (e InterceptionStage) String() string {
 //
 // Note: This type is experimental.
 type RequestPattern struct {
-	URLPattern        string              `json:"urlPattern,omitempty"`        // Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is backslash. Omitting is equivalent to "*".
-	ResourceType      shared.ResourceType `json:"resourceType,omitempty"`      // If set, only requests for matching resource types will be intercepted.
-	InterceptionStage InterceptionStage   `json:"interceptionStage,omitempty"` // Stage at which to begin intercepting requests. Default is Request.
+	URLPattern        string               `json:"urlPattern,omitempty"`        // Wildcards ('*' -> zero or more, '?' -> exactly one) are allowed. Escape character is backslash. Omitting is equivalent to "*".
+	ResourceType      *shared.ResourceType `json:"resourceType,omitempty"`      // If set, only requests for matching resource types will be intercepted.
+	InterceptionStage *InterceptionStage   `json:"interceptionStage,omitempty"` // Stage at which to begin intercepting requests. Default is Request.
 }
 
 // SignedExchangeSignature Information about a signed exchange signature.
@@ -538,15 +538,15 @@ type RequestPattern struct {
 //
 // Note: This type is experimental.
 type SignedExchangeSignature struct {
-	Label        string   `json:"label"`                  // Signed exchange signature label.
-	Signature    string   `json:"signature"`              // The hex string of signed exchange signature.
-	Integrity    string   `json:"integrity"`              // Signed exchange signature integrity.
-	CertURL      string   `json:"certUrl,omitempty"`      // Signed exchange signature cert Url.
-	CertSha256   string   `json:"certSha256,omitempty"`   // The hex string of signed exchange signature cert sha256.
-	ValidityURL  string   `json:"validityUrl"`            // Signed exchange signature validity Url.
-	Date         int      `json:"date"`                   // Signed exchange signature date.
-	Expires      int      `json:"expires"`                // Signed exchange signature expires.
-	Certificates []string `json:"certificates,omitempty"` // The encoded certificates.
+	Label        string    `json:"label"`                  // Signed exchange signature label.
+	Signature    string    `json:"signature"`              // The hex string of signed exchange signature.
+	Integrity    string    `json:"integrity"`              // Signed exchange signature integrity.
+	CertURL      string    `json:"certUrl,omitempty"`      // Signed exchange signature cert Url.
+	CertSha256   string    `json:"certSha256,omitempty"`   // The hex string of signed exchange signature cert sha256.
+	ValidityURL  string    `json:"validityUrl"`            // Signed exchange signature validity Url.
+	Date         int       `json:"date"`                   // Signed exchange signature date.
+	Expires      int       `json:"expires"`                // Signed exchange signature expires.
+	Certificates *[]string `json:"certificates,omitempty"` // The encoded certificates.
 }
 
 // SignedExchangeHeader Information about a signed exchange header.
@@ -594,17 +594,17 @@ func (e SignedExchangeErrorField) String() string {
 //
 // Note: This type is experimental.
 type SignedExchangeError struct {
-	Message        string                   `json:"message"`                  // Error message.
-	SignatureIndex int                      `json:"signatureIndex,omitempty"` // The index of the signature which caused the error.
-	ErrorField     SignedExchangeErrorField `json:"errorField,omitempty"`     // The field which caused the error.
+	Message        string                    `json:"message"`                  // Error message.
+	SignatureIndex int                       `json:"signatureIndex,omitempty"` // The index of the signature which caused the error.
+	ErrorField     *SignedExchangeErrorField `json:"errorField,omitempty"`     // The field which caused the error.
 }
 
 // SignedExchangeInfo Information about a signed exchange response.
 //
 // Note: This type is experimental.
 type SignedExchangeInfo struct {
-	OuterResponse   Response              `json:"outerResponse"`             // The outer response of signed HTTP exchange which was received from network.
-	Header          SignedExchangeHeader  `json:"header,omitempty"`          // Information about the signed exchange header.
-	SecurityDetails SecurityDetails       `json:"securityDetails,omitempty"` // Security details for the signed exchange header.
-	Errors          []SignedExchangeError `json:"errors,omitempty"`          // Errors occurred while handling the signed exchagne.
+	OuterResponse   Response               `json:"outerResponse"`             // The outer response of signed HTTP exchange which was received from network.
+	Header          *SignedExchangeHeader  `json:"header,omitempty"`          // Information about the signed exchange header.
+	SecurityDetails *SecurityDetails       `json:"securityDetails,omitempty"` // Security details for the signed exchange header.
+	Errors          *[]SignedExchangeError `json:"errors,omitempty"`          // Errors occurred while handling the signed exchagne.
 }

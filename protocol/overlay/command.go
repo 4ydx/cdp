@@ -250,8 +250,8 @@ func (a *HideHighlightReply) UnmarshalJSON(b []byte) error {
 // HighlightFrameArgs represents the arguments for HighlightFrame in the Overlay domain.
 type HighlightFrameArgs struct {
 	FrameID             shared.FrameID `json:"frameId"`                       // Identifier of the frame to highlight.
-	ContentColor        dom.RGBA       `json:"contentColor,omitempty"`        // The content box highlight fill color (default: transparent).
-	ContentOutlineColor dom.RGBA       `json:"contentOutlineColor,omitempty"` // The content box highlight outline color (default: transparent).
+	ContentColor        *dom.RGBA      `json:"contentColor,omitempty"`        // The content box highlight fill color (default: transparent).
+	ContentOutlineColor *dom.RGBA      `json:"contentOutlineColor,omitempty"` // The content box highlight outline color (default: transparent).
 }
 
 // Unmarshal the byte array into a return value for HighlightFrame in the Overlay domain.
@@ -364,9 +364,9 @@ func (a *HighlightNodeReply) UnmarshalJSON(b []byte) error {
 
 // HighlightQuadArgs represents the arguments for HighlightQuad in the Overlay domain.
 type HighlightQuadArgs struct {
-	Quad         dom.Quad `json:"quad"`                   // Quad to highlight
-	Color        dom.RGBA `json:"color,omitempty"`        // The highlight fill color (default: transparent).
-	OutlineColor dom.RGBA `json:"outlineColor,omitempty"` // The highlight outline color (default: transparent).
+	Quad         dom.Quad  `json:"quad"`                   // Quad to highlight
+	Color        *dom.RGBA `json:"color,omitempty"`        // The highlight fill color (default: transparent).
+	OutlineColor *dom.RGBA `json:"outlineColor,omitempty"` // The highlight outline color (default: transparent).
 }
 
 // Unmarshal the byte array into a return value for HighlightQuad in the Overlay domain.
@@ -421,12 +421,12 @@ func (a *HighlightQuadReply) UnmarshalJSON(b []byte) error {
 
 // HighlightRectArgs represents the arguments for HighlightRect in the Overlay domain.
 type HighlightRectArgs struct {
-	X            int      `json:"x"`                      // X coordinate
-	Y            int      `json:"y"`                      // Y coordinate
-	Width        int      `json:"width"`                  // Rectangle width
-	Height       int      `json:"height"`                 // Rectangle height
-	Color        dom.RGBA `json:"color,omitempty"`        // The highlight fill color (default: transparent).
-	OutlineColor dom.RGBA `json:"outlineColor,omitempty"` // The highlight outline color (default: transparent).
+	X            int       `json:"x"`                      // X coordinate
+	Y            int       `json:"y"`                      // Y coordinate
+	Width        int       `json:"width"`                  // Rectangle width
+	Height       int       `json:"height"`                 // Rectangle height
+	Color        *dom.RGBA `json:"color,omitempty"`        // The highlight fill color (default: transparent).
+	OutlineColor *dom.RGBA `json:"outlineColor,omitempty"` // The highlight outline color (default: transparent).
 }
 
 // Unmarshal the byte array into a return value for HighlightRect in the Overlay domain.
@@ -481,8 +481,8 @@ func (a *HighlightRectReply) UnmarshalJSON(b []byte) error {
 
 // SetInspectModeArgs represents the arguments for SetInspectMode in the Overlay domain.
 type SetInspectModeArgs struct {
-	Mode            InspectMode     `json:"mode"`                      // Set an inspection mode.
-	HighlightConfig HighlightConfig `json:"highlightConfig,omitempty"` // A descriptor for the highlight appearance of hovered-over nodes. May be omitted if `enabled == false`.
+	Mode            InspectMode      `json:"mode"`                      // Set an inspection mode.
+	HighlightConfig *HighlightConfig `json:"highlightConfig,omitempty"` // A descriptor for the highlight appearance of hovered-over nodes. May be omitted if `enabled == false`.
 }
 
 // Unmarshal the byte array into a return value for SetInspectMode in the Overlay domain.

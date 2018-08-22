@@ -16,9 +16,9 @@ type Animation struct {
 	// Type Animation type of `Animation`.
 	//
 	// Values: "CSSTransition", "CSSAnimation", "WebAnimation".
-	Type   string `json:"type"`
-	Source Effect `json:"source,omitempty"` // `Animation`'s source animation node.
-	CSSID  string `json:"cssId,omitempty"`  // A unique ID for `Animation` representing the sources that triggered this CSS animation/transition.
+	Type   string  `json:"type"`
+	Source *Effect `json:"source,omitempty"` // `Animation`'s source animation node.
+	CSSID  string  `json:"cssId,omitempty"`  // A unique ID for `Animation` representing the sources that triggered this CSS animation/transition.
 }
 
 // Effect AnimationEffect instance
@@ -31,7 +31,7 @@ type Effect struct {
 	Direction      string            `json:"direction"`               // `AnimationEffect`'s playback direction.
 	Fill           string            `json:"fill"`                    // `AnimationEffect`'s fill mode.
 	BackendNodeID  dom.BackendNodeID `json:"backendNodeId,omitempty"` // `AnimationEffect`'s target node.
-	KeyframesRule  KeyframesRule     `json:"keyframesRule,omitempty"` // `AnimationEffect`'s keyframes.
+	KeyframesRule  *KeyframesRule    `json:"keyframesRule,omitempty"` // `AnimationEffect`'s keyframes.
 	Easing         string            `json:"easing"`                  // `AnimationEffect`'s timing function.
 }
 

@@ -150,9 +150,9 @@ func (a *ExecuteSQLArgs) MarshalJSON() ([]byte, error) {
 
 // ExecuteSQLReply represents the return values for ExecuteSQL in the Database domain.
 type ExecuteSQLReply struct {
-	ColumnNames []string          `json:"columnNames,omitempty"` // No description.
-	Values      []json.RawMessage `json:"values,omitempty"`      // No description.
-	SQLError    Error             `json:"sqlError,omitempty"`    // No description.
+	ColumnNames *[]string          `json:"columnNames,omitempty"` // No description.
+	Values      *[]json.RawMessage `json:"values,omitempty"`      // No description.
+	SQLError    *Error             `json:"sqlError,omitempty"`    // No description.
 }
 
 // ExecuteSQLReply returns whether or not the FrameID matches the reply value for ExecuteSQL in the Database domain.

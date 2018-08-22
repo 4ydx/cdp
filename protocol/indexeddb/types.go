@@ -36,13 +36,13 @@ type Key struct {
 	Number float64 `json:"number,omitempty"` // Number value.
 	String string  `json:"string,omitempty"` // String value.
 	Date   float64 `json:"date,omitempty"`   // Date value.
-	Array  []Key   `json:"array,omitempty"`  // Array value.
+	Array  *[]Key  `json:"array,omitempty"`  // Array value.
 }
 
 // KeyRange Key range.
 type KeyRange struct {
-	Lower     Key  `json:"lower,omitempty"` // Lower bound.
-	Upper     Key  `json:"upper,omitempty"` // Upper bound.
+	Lower     *Key `json:"lower,omitempty"` // Lower bound.
+	Upper     *Key `json:"upper,omitempty"` // Upper bound.
 	LowerOpen bool `json:"lowerOpen"`       // If true lower bound is open.
 	UpperOpen bool `json:"upperOpen"`       // If true upper bound is open.
 }
@@ -59,7 +59,7 @@ type KeyPath struct {
 	// Type Key path type.
 	//
 	// Values: "null", "string", "array".
-	Type   string   `json:"type"`
-	String string   `json:"string,omitempty"` // String value.
-	Array  []string `json:"array,omitempty"`  // Array value.
+	Type   string    `json:"type"`
+	String string    `json:"string,omitempty"` // String value.
+	Array  *[]string `json:"array,omitempty"`  // Array value.
 }

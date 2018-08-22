@@ -316,14 +316,14 @@ func (a *ClearBrowserCookiesReply) UnmarshalJSON(b []byte) error {
 
 // ContinueInterceptedRequestArgs represents the arguments for ContinueInterceptedRequest in the Network domain.
 type ContinueInterceptedRequestArgs struct {
-	InterceptionID        InterceptionID        `json:"interceptionId"`                  // No description.
-	ErrorReason           ErrorReason           `json:"errorReason,omitempty"`           // If set this causes the request to fail with the given reason. Passing `Aborted` for requests marked with `isNavigationRequest` also cancels the navigation. Must not be set in response to an authChallenge.
-	RawResponse           string                `json:"rawResponse,omitempty"`           // If set the requests completes using with the provided base64 encoded raw response, including HTTP status line and headers etc... Must not be set in response to an authChallenge.
-	URL                   string                `json:"url,omitempty"`                   // If set the request url will be modified in a way that's not observable by page. Must not be set in response to an authChallenge.
-	Method                string                `json:"method,omitempty"`                // If set this allows the request method to be overridden. Must not be set in response to an authChallenge.
-	PostData              string                `json:"postData,omitempty"`              // If set this allows postData to be set. Must not be set in response to an authChallenge.
-	Headers               Headers               `json:"headers,omitempty"`               // If set this allows the request headers to be changed. Must not be set in response to an authChallenge.
-	AuthChallengeResponse AuthChallengeResponse `json:"authChallengeResponse,omitempty"` // Response to a requestIntercepted with an authChallenge. Must not be set otherwise.
+	InterceptionID        InterceptionID         `json:"interceptionId"`                  // No description.
+	ErrorReason           *ErrorReason           `json:"errorReason,omitempty"`           // If set this causes the request to fail with the given reason. Passing `Aborted` for requests marked with `isNavigationRequest` also cancels the navigation. Must not be set in response to an authChallenge.
+	RawResponse           string                 `json:"rawResponse,omitempty"`           // If set the requests completes using with the provided base64 encoded raw response, including HTTP status line and headers etc... Must not be set in response to an authChallenge.
+	URL                   string                 `json:"url,omitempty"`                   // If set the request url will be modified in a way that's not observable by page. Must not be set in response to an authChallenge.
+	Method                string                 `json:"method,omitempty"`                // If set this allows the request method to be overridden. Must not be set in response to an authChallenge.
+	PostData              string                 `json:"postData,omitempty"`              // If set this allows postData to be set. Must not be set in response to an authChallenge.
+	Headers               *Headers               `json:"headers,omitempty"`               // If set this allows the request headers to be changed. Must not be set in response to an authChallenge.
+	AuthChallengeResponse *AuthChallengeResponse `json:"authChallengeResponse,omitempty"` // Response to a requestIntercepted with an authChallenge. Must not be set otherwise.
 }
 
 // Unmarshal the byte array into a return value for ContinueInterceptedRequest in the Network domain.
@@ -490,11 +490,11 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 
 // EmulateNetworkConditionsArgs represents the arguments for EmulateNetworkConditions in the Network domain.
 type EmulateNetworkConditionsArgs struct {
-	Offline            bool           `json:"offline"`                  // True to emulate internet disconnection.
-	Latency            float64        `json:"latency"`                  // Minimum latency from request sent to response headers received (ms).
-	DownloadThroughput float64        `json:"downloadThroughput"`       // Maximal aggregated download throughput (bytes/sec). -1 disables download throttling.
-	UploadThroughput   float64        `json:"uploadThroughput"`         // Maximal aggregated upload throughput (bytes/sec). -1 disables upload throttling.
-	ConnectionType     ConnectionType `json:"connectionType,omitempty"` // Connection type if known.
+	Offline            bool            `json:"offline"`                  // True to emulate internet disconnection.
+	Latency            float64         `json:"latency"`                  // Minimum latency from request sent to response headers received (ms).
+	DownloadThroughput float64         `json:"downloadThroughput"`       // Maximal aggregated download throughput (bytes/sec). -1 disables download throttling.
+	UploadThroughput   float64         `json:"uploadThroughput"`         // Maximal aggregated upload throughput (bytes/sec). -1 disables upload throttling.
+	ConnectionType     *ConnectionType `json:"connectionType,omitempty"` // Connection type if known.
 }
 
 // Unmarshal the byte array into a return value for EmulateNetworkConditions in the Network domain.
@@ -725,7 +725,7 @@ func (a *GetCertificateReply) UnmarshalJSON(b []byte) error {
 
 // GetCookiesArgs represents the arguments for GetCookies in the Network domain.
 type GetCookiesArgs struct {
-	URLs []string `json:"urls,omitempty"` // The list of URLs for which applicable cookies will be fetched
+	URLs *[]string `json:"urls,omitempty"` // The list of URLs for which applicable cookies will be fetched
 }
 
 // Unmarshal the byte array into a return value for GetCookies in the Network domain.
@@ -1286,15 +1286,15 @@ func (a *SetCacheDisabledReply) UnmarshalJSON(b []byte) error {
 
 // SetCookieArgs represents the arguments for SetCookie in the Network domain.
 type SetCookieArgs struct {
-	Name     string         `json:"name"`               // Cookie name.
-	Value    string         `json:"value"`              // Cookie value.
-	URL      string         `json:"url,omitempty"`      // The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
-	Domain   string         `json:"domain,omitempty"`   // Cookie domain.
-	Path     string         `json:"path,omitempty"`     // Cookie path.
-	Secure   bool           `json:"secure,omitempty"`   // True if cookie is secure.
-	HTTPOnly bool           `json:"httpOnly,omitempty"` // True if cookie is http-only.
-	SameSite CookieSameSite `json:"sameSite,omitempty"` // Cookie SameSite type.
-	Expires  TimeSinceEpoch `json:"expires,omitempty"`  // Cookie expiration date, session cookie if not set
+	Name     string          `json:"name"`               // Cookie name.
+	Value    string          `json:"value"`              // Cookie value.
+	URL      string          `json:"url,omitempty"`      // The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
+	Domain   string          `json:"domain,omitempty"`   // Cookie domain.
+	Path     string          `json:"path,omitempty"`     // Cookie path.
+	Secure   bool            `json:"secure,omitempty"`   // True if cookie is secure.
+	HTTPOnly bool            `json:"httpOnly,omitempty"` // True if cookie is http-only.
+	SameSite *CookieSameSite `json:"sameSite,omitempty"` // Cookie SameSite type.
+	Expires  *TimeSinceEpoch `json:"expires,omitempty"`  // Cookie expiration date, session cookie if not set
 }
 
 // Unmarshal the byte array into a return value for SetCookie in the Network domain.
