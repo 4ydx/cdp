@@ -41,12 +41,13 @@ type GetDomainsReply struct {
 }
 
 // GetDomainsReply returns whether or not the FrameID matches the reply value for GetDomains in the Schema domain.
-func (a *GetDomainsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetDomainsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetDomainsReply %s", err)
+		log.Printf("unmarshal error: GetDomainsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetDomainsReply returns the FrameID value for GetDomains in the Schema domain.

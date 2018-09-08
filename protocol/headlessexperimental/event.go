@@ -43,12 +43,13 @@ func (a *NeedsBeginFramesChangedReply) UnmarshalJSON(b []byte) error {
 }
 
 // NeedsBeginFramesChangedReply returns whether or not the FrameID matches the reply value for NeedsBeginFramesChanged in the HeadlessExperimental domain.
-func (a *NeedsBeginFramesChangedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *NeedsBeginFramesChangedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: NeedsBeginFramesChangedReply %s", err)
+		log.Printf("unmarshal error: NeedsBeginFramesChangedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // NeedsBeginFramesChangedReply returns the FrameID for NeedsBeginFramesChanged in the HeadlessExperimental domain.

@@ -42,12 +42,13 @@ type BindReply struct {
 }
 
 // BindReply returns whether or not the FrameID matches the reply value for Bind in the Tethering domain.
-func (a *BindReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *BindReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: BindReply %s", err)
+		log.Printf("unmarshal error: BindReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // BindReply returns the FrameID value for Bind in the Tethering domain.
@@ -97,12 +98,13 @@ type UnbindReply struct {
 }
 
 // UnbindReply returns whether or not the FrameID matches the reply value for Unbind in the Tethering domain.
-func (a *UnbindReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *UnbindReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UnbindReply %s", err)
+		log.Printf("unmarshal error: UnbindReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // UnbindReply returns the FrameID value for Unbind in the Tethering domain.

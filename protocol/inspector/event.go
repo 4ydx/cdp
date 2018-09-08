@@ -47,12 +47,13 @@ func (a *DetachedReply) UnmarshalJSON(b []byte) error {
 }
 
 // DetachedReply returns whether or not the FrameID matches the reply value for Detached in the Inspector domain.
-func (a *DetachedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DetachedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DetachedReply %s", err)
+		log.Printf("unmarshal error: DetachedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DetachedReply returns the FrameID for Detached in the Inspector domain.
@@ -77,12 +78,13 @@ func (a *TargetCrashedReply) UnmarshalJSON(b []byte) error {
 }
 
 // TargetCrashedReply returns whether or not the FrameID matches the reply value for TargetCrashed in the Inspector domain.
-func (a *TargetCrashedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TargetCrashedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TargetCrashedReply %s", err)
+		log.Printf("unmarshal error: TargetCrashedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TargetCrashedReply returns the FrameID for TargetCrashed in the Inspector domain.
@@ -107,12 +109,13 @@ func (a *TargetReloadedAfterCrashReply) UnmarshalJSON(b []byte) error {
 }
 
 // TargetReloadedAfterCrashReply returns whether or not the FrameID matches the reply value for TargetReloadedAfterCrash in the Inspector domain.
-func (a *TargetReloadedAfterCrashReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TargetReloadedAfterCrashReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TargetReloadedAfterCrashReply %s", err)
+		log.Printf("unmarshal error: TargetReloadedAfterCrashReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TargetReloadedAfterCrashReply returns the FrameID for TargetReloadedAfterCrash in the Inspector domain.

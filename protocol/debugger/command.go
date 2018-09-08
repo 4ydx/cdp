@@ -76,12 +76,13 @@ type ContinueToLocationReply struct {
 }
 
 // ContinueToLocationReply returns whether or not the FrameID matches the reply value for ContinueToLocation in the Debugger domain.
-func (a *ContinueToLocationReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ContinueToLocationReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ContinueToLocationReply %s", err)
+		log.Printf("unmarshal error: ContinueToLocationReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ContinueToLocationReply returns the FrameID value for ContinueToLocation in the Debugger domain.
@@ -130,12 +131,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Debugger domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Debugger domain.
@@ -188,12 +190,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Debugger domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Debugger domain.
@@ -260,12 +263,13 @@ type EvaluateOnCallFrameReply struct {
 }
 
 // EvaluateOnCallFrameReply returns whether or not the FrameID matches the reply value for EvaluateOnCallFrame in the Debugger domain.
-func (a *EvaluateOnCallFrameReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EvaluateOnCallFrameReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EvaluateOnCallFrameReply %s", err)
+		log.Printf("unmarshal error: EvaluateOnCallFrameReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EvaluateOnCallFrameReply returns the FrameID value for EvaluateOnCallFrame in the Debugger domain.
@@ -318,12 +322,13 @@ type GetPossibleBreakpointsReply struct {
 }
 
 // GetPossibleBreakpointsReply returns whether or not the FrameID matches the reply value for GetPossibleBreakpoints in the Debugger domain.
-func (a *GetPossibleBreakpointsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetPossibleBreakpointsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetPossibleBreakpointsReply %s", err)
+		log.Printf("unmarshal error: GetPossibleBreakpointsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetPossibleBreakpointsReply returns the FrameID value for GetPossibleBreakpoints in the Debugger domain.
@@ -374,12 +379,13 @@ type GetScriptSourceReply struct {
 }
 
 // GetScriptSourceReply returns whether or not the FrameID matches the reply value for GetScriptSource in the Debugger domain.
-func (a *GetScriptSourceReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetScriptSourceReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetScriptSourceReply %s", err)
+		log.Printf("unmarshal error: GetScriptSourceReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetScriptSourceReply returns the FrameID value for GetScriptSource in the Debugger domain.
@@ -430,12 +436,13 @@ type GetStackTraceReply struct {
 }
 
 // GetStackTraceReply returns whether or not the FrameID matches the reply value for GetStackTrace in the Debugger domain.
-func (a *GetStackTraceReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetStackTraceReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetStackTraceReply %s", err)
+		log.Printf("unmarshal error: GetStackTraceReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetStackTraceReply returns the FrameID value for GetStackTrace in the Debugger domain.
@@ -484,12 +491,13 @@ type PauseReply struct {
 }
 
 // PauseReply returns whether or not the FrameID matches the reply value for Pause in the Debugger domain.
-func (a *PauseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *PauseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PauseReply %s", err)
+		log.Printf("unmarshal error: PauseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // PauseReply returns the FrameID value for Pause in the Debugger domain.
@@ -539,12 +547,13 @@ type PauseOnAsyncCallReply struct {
 }
 
 // PauseOnAsyncCallReply returns whether or not the FrameID matches the reply value for PauseOnAsyncCall in the Debugger domain.
-func (a *PauseOnAsyncCallReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *PauseOnAsyncCallReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PauseOnAsyncCallReply %s", err)
+		log.Printf("unmarshal error: PauseOnAsyncCallReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // PauseOnAsyncCallReply returns the FrameID value for PauseOnAsyncCall in the Debugger domain.
@@ -594,12 +603,13 @@ type RemoveBreakpointReply struct {
 }
 
 // RemoveBreakpointReply returns whether or not the FrameID matches the reply value for RemoveBreakpoint in the Debugger domain.
-func (a *RemoveBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveBreakpointReply %s", err)
+		log.Printf("unmarshal error: RemoveBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveBreakpointReply returns the FrameID value for RemoveBreakpoint in the Debugger domain.
@@ -655,12 +665,13 @@ type RestartFrameReply struct {
 }
 
 // RestartFrameReply returns whether or not the FrameID matches the reply value for RestartFrame in the Debugger domain.
-func (a *RestartFrameReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RestartFrameReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RestartFrameReply %s", err)
+		log.Printf("unmarshal error: RestartFrameReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RestartFrameReply returns the FrameID value for RestartFrame in the Debugger domain.
@@ -709,12 +720,13 @@ type ResumeReply struct {
 }
 
 // ResumeReply returns whether or not the FrameID matches the reply value for Resume in the Debugger domain.
-func (a *ResumeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ResumeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ResumeReply %s", err)
+		log.Printf("unmarshal error: ResumeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ResumeReply returns the FrameID value for Resume in the Debugger domain.
@@ -763,12 +775,13 @@ type ScheduleStepIntoAsyncReply struct {
 }
 
 // ScheduleStepIntoAsyncReply returns whether or not the FrameID matches the reply value for ScheduleStepIntoAsync in the Debugger domain.
-func (a *ScheduleStepIntoAsyncReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ScheduleStepIntoAsyncReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ScheduleStepIntoAsyncReply %s", err)
+		log.Printf("unmarshal error: ScheduleStepIntoAsyncReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ScheduleStepIntoAsyncReply returns the FrameID value for ScheduleStepIntoAsync in the Debugger domain.
@@ -822,12 +835,13 @@ type SearchInContentReply struct {
 }
 
 // SearchInContentReply returns whether or not the FrameID matches the reply value for SearchInContent in the Debugger domain.
-func (a *SearchInContentReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SearchInContentReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SearchInContentReply %s", err)
+		log.Printf("unmarshal error: SearchInContentReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SearchInContentReply returns the FrameID value for SearchInContent in the Debugger domain.
@@ -877,12 +891,13 @@ type SetAsyncCallStackDepthReply struct {
 }
 
 // SetAsyncCallStackDepthReply returns whether or not the FrameID matches the reply value for SetAsyncCallStackDepth in the Debugger domain.
-func (a *SetAsyncCallStackDepthReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetAsyncCallStackDepthReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetAsyncCallStackDepthReply %s", err)
+		log.Printf("unmarshal error: SetAsyncCallStackDepthReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetAsyncCallStackDepthReply returns the FrameID value for SetAsyncCallStackDepth in the Debugger domain.
@@ -932,12 +947,13 @@ type SetBlackboxPatternsReply struct {
 }
 
 // SetBlackboxPatternsReply returns whether or not the FrameID matches the reply value for SetBlackboxPatterns in the Debugger domain.
-func (a *SetBlackboxPatternsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetBlackboxPatternsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBlackboxPatternsReply %s", err)
+		log.Printf("unmarshal error: SetBlackboxPatternsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetBlackboxPatternsReply returns the FrameID value for SetBlackboxPatterns in the Debugger domain.
@@ -988,12 +1004,13 @@ type SetBlackboxedRangesReply struct {
 }
 
 // SetBlackboxedRangesReply returns whether or not the FrameID matches the reply value for SetBlackboxedRanges in the Debugger domain.
-func (a *SetBlackboxedRangesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetBlackboxedRangesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBlackboxedRangesReply %s", err)
+		log.Printf("unmarshal error: SetBlackboxedRangesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetBlackboxedRangesReply returns the FrameID value for SetBlackboxedRanges in the Debugger domain.
@@ -1046,12 +1063,13 @@ type SetBreakpointReply struct {
 }
 
 // SetBreakpointReply returns whether or not the FrameID matches the reply value for SetBreakpoint in the Debugger domain.
-func (a *SetBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBreakpointReply %s", err)
+		log.Printf("unmarshal error: SetBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetBreakpointReply returns the FrameID value for SetBreakpoint in the Debugger domain.
@@ -1108,12 +1126,13 @@ type SetBreakpointByURLReply struct {
 }
 
 // SetBreakpointByURLReply returns whether or not the FrameID matches the reply value for SetBreakpointByURL in the Debugger domain.
-func (a *SetBreakpointByURLReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetBreakpointByURLReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBreakpointByURLReply %s", err)
+		log.Printf("unmarshal error: SetBreakpointByURLReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetBreakpointByURLReply returns the FrameID value for SetBreakpointByURL in the Debugger domain.
@@ -1165,12 +1184,13 @@ type SetBreakpointOnFunctionCallReply struct {
 }
 
 // SetBreakpointOnFunctionCallReply returns whether or not the FrameID matches the reply value for SetBreakpointOnFunctionCall in the Debugger domain.
-func (a *SetBreakpointOnFunctionCallReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetBreakpointOnFunctionCallReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBreakpointOnFunctionCallReply %s", err)
+		log.Printf("unmarshal error: SetBreakpointOnFunctionCallReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetBreakpointOnFunctionCallReply returns the FrameID value for SetBreakpointOnFunctionCall in the Debugger domain.
@@ -1220,12 +1240,13 @@ type SetBreakpointsActiveReply struct {
 }
 
 // SetBreakpointsActiveReply returns whether or not the FrameID matches the reply value for SetBreakpointsActive in the Debugger domain.
-func (a *SetBreakpointsActiveReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetBreakpointsActiveReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBreakpointsActiveReply %s", err)
+		log.Printf("unmarshal error: SetBreakpointsActiveReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetBreakpointsActiveReply returns the FrameID value for SetBreakpointsActive in the Debugger domain.
@@ -1278,12 +1299,13 @@ type SetPauseOnExceptionsReply struct {
 }
 
 // SetPauseOnExceptionsReply returns whether or not the FrameID matches the reply value for SetPauseOnExceptions in the Debugger domain.
-func (a *SetPauseOnExceptionsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetPauseOnExceptionsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPauseOnExceptionsReply %s", err)
+		log.Printf("unmarshal error: SetPauseOnExceptionsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetPauseOnExceptionsReply returns the FrameID value for SetPauseOnExceptions in the Debugger domain.
@@ -1333,12 +1355,13 @@ type SetReturnValueReply struct {
 }
 
 // SetReturnValueReply returns whether or not the FrameID matches the reply value for SetReturnValue in the Debugger domain.
-func (a *SetReturnValueReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetReturnValueReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetReturnValueReply %s", err)
+		log.Printf("unmarshal error: SetReturnValueReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetReturnValueReply returns the FrameID value for SetReturnValue in the Debugger domain.
@@ -1398,12 +1421,13 @@ type SetScriptSourceReply struct {
 }
 
 // SetScriptSourceReply returns whether or not the FrameID matches the reply value for SetScriptSource in the Debugger domain.
-func (a *SetScriptSourceReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetScriptSourceReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetScriptSourceReply %s", err)
+		log.Printf("unmarshal error: SetScriptSourceReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetScriptSourceReply returns the FrameID value for SetScriptSource in the Debugger domain.
@@ -1453,12 +1477,13 @@ type SetSkipAllPausesReply struct {
 }
 
 // SetSkipAllPausesReply returns whether or not the FrameID matches the reply value for SetSkipAllPauses in the Debugger domain.
-func (a *SetSkipAllPausesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetSkipAllPausesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetSkipAllPausesReply %s", err)
+		log.Printf("unmarshal error: SetSkipAllPausesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetSkipAllPausesReply returns the FrameID value for SetSkipAllPauses in the Debugger domain.
@@ -1511,12 +1536,13 @@ type SetVariableValueReply struct {
 }
 
 // SetVariableValueReply returns whether or not the FrameID matches the reply value for SetVariableValue in the Debugger domain.
-func (a *SetVariableValueReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetVariableValueReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetVariableValueReply %s", err)
+		log.Printf("unmarshal error: SetVariableValueReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetVariableValueReply returns the FrameID value for SetVariableValue in the Debugger domain.
@@ -1570,12 +1596,13 @@ type StepIntoReply struct {
 }
 
 // StepIntoReply returns whether or not the FrameID matches the reply value for StepInto in the Debugger domain.
-func (a *StepIntoReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StepIntoReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StepIntoReply %s", err)
+		log.Printf("unmarshal error: StepIntoReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StepIntoReply returns the FrameID value for StepInto in the Debugger domain.
@@ -1624,12 +1651,13 @@ type StepOutReply struct {
 }
 
 // StepOutReply returns whether or not the FrameID matches the reply value for StepOut in the Debugger domain.
-func (a *StepOutReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StepOutReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StepOutReply %s", err)
+		log.Printf("unmarshal error: StepOutReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StepOutReply returns the FrameID value for StepOut in the Debugger domain.
@@ -1678,12 +1706,13 @@ type StepOverReply struct {
 }
 
 // StepOverReply returns whether or not the FrameID matches the reply value for StepOver in the Debugger domain.
-func (a *StepOverReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StepOverReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StepOverReply %s", err)
+		log.Printf("unmarshal error: StepOverReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StepOverReply returns the FrameID value for StepOver in the Debugger domain.

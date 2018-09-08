@@ -95,12 +95,13 @@ type AddScriptToEvaluateOnLoadReply struct {
 }
 
 // AddScriptToEvaluateOnLoadReply returns whether or not the FrameID matches the reply value for AddScriptToEvaluateOnLoad in the Page domain.
-func (a *AddScriptToEvaluateOnLoadReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AddScriptToEvaluateOnLoadReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddScriptToEvaluateOnLoadReply %s", err)
+		log.Printf("unmarshal error: AddScriptToEvaluateOnLoadReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AddScriptToEvaluateOnLoadReply returns the FrameID value for AddScriptToEvaluateOnLoad in the Page domain.
@@ -151,12 +152,13 @@ type AddScriptToEvaluateOnNewDocumentReply struct {
 }
 
 // AddScriptToEvaluateOnNewDocumentReply returns whether or not the FrameID matches the reply value for AddScriptToEvaluateOnNewDocument in the Page domain.
-func (a *AddScriptToEvaluateOnNewDocumentReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AddScriptToEvaluateOnNewDocumentReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddScriptToEvaluateOnNewDocumentReply %s", err)
+		log.Printf("unmarshal error: AddScriptToEvaluateOnNewDocumentReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AddScriptToEvaluateOnNewDocumentReply returns the FrameID value for AddScriptToEvaluateOnNewDocument in the Page domain.
@@ -205,12 +207,13 @@ type BringToFrontReply struct {
 }
 
 // BringToFrontReply returns whether or not the FrameID matches the reply value for BringToFront in the Page domain.
-func (a *BringToFrontReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *BringToFrontReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: BringToFrontReply %s", err)
+		log.Printf("unmarshal error: BringToFrontReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // BringToFrontReply returns the FrameID value for BringToFront in the Page domain.
@@ -271,12 +274,13 @@ type CaptureScreenshotReply struct {
 }
 
 // CaptureScreenshotReply returns whether or not the FrameID matches the reply value for CaptureScreenshot in the Page domain.
-func (a *CaptureScreenshotReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CaptureScreenshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CaptureScreenshotReply %s", err)
+		log.Printf("unmarshal error: CaptureScreenshotReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CaptureScreenshotReply returns the FrameID value for CaptureScreenshot in the Page domain.
@@ -329,12 +333,13 @@ type CreateIsolatedWorldReply struct {
 }
 
 // CreateIsolatedWorldReply returns whether or not the FrameID matches the reply value for CreateIsolatedWorld in the Page domain.
-func (a *CreateIsolatedWorldReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CreateIsolatedWorldReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CreateIsolatedWorldReply %s", err)
+		log.Printf("unmarshal error: CreateIsolatedWorldReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CreateIsolatedWorldReply returns the FrameID value for CreateIsolatedWorld in the Page domain.
@@ -383,12 +388,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Page domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Page domain.
@@ -437,12 +443,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Page domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Page domain.
@@ -494,12 +501,13 @@ type GetAppManifestReply struct {
 }
 
 // GetAppManifestReply returns whether or not the FrameID matches the reply value for GetAppManifest in the Page domain.
-func (a *GetAppManifestReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetAppManifestReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetAppManifestReply %s", err)
+		log.Printf("unmarshal error: GetAppManifestReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetAppManifestReply returns the FrameID value for GetAppManifest in the Page domain.
@@ -549,12 +557,13 @@ type GetFrameTreeReply struct {
 }
 
 // GetFrameTreeReply returns whether or not the FrameID matches the reply value for GetFrameTree in the Page domain.
-func (a *GetFrameTreeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetFrameTreeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetFrameTreeReply %s", err)
+		log.Printf("unmarshal error: GetFrameTreeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetFrameTreeReply returns the FrameID value for GetFrameTree in the Page domain.
@@ -606,12 +615,13 @@ type GetLayoutMetricsReply struct {
 }
 
 // GetLayoutMetricsReply returns whether or not the FrameID matches the reply value for GetLayoutMetrics in the Page domain.
-func (a *GetLayoutMetricsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetLayoutMetricsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetLayoutMetricsReply %s", err)
+		log.Printf("unmarshal error: GetLayoutMetricsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetLayoutMetricsReply returns the FrameID value for GetLayoutMetrics in the Page domain.
@@ -662,12 +672,13 @@ type GetNavigationHistoryReply struct {
 }
 
 // GetNavigationHistoryReply returns whether or not the FrameID matches the reply value for GetNavigationHistory in the Page domain.
-func (a *GetNavigationHistoryReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetNavigationHistoryReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetNavigationHistoryReply %s", err)
+		log.Printf("unmarshal error: GetNavigationHistoryReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetNavigationHistoryReply returns the FrameID value for GetNavigationHistory in the Page domain.
@@ -720,12 +731,13 @@ type GetResourceContentReply struct {
 }
 
 // GetResourceContentReply returns whether or not the FrameID matches the reply value for GetResourceContent in the Page domain.
-func (a *GetResourceContentReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetResourceContentReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetResourceContentReply %s", err)
+		log.Printf("unmarshal error: GetResourceContentReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetResourceContentReply returns the FrameID value for GetResourceContent in the Page domain.
@@ -775,12 +787,13 @@ type GetResourceTreeReply struct {
 }
 
 // GetResourceTreeReply returns whether or not the FrameID matches the reply value for GetResourceTree in the Page domain.
-func (a *GetResourceTreeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetResourceTreeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetResourceTreeReply %s", err)
+		log.Printf("unmarshal error: GetResourceTreeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetResourceTreeReply returns the FrameID value for GetResourceTree in the Page domain.
@@ -831,12 +844,13 @@ type HandleJavaScriptDialogReply struct {
 }
 
 // HandleJavaScriptDialogReply returns whether or not the FrameID matches the reply value for HandleJavaScriptDialog in the Page domain.
-func (a *HandleJavaScriptDialogReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *HandleJavaScriptDialogReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HandleJavaScriptDialogReply %s", err)
+		log.Printf("unmarshal error: HandleJavaScriptDialogReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // HandleJavaScriptDialogReply returns the FrameID value for HandleJavaScriptDialog in the Page domain.
@@ -892,17 +906,18 @@ type NavigateReply struct {
 }
 
 // NavigateReply returns whether or not the FrameID matches the reply value for Navigate in the Page domain.
-func (a *NavigateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *NavigateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	v := &NavigateReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: NavigateReply %s", err)
+		log.Printf("unmarshal error: NavigateReply %s", err)
+		return false, err
 	}
 	if v.FrameID != shared.FrameID(frameID) {
-		return false
+		return false, nil
 	}
 	*a = *v
-	return true
+	return true, nil
 }
 
 // NavigateReply returns the FrameID for Navigate in the Page domain.
@@ -952,12 +967,13 @@ type NavigateToHistoryEntryReply struct {
 }
 
 // NavigateToHistoryEntryReply returns whether or not the FrameID matches the reply value for NavigateToHistoryEntry in the Page domain.
-func (a *NavigateToHistoryEntryReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *NavigateToHistoryEntryReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: NavigateToHistoryEntryReply %s", err)
+		log.Printf("unmarshal error: NavigateToHistoryEntryReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // NavigateToHistoryEntryReply returns the FrameID value for NavigateToHistoryEntry in the Page domain.
@@ -1022,12 +1038,13 @@ type PrintToPDFReply struct {
 }
 
 // PrintToPDFReply returns whether or not the FrameID matches the reply value for PrintToPDF in the Page domain.
-func (a *PrintToPDFReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *PrintToPDFReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PrintToPDFReply %s", err)
+		log.Printf("unmarshal error: PrintToPDFReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // PrintToPDFReply returns the FrameID value for PrintToPDF in the Page domain.
@@ -1078,12 +1095,13 @@ type ReloadReply struct {
 }
 
 // ReloadReply returns whether or not the FrameID matches the reply value for Reload in the Page domain.
-func (a *ReloadReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ReloadReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReloadReply %s", err)
+		log.Printf("unmarshal error: ReloadReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ReloadReply returns the FrameID value for Reload in the Page domain.
@@ -1133,12 +1151,13 @@ type RemoveScriptToEvaluateOnLoadReply struct {
 }
 
 // RemoveScriptToEvaluateOnLoadReply returns whether or not the FrameID matches the reply value for RemoveScriptToEvaluateOnLoad in the Page domain.
-func (a *RemoveScriptToEvaluateOnLoadReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveScriptToEvaluateOnLoadReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveScriptToEvaluateOnLoadReply %s", err)
+		log.Printf("unmarshal error: RemoveScriptToEvaluateOnLoadReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveScriptToEvaluateOnLoadReply returns the FrameID value for RemoveScriptToEvaluateOnLoad in the Page domain.
@@ -1188,12 +1207,13 @@ type RemoveScriptToEvaluateOnNewDocumentReply struct {
 }
 
 // RemoveScriptToEvaluateOnNewDocumentReply returns whether or not the FrameID matches the reply value for RemoveScriptToEvaluateOnNewDocument in the Page domain.
-func (a *RemoveScriptToEvaluateOnNewDocumentReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveScriptToEvaluateOnNewDocumentReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveScriptToEvaluateOnNewDocumentReply %s", err)
+		log.Printf("unmarshal error: RemoveScriptToEvaluateOnNewDocumentReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveScriptToEvaluateOnNewDocumentReply returns the FrameID value for RemoveScriptToEvaluateOnNewDocument in the Page domain.
@@ -1242,12 +1262,13 @@ type RequestAppBannerReply struct {
 }
 
 // RequestAppBannerReply returns whether or not the FrameID matches the reply value for RequestAppBanner in the Page domain.
-func (a *RequestAppBannerReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestAppBannerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestAppBannerReply %s", err)
+		log.Printf("unmarshal error: RequestAppBannerReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestAppBannerReply returns the FrameID value for RequestAppBanner in the Page domain.
@@ -1297,12 +1318,13 @@ type ScreencastFrameAckReply struct {
 }
 
 // ScreencastFrameAckReply returns whether or not the FrameID matches the reply value for ScreencastFrameAck in the Page domain.
-func (a *ScreencastFrameAckReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ScreencastFrameAckReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ScreencastFrameAckReply %s", err)
+		log.Printf("unmarshal error: ScreencastFrameAckReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ScreencastFrameAckReply returns the FrameID value for ScreencastFrameAck in the Page domain.
@@ -1357,12 +1379,13 @@ type SearchInResourceReply struct {
 }
 
 // SearchInResourceReply returns whether or not the FrameID matches the reply value for SearchInResource in the Page domain.
-func (a *SearchInResourceReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SearchInResourceReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SearchInResourceReply %s", err)
+		log.Printf("unmarshal error: SearchInResourceReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SearchInResourceReply returns the FrameID value for SearchInResource in the Page domain.
@@ -1412,12 +1435,13 @@ type SetAdBlockingEnabledReply struct {
 }
 
 // SetAdBlockingEnabledReply returns whether or not the FrameID matches the reply value for SetAdBlockingEnabled in the Page domain.
-func (a *SetAdBlockingEnabledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetAdBlockingEnabledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetAdBlockingEnabledReply %s", err)
+		log.Printf("unmarshal error: SetAdBlockingEnabledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetAdBlockingEnabledReply returns the FrameID value for SetAdBlockingEnabled in the Page domain.
@@ -1467,12 +1491,13 @@ type SetBypassCSPReply struct {
 }
 
 // SetBypassCSPReply returns whether or not the FrameID matches the reply value for SetBypassCSP in the Page domain.
-func (a *SetBypassCSPReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetBypassCSPReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBypassCSPReply %s", err)
+		log.Printf("unmarshal error: SetBypassCSPReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetBypassCSPReply returns the FrameID value for SetBypassCSP in the Page domain.
@@ -1522,12 +1547,13 @@ type SetFontFamiliesReply struct {
 }
 
 // SetFontFamiliesReply returns whether or not the FrameID matches the reply value for SetFontFamilies in the Page domain.
-func (a *SetFontFamiliesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetFontFamiliesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetFontFamiliesReply %s", err)
+		log.Printf("unmarshal error: SetFontFamiliesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetFontFamiliesReply returns the FrameID value for SetFontFamilies in the Page domain.
@@ -1577,12 +1603,13 @@ type SetFontSizesReply struct {
 }
 
 // SetFontSizesReply returns whether or not the FrameID matches the reply value for SetFontSizes in the Page domain.
-func (a *SetFontSizesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetFontSizesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetFontSizesReply %s", err)
+		log.Printf("unmarshal error: SetFontSizesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetFontSizesReply returns the FrameID value for SetFontSizes in the Page domain.
@@ -1633,12 +1660,13 @@ type SetDocumentContentReply struct {
 }
 
 // SetDocumentContentReply returns whether or not the FrameID matches the reply value for SetDocumentContent in the Page domain.
-func (a *SetDocumentContentReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDocumentContentReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDocumentContentReply %s", err)
+		log.Printf("unmarshal error: SetDocumentContentReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDocumentContentReply returns the FrameID value for SetDocumentContent in the Page domain.
@@ -1693,12 +1721,13 @@ type SetDownloadBehaviorReply struct {
 }
 
 // SetDownloadBehaviorReply returns whether or not the FrameID matches the reply value for SetDownloadBehavior in the Page domain.
-func (a *SetDownloadBehaviorReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDownloadBehaviorReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDownloadBehaviorReply %s", err)
+		log.Printf("unmarshal error: SetDownloadBehaviorReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDownloadBehaviorReply returns the FrameID value for SetDownloadBehavior in the Page domain.
@@ -1748,12 +1777,13 @@ type SetLifecycleEventsEnabledReply struct {
 }
 
 // SetLifecycleEventsEnabledReply returns whether or not the FrameID matches the reply value for SetLifecycleEventsEnabled in the Page domain.
-func (a *SetLifecycleEventsEnabledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetLifecycleEventsEnabledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetLifecycleEventsEnabledReply %s", err)
+		log.Printf("unmarshal error: SetLifecycleEventsEnabledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetLifecycleEventsEnabledReply returns the FrameID value for SetLifecycleEventsEnabled in the Page domain.
@@ -1810,12 +1840,13 @@ type StartScreencastReply struct {
 }
 
 // StartScreencastReply returns whether or not the FrameID matches the reply value for StartScreencast in the Page domain.
-func (a *StartScreencastReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartScreencastReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartScreencastReply %s", err)
+		log.Printf("unmarshal error: StartScreencastReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartScreencastReply returns the FrameID value for StartScreencast in the Page domain.
@@ -1864,12 +1895,13 @@ type StopLoadingReply struct {
 }
 
 // StopLoadingReply returns whether or not the FrameID matches the reply value for StopLoading in the Page domain.
-func (a *StopLoadingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopLoadingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopLoadingReply %s", err)
+		log.Printf("unmarshal error: StopLoadingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopLoadingReply returns the FrameID value for StopLoading in the Page domain.
@@ -1918,12 +1950,13 @@ type CrashReply struct {
 }
 
 // CrashReply returns whether or not the FrameID matches the reply value for Crash in the Page domain.
-func (a *CrashReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CrashReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CrashReply %s", err)
+		log.Printf("unmarshal error: CrashReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CrashReply returns the FrameID value for Crash in the Page domain.
@@ -1972,12 +2005,13 @@ type CloseReply struct {
 }
 
 // CloseReply returns whether or not the FrameID matches the reply value for Close in the Page domain.
-func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CloseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CloseReply %s", err)
+		log.Printf("unmarshal error: CloseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CloseReply returns the FrameID value for Close in the Page domain.
@@ -2030,12 +2064,13 @@ type SetWebLifecycleStateReply struct {
 }
 
 // SetWebLifecycleStateReply returns whether or not the FrameID matches the reply value for SetWebLifecycleState in the Page domain.
-func (a *SetWebLifecycleStateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetWebLifecycleStateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetWebLifecycleStateReply %s", err)
+		log.Printf("unmarshal error: SetWebLifecycleStateReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetWebLifecycleStateReply returns the FrameID value for SetWebLifecycleState in the Page domain.
@@ -2084,12 +2119,13 @@ type StopScreencastReply struct {
 }
 
 // StopScreencastReply returns whether or not the FrameID matches the reply value for StopScreencast in the Page domain.
-func (a *StopScreencastReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopScreencastReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopScreencastReply %s", err)
+		log.Printf("unmarshal error: StopScreencastReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopScreencastReply returns the FrameID value for StopScreencast in the Page domain.
@@ -2139,12 +2175,13 @@ type SetProduceCompilationCacheReply struct {
 }
 
 // SetProduceCompilationCacheReply returns whether or not the FrameID matches the reply value for SetProduceCompilationCache in the Page domain.
-func (a *SetProduceCompilationCacheReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetProduceCompilationCacheReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetProduceCompilationCacheReply %s", err)
+		log.Printf("unmarshal error: SetProduceCompilationCacheReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetProduceCompilationCacheReply returns the FrameID value for SetProduceCompilationCache in the Page domain.
@@ -2195,12 +2232,13 @@ type AddCompilationCacheReply struct {
 }
 
 // AddCompilationCacheReply returns whether or not the FrameID matches the reply value for AddCompilationCache in the Page domain.
-func (a *AddCompilationCacheReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AddCompilationCacheReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddCompilationCacheReply %s", err)
+		log.Printf("unmarshal error: AddCompilationCacheReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AddCompilationCacheReply returns the FrameID value for AddCompilationCache in the Page domain.
@@ -2249,12 +2287,13 @@ type ClearCompilationCacheReply struct {
 }
 
 // ClearCompilationCacheReply returns whether or not the FrameID matches the reply value for ClearCompilationCache in the Page domain.
-func (a *ClearCompilationCacheReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearCompilationCacheReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearCompilationCacheReply %s", err)
+		log.Printf("unmarshal error: ClearCompilationCacheReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearCompilationCacheReply returns the FrameID value for ClearCompilationCache in the Page domain.

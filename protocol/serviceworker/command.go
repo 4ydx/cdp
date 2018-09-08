@@ -54,12 +54,13 @@ type DeliverPushMessageReply struct {
 }
 
 // DeliverPushMessageReply returns whether or not the FrameID matches the reply value for DeliverPushMessage in the ServiceWorker domain.
-func (a *DeliverPushMessageReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DeliverPushMessageReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeliverPushMessageReply %s", err)
+		log.Printf("unmarshal error: DeliverPushMessageReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DeliverPushMessageReply returns the FrameID value for DeliverPushMessage in the ServiceWorker domain.
@@ -108,12 +109,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the ServiceWorker domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the ServiceWorker domain.
@@ -166,12 +168,13 @@ type DispatchSyncEventReply struct {
 }
 
 // DispatchSyncEventReply returns whether or not the FrameID matches the reply value for DispatchSyncEvent in the ServiceWorker domain.
-func (a *DispatchSyncEventReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DispatchSyncEventReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DispatchSyncEventReply %s", err)
+		log.Printf("unmarshal error: DispatchSyncEventReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DispatchSyncEventReply returns the FrameID value for DispatchSyncEvent in the ServiceWorker domain.
@@ -220,12 +223,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the ServiceWorker domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the ServiceWorker domain.
@@ -275,12 +279,13 @@ type InspectWorkerReply struct {
 }
 
 // InspectWorkerReply returns whether or not the FrameID matches the reply value for InspectWorker in the ServiceWorker domain.
-func (a *InspectWorkerReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *InspectWorkerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InspectWorkerReply %s", err)
+		log.Printf("unmarshal error: InspectWorkerReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // InspectWorkerReply returns the FrameID value for InspectWorker in the ServiceWorker domain.
@@ -330,12 +335,13 @@ type SetForceUpdateOnPageLoadReply struct {
 }
 
 // SetForceUpdateOnPageLoadReply returns whether or not the FrameID matches the reply value for SetForceUpdateOnPageLoad in the ServiceWorker domain.
-func (a *SetForceUpdateOnPageLoadReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetForceUpdateOnPageLoadReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetForceUpdateOnPageLoadReply %s", err)
+		log.Printf("unmarshal error: SetForceUpdateOnPageLoadReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetForceUpdateOnPageLoadReply returns the FrameID value for SetForceUpdateOnPageLoad in the ServiceWorker domain.
@@ -385,12 +391,13 @@ type SkipWaitingReply struct {
 }
 
 // SkipWaitingReply returns whether or not the FrameID matches the reply value for SkipWaiting in the ServiceWorker domain.
-func (a *SkipWaitingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SkipWaitingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SkipWaitingReply %s", err)
+		log.Printf("unmarshal error: SkipWaitingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SkipWaitingReply returns the FrameID value for SkipWaiting in the ServiceWorker domain.
@@ -440,12 +447,13 @@ type StartWorkerReply struct {
 }
 
 // StartWorkerReply returns whether or not the FrameID matches the reply value for StartWorker in the ServiceWorker domain.
-func (a *StartWorkerReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartWorkerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartWorkerReply %s", err)
+		log.Printf("unmarshal error: StartWorkerReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartWorkerReply returns the FrameID value for StartWorker in the ServiceWorker domain.
@@ -494,12 +502,13 @@ type StopAllWorkersReply struct {
 }
 
 // StopAllWorkersReply returns whether or not the FrameID matches the reply value for StopAllWorkers in the ServiceWorker domain.
-func (a *StopAllWorkersReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopAllWorkersReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopAllWorkersReply %s", err)
+		log.Printf("unmarshal error: StopAllWorkersReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopAllWorkersReply returns the FrameID value for StopAllWorkers in the ServiceWorker domain.
@@ -549,12 +558,13 @@ type StopWorkerReply struct {
 }
 
 // StopWorkerReply returns whether or not the FrameID matches the reply value for StopWorker in the ServiceWorker domain.
-func (a *StopWorkerReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopWorkerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopWorkerReply %s", err)
+		log.Printf("unmarshal error: StopWorkerReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopWorkerReply returns the FrameID value for StopWorker in the ServiceWorker domain.
@@ -604,12 +614,13 @@ type UnregisterReply struct {
 }
 
 // UnregisterReply returns whether or not the FrameID matches the reply value for Unregister in the ServiceWorker domain.
-func (a *UnregisterReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *UnregisterReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UnregisterReply %s", err)
+		log.Printf("unmarshal error: UnregisterReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // UnregisterReply returns the FrameID value for Unregister in the ServiceWorker domain.
@@ -659,12 +670,13 @@ type UpdateRegistrationReply struct {
 }
 
 // UpdateRegistrationReply returns whether or not the FrameID matches the reply value for UpdateRegistration in the ServiceWorker domain.
-func (a *UpdateRegistrationReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *UpdateRegistrationReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UpdateRegistrationReply %s", err)
+		log.Printf("unmarshal error: UpdateRegistrationReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // UpdateRegistrationReply returns the FrameID value for UpdateRegistration in the ServiceWorker domain.

@@ -45,12 +45,13 @@ type DeleteCacheReply struct {
 }
 
 // DeleteCacheReply returns whether or not the FrameID matches the reply value for DeleteCache in the CacheStorage domain.
-func (a *DeleteCacheReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DeleteCacheReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteCacheReply %s", err)
+		log.Printf("unmarshal error: DeleteCacheReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DeleteCacheReply returns the FrameID value for DeleteCache in the CacheStorage domain.
@@ -101,12 +102,13 @@ type DeleteEntryReply struct {
 }
 
 // DeleteEntryReply returns whether or not the FrameID matches the reply value for DeleteEntry in the CacheStorage domain.
-func (a *DeleteEntryReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DeleteEntryReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteEntryReply %s", err)
+		log.Printf("unmarshal error: DeleteEntryReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DeleteEntryReply returns the FrameID value for DeleteEntry in the CacheStorage domain.
@@ -157,12 +159,13 @@ type RequestCacheNamesReply struct {
 }
 
 // RequestCacheNamesReply returns whether or not the FrameID matches the reply value for RequestCacheNames in the CacheStorage domain.
-func (a *RequestCacheNamesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestCacheNamesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestCacheNamesReply %s", err)
+		log.Printf("unmarshal error: RequestCacheNamesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestCacheNamesReply returns the FrameID value for RequestCacheNames in the CacheStorage domain.
@@ -214,12 +217,13 @@ type RequestCachedResponseReply struct {
 }
 
 // RequestCachedResponseReply returns whether or not the FrameID matches the reply value for RequestCachedResponse in the CacheStorage domain.
-func (a *RequestCachedResponseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestCachedResponseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestCachedResponseReply %s", err)
+		log.Printf("unmarshal error: RequestCachedResponseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestCachedResponseReply returns the FrameID value for RequestCachedResponse in the CacheStorage domain.
@@ -273,12 +277,13 @@ type RequestEntriesReply struct {
 }
 
 // RequestEntriesReply returns whether or not the FrameID matches the reply value for RequestEntries in the CacheStorage domain.
-func (a *RequestEntriesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestEntriesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestEntriesReply %s", err)
+		log.Printf("unmarshal error: RequestEntriesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestEntriesReply returns the FrameID value for RequestEntries in the CacheStorage domain.

@@ -54,12 +54,13 @@ func (a *BreakpointResolvedReply) UnmarshalJSON(b []byte) error {
 }
 
 // BreakpointResolvedReply returns whether or not the FrameID matches the reply value for BreakpointResolved in the Debugger domain.
-func (a *BreakpointResolvedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *BreakpointResolvedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: BreakpointResolvedReply %s", err)
+		log.Printf("unmarshal error: BreakpointResolvedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // BreakpointResolvedReply returns the FrameID for BreakpointResolved in the Debugger domain.
@@ -103,12 +104,13 @@ func (a *PausedReply) UnmarshalJSON(b []byte) error {
 }
 
 // PausedReply returns whether or not the FrameID matches the reply value for Paused in the Debugger domain.
-func (a *PausedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *PausedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PausedReply %s", err)
+		log.Printf("unmarshal error: PausedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // PausedReply returns the FrameID for Paused in the Debugger domain.
@@ -133,12 +135,13 @@ func (a *ResumedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ResumedReply returns whether or not the FrameID matches the reply value for Resumed in the Debugger domain.
-func (a *ResumedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ResumedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ResumedReply %s", err)
+		log.Printf("unmarshal error: ResumedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ResumedReply returns the FrameID for Resumed in the Debugger domain.
@@ -181,12 +184,13 @@ func (a *ScriptFailedToParseReply) UnmarshalJSON(b []byte) error {
 }
 
 // ScriptFailedToParseReply returns whether or not the FrameID matches the reply value for ScriptFailedToParse in the Debugger domain.
-func (a *ScriptFailedToParseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ScriptFailedToParseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ScriptFailedToParseReply %s", err)
+		log.Printf("unmarshal error: ScriptFailedToParseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ScriptFailedToParseReply returns the FrameID for ScriptFailedToParse in the Debugger domain.
@@ -234,12 +238,13 @@ func (a *ScriptParsedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ScriptParsedReply returns whether or not the FrameID matches the reply value for ScriptParsed in the Debugger domain.
-func (a *ScriptParsedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ScriptParsedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ScriptParsedReply %s", err)
+		log.Printf("unmarshal error: ScriptParsedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ScriptParsedReply returns the FrameID for ScriptParsed in the Debugger domain.

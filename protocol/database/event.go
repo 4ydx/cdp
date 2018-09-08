@@ -43,12 +43,13 @@ func (a *AddDatabaseReply) UnmarshalJSON(b []byte) error {
 }
 
 // AddDatabaseReply returns whether or not the FrameID matches the reply value for AddDatabase in the Database domain.
-func (a *AddDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AddDatabaseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddDatabaseReply %s", err)
+		log.Printf("unmarshal error: AddDatabaseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AddDatabaseReply returns the FrameID for AddDatabase in the Database domain.

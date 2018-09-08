@@ -68,12 +68,13 @@ type AddRuleReply struct {
 }
 
 // AddRuleReply returns whether or not the FrameID matches the reply value for AddRule in the CSS domain.
-func (a *AddRuleReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AddRuleReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddRuleReply %s", err)
+		log.Printf("unmarshal error: AddRuleReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AddRuleReply returns the FrameID value for AddRule in the CSS domain.
@@ -124,12 +125,13 @@ type CollectClassNamesReply struct {
 }
 
 // CollectClassNamesReply returns whether or not the FrameID matches the reply value for CollectClassNames in the CSS domain.
-func (a *CollectClassNamesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CollectClassNamesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CollectClassNamesReply %s", err)
+		log.Printf("unmarshal error: CollectClassNamesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CollectClassNamesReply returns the FrameID value for CollectClassNames in the CSS domain.
@@ -180,12 +182,13 @@ type CreateStyleSheetReply struct {
 }
 
 // CreateStyleSheetReply returns whether or not the FrameID matches the reply value for CreateStyleSheet in the CSS domain.
-func (a *CreateStyleSheetReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CreateStyleSheetReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CreateStyleSheetReply %s", err)
+		log.Printf("unmarshal error: CreateStyleSheetReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CreateStyleSheetReply returns the FrameID value for CreateStyleSheet in the CSS domain.
@@ -234,12 +237,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the CSS domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the CSS domain.
@@ -288,12 +292,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the CSS domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the CSS domain.
@@ -344,12 +349,13 @@ type ForcePseudoStateReply struct {
 }
 
 // ForcePseudoStateReply returns whether or not the FrameID matches the reply value for ForcePseudoState in the CSS domain.
-func (a *ForcePseudoStateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ForcePseudoStateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ForcePseudoStateReply %s", err)
+		log.Printf("unmarshal error: ForcePseudoStateReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ForcePseudoStateReply returns the FrameID value for ForcePseudoState in the CSS domain.
@@ -403,12 +409,13 @@ type GetBackgroundColorsReply struct {
 }
 
 // GetBackgroundColorsReply returns whether or not the FrameID matches the reply value for GetBackgroundColors in the CSS domain.
-func (a *GetBackgroundColorsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetBackgroundColorsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBackgroundColorsReply %s", err)
+		log.Printf("unmarshal error: GetBackgroundColorsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetBackgroundColorsReply returns the FrameID value for GetBackgroundColors in the CSS domain.
@@ -459,12 +466,13 @@ type GetComputedStyleForNodeReply struct {
 }
 
 // GetComputedStyleForNodeReply returns whether or not the FrameID matches the reply value for GetComputedStyleForNode in the CSS domain.
-func (a *GetComputedStyleForNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetComputedStyleForNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetComputedStyleForNodeReply %s", err)
+		log.Printf("unmarshal error: GetComputedStyleForNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetComputedStyleForNodeReply returns the FrameID value for GetComputedStyleForNode in the CSS domain.
@@ -516,12 +524,13 @@ type GetInlineStylesForNodeReply struct {
 }
 
 // GetInlineStylesForNodeReply returns whether or not the FrameID matches the reply value for GetInlineStylesForNode in the CSS domain.
-func (a *GetInlineStylesForNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetInlineStylesForNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetInlineStylesForNodeReply %s", err)
+		log.Printf("unmarshal error: GetInlineStylesForNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetInlineStylesForNodeReply returns the FrameID value for GetInlineStylesForNode in the CSS domain.
@@ -577,12 +586,13 @@ type GetMatchedStylesForNodeReply struct {
 }
 
 // GetMatchedStylesForNodeReply returns whether or not the FrameID matches the reply value for GetMatchedStylesForNode in the CSS domain.
-func (a *GetMatchedStylesForNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetMatchedStylesForNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetMatchedStylesForNodeReply %s", err)
+		log.Printf("unmarshal error: GetMatchedStylesForNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetMatchedStylesForNodeReply returns the FrameID value for GetMatchedStylesForNode in the CSS domain.
@@ -632,12 +642,13 @@ type GetMediaQueriesReply struct {
 }
 
 // GetMediaQueriesReply returns whether or not the FrameID matches the reply value for GetMediaQueries in the CSS domain.
-func (a *GetMediaQueriesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetMediaQueriesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetMediaQueriesReply %s", err)
+		log.Printf("unmarshal error: GetMediaQueriesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetMediaQueriesReply returns the FrameID value for GetMediaQueries in the CSS domain.
@@ -688,12 +699,13 @@ type GetPlatformFontsForNodeReply struct {
 }
 
 // GetPlatformFontsForNodeReply returns whether or not the FrameID matches the reply value for GetPlatformFontsForNode in the CSS domain.
-func (a *GetPlatformFontsForNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetPlatformFontsForNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetPlatformFontsForNodeReply %s", err)
+		log.Printf("unmarshal error: GetPlatformFontsForNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetPlatformFontsForNodeReply returns the FrameID value for GetPlatformFontsForNode in the CSS domain.
@@ -744,12 +756,13 @@ type GetStyleSheetTextReply struct {
 }
 
 // GetStyleSheetTextReply returns whether or not the FrameID matches the reply value for GetStyleSheetText in the CSS domain.
-func (a *GetStyleSheetTextReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetStyleSheetTextReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetStyleSheetTextReply %s", err)
+		log.Printf("unmarshal error: GetStyleSheetTextReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetStyleSheetTextReply returns the FrameID value for GetStyleSheetText in the CSS domain.
@@ -801,12 +814,13 @@ type SetEffectivePropertyValueForNodeReply struct {
 }
 
 // SetEffectivePropertyValueForNodeReply returns whether or not the FrameID matches the reply value for SetEffectivePropertyValueForNode in the CSS domain.
-func (a *SetEffectivePropertyValueForNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetEffectivePropertyValueForNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetEffectivePropertyValueForNodeReply %s", err)
+		log.Printf("unmarshal error: SetEffectivePropertyValueForNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetEffectivePropertyValueForNodeReply returns the FrameID value for SetEffectivePropertyValueForNode in the CSS domain.
@@ -859,12 +873,13 @@ type SetKeyframeKeyReply struct {
 }
 
 // SetKeyframeKeyReply returns whether or not the FrameID matches the reply value for SetKeyframeKey in the CSS domain.
-func (a *SetKeyframeKeyReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetKeyframeKeyReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetKeyframeKeyReply %s", err)
+		log.Printf("unmarshal error: SetKeyframeKeyReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetKeyframeKeyReply returns the FrameID value for SetKeyframeKey in the CSS domain.
@@ -917,12 +932,13 @@ type SetMediaTextReply struct {
 }
 
 // SetMediaTextReply returns whether or not the FrameID matches the reply value for SetMediaText in the CSS domain.
-func (a *SetMediaTextReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetMediaTextReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetMediaTextReply %s", err)
+		log.Printf("unmarshal error: SetMediaTextReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetMediaTextReply returns the FrameID value for SetMediaText in the CSS domain.
@@ -975,12 +991,13 @@ type SetRuleSelectorReply struct {
 }
 
 // SetRuleSelectorReply returns whether or not the FrameID matches the reply value for SetRuleSelector in the CSS domain.
-func (a *SetRuleSelectorReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetRuleSelectorReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetRuleSelectorReply %s", err)
+		log.Printf("unmarshal error: SetRuleSelectorReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetRuleSelectorReply returns the FrameID value for SetRuleSelector in the CSS domain.
@@ -1032,12 +1049,13 @@ type SetStyleSheetTextReply struct {
 }
 
 // SetStyleSheetTextReply returns whether or not the FrameID matches the reply value for SetStyleSheetText in the CSS domain.
-func (a *SetStyleSheetTextReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetStyleSheetTextReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetStyleSheetTextReply %s", err)
+		log.Printf("unmarshal error: SetStyleSheetTextReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetStyleSheetTextReply returns the FrameID value for SetStyleSheetText in the CSS domain.
@@ -1088,12 +1106,13 @@ type SetStyleTextsReply struct {
 }
 
 // SetStyleTextsReply returns whether or not the FrameID matches the reply value for SetStyleTexts in the CSS domain.
-func (a *SetStyleTextsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetStyleTextsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetStyleTextsReply %s", err)
+		log.Printf("unmarshal error: SetStyleTextsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetStyleTextsReply returns the FrameID value for SetStyleTexts in the CSS domain.
@@ -1142,12 +1161,13 @@ type StartRuleUsageTrackingReply struct {
 }
 
 // StartRuleUsageTrackingReply returns whether or not the FrameID matches the reply value for StartRuleUsageTracking in the CSS domain.
-func (a *StartRuleUsageTrackingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartRuleUsageTrackingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartRuleUsageTrackingReply %s", err)
+		log.Printf("unmarshal error: StartRuleUsageTrackingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartRuleUsageTrackingReply returns the FrameID value for StartRuleUsageTracking in the CSS domain.
@@ -1197,12 +1217,13 @@ type StopRuleUsageTrackingReply struct {
 }
 
 // StopRuleUsageTrackingReply returns whether or not the FrameID matches the reply value for StopRuleUsageTracking in the CSS domain.
-func (a *StopRuleUsageTrackingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopRuleUsageTrackingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopRuleUsageTrackingReply %s", err)
+		log.Printf("unmarshal error: StopRuleUsageTrackingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopRuleUsageTrackingReply returns the FrameID value for StopRuleUsageTracking in the CSS domain.
@@ -1252,12 +1273,13 @@ type TakeCoverageDeltaReply struct {
 }
 
 // TakeCoverageDeltaReply returns whether or not the FrameID matches the reply value for TakeCoverageDelta in the CSS domain.
-func (a *TakeCoverageDeltaReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TakeCoverageDeltaReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakeCoverageDeltaReply %s", err)
+		log.Printf("unmarshal error: TakeCoverageDeltaReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TakeCoverageDeltaReply returns the FrameID value for TakeCoverageDelta in the CSS domain.

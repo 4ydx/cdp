@@ -47,12 +47,13 @@ type ClearDataForOriginReply struct {
 }
 
 // ClearDataForOriginReply returns whether or not the FrameID matches the reply value for ClearDataForOrigin in the Storage domain.
-func (a *ClearDataForOriginReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearDataForOriginReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearDataForOriginReply %s", err)
+		log.Printf("unmarshal error: ClearDataForOriginReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearDataForOriginReply returns the FrameID value for ClearDataForOrigin in the Storage domain.
@@ -105,12 +106,13 @@ type GetUsageAndQuotaReply struct {
 }
 
 // GetUsageAndQuotaReply returns whether or not the FrameID matches the reply value for GetUsageAndQuota in the Storage domain.
-func (a *GetUsageAndQuotaReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetUsageAndQuotaReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetUsageAndQuotaReply %s", err)
+		log.Printf("unmarshal error: GetUsageAndQuotaReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetUsageAndQuotaReply returns the FrameID value for GetUsageAndQuota in the Storage domain.
@@ -160,12 +162,13 @@ type TrackCacheStorageForOriginReply struct {
 }
 
 // TrackCacheStorageForOriginReply returns whether or not the FrameID matches the reply value for TrackCacheStorageForOrigin in the Storage domain.
-func (a *TrackCacheStorageForOriginReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TrackCacheStorageForOriginReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TrackCacheStorageForOriginReply %s", err)
+		log.Printf("unmarshal error: TrackCacheStorageForOriginReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TrackCacheStorageForOriginReply returns the FrameID value for TrackCacheStorageForOrigin in the Storage domain.
@@ -215,12 +218,13 @@ type TrackIndexedDBForOriginReply struct {
 }
 
 // TrackIndexedDBForOriginReply returns whether or not the FrameID matches the reply value for TrackIndexedDBForOrigin in the Storage domain.
-func (a *TrackIndexedDBForOriginReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TrackIndexedDBForOriginReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TrackIndexedDBForOriginReply %s", err)
+		log.Printf("unmarshal error: TrackIndexedDBForOriginReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TrackIndexedDBForOriginReply returns the FrameID value for TrackIndexedDBForOrigin in the Storage domain.
@@ -270,12 +274,13 @@ type UntrackCacheStorageForOriginReply struct {
 }
 
 // UntrackCacheStorageForOriginReply returns whether or not the FrameID matches the reply value for UntrackCacheStorageForOrigin in the Storage domain.
-func (a *UntrackCacheStorageForOriginReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *UntrackCacheStorageForOriginReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UntrackCacheStorageForOriginReply %s", err)
+		log.Printf("unmarshal error: UntrackCacheStorageForOriginReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // UntrackCacheStorageForOriginReply returns the FrameID value for UntrackCacheStorageForOrigin in the Storage domain.
@@ -325,12 +330,13 @@ type UntrackIndexedDBForOriginReply struct {
 }
 
 // UntrackIndexedDBForOriginReply returns whether or not the FrameID matches the reply value for UntrackIndexedDBForOrigin in the Storage domain.
-func (a *UntrackIndexedDBForOriginReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *UntrackIndexedDBForOriginReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UntrackIndexedDBForOriginReply %s", err)
+		log.Printf("unmarshal error: UntrackIndexedDBForOriginReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // UntrackIndexedDBForOriginReply returns the FrameID value for UntrackIndexedDBForOrigin in the Storage domain.

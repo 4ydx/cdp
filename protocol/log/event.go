@@ -43,12 +43,13 @@ func (a *EntryAddedReply) UnmarshalJSON(b []byte) error {
 }
 
 // EntryAddedReply returns whether or not the FrameID matches the reply value for EntryAdded in the Log domain.
-func (a *EntryAddedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EntryAddedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EntryAddedReply %s", err)
+		log.Printf("unmarshal error: EntryAddedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EntryAddedReply returns the FrameID for EntryAdded in the Log domain.

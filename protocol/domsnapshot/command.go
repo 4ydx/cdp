@@ -43,12 +43,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the DOMSnapshot domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the DOMSnapshot domain.
@@ -97,12 +98,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the DOMSnapshot domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the DOMSnapshot domain.
@@ -158,12 +160,13 @@ type GetSnapshotReply struct {
 }
 
 // GetSnapshotReply returns whether or not the FrameID matches the reply value for GetSnapshot in the DOMSnapshot domain.
-func (a *GetSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetSnapshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetSnapshotReply %s", err)
+		log.Printf("unmarshal error: GetSnapshotReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetSnapshotReply returns the FrameID value for GetSnapshot in the DOMSnapshot domain.
@@ -215,12 +218,13 @@ type CaptureSnapshotReply struct {
 }
 
 // CaptureSnapshotReply returns whether or not the FrameID matches the reply value for CaptureSnapshot in the DOMSnapshot domain.
-func (a *CaptureSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CaptureSnapshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CaptureSnapshotReply %s", err)
+		log.Printf("unmarshal error: CaptureSnapshotReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CaptureSnapshotReply returns the FrameID value for CaptureSnapshot in the DOMSnapshot domain.

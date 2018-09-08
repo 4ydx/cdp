@@ -45,12 +45,13 @@ type CloseReply struct {
 }
 
 // CloseReply returns whether or not the FrameID matches the reply value for Close in the IO domain.
-func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CloseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CloseReply %s", err)
+		log.Printf("unmarshal error: CloseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CloseReply returns the FrameID value for Close in the IO domain.
@@ -105,12 +106,13 @@ type ReadReply struct {
 }
 
 // ReadReply returns whether or not the FrameID matches the reply value for Read in the IO domain.
-func (a *ReadReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ReadReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReadReply %s", err)
+		log.Printf("unmarshal error: ReadReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ReadReply returns the FrameID value for Read in the IO domain.
@@ -161,12 +163,13 @@ type ResolveBlobReply struct {
 }
 
 // ResolveBlobReply returns whether or not the FrameID matches the reply value for ResolveBlob in the IO domain.
-func (a *ResolveBlobReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ResolveBlobReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ResolveBlobReply %s", err)
+		log.Printf("unmarshal error: ResolveBlobReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ResolveBlobReply returns the FrameID value for ResolveBlob in the IO domain.

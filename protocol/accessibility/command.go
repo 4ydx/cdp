@@ -48,12 +48,13 @@ type GetPartialAXTreeReply struct {
 }
 
 // GetPartialAXTreeReply returns whether or not the FrameID matches the reply value for GetPartialAXTree in the Accessibility domain.
-func (a *GetPartialAXTreeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetPartialAXTreeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetPartialAXTreeReply %s", err)
+		log.Printf("unmarshal error: GetPartialAXTreeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetPartialAXTreeReply returns the FrameID value for GetPartialAXTree in the Accessibility domain.

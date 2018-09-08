@@ -51,12 +51,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Profiler domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Profiler domain.
@@ -105,12 +106,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Profiler domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Profiler domain.
@@ -160,12 +162,13 @@ type GetBestEffortCoverageReply struct {
 }
 
 // GetBestEffortCoverageReply returns whether or not the FrameID matches the reply value for GetBestEffortCoverage in the Profiler domain.
-func (a *GetBestEffortCoverageReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetBestEffortCoverageReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBestEffortCoverageReply %s", err)
+		log.Printf("unmarshal error: GetBestEffortCoverageReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetBestEffortCoverageReply returns the FrameID value for GetBestEffortCoverage in the Profiler domain.
@@ -215,12 +218,13 @@ type SetSamplingIntervalReply struct {
 }
 
 // SetSamplingIntervalReply returns whether or not the FrameID matches the reply value for SetSamplingInterval in the Profiler domain.
-func (a *SetSamplingIntervalReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetSamplingIntervalReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetSamplingIntervalReply %s", err)
+		log.Printf("unmarshal error: SetSamplingIntervalReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetSamplingIntervalReply returns the FrameID value for SetSamplingInterval in the Profiler domain.
@@ -269,12 +273,13 @@ type StartReply struct {
 }
 
 // StartReply returns whether or not the FrameID matches the reply value for Start in the Profiler domain.
-func (a *StartReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartReply %s", err)
+		log.Printf("unmarshal error: StartReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartReply returns the FrameID value for Start in the Profiler domain.
@@ -325,12 +330,13 @@ type StartPreciseCoverageReply struct {
 }
 
 // StartPreciseCoverageReply returns whether or not the FrameID matches the reply value for StartPreciseCoverage in the Profiler domain.
-func (a *StartPreciseCoverageReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartPreciseCoverageReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartPreciseCoverageReply %s", err)
+		log.Printf("unmarshal error: StartPreciseCoverageReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartPreciseCoverageReply returns the FrameID value for StartPreciseCoverage in the Profiler domain.
@@ -379,12 +385,13 @@ type StartTypeProfileReply struct {
 }
 
 // StartTypeProfileReply returns whether or not the FrameID matches the reply value for StartTypeProfile in the Profiler domain.
-func (a *StartTypeProfileReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartTypeProfileReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartTypeProfileReply %s", err)
+		log.Printf("unmarshal error: StartTypeProfileReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartTypeProfileReply returns the FrameID value for StartTypeProfile in the Profiler domain.
@@ -434,12 +441,13 @@ type StopReply struct {
 }
 
 // StopReply returns whether or not the FrameID matches the reply value for Stop in the Profiler domain.
-func (a *StopReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopReply %s", err)
+		log.Printf("unmarshal error: StopReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopReply returns the FrameID value for Stop in the Profiler domain.
@@ -488,12 +496,13 @@ type StopPreciseCoverageReply struct {
 }
 
 // StopPreciseCoverageReply returns whether or not the FrameID matches the reply value for StopPreciseCoverage in the Profiler domain.
-func (a *StopPreciseCoverageReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopPreciseCoverageReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopPreciseCoverageReply %s", err)
+		log.Printf("unmarshal error: StopPreciseCoverageReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopPreciseCoverageReply returns the FrameID value for StopPreciseCoverage in the Profiler domain.
@@ -542,12 +551,13 @@ type StopTypeProfileReply struct {
 }
 
 // StopTypeProfileReply returns whether or not the FrameID matches the reply value for StopTypeProfile in the Profiler domain.
-func (a *StopTypeProfileReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopTypeProfileReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopTypeProfileReply %s", err)
+		log.Printf("unmarshal error: StopTypeProfileReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopTypeProfileReply returns the FrameID value for StopTypeProfile in the Profiler domain.
@@ -597,12 +607,13 @@ type TakePreciseCoverageReply struct {
 }
 
 // TakePreciseCoverageReply returns whether or not the FrameID matches the reply value for TakePreciseCoverage in the Profiler domain.
-func (a *TakePreciseCoverageReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TakePreciseCoverageReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakePreciseCoverageReply %s", err)
+		log.Printf("unmarshal error: TakePreciseCoverageReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TakePreciseCoverageReply returns the FrameID value for TakePreciseCoverage in the Profiler domain.
@@ -652,12 +663,13 @@ type TakeTypeProfileReply struct {
 }
 
 // TakeTypeProfileReply returns whether or not the FrameID matches the reply value for TakeTypeProfile in the Profiler domain.
-func (a *TakeTypeProfileReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TakeTypeProfileReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakeTypeProfileReply %s", err)
+		log.Printf("unmarshal error: TakeTypeProfileReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TakeTypeProfileReply returns the FrameID value for TakeTypeProfile in the Profiler domain.

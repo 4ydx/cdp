@@ -55,12 +55,13 @@ type GetEventListenersReply struct {
 }
 
 // GetEventListenersReply returns whether or not the FrameID matches the reply value for GetEventListeners in the DOMDebugger domain.
-func (a *GetEventListenersReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetEventListenersReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetEventListenersReply %s", err)
+		log.Printf("unmarshal error: GetEventListenersReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetEventListenersReply returns the FrameID value for GetEventListeners in the DOMDebugger domain.
@@ -111,12 +112,13 @@ type RemoveDOMBreakpointReply struct {
 }
 
 // RemoveDOMBreakpointReply returns whether or not the FrameID matches the reply value for RemoveDOMBreakpoint in the DOMDebugger domain.
-func (a *RemoveDOMBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveDOMBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveDOMBreakpointReply %s", err)
+		log.Printf("unmarshal error: RemoveDOMBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveDOMBreakpointReply returns the FrameID value for RemoveDOMBreakpoint in the DOMDebugger domain.
@@ -170,12 +172,13 @@ type RemoveEventListenerBreakpointReply struct {
 }
 
 // RemoveEventListenerBreakpointReply returns whether or not the FrameID matches the reply value for RemoveEventListenerBreakpoint in the DOMDebugger domain.
-func (a *RemoveEventListenerBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveEventListenerBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveEventListenerBreakpointReply %s", err)
+		log.Printf("unmarshal error: RemoveEventListenerBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveEventListenerBreakpointReply returns the FrameID value for RemoveEventListenerBreakpoint in the DOMDebugger domain.
@@ -225,12 +228,13 @@ type RemoveInstrumentationBreakpointReply struct {
 }
 
 // RemoveInstrumentationBreakpointReply returns whether or not the FrameID matches the reply value for RemoveInstrumentationBreakpoint in the DOMDebugger domain.
-func (a *RemoveInstrumentationBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveInstrumentationBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveInstrumentationBreakpointReply %s", err)
+		log.Printf("unmarshal error: RemoveInstrumentationBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveInstrumentationBreakpointReply returns the FrameID value for RemoveInstrumentationBreakpoint in the DOMDebugger domain.
@@ -280,12 +284,13 @@ type RemoveXHRBreakpointReply struct {
 }
 
 // RemoveXHRBreakpointReply returns whether or not the FrameID matches the reply value for RemoveXHRBreakpoint in the DOMDebugger domain.
-func (a *RemoveXHRBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveXHRBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveXHRBreakpointReply %s", err)
+		log.Printf("unmarshal error: RemoveXHRBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveXHRBreakpointReply returns the FrameID value for RemoveXHRBreakpoint in the DOMDebugger domain.
@@ -336,12 +341,13 @@ type SetDOMBreakpointReply struct {
 }
 
 // SetDOMBreakpointReply returns whether or not the FrameID matches the reply value for SetDOMBreakpoint in the DOMDebugger domain.
-func (a *SetDOMBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDOMBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDOMBreakpointReply %s", err)
+		log.Printf("unmarshal error: SetDOMBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDOMBreakpointReply returns the FrameID value for SetDOMBreakpoint in the DOMDebugger domain.
@@ -396,12 +402,13 @@ type SetEventListenerBreakpointReply struct {
 }
 
 // SetEventListenerBreakpointReply returns whether or not the FrameID matches the reply value for SetEventListenerBreakpoint in the DOMDebugger domain.
-func (a *SetEventListenerBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetEventListenerBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetEventListenerBreakpointReply %s", err)
+		log.Printf("unmarshal error: SetEventListenerBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetEventListenerBreakpointReply returns the FrameID value for SetEventListenerBreakpoint in the DOMDebugger domain.
@@ -451,12 +458,13 @@ type SetInstrumentationBreakpointReply struct {
 }
 
 // SetInstrumentationBreakpointReply returns whether or not the FrameID matches the reply value for SetInstrumentationBreakpoint in the DOMDebugger domain.
-func (a *SetInstrumentationBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetInstrumentationBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetInstrumentationBreakpointReply %s", err)
+		log.Printf("unmarshal error: SetInstrumentationBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetInstrumentationBreakpointReply returns the FrameID value for SetInstrumentationBreakpoint in the DOMDebugger domain.
@@ -506,12 +514,13 @@ type SetXHRBreakpointReply struct {
 }
 
 // SetXHRBreakpointReply returns whether or not the FrameID matches the reply value for SetXHRBreakpoint in the DOMDebugger domain.
-func (a *SetXHRBreakpointReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetXHRBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetXHRBreakpointReply %s", err)
+		log.Printf("unmarshal error: SetXHRBreakpointReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetXHRBreakpointReply returns the FrameID value for SetXHRBreakpoint in the DOMDebugger domain.

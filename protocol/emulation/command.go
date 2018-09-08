@@ -63,12 +63,13 @@ type CanEmulateReply struct {
 }
 
 // CanEmulateReply returns whether or not the FrameID matches the reply value for CanEmulate in the Emulation domain.
-func (a *CanEmulateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CanEmulateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CanEmulateReply %s", err)
+		log.Printf("unmarshal error: CanEmulateReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CanEmulateReply returns the FrameID value for CanEmulate in the Emulation domain.
@@ -117,12 +118,13 @@ type ClearDeviceMetricsOverrideReply struct {
 }
 
 // ClearDeviceMetricsOverrideReply returns whether or not the FrameID matches the reply value for ClearDeviceMetricsOverride in the Emulation domain.
-func (a *ClearDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearDeviceMetricsOverrideReply %s", err)
+		log.Printf("unmarshal error: ClearDeviceMetricsOverrideReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearDeviceMetricsOverrideReply returns the FrameID value for ClearDeviceMetricsOverride in the Emulation domain.
@@ -171,12 +173,13 @@ type ClearGeolocationOverrideReply struct {
 }
 
 // ClearGeolocationOverrideReply returns whether or not the FrameID matches the reply value for ClearGeolocationOverride in the Emulation domain.
-func (a *ClearGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearGeolocationOverrideReply %s", err)
+		log.Printf("unmarshal error: ClearGeolocationOverrideReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearGeolocationOverrideReply returns the FrameID value for ClearGeolocationOverride in the Emulation domain.
@@ -225,12 +228,13 @@ type ResetPageScaleFactorReply struct {
 }
 
 // ResetPageScaleFactorReply returns whether or not the FrameID matches the reply value for ResetPageScaleFactor in the Emulation domain.
-func (a *ResetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ResetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ResetPageScaleFactorReply %s", err)
+		log.Printf("unmarshal error: ResetPageScaleFactorReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ResetPageScaleFactorReply returns the FrameID value for ResetPageScaleFactor in the Emulation domain.
@@ -280,12 +284,13 @@ type SetCPUThrottlingRateReply struct {
 }
 
 // SetCPUThrottlingRateReply returns whether or not the FrameID matches the reply value for SetCPUThrottlingRate in the Emulation domain.
-func (a *SetCPUThrottlingRateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetCPUThrottlingRateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCPUThrottlingRateReply %s", err)
+		log.Printf("unmarshal error: SetCPUThrottlingRateReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetCPUThrottlingRateReply returns the FrameID value for SetCPUThrottlingRate in the Emulation domain.
@@ -335,12 +340,13 @@ type SetDefaultBackgroundColorOverrideReply struct {
 }
 
 // SetDefaultBackgroundColorOverrideReply returns whether or not the FrameID matches the reply value for SetDefaultBackgroundColorOverride in the Emulation domain.
-func (a *SetDefaultBackgroundColorOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDefaultBackgroundColorOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDefaultBackgroundColorOverrideReply %s", err)
+		log.Printf("unmarshal error: SetDefaultBackgroundColorOverrideReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDefaultBackgroundColorOverrideReply returns the FrameID value for SetDefaultBackgroundColorOverride in the Emulation domain.
@@ -429,12 +435,13 @@ type SetDeviceMetricsOverrideReply struct {
 }
 
 // SetDeviceMetricsOverrideReply returns whether or not the FrameID matches the reply value for SetDeviceMetricsOverride in the Emulation domain.
-func (a *SetDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDeviceMetricsOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDeviceMetricsOverrideReply %s", err)
+		log.Printf("unmarshal error: SetDeviceMetricsOverrideReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDeviceMetricsOverrideReply returns the FrameID value for SetDeviceMetricsOverride in the Emulation domain.
@@ -484,12 +491,13 @@ type SetScrollbarsHiddenReply struct {
 }
 
 // SetScrollbarsHiddenReply returns whether or not the FrameID matches the reply value for SetScrollbarsHidden in the Emulation domain.
-func (a *SetScrollbarsHiddenReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetScrollbarsHiddenReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetScrollbarsHiddenReply %s", err)
+		log.Printf("unmarshal error: SetScrollbarsHiddenReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetScrollbarsHiddenReply returns the FrameID value for SetScrollbarsHidden in the Emulation domain.
@@ -539,12 +547,13 @@ type SetDocumentCookieDisabledReply struct {
 }
 
 // SetDocumentCookieDisabledReply returns whether or not the FrameID matches the reply value for SetDocumentCookieDisabled in the Emulation domain.
-func (a *SetDocumentCookieDisabledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDocumentCookieDisabledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDocumentCookieDisabledReply %s", err)
+		log.Printf("unmarshal error: SetDocumentCookieDisabledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDocumentCookieDisabledReply returns the FrameID value for SetDocumentCookieDisabled in the Emulation domain.
@@ -599,12 +608,13 @@ type SetEmitTouchEventsForMouseReply struct {
 }
 
 // SetEmitTouchEventsForMouseReply returns whether or not the FrameID matches the reply value for SetEmitTouchEventsForMouse in the Emulation domain.
-func (a *SetEmitTouchEventsForMouseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetEmitTouchEventsForMouseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetEmitTouchEventsForMouseReply %s", err)
+		log.Printf("unmarshal error: SetEmitTouchEventsForMouseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetEmitTouchEventsForMouseReply returns the FrameID value for SetEmitTouchEventsForMouse in the Emulation domain.
@@ -654,12 +664,13 @@ type SetEmulatedMediaReply struct {
 }
 
 // SetEmulatedMediaReply returns whether or not the FrameID matches the reply value for SetEmulatedMedia in the Emulation domain.
-func (a *SetEmulatedMediaReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetEmulatedMediaReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetEmulatedMediaReply %s", err)
+		log.Printf("unmarshal error: SetEmulatedMediaReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetEmulatedMediaReply returns the FrameID value for SetEmulatedMedia in the Emulation domain.
@@ -711,12 +722,13 @@ type SetGeolocationOverrideReply struct {
 }
 
 // SetGeolocationOverrideReply returns whether or not the FrameID matches the reply value for SetGeolocationOverride in the Emulation domain.
-func (a *SetGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetGeolocationOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetGeolocationOverrideReply %s", err)
+		log.Printf("unmarshal error: SetGeolocationOverrideReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetGeolocationOverrideReply returns the FrameID value for SetGeolocationOverride in the Emulation domain.
@@ -766,12 +778,13 @@ type SetNavigatorOverridesReply struct {
 }
 
 // SetNavigatorOverridesReply returns whether or not the FrameID matches the reply value for SetNavigatorOverrides in the Emulation domain.
-func (a *SetNavigatorOverridesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetNavigatorOverridesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetNavigatorOverridesReply %s", err)
+		log.Printf("unmarshal error: SetNavigatorOverridesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetNavigatorOverridesReply returns the FrameID value for SetNavigatorOverrides in the Emulation domain.
@@ -821,12 +834,13 @@ type SetPageScaleFactorReply struct {
 }
 
 // SetPageScaleFactorReply returns whether or not the FrameID matches the reply value for SetPageScaleFactor in the Emulation domain.
-func (a *SetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetPageScaleFactorReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPageScaleFactorReply %s", err)
+		log.Printf("unmarshal error: SetPageScaleFactorReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetPageScaleFactorReply returns the FrameID value for SetPageScaleFactor in the Emulation domain.
@@ -876,12 +890,13 @@ type SetScriptExecutionDisabledReply struct {
 }
 
 // SetScriptExecutionDisabledReply returns whether or not the FrameID matches the reply value for SetScriptExecutionDisabled in the Emulation domain.
-func (a *SetScriptExecutionDisabledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetScriptExecutionDisabledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetScriptExecutionDisabledReply %s", err)
+		log.Printf("unmarshal error: SetScriptExecutionDisabledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetScriptExecutionDisabledReply returns the FrameID value for SetScriptExecutionDisabled in the Emulation domain.
@@ -932,12 +947,13 @@ type SetTouchEmulationEnabledReply struct {
 }
 
 // SetTouchEmulationEnabledReply returns whether or not the FrameID matches the reply value for SetTouchEmulationEnabled in the Emulation domain.
-func (a *SetTouchEmulationEnabledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetTouchEmulationEnabledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetTouchEmulationEnabledReply %s", err)
+		log.Printf("unmarshal error: SetTouchEmulationEnabledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetTouchEmulationEnabledReply returns the FrameID value for SetTouchEmulationEnabled in the Emulation domain.
@@ -992,12 +1008,13 @@ type SetVirtualTimePolicyReply struct {
 }
 
 // SetVirtualTimePolicyReply returns whether or not the FrameID matches the reply value for SetVirtualTimePolicy in the Emulation domain.
-func (a *SetVirtualTimePolicyReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetVirtualTimePolicyReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetVirtualTimePolicyReply %s", err)
+		log.Printf("unmarshal error: SetVirtualTimePolicyReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetVirtualTimePolicyReply returns the FrameID value for SetVirtualTimePolicy in the Emulation domain.
@@ -1048,12 +1065,13 @@ type SetVisibleSizeReply struct {
 }
 
 // SetVisibleSizeReply returns whether or not the FrameID matches the reply value for SetVisibleSize in the Emulation domain.
-func (a *SetVisibleSizeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetVisibleSizeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetVisibleSizeReply %s", err)
+		log.Printf("unmarshal error: SetVisibleSizeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetVisibleSizeReply returns the FrameID value for SetVisibleSize in the Emulation domain.
@@ -1105,12 +1123,13 @@ type SetUserAgentOverrideReply struct {
 }
 
 // SetUserAgentOverrideReply returns whether or not the FrameID matches the reply value for SetUserAgentOverride in the Emulation domain.
-func (a *SetUserAgentOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetUserAgentOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetUserAgentOverrideReply %s", err)
+		log.Printf("unmarshal error: SetUserAgentOverrideReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetUserAgentOverrideReply returns the FrameID value for SetUserAgentOverride in the Emulation domain.

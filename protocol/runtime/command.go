@@ -68,12 +68,13 @@ type AwaitPromiseReply struct {
 }
 
 // AwaitPromiseReply returns whether or not the FrameID matches the reply value for AwaitPromise in the Runtime domain.
-func (a *AwaitPromiseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AwaitPromiseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AwaitPromiseReply %s", err)
+		log.Printf("unmarshal error: AwaitPromiseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AwaitPromiseReply returns the FrameID value for AwaitPromise in the Runtime domain.
@@ -137,12 +138,13 @@ type CallFunctionOnReply struct {
 }
 
 // CallFunctionOnReply returns whether or not the FrameID matches the reply value for CallFunctionOn in the Runtime domain.
-func (a *CallFunctionOnReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CallFunctionOnReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CallFunctionOnReply %s", err)
+		log.Printf("unmarshal error: CallFunctionOnReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CallFunctionOnReply returns the FrameID value for CallFunctionOn in the Runtime domain.
@@ -197,12 +199,13 @@ type CompileScriptReply struct {
 }
 
 // CompileScriptReply returns whether or not the FrameID matches the reply value for CompileScript in the Runtime domain.
-func (a *CompileScriptReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CompileScriptReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CompileScriptReply %s", err)
+		log.Printf("unmarshal error: CompileScriptReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CompileScriptReply returns the FrameID value for CompileScript in the Runtime domain.
@@ -251,12 +254,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Runtime domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Runtime domain.
@@ -305,12 +309,13 @@ type DiscardConsoleEntriesReply struct {
 }
 
 // DiscardConsoleEntriesReply returns whether or not the FrameID matches the reply value for DiscardConsoleEntries in the Runtime domain.
-func (a *DiscardConsoleEntriesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DiscardConsoleEntriesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DiscardConsoleEntriesReply %s", err)
+		log.Printf("unmarshal error: DiscardConsoleEntriesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DiscardConsoleEntriesReply returns the FrameID value for DiscardConsoleEntries in the Runtime domain.
@@ -359,12 +364,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Runtime domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Runtime domain.
@@ -437,12 +443,13 @@ type EvaluateReply struct {
 }
 
 // EvaluateReply returns whether or not the FrameID matches the reply value for Evaluate in the Runtime domain.
-func (a *EvaluateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EvaluateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EvaluateReply %s", err)
+		log.Printf("unmarshal error: EvaluateReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EvaluateReply returns the FrameID value for Evaluate in the Runtime domain.
@@ -492,12 +499,13 @@ type GetIsolateIDReply struct {
 }
 
 // GetIsolateIDReply returns whether or not the FrameID matches the reply value for GetIsolateID in the Runtime domain.
-func (a *GetIsolateIDReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetIsolateIDReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetIsolateIDReply %s", err)
+		log.Printf("unmarshal error: GetIsolateIDReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetIsolateIDReply returns the FrameID value for GetIsolateID in the Runtime domain.
@@ -548,12 +556,13 @@ type GetHeapUsageReply struct {
 }
 
 // GetHeapUsageReply returns whether or not the FrameID matches the reply value for GetHeapUsage in the Runtime domain.
-func (a *GetHeapUsageReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetHeapUsageReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHeapUsageReply %s", err)
+		log.Printf("unmarshal error: GetHeapUsageReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetHeapUsageReply returns the FrameID value for GetHeapUsage in the Runtime domain.
@@ -617,12 +626,13 @@ type GetPropertiesReply struct {
 }
 
 // GetPropertiesReply returns whether or not the FrameID matches the reply value for GetProperties in the Runtime domain.
-func (a *GetPropertiesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetPropertiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetPropertiesReply %s", err)
+		log.Printf("unmarshal error: GetPropertiesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetPropertiesReply returns the FrameID value for GetProperties in the Runtime domain.
@@ -673,12 +683,13 @@ type GlobalLexicalScopeNamesReply struct {
 }
 
 // GlobalLexicalScopeNamesReply returns whether or not the FrameID matches the reply value for GlobalLexicalScopeNames in the Runtime domain.
-func (a *GlobalLexicalScopeNamesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GlobalLexicalScopeNamesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GlobalLexicalScopeNamesReply %s", err)
+		log.Printf("unmarshal error: GlobalLexicalScopeNamesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GlobalLexicalScopeNamesReply returns the FrameID value for GlobalLexicalScopeNames in the Runtime domain.
@@ -730,12 +741,13 @@ type QueryObjectsReply struct {
 }
 
 // QueryObjectsReply returns whether or not the FrameID matches the reply value for QueryObjects in the Runtime domain.
-func (a *QueryObjectsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *QueryObjectsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: QueryObjectsReply %s", err)
+		log.Printf("unmarshal error: QueryObjectsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // QueryObjectsReply returns the FrameID value for QueryObjects in the Runtime domain.
@@ -785,12 +797,13 @@ type ReleaseObjectReply struct {
 }
 
 // ReleaseObjectReply returns whether or not the FrameID matches the reply value for ReleaseObject in the Runtime domain.
-func (a *ReleaseObjectReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ReleaseObjectReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReleaseObjectReply %s", err)
+		log.Printf("unmarshal error: ReleaseObjectReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ReleaseObjectReply returns the FrameID value for ReleaseObject in the Runtime domain.
@@ -840,12 +853,13 @@ type ReleaseObjectGroupReply struct {
 }
 
 // ReleaseObjectGroupReply returns whether or not the FrameID matches the reply value for ReleaseObjectGroup in the Runtime domain.
-func (a *ReleaseObjectGroupReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ReleaseObjectGroupReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReleaseObjectGroupReply %s", err)
+		log.Printf("unmarshal error: ReleaseObjectGroupReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ReleaseObjectGroupReply returns the FrameID value for ReleaseObjectGroup in the Runtime domain.
@@ -894,12 +908,13 @@ type RunIfWaitingForDebuggerReply struct {
 }
 
 // RunIfWaitingForDebuggerReply returns whether or not the FrameID matches the reply value for RunIfWaitingForDebugger in the Runtime domain.
-func (a *RunIfWaitingForDebuggerReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RunIfWaitingForDebuggerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RunIfWaitingForDebuggerReply %s", err)
+		log.Printf("unmarshal error: RunIfWaitingForDebuggerReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RunIfWaitingForDebuggerReply returns the FrameID value for RunIfWaitingForDebugger in the Runtime domain.
@@ -958,12 +973,13 @@ type RunScriptReply struct {
 }
 
 // RunScriptReply returns whether or not the FrameID matches the reply value for RunScript in the Runtime domain.
-func (a *RunScriptReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RunScriptReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RunScriptReply %s", err)
+		log.Printf("unmarshal error: RunScriptReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RunScriptReply returns the FrameID value for RunScript in the Runtime domain.
@@ -1013,12 +1029,13 @@ type SetCustomObjectFormatterEnabledReply struct {
 }
 
 // SetCustomObjectFormatterEnabledReply returns whether or not the FrameID matches the reply value for SetCustomObjectFormatterEnabled in the Runtime domain.
-func (a *SetCustomObjectFormatterEnabledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetCustomObjectFormatterEnabledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCustomObjectFormatterEnabledReply %s", err)
+		log.Printf("unmarshal error: SetCustomObjectFormatterEnabledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetCustomObjectFormatterEnabledReply returns the FrameID value for SetCustomObjectFormatterEnabled in the Runtime domain.
@@ -1068,12 +1085,13 @@ type SetMaxCallStackSizeToCaptureReply struct {
 }
 
 // SetMaxCallStackSizeToCaptureReply returns whether or not the FrameID matches the reply value for SetMaxCallStackSizeToCapture in the Runtime domain.
-func (a *SetMaxCallStackSizeToCaptureReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetMaxCallStackSizeToCaptureReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetMaxCallStackSizeToCaptureReply %s", err)
+		log.Printf("unmarshal error: SetMaxCallStackSizeToCaptureReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetMaxCallStackSizeToCaptureReply returns the FrameID value for SetMaxCallStackSizeToCapture in the Runtime domain.
@@ -1122,12 +1140,13 @@ type TerminateExecutionReply struct {
 }
 
 // TerminateExecutionReply returns whether or not the FrameID matches the reply value for TerminateExecution in the Runtime domain.
-func (a *TerminateExecutionReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TerminateExecutionReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TerminateExecutionReply %s", err)
+		log.Printf("unmarshal error: TerminateExecutionReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TerminateExecutionReply returns the FrameID value for TerminateExecution in the Runtime domain.
@@ -1178,12 +1197,13 @@ type AddBindingReply struct {
 }
 
 // AddBindingReply returns whether or not the FrameID matches the reply value for AddBinding in the Runtime domain.
-func (a *AddBindingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AddBindingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddBindingReply %s", err)
+		log.Printf("unmarshal error: AddBindingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AddBindingReply returns the FrameID value for AddBinding in the Runtime domain.
@@ -1233,12 +1253,13 @@ type RemoveBindingReply struct {
 }
 
 // RemoveBindingReply returns whether or not the FrameID matches the reply value for RemoveBinding in the Runtime domain.
-func (a *RemoveBindingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveBindingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveBindingReply %s", err)
+		log.Printf("unmarshal error: RemoveBindingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveBindingReply returns the FrameID value for RemoveBinding in the Runtime domain.

@@ -51,12 +51,13 @@ type GetDOMCountersReply struct {
 }
 
 // GetDOMCountersReply returns whether or not the FrameID matches the reply value for GetDOMCounters in the Memory domain.
-func (a *GetDOMCountersReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetDOMCountersReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetDOMCountersReply %s", err)
+		log.Printf("unmarshal error: GetDOMCountersReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetDOMCountersReply returns the FrameID value for GetDOMCounters in the Memory domain.
@@ -105,12 +106,13 @@ type PrepareForLeakDetectionReply struct {
 }
 
 // PrepareForLeakDetectionReply returns whether or not the FrameID matches the reply value for PrepareForLeakDetection in the Memory domain.
-func (a *PrepareForLeakDetectionReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *PrepareForLeakDetectionReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PrepareForLeakDetectionReply %s", err)
+		log.Printf("unmarshal error: PrepareForLeakDetectionReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // PrepareForLeakDetectionReply returns the FrameID value for PrepareForLeakDetection in the Memory domain.
@@ -160,12 +162,13 @@ type SetPressureNotificationsSuppressedReply struct {
 }
 
 // SetPressureNotificationsSuppressedReply returns whether or not the FrameID matches the reply value for SetPressureNotificationsSuppressed in the Memory domain.
-func (a *SetPressureNotificationsSuppressedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetPressureNotificationsSuppressedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPressureNotificationsSuppressedReply %s", err)
+		log.Printf("unmarshal error: SetPressureNotificationsSuppressedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetPressureNotificationsSuppressedReply returns the FrameID value for SetPressureNotificationsSuppressed in the Memory domain.
@@ -215,12 +218,13 @@ type SimulatePressureNotificationReply struct {
 }
 
 // SimulatePressureNotificationReply returns whether or not the FrameID matches the reply value for SimulatePressureNotification in the Memory domain.
-func (a *SimulatePressureNotificationReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SimulatePressureNotificationReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SimulatePressureNotificationReply %s", err)
+		log.Printf("unmarshal error: SimulatePressureNotificationReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SimulatePressureNotificationReply returns the FrameID value for SimulatePressureNotification in the Memory domain.
@@ -271,12 +275,13 @@ type StartSamplingReply struct {
 }
 
 // StartSamplingReply returns whether or not the FrameID matches the reply value for StartSampling in the Memory domain.
-func (a *StartSamplingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartSamplingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartSamplingReply %s", err)
+		log.Printf("unmarshal error: StartSamplingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartSamplingReply returns the FrameID value for StartSampling in the Memory domain.
@@ -325,12 +330,13 @@ type StopSamplingReply struct {
 }
 
 // StopSamplingReply returns whether or not the FrameID matches the reply value for StopSampling in the Memory domain.
-func (a *StopSamplingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopSamplingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopSamplingReply %s", err)
+		log.Printf("unmarshal error: StopSamplingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopSamplingReply returns the FrameID value for StopSampling in the Memory domain.
@@ -380,12 +386,13 @@ type GetAllTimeSamplingProfileReply struct {
 }
 
 // GetAllTimeSamplingProfileReply returns whether or not the FrameID matches the reply value for GetAllTimeSamplingProfile in the Memory domain.
-func (a *GetAllTimeSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetAllTimeSamplingProfileReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetAllTimeSamplingProfileReply %s", err)
+		log.Printf("unmarshal error: GetAllTimeSamplingProfileReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetAllTimeSamplingProfileReply returns the FrameID value for GetAllTimeSamplingProfile in the Memory domain.
@@ -435,12 +442,13 @@ type GetBrowserSamplingProfileReply struct {
 }
 
 // GetBrowserSamplingProfileReply returns whether or not the FrameID matches the reply value for GetBrowserSamplingProfile in the Memory domain.
-func (a *GetBrowserSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetBrowserSamplingProfileReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBrowserSamplingProfileReply %s", err)
+		log.Printf("unmarshal error: GetBrowserSamplingProfileReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetBrowserSamplingProfileReply returns the FrameID value for GetBrowserSamplingProfile in the Memory domain.
@@ -490,12 +498,13 @@ type GetSamplingProfileReply struct {
 }
 
 // GetSamplingProfileReply returns whether or not the FrameID matches the reply value for GetSamplingProfile in the Memory domain.
-func (a *GetSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetSamplingProfileReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetSamplingProfileReply %s", err)
+		log.Printf("unmarshal error: GetSamplingProfileReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetSamplingProfileReply returns the FrameID value for GetSamplingProfile in the Memory domain.

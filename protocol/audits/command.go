@@ -52,12 +52,13 @@ type GetEncodedResponseReply struct {
 }
 
 // GetEncodedResponseReply returns whether or not the FrameID matches the reply value for GetEncodedResponse in the Audits domain.
-func (a *GetEncodedResponseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetEncodedResponseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetEncodedResponseReply %s", err)
+		log.Printf("unmarshal error: GetEncodedResponseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetEncodedResponseReply returns the FrameID value for GetEncodedResponse in the Audits domain.

@@ -48,12 +48,13 @@ func (a *LayerPaintedReply) UnmarshalJSON(b []byte) error {
 }
 
 // LayerPaintedReply returns whether or not the FrameID matches the reply value for LayerPainted in the LayerTree domain.
-func (a *LayerPaintedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *LayerPaintedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: LayerPaintedReply %s", err)
+		log.Printf("unmarshal error: LayerPaintedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // LayerPaintedReply returns the FrameID for LayerPainted in the LayerTree domain.
@@ -79,12 +80,13 @@ func (a *DidChangeReply) UnmarshalJSON(b []byte) error {
 }
 
 // DidChangeReply returns whether or not the FrameID matches the reply value for LayerTreeDidChange in the LayerTree domain.
-func (a *DidChangeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DidChangeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DidChangeReply %s", err)
+		log.Printf("unmarshal error: DidChangeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DidChangeReply returns the FrameID for LayerTreeDidChange in the LayerTree domain.

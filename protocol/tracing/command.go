@@ -44,12 +44,13 @@ type EndReply struct {
 }
 
 // EndReply returns whether or not the FrameID matches the reply value for End in the Tracing domain.
-func (a *EndReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EndReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EndReply %s", err)
+		log.Printf("unmarshal error: EndReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EndReply returns the FrameID value for End in the Tracing domain.
@@ -99,12 +100,13 @@ type GetCategoriesReply struct {
 }
 
 // GetCategoriesReply returns whether or not the FrameID matches the reply value for GetCategories in the Tracing domain.
-func (a *GetCategoriesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetCategoriesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetCategoriesReply %s", err)
+		log.Printf("unmarshal error: GetCategoriesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetCategoriesReply returns the FrameID value for GetCategories in the Tracing domain.
@@ -154,12 +156,13 @@ type RecordClockSyncMarkerReply struct {
 }
 
 // RecordClockSyncMarkerReply returns whether or not the FrameID matches the reply value for RecordClockSyncMarker in the Tracing domain.
-func (a *RecordClockSyncMarkerReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RecordClockSyncMarkerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RecordClockSyncMarkerReply %s", err)
+		log.Printf("unmarshal error: RecordClockSyncMarkerReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RecordClockSyncMarkerReply returns the FrameID value for RecordClockSyncMarker in the Tracing domain.
@@ -210,12 +213,13 @@ type RequestMemoryDumpReply struct {
 }
 
 // RequestMemoryDumpReply returns whether or not the FrameID matches the reply value for RequestMemoryDump in the Tracing domain.
-func (a *RequestMemoryDumpReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestMemoryDumpReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestMemoryDumpReply %s", err)
+		log.Printf("unmarshal error: RequestMemoryDumpReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestMemoryDumpReply returns the FrameID value for RequestMemoryDump in the Tracing domain.
@@ -281,12 +285,13 @@ type StartReply struct {
 }
 
 // StartReply returns whether or not the FrameID matches the reply value for Start in the Tracing domain.
-func (a *StartReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartReply %s", err)
+		log.Printf("unmarshal error: StartReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartReply returns the FrameID value for Start in the Tracing domain.

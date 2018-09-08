@@ -56,12 +56,13 @@ type ActivateTargetReply struct {
 }
 
 // ActivateTargetReply returns whether or not the FrameID matches the reply value for ActivateTarget in the Target domain.
-func (a *ActivateTargetReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ActivateTargetReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ActivateTargetReply %s", err)
+		log.Printf("unmarshal error: ActivateTargetReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ActivateTargetReply returns the FrameID value for ActivateTarget in the Target domain.
@@ -117,12 +118,13 @@ type AttachToTargetReply struct {
 }
 
 // AttachToTargetReply returns whether or not the FrameID matches the reply value for AttachToTarget in the Target domain.
-func (a *AttachToTargetReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AttachToTargetReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AttachToTargetReply %s", err)
+		log.Printf("unmarshal error: AttachToTargetReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AttachToTargetReply returns the FrameID value for AttachToTarget in the Target domain.
@@ -172,12 +174,13 @@ type AttachToBrowserTargetReply struct {
 }
 
 // AttachToBrowserTargetReply returns whether or not the FrameID matches the reply value for AttachToBrowserTarget in the Target domain.
-func (a *AttachToBrowserTargetReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AttachToBrowserTargetReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AttachToBrowserTargetReply %s", err)
+		log.Printf("unmarshal error: AttachToBrowserTargetReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AttachToBrowserTargetReply returns the FrameID value for AttachToBrowserTarget in the Target domain.
@@ -228,12 +231,13 @@ type CloseTargetReply struct {
 }
 
 // CloseTargetReply returns whether or not the FrameID matches the reply value for CloseTarget in the Target domain.
-func (a *CloseTargetReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CloseTargetReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CloseTargetReply %s", err)
+		log.Printf("unmarshal error: CloseTargetReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CloseTargetReply returns the FrameID value for CloseTarget in the Target domain.
@@ -284,12 +288,13 @@ type ExposeDevToolsProtocolReply struct {
 }
 
 // ExposeDevToolsProtocolReply returns whether or not the FrameID matches the reply value for ExposeDevToolsProtocol in the Target domain.
-func (a *ExposeDevToolsProtocolReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ExposeDevToolsProtocolReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExposeDevToolsProtocolReply %s", err)
+		log.Printf("unmarshal error: ExposeDevToolsProtocolReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ExposeDevToolsProtocolReply returns the FrameID value for ExposeDevToolsProtocol in the Target domain.
@@ -339,12 +344,13 @@ type CreateBrowserContextReply struct {
 }
 
 // CreateBrowserContextReply returns whether or not the FrameID matches the reply value for CreateBrowserContext in the Target domain.
-func (a *CreateBrowserContextReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CreateBrowserContextReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CreateBrowserContextReply %s", err)
+		log.Printf("unmarshal error: CreateBrowserContextReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CreateBrowserContextReply returns the FrameID value for CreateBrowserContext in the Target domain.
@@ -394,12 +400,13 @@ type GetBrowserContextsReply struct {
 }
 
 // GetBrowserContextsReply returns whether or not the FrameID matches the reply value for GetBrowserContexts in the Target domain.
-func (a *GetBrowserContextsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetBrowserContextsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBrowserContextsReply %s", err)
+		log.Printf("unmarshal error: GetBrowserContextsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetBrowserContextsReply returns the FrameID value for GetBrowserContexts in the Target domain.
@@ -459,12 +466,13 @@ type CreateTargetReply struct {
 }
 
 // CreateTargetReply returns whether or not the FrameID matches the reply value for CreateTarget in the Target domain.
-func (a *CreateTargetReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CreateTargetReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CreateTargetReply %s", err)
+		log.Printf("unmarshal error: CreateTargetReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CreateTargetReply returns the FrameID value for CreateTarget in the Target domain.
@@ -518,12 +526,13 @@ type DetachFromTargetReply struct {
 }
 
 // DetachFromTargetReply returns whether or not the FrameID matches the reply value for DetachFromTarget in the Target domain.
-func (a *DetachFromTargetReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DetachFromTargetReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DetachFromTargetReply %s", err)
+		log.Printf("unmarshal error: DetachFromTargetReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DetachFromTargetReply returns the FrameID value for DetachFromTarget in the Target domain.
@@ -573,12 +582,13 @@ type DisposeBrowserContextReply struct {
 }
 
 // DisposeBrowserContextReply returns whether or not the FrameID matches the reply value for DisposeBrowserContext in the Target domain.
-func (a *DisposeBrowserContextReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisposeBrowserContextReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisposeBrowserContextReply %s", err)
+		log.Printf("unmarshal error: DisposeBrowserContextReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisposeBrowserContextReply returns the FrameID value for DisposeBrowserContext in the Target domain.
@@ -629,12 +639,13 @@ type GetTargetInfoReply struct {
 }
 
 // GetTargetInfoReply returns whether or not the FrameID matches the reply value for GetTargetInfo in the Target domain.
-func (a *GetTargetInfoReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetTargetInfoReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetTargetInfoReply %s", err)
+		log.Printf("unmarshal error: GetTargetInfoReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetTargetInfoReply returns the FrameID value for GetTargetInfo in the Target domain.
@@ -684,12 +695,13 @@ type GetTargetsReply struct {
 }
 
 // GetTargetsReply returns whether or not the FrameID matches the reply value for GetTargets in the Target domain.
-func (a *GetTargetsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetTargetsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetTargetsReply %s", err)
+		log.Printf("unmarshal error: GetTargetsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetTargetsReply returns the FrameID value for GetTargets in the Target domain.
@@ -744,12 +756,13 @@ type SendMessageToTargetReply struct {
 }
 
 // SendMessageToTargetReply returns whether or not the FrameID matches the reply value for SendMessageToTarget in the Target domain.
-func (a *SendMessageToTargetReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SendMessageToTargetReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SendMessageToTargetReply %s", err)
+		log.Printf("unmarshal error: SendMessageToTargetReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SendMessageToTargetReply returns the FrameID value for SendMessageToTarget in the Target domain.
@@ -805,12 +818,13 @@ type SetAutoAttachReply struct {
 }
 
 // SetAutoAttachReply returns whether or not the FrameID matches the reply value for SetAutoAttach in the Target domain.
-func (a *SetAutoAttachReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetAutoAttachReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetAutoAttachReply %s", err)
+		log.Printf("unmarshal error: SetAutoAttachReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetAutoAttachReply returns the FrameID value for SetAutoAttach in the Target domain.
@@ -860,12 +874,13 @@ type SetDiscoverTargetsReply struct {
 }
 
 // SetDiscoverTargetsReply returns whether or not the FrameID matches the reply value for SetDiscoverTargets in the Target domain.
-func (a *SetDiscoverTargetsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDiscoverTargetsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDiscoverTargetsReply %s", err)
+		log.Printf("unmarshal error: SetDiscoverTargetsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDiscoverTargetsReply returns the FrameID value for SetDiscoverTargets in the Target domain.
@@ -915,12 +930,13 @@ type SetRemoteLocationsReply struct {
 }
 
 // SetRemoteLocationsReply returns whether or not the FrameID matches the reply value for SetRemoteLocations in the Target domain.
-func (a *SetRemoteLocationsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetRemoteLocationsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetRemoteLocationsReply %s", err)
+		log.Printf("unmarshal error: SetRemoteLocationsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetRemoteLocationsReply returns the FrameID value for SetRemoteLocations in the Target domain.

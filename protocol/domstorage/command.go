@@ -46,12 +46,13 @@ type ClearReply struct {
 }
 
 // ClearReply returns whether or not the FrameID matches the reply value for Clear in the DOMStorage domain.
-func (a *ClearReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearReply %s", err)
+		log.Printf("unmarshal error: ClearReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearReply returns the FrameID value for Clear in the DOMStorage domain.
@@ -100,12 +101,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the DOMStorage domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the DOMStorage domain.
@@ -154,12 +156,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the DOMStorage domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the DOMStorage domain.
@@ -210,12 +213,13 @@ type GetDOMStorageItemsReply struct {
 }
 
 // GetDOMStorageItemsReply returns whether or not the FrameID matches the reply value for GetDOMStorageItems in the DOMStorage domain.
-func (a *GetDOMStorageItemsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetDOMStorageItemsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetDOMStorageItemsReply %s", err)
+		log.Printf("unmarshal error: GetDOMStorageItemsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetDOMStorageItemsReply returns the FrameID value for GetDOMStorageItems in the DOMStorage domain.
@@ -266,12 +270,13 @@ type RemoveDOMStorageItemReply struct {
 }
 
 // RemoveDOMStorageItemReply returns whether or not the FrameID matches the reply value for RemoveDOMStorageItem in the DOMStorage domain.
-func (a *RemoveDOMStorageItemReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveDOMStorageItemReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveDOMStorageItemReply %s", err)
+		log.Printf("unmarshal error: RemoveDOMStorageItemReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveDOMStorageItemReply returns the FrameID value for RemoveDOMStorageItem in the DOMStorage domain.
@@ -323,12 +328,13 @@ type SetDOMStorageItemReply struct {
 }
 
 // SetDOMStorageItemReply returns whether or not the FrameID matches the reply value for SetDOMStorageItem in the DOMStorage domain.
-func (a *SetDOMStorageItemReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDOMStorageItemReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDOMStorageItemReply %s", err)
+		log.Printf("unmarshal error: SetDOMStorageItemReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDOMStorageItemReply returns the FrameID value for SetDOMStorageItem in the DOMStorage domain.

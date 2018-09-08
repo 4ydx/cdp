@@ -47,12 +47,13 @@ func (a *VirtualTimeAdvancedReply) UnmarshalJSON(b []byte) error {
 }
 
 // VirtualTimeAdvancedReply returns whether or not the FrameID matches the reply value for VirtualTimeAdvanced in the Emulation domain.
-func (a *VirtualTimeAdvancedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *VirtualTimeAdvancedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: VirtualTimeAdvancedReply %s", err)
+		log.Printf("unmarshal error: VirtualTimeAdvancedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // VirtualTimeAdvancedReply returns the FrameID for VirtualTimeAdvanced in the Emulation domain.
@@ -77,12 +78,13 @@ func (a *VirtualTimeBudgetExpiredReply) UnmarshalJSON(b []byte) error {
 }
 
 // VirtualTimeBudgetExpiredReply returns whether or not the FrameID matches the reply value for VirtualTimeBudgetExpired in the Emulation domain.
-func (a *VirtualTimeBudgetExpiredReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *VirtualTimeBudgetExpiredReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: VirtualTimeBudgetExpiredReply %s", err)
+		log.Printf("unmarshal error: VirtualTimeBudgetExpiredReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // VirtualTimeBudgetExpiredReply returns the FrameID for VirtualTimeBudgetExpired in the Emulation domain.
@@ -108,12 +110,13 @@ func (a *VirtualTimePausedReply) UnmarshalJSON(b []byte) error {
 }
 
 // VirtualTimePausedReply returns whether or not the FrameID matches the reply value for VirtualTimePaused in the Emulation domain.
-func (a *VirtualTimePausedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *VirtualTimePausedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: VirtualTimePausedReply %s", err)
+		log.Printf("unmarshal error: VirtualTimePausedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // VirtualTimePausedReply returns the FrameID for VirtualTimePaused in the Emulation domain.

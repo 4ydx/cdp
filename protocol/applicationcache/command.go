@@ -45,12 +45,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the ApplicationCache domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the ApplicationCache domain.
@@ -101,12 +102,13 @@ type GetApplicationCacheForFrameReply struct {
 }
 
 // GetApplicationCacheForFrameReply returns whether or not the FrameID matches the reply value for GetApplicationCacheForFrame in the ApplicationCache domain.
-func (a *GetApplicationCacheForFrameReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetApplicationCacheForFrameReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetApplicationCacheForFrameReply %s", err)
+		log.Printf("unmarshal error: GetApplicationCacheForFrameReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetApplicationCacheForFrameReply returns the FrameID value for GetApplicationCacheForFrame in the ApplicationCache domain.
@@ -156,12 +158,13 @@ type GetFramesWithManifestsReply struct {
 }
 
 // GetFramesWithManifestsReply returns whether or not the FrameID matches the reply value for GetFramesWithManifests in the ApplicationCache domain.
-func (a *GetFramesWithManifestsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetFramesWithManifestsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetFramesWithManifestsReply %s", err)
+		log.Printf("unmarshal error: GetFramesWithManifestsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetFramesWithManifestsReply returns the FrameID value for GetFramesWithManifests in the ApplicationCache domain.
@@ -212,12 +215,13 @@ type GetManifestForFrameReply struct {
 }
 
 // GetManifestForFrameReply returns whether or not the FrameID matches the reply value for GetManifestForFrame in the ApplicationCache domain.
-func (a *GetManifestForFrameReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetManifestForFrameReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetManifestForFrameReply %s", err)
+		log.Printf("unmarshal error: GetManifestForFrameReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetManifestForFrameReply returns the FrameID value for GetManifestForFrame in the ApplicationCache domain.

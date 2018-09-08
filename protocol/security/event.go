@@ -47,12 +47,13 @@ func (a *CertificateErrorReply) UnmarshalJSON(b []byte) error {
 }
 
 // CertificateErrorReply returns whether or not the FrameID matches the reply value for CertificateError in the Security domain.
-func (a *CertificateErrorReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CertificateErrorReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CertificateErrorReply %s", err)
+		log.Printf("unmarshal error: CertificateErrorReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CertificateErrorReply returns the FrameID for CertificateError in the Security domain.
@@ -82,12 +83,13 @@ func (a *StateChangedReply) UnmarshalJSON(b []byte) error {
 }
 
 // StateChangedReply returns whether or not the FrameID matches the reply value for SecurityStateChanged in the Security domain.
-func (a *StateChangedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StateChangedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StateChangedReply %s", err)
+		log.Printf("unmarshal error: StateChangedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StateChangedReply returns the FrameID for SecurityStateChanged in the Security domain.

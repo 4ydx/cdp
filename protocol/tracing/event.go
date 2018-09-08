@@ -51,12 +51,13 @@ func (a *BufferUsageReply) UnmarshalJSON(b []byte) error {
 }
 
 // BufferUsageReply returns whether or not the FrameID matches the reply value for BufferUsage in the Tracing domain.
-func (a *BufferUsageReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *BufferUsageReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: BufferUsageReply %s", err)
+		log.Printf("unmarshal error: BufferUsageReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // BufferUsageReply returns the FrameID for BufferUsage in the Tracing domain.
@@ -82,12 +83,13 @@ func (a *DataCollectedReply) UnmarshalJSON(b []byte) error {
 }
 
 // DataCollectedReply returns whether or not the FrameID matches the reply value for DataCollected in the Tracing domain.
-func (a *DataCollectedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DataCollectedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DataCollectedReply %s", err)
+		log.Printf("unmarshal error: DataCollectedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DataCollectedReply returns the FrameID for DataCollected in the Tracing domain.
@@ -114,12 +116,13 @@ func (a *CompleteReply) UnmarshalJSON(b []byte) error {
 }
 
 // CompleteReply returns whether or not the FrameID matches the reply value for TracingComplete in the Tracing domain.
-func (a *CompleteReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CompleteReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CompleteReply %s", err)
+		log.Printf("unmarshal error: CompleteReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CompleteReply returns the FrameID for TracingComplete in the Tracing domain.

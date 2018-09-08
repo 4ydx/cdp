@@ -52,12 +52,13 @@ type CompositingReasonsReply struct {
 }
 
 // CompositingReasonsReply returns whether or not the FrameID matches the reply value for CompositingReasons in the LayerTree domain.
-func (a *CompositingReasonsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CompositingReasonsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CompositingReasonsReply %s", err)
+		log.Printf("unmarshal error: CompositingReasonsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CompositingReasonsReply returns the FrameID value for CompositingReasons in the LayerTree domain.
@@ -106,12 +107,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the LayerTree domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the LayerTree domain.
@@ -160,12 +162,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the LayerTree domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the LayerTree domain.
@@ -216,12 +219,13 @@ type LoadSnapshotReply struct {
 }
 
 // LoadSnapshotReply returns whether or not the FrameID matches the reply value for LoadSnapshot in the LayerTree domain.
-func (a *LoadSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *LoadSnapshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: LoadSnapshotReply %s", err)
+		log.Printf("unmarshal error: LoadSnapshotReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // LoadSnapshotReply returns the FrameID value for LoadSnapshot in the LayerTree domain.
@@ -272,12 +276,13 @@ type MakeSnapshotReply struct {
 }
 
 // MakeSnapshotReply returns whether or not the FrameID matches the reply value for MakeSnapshot in the LayerTree domain.
-func (a *MakeSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *MakeSnapshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: MakeSnapshotReply %s", err)
+		log.Printf("unmarshal error: MakeSnapshotReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // MakeSnapshotReply returns the FrameID value for MakeSnapshot in the LayerTree domain.
@@ -331,12 +336,13 @@ type ProfileSnapshotReply struct {
 }
 
 // ProfileSnapshotReply returns whether or not the FrameID matches the reply value for ProfileSnapshot in the LayerTree domain.
-func (a *ProfileSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ProfileSnapshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ProfileSnapshotReply %s", err)
+		log.Printf("unmarshal error: ProfileSnapshotReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ProfileSnapshotReply returns the FrameID value for ProfileSnapshot in the LayerTree domain.
@@ -386,12 +392,13 @@ type ReleaseSnapshotReply struct {
 }
 
 // ReleaseSnapshotReply returns whether or not the FrameID matches the reply value for ReleaseSnapshot in the LayerTree domain.
-func (a *ReleaseSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ReleaseSnapshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReleaseSnapshotReply %s", err)
+		log.Printf("unmarshal error: ReleaseSnapshotReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ReleaseSnapshotReply returns the FrameID value for ReleaseSnapshot in the LayerTree domain.
@@ -445,12 +452,13 @@ type ReplaySnapshotReply struct {
 }
 
 // ReplaySnapshotReply returns whether or not the FrameID matches the reply value for ReplaySnapshot in the LayerTree domain.
-func (a *ReplaySnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ReplaySnapshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReplaySnapshotReply %s", err)
+		log.Printf("unmarshal error: ReplaySnapshotReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ReplaySnapshotReply returns the FrameID value for ReplaySnapshot in the LayerTree domain.
@@ -501,12 +509,13 @@ type SnapshotCommandLogReply struct {
 }
 
 // SnapshotCommandLogReply returns whether or not the FrameID matches the reply value for SnapshotCommandLog in the LayerTree domain.
-func (a *SnapshotCommandLogReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SnapshotCommandLogReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SnapshotCommandLogReply %s", err)
+		log.Printf("unmarshal error: SnapshotCommandLogReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SnapshotCommandLogReply returns the FrameID value for SnapshotCommandLog in the LayerTree domain.

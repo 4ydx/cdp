@@ -59,12 +59,13 @@ func (a *BindingCalledReply) UnmarshalJSON(b []byte) error {
 }
 
 // BindingCalledReply returns whether or not the FrameID matches the reply value for BindingCalled in the Runtime domain.
-func (a *BindingCalledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *BindingCalledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: BindingCalledReply %s", err)
+		log.Printf("unmarshal error: BindingCalledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // BindingCalledReply returns the FrameID for BindingCalled in the Runtime domain.
@@ -103,12 +104,13 @@ func (a *ConsoleAPICalledReply) UnmarshalJSON(b []byte) error {
 }
 
 // ConsoleAPICalledReply returns whether or not the FrameID matches the reply value for ConsoleAPICalled in the Runtime domain.
-func (a *ConsoleAPICalledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ConsoleAPICalledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ConsoleAPICalledReply %s", err)
+		log.Printf("unmarshal error: ConsoleAPICalledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ConsoleAPICalledReply returns the FrameID for ConsoleAPICalled in the Runtime domain.
@@ -135,12 +137,13 @@ func (a *ExceptionRevokedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ExceptionRevokedReply returns whether or not the FrameID matches the reply value for ExceptionRevoked in the Runtime domain.
-func (a *ExceptionRevokedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ExceptionRevokedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExceptionRevokedReply %s", err)
+		log.Printf("unmarshal error: ExceptionRevokedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ExceptionRevokedReply returns the FrameID for ExceptionRevoked in the Runtime domain.
@@ -167,12 +170,13 @@ func (a *ExceptionThrownReply) UnmarshalJSON(b []byte) error {
 }
 
 // ExceptionThrownReply returns whether or not the FrameID matches the reply value for ExceptionThrown in the Runtime domain.
-func (a *ExceptionThrownReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ExceptionThrownReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExceptionThrownReply %s", err)
+		log.Printf("unmarshal error: ExceptionThrownReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ExceptionThrownReply returns the FrameID for ExceptionThrown in the Runtime domain.
@@ -198,12 +202,13 @@ func (a *ExecutionContextCreatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ExecutionContextCreatedReply returns whether or not the FrameID matches the reply value for ExecutionContextCreated in the Runtime domain.
-func (a *ExecutionContextCreatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ExecutionContextCreatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExecutionContextCreatedReply %s", err)
+		log.Printf("unmarshal error: ExecutionContextCreatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ExecutionContextCreatedReply returns the FrameID for ExecutionContextCreated in the Runtime domain.
@@ -229,12 +234,13 @@ func (a *ExecutionContextDestroyedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ExecutionContextDestroyedReply returns whether or not the FrameID matches the reply value for ExecutionContextDestroyed in the Runtime domain.
-func (a *ExecutionContextDestroyedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ExecutionContextDestroyedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExecutionContextDestroyedReply %s", err)
+		log.Printf("unmarshal error: ExecutionContextDestroyedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ExecutionContextDestroyedReply returns the FrameID for ExecutionContextDestroyed in the Runtime domain.
@@ -259,12 +265,13 @@ func (a *ExecutionContextsClearedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ExecutionContextsClearedReply returns whether or not the FrameID matches the reply value for ExecutionContextsCleared in the Runtime domain.
-func (a *ExecutionContextsClearedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ExecutionContextsClearedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExecutionContextsClearedReply %s", err)
+		log.Printf("unmarshal error: ExecutionContextsClearedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ExecutionContextsClearedReply returns the FrameID for ExecutionContextsCleared in the Runtime domain.
@@ -291,12 +298,13 @@ func (a *InspectRequestedReply) UnmarshalJSON(b []byte) error {
 }
 
 // InspectRequestedReply returns whether or not the FrameID matches the reply value for InspectRequested in the Runtime domain.
-func (a *InspectRequestedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *InspectRequestedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InspectRequestedReply %s", err)
+		log.Printf("unmarshal error: InspectRequestedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // InspectRequestedReply returns the FrameID for InspectRequested in the Runtime domain.

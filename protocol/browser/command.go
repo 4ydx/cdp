@@ -49,12 +49,13 @@ type CloseReply struct {
 }
 
 // CloseReply returns whether or not the FrameID matches the reply value for Close in the Browser domain.
-func (a *CloseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CloseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CloseReply %s", err)
+		log.Printf("unmarshal error: CloseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CloseReply returns the FrameID value for Close in the Browser domain.
@@ -108,12 +109,13 @@ type GetVersionReply struct {
 }
 
 // GetVersionReply returns whether or not the FrameID matches the reply value for GetVersion in the Browser domain.
-func (a *GetVersionReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetVersionReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetVersionReply %s", err)
+		log.Printf("unmarshal error: GetVersionReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetVersionReply returns the FrameID value for GetVersion in the Browser domain.
@@ -163,12 +165,13 @@ type GetBrowserCommandLineReply struct {
 }
 
 // GetBrowserCommandLineReply returns whether or not the FrameID matches the reply value for GetBrowserCommandLine in the Browser domain.
-func (a *GetBrowserCommandLineReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetBrowserCommandLineReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBrowserCommandLineReply %s", err)
+		log.Printf("unmarshal error: GetBrowserCommandLineReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetBrowserCommandLineReply returns the FrameID value for GetBrowserCommandLine in the Browser domain.
@@ -220,12 +223,13 @@ type GetHistogramsReply struct {
 }
 
 // GetHistogramsReply returns whether or not the FrameID matches the reply value for GetHistograms in the Browser domain.
-func (a *GetHistogramsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetHistogramsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHistogramsReply %s", err)
+		log.Printf("unmarshal error: GetHistogramsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetHistogramsReply returns the FrameID value for GetHistograms in the Browser domain.
@@ -277,12 +281,13 @@ type GetHistogramReply struct {
 }
 
 // GetHistogramReply returns whether or not the FrameID matches the reply value for GetHistogram in the Browser domain.
-func (a *GetHistogramReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetHistogramReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHistogramReply %s", err)
+		log.Printf("unmarshal error: GetHistogramReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetHistogramReply returns the FrameID value for GetHistogram in the Browser domain.
@@ -333,12 +338,13 @@ type GetWindowBoundsReply struct {
 }
 
 // GetWindowBoundsReply returns whether or not the FrameID matches the reply value for GetWindowBounds in the Browser domain.
-func (a *GetWindowBoundsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetWindowBoundsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetWindowBoundsReply %s", err)
+		log.Printf("unmarshal error: GetWindowBoundsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetWindowBoundsReply returns the FrameID value for GetWindowBounds in the Browser domain.
@@ -390,12 +396,13 @@ type GetWindowForTargetReply struct {
 }
 
 // GetWindowForTargetReply returns whether or not the FrameID matches the reply value for GetWindowForTarget in the Browser domain.
-func (a *GetWindowForTargetReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetWindowForTargetReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetWindowForTargetReply %s", err)
+		log.Printf("unmarshal error: GetWindowForTargetReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetWindowForTargetReply returns the FrameID value for GetWindowForTarget in the Browser domain.
@@ -446,12 +453,13 @@ type SetWindowBoundsReply struct {
 }
 
 // SetWindowBoundsReply returns whether or not the FrameID matches the reply value for SetWindowBounds in the Browser domain.
-func (a *SetWindowBoundsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetWindowBoundsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetWindowBoundsReply %s", err)
+		log.Printf("unmarshal error: SetWindowBoundsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetWindowBoundsReply returns the FrameID value for SetWindowBounds in the Browser domain.

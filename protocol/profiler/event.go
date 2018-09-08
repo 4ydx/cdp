@@ -50,12 +50,13 @@ func (a *ConsoleProfileFinishedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ConsoleProfileFinishedReply returns whether or not the FrameID matches the reply value for ConsoleProfileFinished in the Profiler domain.
-func (a *ConsoleProfileFinishedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ConsoleProfileFinishedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ConsoleProfileFinishedReply %s", err)
+		log.Printf("unmarshal error: ConsoleProfileFinishedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ConsoleProfileFinishedReply returns the FrameID for ConsoleProfileFinished in the Profiler domain.
@@ -83,12 +84,13 @@ func (a *ConsoleProfileStartedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ConsoleProfileStartedReply returns whether or not the FrameID matches the reply value for ConsoleProfileStarted in the Profiler domain.
-func (a *ConsoleProfileStartedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ConsoleProfileStartedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ConsoleProfileStartedReply %s", err)
+		log.Printf("unmarshal error: ConsoleProfileStartedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ConsoleProfileStartedReply returns the FrameID for ConsoleProfileStarted in the Profiler domain.

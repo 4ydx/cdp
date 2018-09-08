@@ -51,12 +51,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Animation domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Animation domain.
@@ -105,12 +106,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Animation domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Animation domain.
@@ -161,12 +163,13 @@ type GetCurrentTimeReply struct {
 }
 
 // GetCurrentTimeReply returns whether or not the FrameID matches the reply value for GetCurrentTime in the Animation domain.
-func (a *GetCurrentTimeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetCurrentTimeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetCurrentTimeReply %s", err)
+		log.Printf("unmarshal error: GetCurrentTimeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetCurrentTimeReply returns the FrameID value for GetCurrentTime in the Animation domain.
@@ -216,12 +219,13 @@ type GetPlaybackRateReply struct {
 }
 
 // GetPlaybackRateReply returns whether or not the FrameID matches the reply value for GetPlaybackRate in the Animation domain.
-func (a *GetPlaybackRateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetPlaybackRateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetPlaybackRateReply %s", err)
+		log.Printf("unmarshal error: GetPlaybackRateReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetPlaybackRateReply returns the FrameID value for GetPlaybackRate in the Animation domain.
@@ -271,12 +275,13 @@ type ReleaseAnimationsReply struct {
 }
 
 // ReleaseAnimationsReply returns whether or not the FrameID matches the reply value for ReleaseAnimations in the Animation domain.
-func (a *ReleaseAnimationsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ReleaseAnimationsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReleaseAnimationsReply %s", err)
+		log.Printf("unmarshal error: ReleaseAnimationsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ReleaseAnimationsReply returns the FrameID value for ReleaseAnimations in the Animation domain.
@@ -327,12 +332,13 @@ type ResolveAnimationReply struct {
 }
 
 // ResolveAnimationReply returns whether or not the FrameID matches the reply value for ResolveAnimation in the Animation domain.
-func (a *ResolveAnimationReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ResolveAnimationReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ResolveAnimationReply %s", err)
+		log.Printf("unmarshal error: ResolveAnimationReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ResolveAnimationReply returns the FrameID value for ResolveAnimation in the Animation domain.
@@ -383,12 +389,13 @@ type SeekAnimationsReply struct {
 }
 
 // SeekAnimationsReply returns whether or not the FrameID matches the reply value for SeekAnimations in the Animation domain.
-func (a *SeekAnimationsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SeekAnimationsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SeekAnimationsReply %s", err)
+		log.Printf("unmarshal error: SeekAnimationsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SeekAnimationsReply returns the FrameID value for SeekAnimations in the Animation domain.
@@ -439,12 +446,13 @@ type SetPausedReply struct {
 }
 
 // SetPausedReply returns whether or not the FrameID matches the reply value for SetPaused in the Animation domain.
-func (a *SetPausedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetPausedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPausedReply %s", err)
+		log.Printf("unmarshal error: SetPausedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetPausedReply returns the FrameID value for SetPaused in the Animation domain.
@@ -494,12 +502,13 @@ type SetPlaybackRateReply struct {
 }
 
 // SetPlaybackRateReply returns whether or not the FrameID matches the reply value for SetPlaybackRate in the Animation domain.
-func (a *SetPlaybackRateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetPlaybackRateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPlaybackRateReply %s", err)
+		log.Printf("unmarshal error: SetPlaybackRateReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetPlaybackRateReply returns the FrameID value for SetPlaybackRate in the Animation domain.
@@ -551,12 +560,13 @@ type SetTimingReply struct {
 }
 
 // SetTimingReply returns whether or not the FrameID matches the reply value for SetTiming in the Animation domain.
-func (a *SetTimingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetTimingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetTimingReply %s", err)
+		log.Printf("unmarshal error: SetTimingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetTimingReply returns the FrameID value for SetTiming in the Animation domain.

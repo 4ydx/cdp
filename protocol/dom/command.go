@@ -85,12 +85,13 @@ type CollectClassNamesFromSubtreeReply struct {
 }
 
 // CollectClassNamesFromSubtreeReply returns whether or not the FrameID matches the reply value for CollectClassNamesFromSubtree in the DOM domain.
-func (a *CollectClassNamesFromSubtreeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CollectClassNamesFromSubtreeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CollectClassNamesFromSubtreeReply %s", err)
+		log.Printf("unmarshal error: CollectClassNamesFromSubtreeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CollectClassNamesFromSubtreeReply returns the FrameID value for CollectClassNamesFromSubtree in the DOM domain.
@@ -143,12 +144,13 @@ type CopyToReply struct {
 }
 
 // CopyToReply returns whether or not the FrameID matches the reply value for CopyTo in the DOM domain.
-func (a *CopyToReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CopyToReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CopyToReply %s", err)
+		log.Printf("unmarshal error: CopyToReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CopyToReply returns the FrameID value for CopyTo in the DOM domain.
@@ -203,17 +205,18 @@ type DescribeNodeReply struct {
 }
 
 // DescribeNodeReply returns whether or not the FrameID matches the reply value for DescribeNode in the DOM domain.
-func (a *DescribeNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DescribeNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	v := &DescribeNodeReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DescribeNodeReply %s", err)
+		log.Printf("unmarshal error: DescribeNodeReply %s", err)
+		return false, err
 	}
 	if v.Node.FrameID != shared.FrameID(frameID) {
-		return false
+		return false, nil
 	}
 	*a = *v
-	return true
+	return true, nil
 }
 
 // DescribeNodeReply returns the FrameID for DescribeNode in the DOM domain.
@@ -262,12 +265,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the DOM domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the DOM domain.
@@ -317,12 +321,13 @@ type DiscardSearchResultsReply struct {
 }
 
 // DiscardSearchResultsReply returns whether or not the FrameID matches the reply value for DiscardSearchResults in the DOM domain.
-func (a *DiscardSearchResultsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DiscardSearchResultsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DiscardSearchResultsReply %s", err)
+		log.Printf("unmarshal error: DiscardSearchResultsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DiscardSearchResultsReply returns the FrameID value for DiscardSearchResults in the DOM domain.
@@ -371,12 +376,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the DOM domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the DOM domain.
@@ -428,12 +434,13 @@ type FocusReply struct {
 }
 
 // FocusReply returns whether or not the FrameID matches the reply value for Focus in the DOM domain.
-func (a *FocusReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *FocusReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FocusReply %s", err)
+		log.Printf("unmarshal error: FocusReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // FocusReply returns the FrameID value for Focus in the DOM domain.
@@ -484,12 +491,13 @@ type GetAttributesReply struct {
 }
 
 // GetAttributesReply returns whether or not the FrameID matches the reply value for GetAttributes in the DOM domain.
-func (a *GetAttributesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetAttributesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetAttributesReply %s", err)
+		log.Printf("unmarshal error: GetAttributesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetAttributesReply returns the FrameID value for GetAttributes in the DOM domain.
@@ -542,12 +550,13 @@ type GetBoxModelReply struct {
 }
 
 // GetBoxModelReply returns whether or not the FrameID matches the reply value for GetBoxModel in the DOM domain.
-func (a *GetBoxModelReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetBoxModelReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetBoxModelReply %s", err)
+		log.Printf("unmarshal error: GetBoxModelReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetBoxModelReply returns the FrameID value for GetBoxModel in the DOM domain.
@@ -600,12 +609,13 @@ type GetContentQuadsReply struct {
 }
 
 // GetContentQuadsReply returns whether or not the FrameID matches the reply value for GetContentQuads in the DOM domain.
-func (a *GetContentQuadsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetContentQuadsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetContentQuadsReply %s", err)
+		log.Printf("unmarshal error: GetContentQuadsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetContentQuadsReply returns the FrameID value for GetContentQuads in the DOM domain.
@@ -657,12 +667,13 @@ type GetDocumentReply struct {
 }
 
 // GetDocumentReply returns whether or not the FrameID matches the reply value for GetDocument in the DOM domain.
-func (a *GetDocumentReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetDocumentReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetDocumentReply %s", err)
+		log.Printf("unmarshal error: GetDocumentReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetDocumentReply returns the FrameID value for GetDocument in the DOM domain.
@@ -714,11 +725,12 @@ type GetFlattenedDocumentReply struct {
 }
 
 // GetFlattenedDocumentReply returns whether or not the FrameID matches the reply value for GetFlattenedDocument in the DOM domain.
-func (a *GetFlattenedDocumentReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetFlattenedDocumentReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	v := &GetFlattenedDocumentReply{}
 	err := v.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetFlattenedDocumentReply %s", err)
+		log.Printf("unmarshal error: GetFlattenedDocumentReply %s", err)
+		return false, err
 	}
 	fid := ""
 	for _, n := range v.Nodes {
@@ -727,10 +739,10 @@ func (a *GetFlattenedDocumentReply) MatchFrameID(frameID string, m []byte) bool 
 		}
 	}
 	if fid != frameID {
-		return false
+		return false, nil
 	}
 	*a = *v
-	return true
+	return true, nil
 }
 
 // GetFlattenedDocumentReply returns the FrameID for GetFlattenedDocument in the DOM domain.
@@ -789,12 +801,13 @@ type GetNodeForLocationReply struct {
 }
 
 // GetNodeForLocationReply returns whether or not the FrameID matches the reply value for GetNodeForLocation in the DOM domain.
-func (a *GetNodeForLocationReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetNodeForLocationReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetNodeForLocationReply %s", err)
+		log.Printf("unmarshal error: GetNodeForLocationReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetNodeForLocationReply returns the FrameID value for GetNodeForLocation in the DOM domain.
@@ -847,12 +860,13 @@ type GetOuterHTMLReply struct {
 }
 
 // GetOuterHTMLReply returns whether or not the FrameID matches the reply value for GetOuterHTML in the DOM domain.
-func (a *GetOuterHTMLReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetOuterHTMLReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetOuterHTMLReply %s", err)
+		log.Printf("unmarshal error: GetOuterHTMLReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetOuterHTMLReply returns the FrameID value for GetOuterHTML in the DOM domain.
@@ -903,12 +917,13 @@ type GetRelayoutBoundaryReply struct {
 }
 
 // GetRelayoutBoundaryReply returns whether or not the FrameID matches the reply value for GetRelayoutBoundary in the DOM domain.
-func (a *GetRelayoutBoundaryReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetRelayoutBoundaryReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetRelayoutBoundaryReply %s", err)
+		log.Printf("unmarshal error: GetRelayoutBoundaryReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetRelayoutBoundaryReply returns the FrameID value for GetRelayoutBoundary in the DOM domain.
@@ -961,12 +976,13 @@ type GetSearchResultsReply struct {
 }
 
 // GetSearchResultsReply returns whether or not the FrameID matches the reply value for GetSearchResults in the DOM domain.
-func (a *GetSearchResultsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetSearchResultsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetSearchResultsReply %s", err)
+		log.Printf("unmarshal error: GetSearchResultsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetSearchResultsReply returns the FrameID value for GetSearchResults in the DOM domain.
@@ -1015,12 +1031,13 @@ type MarkUndoableStateReply struct {
 }
 
 // MarkUndoableStateReply returns whether or not the FrameID matches the reply value for MarkUndoableState in the DOM domain.
-func (a *MarkUndoableStateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *MarkUndoableStateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: MarkUndoableStateReply %s", err)
+		log.Printf("unmarshal error: MarkUndoableStateReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // MarkUndoableStateReply returns the FrameID value for MarkUndoableState in the DOM domain.
@@ -1073,12 +1090,13 @@ type MoveToReply struct {
 }
 
 // MoveToReply returns whether or not the FrameID matches the reply value for MoveTo in the DOM domain.
-func (a *MoveToReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *MoveToReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: MoveToReply %s", err)
+		log.Printf("unmarshal error: MoveToReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // MoveToReply returns the FrameID value for MoveTo in the DOM domain.
@@ -1131,12 +1149,13 @@ type PerformSearchReply struct {
 }
 
 // PerformSearchReply returns whether or not the FrameID matches the reply value for PerformSearch in the DOM domain.
-func (a *PerformSearchReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *PerformSearchReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PerformSearchReply %s", err)
+		log.Printf("unmarshal error: PerformSearchReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // PerformSearchReply returns the FrameID value for PerformSearch in the DOM domain.
@@ -1187,12 +1206,13 @@ type PushNodeByPathToFrontendReply struct {
 }
 
 // PushNodeByPathToFrontendReply returns whether or not the FrameID matches the reply value for PushNodeByPathToFrontend in the DOM domain.
-func (a *PushNodeByPathToFrontendReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *PushNodeByPathToFrontendReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PushNodeByPathToFrontendReply %s", err)
+		log.Printf("unmarshal error: PushNodeByPathToFrontendReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // PushNodeByPathToFrontendReply returns the FrameID value for PushNodeByPathToFrontend in the DOM domain.
@@ -1243,12 +1263,13 @@ type PushNodesByBackendIdsToFrontendReply struct {
 }
 
 // PushNodesByBackendIdsToFrontendReply returns whether or not the FrameID matches the reply value for PushNodesByBackendIdsToFrontend in the DOM domain.
-func (a *PushNodesByBackendIdsToFrontendReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *PushNodesByBackendIdsToFrontendReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: PushNodesByBackendIdsToFrontendReply %s", err)
+		log.Printf("unmarshal error: PushNodesByBackendIdsToFrontendReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // PushNodesByBackendIdsToFrontendReply returns the FrameID value for PushNodesByBackendIdsToFrontend in the DOM domain.
@@ -1300,12 +1321,13 @@ type QuerySelectorReply struct {
 }
 
 // QuerySelectorReply returns whether or not the FrameID matches the reply value for QuerySelector in the DOM domain.
-func (a *QuerySelectorReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *QuerySelectorReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: QuerySelectorReply %s", err)
+		log.Printf("unmarshal error: QuerySelectorReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // QuerySelectorReply returns the FrameID value for QuerySelector in the DOM domain.
@@ -1357,12 +1379,13 @@ type QuerySelectorAllReply struct {
 }
 
 // QuerySelectorAllReply returns whether or not the FrameID matches the reply value for QuerySelectorAll in the DOM domain.
-func (a *QuerySelectorAllReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *QuerySelectorAllReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: QuerySelectorAllReply %s", err)
+		log.Printf("unmarshal error: QuerySelectorAllReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // QuerySelectorAllReply returns the FrameID value for QuerySelectorAll in the DOM domain.
@@ -1411,12 +1434,13 @@ type RedoReply struct {
 }
 
 // RedoReply returns whether or not the FrameID matches the reply value for Redo in the DOM domain.
-func (a *RedoReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RedoReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RedoReply %s", err)
+		log.Printf("unmarshal error: RedoReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RedoReply returns the FrameID value for Redo in the DOM domain.
@@ -1467,12 +1491,13 @@ type RemoveAttributeReply struct {
 }
 
 // RemoveAttributeReply returns whether or not the FrameID matches the reply value for RemoveAttribute in the DOM domain.
-func (a *RemoveAttributeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveAttributeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveAttributeReply %s", err)
+		log.Printf("unmarshal error: RemoveAttributeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveAttributeReply returns the FrameID value for RemoveAttribute in the DOM domain.
@@ -1522,12 +1547,13 @@ type RemoveNodeReply struct {
 }
 
 // RemoveNodeReply returns whether or not the FrameID matches the reply value for RemoveNode in the DOM domain.
-func (a *RemoveNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RemoveNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RemoveNodeReply %s", err)
+		log.Printf("unmarshal error: RemoveNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RemoveNodeReply returns the FrameID value for RemoveNode in the DOM domain.
@@ -1579,12 +1605,13 @@ type RequestChildNodesReply struct {
 }
 
 // RequestChildNodesReply returns whether or not the FrameID matches the reply value for RequestChildNodes in the DOM domain.
-func (a *RequestChildNodesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestChildNodesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestChildNodesReply %s", err)
+		log.Printf("unmarshal error: RequestChildNodesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestChildNodesReply returns the FrameID value for RequestChildNodes in the DOM domain.
@@ -1635,12 +1662,13 @@ type RequestNodeReply struct {
 }
 
 // RequestNodeReply returns whether or not the FrameID matches the reply value for RequestNode in the DOM domain.
-func (a *RequestNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestNodeReply %s", err)
+		log.Printf("unmarshal error: RequestNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestNodeReply returns the FrameID value for RequestNode in the DOM domain.
@@ -1693,12 +1721,13 @@ type ResolveNodeReply struct {
 }
 
 // ResolveNodeReply returns whether or not the FrameID matches the reply value for ResolveNode in the DOM domain.
-func (a *ResolveNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ResolveNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ResolveNodeReply %s", err)
+		log.Printf("unmarshal error: ResolveNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ResolveNodeReply returns the FrameID value for ResolveNode in the DOM domain.
@@ -1750,12 +1779,13 @@ type SetAttributeValueReply struct {
 }
 
 // SetAttributeValueReply returns whether or not the FrameID matches the reply value for SetAttributeValue in the DOM domain.
-func (a *SetAttributeValueReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetAttributeValueReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetAttributeValueReply %s", err)
+		log.Printf("unmarshal error: SetAttributeValueReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetAttributeValueReply returns the FrameID value for SetAttributeValue in the DOM domain.
@@ -1807,12 +1837,13 @@ type SetAttributesAsTextReply struct {
 }
 
 // SetAttributesAsTextReply returns whether or not the FrameID matches the reply value for SetAttributesAsText in the DOM domain.
-func (a *SetAttributesAsTextReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetAttributesAsTextReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetAttributesAsTextReply %s", err)
+		log.Printf("unmarshal error: SetAttributesAsTextReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetAttributesAsTextReply returns the FrameID value for SetAttributesAsText in the DOM domain.
@@ -1865,12 +1896,13 @@ type SetFileInputFilesReply struct {
 }
 
 // SetFileInputFilesReply returns whether or not the FrameID matches the reply value for SetFileInputFiles in the DOM domain.
-func (a *SetFileInputFilesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetFileInputFilesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetFileInputFilesReply %s", err)
+		log.Printf("unmarshal error: SetFileInputFilesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetFileInputFilesReply returns the FrameID value for SetFileInputFiles in the DOM domain.
@@ -1920,12 +1952,13 @@ type SetInspectedNodeReply struct {
 }
 
 // SetInspectedNodeReply returns whether or not the FrameID matches the reply value for SetInspectedNode in the DOM domain.
-func (a *SetInspectedNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetInspectedNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetInspectedNodeReply %s", err)
+		log.Printf("unmarshal error: SetInspectedNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetInspectedNodeReply returns the FrameID value for SetInspectedNode in the DOM domain.
@@ -1977,12 +2010,13 @@ type SetNodeNameReply struct {
 }
 
 // SetNodeNameReply returns whether or not the FrameID matches the reply value for SetNodeName in the DOM domain.
-func (a *SetNodeNameReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetNodeNameReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetNodeNameReply %s", err)
+		log.Printf("unmarshal error: SetNodeNameReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetNodeNameReply returns the FrameID value for SetNodeName in the DOM domain.
@@ -2033,12 +2067,13 @@ type SetNodeValueReply struct {
 }
 
 // SetNodeValueReply returns whether or not the FrameID matches the reply value for SetNodeValue in the DOM domain.
-func (a *SetNodeValueReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetNodeValueReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetNodeValueReply %s", err)
+		log.Printf("unmarshal error: SetNodeValueReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetNodeValueReply returns the FrameID value for SetNodeValue in the DOM domain.
@@ -2089,12 +2124,13 @@ type SetOuterHTMLReply struct {
 }
 
 // SetOuterHTMLReply returns whether or not the FrameID matches the reply value for SetOuterHTML in the DOM domain.
-func (a *SetOuterHTMLReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetOuterHTMLReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetOuterHTMLReply %s", err)
+		log.Printf("unmarshal error: SetOuterHTMLReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetOuterHTMLReply returns the FrameID value for SetOuterHTML in the DOM domain.
@@ -2143,12 +2179,13 @@ type UndoReply struct {
 }
 
 // UndoReply returns whether or not the FrameID matches the reply value for Undo in the DOM domain.
-func (a *UndoReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *UndoReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: UndoReply %s", err)
+		log.Printf("unmarshal error: UndoReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // UndoReply returns the FrameID value for Undo in the DOM domain.
@@ -2199,12 +2236,13 @@ type GetFrameOwnerReply struct {
 }
 
 // GetFrameOwnerReply returns whether or not the FrameID matches the reply value for GetFrameOwner in the DOM domain.
-func (a *GetFrameOwnerReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetFrameOwnerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetFrameOwnerReply %s", err)
+		log.Printf("unmarshal error: GetFrameOwnerReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetFrameOwnerReply returns the FrameID value for GetFrameOwner in the DOM domain.

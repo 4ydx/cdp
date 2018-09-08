@@ -71,12 +71,13 @@ type CanClearBrowserCacheReply struct {
 }
 
 // CanClearBrowserCacheReply returns whether or not the FrameID matches the reply value for CanClearBrowserCache in the Network domain.
-func (a *CanClearBrowserCacheReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CanClearBrowserCacheReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CanClearBrowserCacheReply %s", err)
+		log.Printf("unmarshal error: CanClearBrowserCacheReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CanClearBrowserCacheReply returns the FrameID value for CanClearBrowserCache in the Network domain.
@@ -126,12 +127,13 @@ type CanClearBrowserCookiesReply struct {
 }
 
 // CanClearBrowserCookiesReply returns whether or not the FrameID matches the reply value for CanClearBrowserCookies in the Network domain.
-func (a *CanClearBrowserCookiesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CanClearBrowserCookiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CanClearBrowserCookiesReply %s", err)
+		log.Printf("unmarshal error: CanClearBrowserCookiesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CanClearBrowserCookiesReply returns the FrameID value for CanClearBrowserCookies in the Network domain.
@@ -181,12 +183,13 @@ type CanEmulateNetworkConditionsReply struct {
 }
 
 // CanEmulateNetworkConditionsReply returns whether or not the FrameID matches the reply value for CanEmulateNetworkConditions in the Network domain.
-func (a *CanEmulateNetworkConditionsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CanEmulateNetworkConditionsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CanEmulateNetworkConditionsReply %s", err)
+		log.Printf("unmarshal error: CanEmulateNetworkConditionsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CanEmulateNetworkConditionsReply returns the FrameID value for CanEmulateNetworkConditions in the Network domain.
@@ -235,12 +238,13 @@ type ClearBrowserCacheReply struct {
 }
 
 // ClearBrowserCacheReply returns whether or not the FrameID matches the reply value for ClearBrowserCache in the Network domain.
-func (a *ClearBrowserCacheReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearBrowserCacheReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearBrowserCacheReply %s", err)
+		log.Printf("unmarshal error: ClearBrowserCacheReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearBrowserCacheReply returns the FrameID value for ClearBrowserCache in the Network domain.
@@ -289,12 +293,13 @@ type ClearBrowserCookiesReply struct {
 }
 
 // ClearBrowserCookiesReply returns whether or not the FrameID matches the reply value for ClearBrowserCookies in the Network domain.
-func (a *ClearBrowserCookiesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearBrowserCookiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearBrowserCookiesReply %s", err)
+		log.Printf("unmarshal error: ClearBrowserCookiesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearBrowserCookiesReply returns the FrameID value for ClearBrowserCookies in the Network domain.
@@ -351,12 +356,13 @@ type ContinueInterceptedRequestReply struct {
 }
 
 // ContinueInterceptedRequestReply returns whether or not the FrameID matches the reply value for ContinueInterceptedRequest in the Network domain.
-func (a *ContinueInterceptedRequestReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ContinueInterceptedRequestReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ContinueInterceptedRequestReply %s", err)
+		log.Printf("unmarshal error: ContinueInterceptedRequestReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ContinueInterceptedRequestReply returns the FrameID value for ContinueInterceptedRequest in the Network domain.
@@ -409,12 +415,13 @@ type DeleteCookiesReply struct {
 }
 
 // DeleteCookiesReply returns whether or not the FrameID matches the reply value for DeleteCookies in the Network domain.
-func (a *DeleteCookiesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DeleteCookiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteCookiesReply %s", err)
+		log.Printf("unmarshal error: DeleteCookiesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DeleteCookiesReply returns the FrameID value for DeleteCookies in the Network domain.
@@ -463,12 +470,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Network domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Network domain.
@@ -522,12 +530,13 @@ type EmulateNetworkConditionsReply struct {
 }
 
 // EmulateNetworkConditionsReply returns whether or not the FrameID matches the reply value for EmulateNetworkConditions in the Network domain.
-func (a *EmulateNetworkConditionsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EmulateNetworkConditionsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EmulateNetworkConditionsReply %s", err)
+		log.Printf("unmarshal error: EmulateNetworkConditionsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EmulateNetworkConditionsReply returns the FrameID value for EmulateNetworkConditions in the Network domain.
@@ -587,12 +596,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Network domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Network domain.
@@ -642,12 +652,13 @@ type GetAllCookiesReply struct {
 }
 
 // GetAllCookiesReply returns whether or not the FrameID matches the reply value for GetAllCookies in the Network domain.
-func (a *GetAllCookiesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetAllCookiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetAllCookiesReply %s", err)
+		log.Printf("unmarshal error: GetAllCookiesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetAllCookiesReply returns the FrameID value for GetAllCookies in the Network domain.
@@ -698,12 +709,13 @@ type GetCertificateReply struct {
 }
 
 // GetCertificateReply returns whether or not the FrameID matches the reply value for GetCertificate in the Network domain.
-func (a *GetCertificateReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetCertificateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetCertificateReply %s", err)
+		log.Printf("unmarshal error: GetCertificateReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetCertificateReply returns the FrameID value for GetCertificate in the Network domain.
@@ -754,12 +766,13 @@ type GetCookiesReply struct {
 }
 
 // GetCookiesReply returns whether or not the FrameID matches the reply value for GetCookies in the Network domain.
-func (a *GetCookiesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetCookiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetCookiesReply %s", err)
+		log.Printf("unmarshal error: GetCookiesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetCookiesReply returns the FrameID value for GetCookies in the Network domain.
@@ -811,12 +824,13 @@ type GetResponseBodyReply struct {
 }
 
 // GetResponseBodyReply returns whether or not the FrameID matches the reply value for GetResponseBody in the Network domain.
-func (a *GetResponseBodyReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetResponseBodyReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetResponseBodyReply %s", err)
+		log.Printf("unmarshal error: GetResponseBodyReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetResponseBodyReply returns the FrameID value for GetResponseBody in the Network domain.
@@ -867,12 +881,13 @@ type GetRequestPostDataReply struct {
 }
 
 // GetRequestPostDataReply returns whether or not the FrameID matches the reply value for GetRequestPostData in the Network domain.
-func (a *GetRequestPostDataReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetRequestPostDataReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetRequestPostDataReply %s", err)
+		log.Printf("unmarshal error: GetRequestPostDataReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetRequestPostDataReply returns the FrameID value for GetRequestPostData in the Network domain.
@@ -924,12 +939,13 @@ type GetResponseBodyForInterceptionReply struct {
 }
 
 // GetResponseBodyForInterceptionReply returns whether or not the FrameID matches the reply value for GetResponseBodyForInterception in the Network domain.
-func (a *GetResponseBodyForInterceptionReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetResponseBodyForInterceptionReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetResponseBodyForInterceptionReply %s", err)
+		log.Printf("unmarshal error: GetResponseBodyForInterceptionReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetResponseBodyForInterceptionReply returns the FrameID value for GetResponseBodyForInterception in the Network domain.
@@ -980,12 +996,13 @@ type TakeResponseBodyForInterceptionAsStreamReply struct {
 }
 
 // TakeResponseBodyForInterceptionAsStreamReply returns whether or not the FrameID matches the reply value for TakeResponseBodyForInterceptionAsStream in the Network domain.
-func (a *TakeResponseBodyForInterceptionAsStreamReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TakeResponseBodyForInterceptionAsStreamReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakeResponseBodyForInterceptionAsStreamReply %s", err)
+		log.Printf("unmarshal error: TakeResponseBodyForInterceptionAsStreamReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TakeResponseBodyForInterceptionAsStreamReply returns the FrameID value for TakeResponseBodyForInterceptionAsStream in the Network domain.
@@ -1035,12 +1052,13 @@ type ReplayXHRReply struct {
 }
 
 // ReplayXHRReply returns whether or not the FrameID matches the reply value for ReplayXHR in the Network domain.
-func (a *ReplayXHRReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ReplayXHRReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ReplayXHRReply %s", err)
+		log.Printf("unmarshal error: ReplayXHRReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ReplayXHRReply returns the FrameID value for ReplayXHR in the Network domain.
@@ -1094,12 +1112,13 @@ type SearchInResponseBodyReply struct {
 }
 
 // SearchInResponseBodyReply returns whether or not the FrameID matches the reply value for SearchInResponseBody in the Network domain.
-func (a *SearchInResponseBodyReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SearchInResponseBodyReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SearchInResponseBodyReply %s", err)
+		log.Printf("unmarshal error: SearchInResponseBodyReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SearchInResponseBodyReply returns the FrameID value for SearchInResponseBody in the Network domain.
@@ -1149,12 +1168,13 @@ type SetBlockedURLsReply struct {
 }
 
 // SetBlockedURLsReply returns whether or not the FrameID matches the reply value for SetBlockedURLs in the Network domain.
-func (a *SetBlockedURLsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetBlockedURLsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBlockedURLsReply %s", err)
+		log.Printf("unmarshal error: SetBlockedURLsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetBlockedURLsReply returns the FrameID value for SetBlockedURLs in the Network domain.
@@ -1204,12 +1224,13 @@ type SetBypassServiceWorkerReply struct {
 }
 
 // SetBypassServiceWorkerReply returns whether or not the FrameID matches the reply value for SetBypassServiceWorker in the Network domain.
-func (a *SetBypassServiceWorkerReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetBypassServiceWorkerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetBypassServiceWorkerReply %s", err)
+		log.Printf("unmarshal error: SetBypassServiceWorkerReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetBypassServiceWorkerReply returns the FrameID value for SetBypassServiceWorker in the Network domain.
@@ -1259,12 +1280,13 @@ type SetCacheDisabledReply struct {
 }
 
 // SetCacheDisabledReply returns whether or not the FrameID matches the reply value for SetCacheDisabled in the Network domain.
-func (a *SetCacheDisabledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetCacheDisabledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCacheDisabledReply %s", err)
+		log.Printf("unmarshal error: SetCacheDisabledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetCacheDisabledReply returns the FrameID value for SetCacheDisabled in the Network domain.
@@ -1323,12 +1345,13 @@ type SetCookieReply struct {
 }
 
 // SetCookieReply returns whether or not the FrameID matches the reply value for SetCookie in the Network domain.
-func (a *SetCookieReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetCookieReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCookieReply %s", err)
+		log.Printf("unmarshal error: SetCookieReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetCookieReply returns the FrameID value for SetCookie in the Network domain.
@@ -1378,12 +1401,13 @@ type SetCookiesReply struct {
 }
 
 // SetCookiesReply returns whether or not the FrameID matches the reply value for SetCookies in the Network domain.
-func (a *SetCookiesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetCookiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetCookiesReply %s", err)
+		log.Printf("unmarshal error: SetCookiesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetCookiesReply returns the FrameID value for SetCookies in the Network domain.
@@ -1434,12 +1458,13 @@ type SetDataSizeLimitsForTestReply struct {
 }
 
 // SetDataSizeLimitsForTestReply returns whether or not the FrameID matches the reply value for SetDataSizeLimitsForTest in the Network domain.
-func (a *SetDataSizeLimitsForTestReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDataSizeLimitsForTestReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDataSizeLimitsForTestReply %s", err)
+		log.Printf("unmarshal error: SetDataSizeLimitsForTestReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDataSizeLimitsForTestReply returns the FrameID value for SetDataSizeLimitsForTest in the Network domain.
@@ -1489,12 +1514,13 @@ type SetExtraHTTPHeadersReply struct {
 }
 
 // SetExtraHTTPHeadersReply returns whether or not the FrameID matches the reply value for SetExtraHTTPHeaders in the Network domain.
-func (a *SetExtraHTTPHeadersReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetExtraHTTPHeadersReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetExtraHTTPHeadersReply %s", err)
+		log.Printf("unmarshal error: SetExtraHTTPHeadersReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetExtraHTTPHeadersReply returns the FrameID value for SetExtraHTTPHeaders in the Network domain.
@@ -1544,12 +1570,13 @@ type SetRequestInterceptionReply struct {
 }
 
 // SetRequestInterceptionReply returns whether or not the FrameID matches the reply value for SetRequestInterception in the Network domain.
-func (a *SetRequestInterceptionReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetRequestInterceptionReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetRequestInterceptionReply %s", err)
+		log.Printf("unmarshal error: SetRequestInterceptionReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetRequestInterceptionReply returns the FrameID value for SetRequestInterception in the Network domain.

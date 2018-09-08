@@ -41,12 +41,13 @@ type ClearDeviceOrientationOverrideReply struct {
 }
 
 // ClearDeviceOrientationOverrideReply returns whether or not the FrameID matches the reply value for ClearDeviceOrientationOverride in the DeviceOrientation domain.
-func (a *ClearDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearDeviceOrientationOverrideReply %s", err)
+		log.Printf("unmarshal error: ClearDeviceOrientationOverrideReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearDeviceOrientationOverrideReply returns the FrameID value for ClearDeviceOrientationOverride in the DeviceOrientation domain.
@@ -98,12 +99,13 @@ type SetDeviceOrientationOverrideReply struct {
 }
 
 // SetDeviceOrientationOverrideReply returns whether or not the FrameID matches the reply value for SetDeviceOrientationOverride in the DeviceOrientation domain.
-func (a *SetDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetDeviceOrientationOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetDeviceOrientationOverrideReply %s", err)
+		log.Printf("unmarshal error: SetDeviceOrientationOverrideReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetDeviceOrientationOverrideReply returns the FrameID value for SetDeviceOrientationOverride in the DeviceOrientation domain.

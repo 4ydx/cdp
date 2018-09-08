@@ -50,12 +50,13 @@ func (a *InspectNodeRequestedReply) UnmarshalJSON(b []byte) error {
 }
 
 // InspectNodeRequestedReply returns whether or not the FrameID matches the reply value for InspectNodeRequested in the Overlay domain.
-func (a *InspectNodeRequestedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *InspectNodeRequestedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InspectNodeRequestedReply %s", err)
+		log.Printf("unmarshal error: InspectNodeRequestedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // InspectNodeRequestedReply returns the FrameID for InspectNodeRequested in the Overlay domain.
@@ -81,12 +82,13 @@ func (a *NodeHighlightRequestedReply) UnmarshalJSON(b []byte) error {
 }
 
 // NodeHighlightRequestedReply returns whether or not the FrameID matches the reply value for NodeHighlightRequested in the Overlay domain.
-func (a *NodeHighlightRequestedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *NodeHighlightRequestedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: NodeHighlightRequestedReply %s", err)
+		log.Printf("unmarshal error: NodeHighlightRequestedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // NodeHighlightRequestedReply returns the FrameID for NodeHighlightRequested in the Overlay domain.
@@ -112,12 +114,13 @@ func (a *ScreenshotRequestedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ScreenshotRequestedReply returns whether or not the FrameID matches the reply value for ScreenshotRequested in the Overlay domain.
-func (a *ScreenshotRequestedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ScreenshotRequestedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ScreenshotRequestedReply %s", err)
+		log.Printf("unmarshal error: ScreenshotRequestedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ScreenshotRequestedReply returns the FrameID for ScreenshotRequested in the Overlay domain.

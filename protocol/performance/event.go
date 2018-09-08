@@ -44,12 +44,13 @@ func (a *MetricsReply) UnmarshalJSON(b []byte) error {
 }
 
 // MetricsReply returns whether or not the FrameID matches the reply value for Metrics in the Performance domain.
-func (a *MetricsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *MetricsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: MetricsReply %s", err)
+		log.Printf("unmarshal error: MetricsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // MetricsReply returns the FrameID for Metrics in the Performance domain.

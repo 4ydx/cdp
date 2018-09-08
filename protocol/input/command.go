@@ -65,12 +65,13 @@ type DispatchKeyEventReply struct {
 }
 
 // DispatchKeyEventReply returns whether or not the FrameID matches the reply value for DispatchKeyEvent in the Input domain.
-func (a *DispatchKeyEventReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DispatchKeyEventReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DispatchKeyEventReply %s", err)
+		log.Printf("unmarshal error: DispatchKeyEventReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DispatchKeyEventReply returns the FrameID value for DispatchKeyEvent in the Input domain.
@@ -120,12 +121,13 @@ type InsertTextReply struct {
 }
 
 // InsertTextReply returns whether or not the FrameID matches the reply value for InsertText in the Input domain.
-func (a *InsertTextReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *InsertTextReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: InsertTextReply %s", err)
+		log.Printf("unmarshal error: InsertTextReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // InsertTextReply returns the FrameID value for InsertText in the Input domain.
@@ -189,12 +191,13 @@ type DispatchMouseEventReply struct {
 }
 
 // DispatchMouseEventReply returns whether or not the FrameID matches the reply value for DispatchMouseEvent in the Input domain.
-func (a *DispatchMouseEventReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DispatchMouseEventReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DispatchMouseEventReply %s", err)
+		log.Printf("unmarshal error: DispatchMouseEventReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DispatchMouseEventReply returns the FrameID value for DispatchMouseEvent in the Input domain.
@@ -252,12 +255,13 @@ type DispatchTouchEventReply struct {
 }
 
 // DispatchTouchEventReply returns whether or not the FrameID matches the reply value for DispatchTouchEvent in the Input domain.
-func (a *DispatchTouchEventReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DispatchTouchEventReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DispatchTouchEventReply %s", err)
+		log.Printf("unmarshal error: DispatchTouchEventReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DispatchTouchEventReply returns the FrameID value for DispatchTouchEvent in the Input domain.
@@ -321,12 +325,13 @@ type EmulateTouchFromMouseEventReply struct {
 }
 
 // EmulateTouchFromMouseEventReply returns whether or not the FrameID matches the reply value for EmulateTouchFromMouseEvent in the Input domain.
-func (a *EmulateTouchFromMouseEventReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EmulateTouchFromMouseEventReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EmulateTouchFromMouseEventReply %s", err)
+		log.Printf("unmarshal error: EmulateTouchFromMouseEventReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EmulateTouchFromMouseEventReply returns the FrameID value for EmulateTouchFromMouseEvent in the Input domain.
@@ -376,12 +381,13 @@ type SetIgnoreInputEventsReply struct {
 }
 
 // SetIgnoreInputEventsReply returns whether or not the FrameID matches the reply value for SetIgnoreInputEvents in the Input domain.
-func (a *SetIgnoreInputEventsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetIgnoreInputEventsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetIgnoreInputEventsReply %s", err)
+		log.Printf("unmarshal error: SetIgnoreInputEventsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetIgnoreInputEventsReply returns the FrameID value for SetIgnoreInputEvents in the Input domain.
@@ -435,12 +441,13 @@ type SynthesizePinchGestureReply struct {
 }
 
 // SynthesizePinchGestureReply returns whether or not the FrameID matches the reply value for SynthesizePinchGesture in the Input domain.
-func (a *SynthesizePinchGestureReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SynthesizePinchGestureReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SynthesizePinchGestureReply %s", err)
+		log.Printf("unmarshal error: SynthesizePinchGestureReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SynthesizePinchGestureReply returns the FrameID value for SynthesizePinchGesture in the Input domain.
@@ -501,12 +508,13 @@ type SynthesizeScrollGestureReply struct {
 }
 
 // SynthesizeScrollGestureReply returns whether or not the FrameID matches the reply value for SynthesizeScrollGesture in the Input domain.
-func (a *SynthesizeScrollGestureReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SynthesizeScrollGestureReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SynthesizeScrollGestureReply %s", err)
+		log.Printf("unmarshal error: SynthesizeScrollGestureReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SynthesizeScrollGestureReply returns the FrameID value for SynthesizeScrollGesture in the Input domain.
@@ -560,12 +568,13 @@ type SynthesizeTapGestureReply struct {
 }
 
 // SynthesizeTapGestureReply returns whether or not the FrameID matches the reply value for SynthesizeTapGesture in the Input domain.
-func (a *SynthesizeTapGestureReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SynthesizeTapGestureReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SynthesizeTapGestureReply %s", err)
+		log.Printf("unmarshal error: SynthesizeTapGestureReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SynthesizeTapGestureReply returns the FrameID value for SynthesizeTapGesture in the Input domain.

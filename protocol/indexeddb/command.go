@@ -50,12 +50,13 @@ type ClearObjectStoreReply struct {
 }
 
 // ClearObjectStoreReply returns whether or not the FrameID matches the reply value for ClearObjectStore in the IndexedDB domain.
-func (a *ClearObjectStoreReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearObjectStoreReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearObjectStoreReply %s", err)
+		log.Printf("unmarshal error: ClearObjectStoreReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearObjectStoreReply returns the FrameID value for ClearObjectStore in the IndexedDB domain.
@@ -106,12 +107,13 @@ type DeleteDatabaseReply struct {
 }
 
 // DeleteDatabaseReply returns whether or not the FrameID matches the reply value for DeleteDatabase in the IndexedDB domain.
-func (a *DeleteDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DeleteDatabaseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteDatabaseReply %s", err)
+		log.Printf("unmarshal error: DeleteDatabaseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DeleteDatabaseReply returns the FrameID value for DeleteDatabase in the IndexedDB domain.
@@ -164,12 +166,13 @@ type DeleteObjectStoreEntriesReply struct {
 }
 
 // DeleteObjectStoreEntriesReply returns whether or not the FrameID matches the reply value for DeleteObjectStoreEntries in the IndexedDB domain.
-func (a *DeleteObjectStoreEntriesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DeleteObjectStoreEntriesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DeleteObjectStoreEntriesReply %s", err)
+		log.Printf("unmarshal error: DeleteObjectStoreEntriesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DeleteObjectStoreEntriesReply returns the FrameID value for DeleteObjectStoreEntries in the IndexedDB domain.
@@ -218,12 +221,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the IndexedDB domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the IndexedDB domain.
@@ -272,12 +276,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the IndexedDB domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the IndexedDB domain.
@@ -335,12 +340,13 @@ type RequestDataReply struct {
 }
 
 // RequestDataReply returns whether or not the FrameID matches the reply value for RequestData in the IndexedDB domain.
-func (a *RequestDataReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestDataReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestDataReply %s", err)
+		log.Printf("unmarshal error: RequestDataReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestDataReply returns the FrameID value for RequestData in the IndexedDB domain.
@@ -392,12 +398,13 @@ type RequestDatabaseReply struct {
 }
 
 // RequestDatabaseReply returns whether or not the FrameID matches the reply value for RequestDatabase in the IndexedDB domain.
-func (a *RequestDatabaseReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestDatabaseReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestDatabaseReply %s", err)
+		log.Printf("unmarshal error: RequestDatabaseReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestDatabaseReply returns the FrameID value for RequestDatabase in the IndexedDB domain.
@@ -448,12 +455,13 @@ type RequestDatabaseNamesReply struct {
 }
 
 // RequestDatabaseNamesReply returns whether or not the FrameID matches the reply value for RequestDatabaseNames in the IndexedDB domain.
-func (a *RequestDatabaseNamesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *RequestDatabaseNamesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: RequestDatabaseNamesReply %s", err)
+		log.Printf("unmarshal error: RequestDatabaseNamesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // RequestDatabaseNamesReply returns the FrameID value for RequestDatabaseNames in the IndexedDB domain.

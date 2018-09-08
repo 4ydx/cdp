@@ -47,12 +47,13 @@ func (a *CanceledReply) UnmarshalJSON(b []byte) error {
 }
 
 // CanceledReply returns whether or not the FrameID matches the reply value for AnimationCanceled in the Animation domain.
-func (a *CanceledReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CanceledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CanceledReply %s", err)
+		log.Printf("unmarshal error: CanceledReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CanceledReply returns the FrameID for AnimationCanceled in the Animation domain.
@@ -78,12 +79,13 @@ func (a *CreatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // CreatedReply returns whether or not the FrameID matches the reply value for AnimationCreated in the Animation domain.
-func (a *CreatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CreatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CreatedReply %s", err)
+		log.Printf("unmarshal error: CreatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CreatedReply returns the FrameID for AnimationCreated in the Animation domain.
@@ -109,12 +111,13 @@ func (a *StartedReply) UnmarshalJSON(b []byte) error {
 }
 
 // StartedReply returns whether or not the FrameID matches the reply value for AnimationStarted in the Animation domain.
-func (a *StartedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartedReply %s", err)
+		log.Printf("unmarshal error: StartedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartedReply returns the FrameID for AnimationStarted in the Animation domain.

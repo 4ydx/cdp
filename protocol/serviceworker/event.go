@@ -47,12 +47,13 @@ func (a *WorkerErrorReportedReply) UnmarshalJSON(b []byte) error {
 }
 
 // WorkerErrorReportedReply returns whether or not the FrameID matches the reply value for WorkerErrorReported in the ServiceWorker domain.
-func (a *WorkerErrorReportedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *WorkerErrorReportedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: WorkerErrorReportedReply %s", err)
+		log.Printf("unmarshal error: WorkerErrorReportedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // WorkerErrorReportedReply returns the FrameID for WorkerErrorReported in the ServiceWorker domain.
@@ -78,12 +79,13 @@ func (a *WorkerRegistrationUpdatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // WorkerRegistrationUpdatedReply returns whether or not the FrameID matches the reply value for WorkerRegistrationUpdated in the ServiceWorker domain.
-func (a *WorkerRegistrationUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *WorkerRegistrationUpdatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: WorkerRegistrationUpdatedReply %s", err)
+		log.Printf("unmarshal error: WorkerRegistrationUpdatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // WorkerRegistrationUpdatedReply returns the FrameID for WorkerRegistrationUpdated in the ServiceWorker domain.
@@ -109,12 +111,13 @@ func (a *WorkerVersionUpdatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // WorkerVersionUpdatedReply returns whether or not the FrameID matches the reply value for WorkerVersionUpdated in the ServiceWorker domain.
-func (a *WorkerVersionUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *WorkerVersionUpdatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: WorkerVersionUpdatedReply %s", err)
+		log.Printf("unmarshal error: WorkerVersionUpdatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // WorkerVersionUpdatedReply returns the FrameID for WorkerVersionUpdated in the ServiceWorker domain.

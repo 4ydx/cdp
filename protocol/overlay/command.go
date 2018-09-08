@@ -58,12 +58,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Overlay domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Overlay domain.
@@ -112,12 +113,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Overlay domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Overlay domain.
@@ -168,12 +170,13 @@ type GetHighlightObjectForTestReply struct {
 }
 
 // GetHighlightObjectForTestReply returns whether or not the FrameID matches the reply value for GetHighlightObjectForTest in the Overlay domain.
-func (a *GetHighlightObjectForTestReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetHighlightObjectForTestReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHighlightObjectForTestReply %s", err)
+		log.Printf("unmarshal error: GetHighlightObjectForTestReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetHighlightObjectForTestReply returns the FrameID value for GetHighlightObjectForTest in the Overlay domain.
@@ -222,12 +225,13 @@ type HideHighlightReply struct {
 }
 
 // HideHighlightReply returns whether or not the FrameID matches the reply value for HideHighlight in the Overlay domain.
-func (a *HideHighlightReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *HideHighlightReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HideHighlightReply %s", err)
+		log.Printf("unmarshal error: HideHighlightReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // HideHighlightReply returns the FrameID value for HideHighlight in the Overlay domain.
@@ -279,12 +283,13 @@ type HighlightFrameReply struct {
 }
 
 // HighlightFrameReply returns whether or not the FrameID matches the reply value for HighlightFrame in the Overlay domain.
-func (a *HighlightFrameReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *HighlightFrameReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HighlightFrameReply %s", err)
+		log.Printf("unmarshal error: HighlightFrameReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // HighlightFrameReply returns the FrameID value for HighlightFrame in the Overlay domain.
@@ -337,12 +342,13 @@ type HighlightNodeReply struct {
 }
 
 // HighlightNodeReply returns whether or not the FrameID matches the reply value for HighlightNode in the Overlay domain.
-func (a *HighlightNodeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *HighlightNodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HighlightNodeReply %s", err)
+		log.Printf("unmarshal error: HighlightNodeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // HighlightNodeReply returns the FrameID value for HighlightNode in the Overlay domain.
@@ -394,12 +400,13 @@ type HighlightQuadReply struct {
 }
 
 // HighlightQuadReply returns whether or not the FrameID matches the reply value for HighlightQuad in the Overlay domain.
-func (a *HighlightQuadReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *HighlightQuadReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HighlightQuadReply %s", err)
+		log.Printf("unmarshal error: HighlightQuadReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // HighlightQuadReply returns the FrameID value for HighlightQuad in the Overlay domain.
@@ -454,12 +461,13 @@ type HighlightRectReply struct {
 }
 
 // HighlightRectReply returns whether or not the FrameID matches the reply value for HighlightRect in the Overlay domain.
-func (a *HighlightRectReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *HighlightRectReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HighlightRectReply %s", err)
+		log.Printf("unmarshal error: HighlightRectReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // HighlightRectReply returns the FrameID value for HighlightRect in the Overlay domain.
@@ -510,12 +518,13 @@ type SetInspectModeReply struct {
 }
 
 // SetInspectModeReply returns whether or not the FrameID matches the reply value for SetInspectMode in the Overlay domain.
-func (a *SetInspectModeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetInspectModeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetInspectModeReply %s", err)
+		log.Printf("unmarshal error: SetInspectModeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetInspectModeReply returns the FrameID value for SetInspectMode in the Overlay domain.
@@ -565,12 +574,13 @@ type SetPausedInDebuggerMessageReply struct {
 }
 
 // SetPausedInDebuggerMessageReply returns whether or not the FrameID matches the reply value for SetPausedInDebuggerMessage in the Overlay domain.
-func (a *SetPausedInDebuggerMessageReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetPausedInDebuggerMessageReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetPausedInDebuggerMessageReply %s", err)
+		log.Printf("unmarshal error: SetPausedInDebuggerMessageReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetPausedInDebuggerMessageReply returns the FrameID value for SetPausedInDebuggerMessage in the Overlay domain.
@@ -620,12 +630,13 @@ type SetShowDebugBordersReply struct {
 }
 
 // SetShowDebugBordersReply returns whether or not the FrameID matches the reply value for SetShowDebugBorders in the Overlay domain.
-func (a *SetShowDebugBordersReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetShowDebugBordersReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowDebugBordersReply %s", err)
+		log.Printf("unmarshal error: SetShowDebugBordersReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetShowDebugBordersReply returns the FrameID value for SetShowDebugBorders in the Overlay domain.
@@ -675,12 +686,13 @@ type SetShowFPSCounterReply struct {
 }
 
 // SetShowFPSCounterReply returns whether or not the FrameID matches the reply value for SetShowFPSCounter in the Overlay domain.
-func (a *SetShowFPSCounterReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetShowFPSCounterReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowFPSCounterReply %s", err)
+		log.Printf("unmarshal error: SetShowFPSCounterReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetShowFPSCounterReply returns the FrameID value for SetShowFPSCounter in the Overlay domain.
@@ -730,12 +742,13 @@ type SetShowPaintRectsReply struct {
 }
 
 // SetShowPaintRectsReply returns whether or not the FrameID matches the reply value for SetShowPaintRects in the Overlay domain.
-func (a *SetShowPaintRectsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetShowPaintRectsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowPaintRectsReply %s", err)
+		log.Printf("unmarshal error: SetShowPaintRectsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetShowPaintRectsReply returns the FrameID value for SetShowPaintRects in the Overlay domain.
@@ -785,12 +798,13 @@ type SetShowScrollBottleneckRectsReply struct {
 }
 
 // SetShowScrollBottleneckRectsReply returns whether or not the FrameID matches the reply value for SetShowScrollBottleneckRects in the Overlay domain.
-func (a *SetShowScrollBottleneckRectsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetShowScrollBottleneckRectsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowScrollBottleneckRectsReply %s", err)
+		log.Printf("unmarshal error: SetShowScrollBottleneckRectsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetShowScrollBottleneckRectsReply returns the FrameID value for SetShowScrollBottleneckRects in the Overlay domain.
@@ -840,12 +854,13 @@ type SetShowViewportSizeOnResizeReply struct {
 }
 
 // SetShowViewportSizeOnResizeReply returns whether or not the FrameID matches the reply value for SetShowViewportSizeOnResize in the Overlay domain.
-func (a *SetShowViewportSizeOnResizeReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetShowViewportSizeOnResizeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetShowViewportSizeOnResizeReply %s", err)
+		log.Printf("unmarshal error: SetShowViewportSizeOnResizeReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetShowViewportSizeOnResizeReply returns the FrameID value for SetShowViewportSizeOnResize in the Overlay domain.
@@ -895,12 +910,13 @@ type SetSuspendedReply struct {
 }
 
 // SetSuspendedReply returns whether or not the FrameID matches the reply value for SetSuspended in the Overlay domain.
-func (a *SetSuspendedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetSuspendedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetSuspendedReply %s", err)
+		log.Printf("unmarshal error: SetSuspendedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetSuspendedReply returns the FrameID value for SetSuspended in the Overlay domain.

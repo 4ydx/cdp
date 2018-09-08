@@ -51,12 +51,13 @@ func (a *ItemAddedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ItemAddedReply returns whether or not the FrameID matches the reply value for DOMStorageItemAdded in the DOMStorage domain.
-func (a *ItemAddedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ItemAddedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ItemAddedReply %s", err)
+		log.Printf("unmarshal error: ItemAddedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ItemAddedReply returns the FrameID for DOMStorageItemAdded in the DOMStorage domain.
@@ -83,12 +84,13 @@ func (a *ItemRemovedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ItemRemovedReply returns whether or not the FrameID matches the reply value for DOMStorageItemRemoved in the DOMStorage domain.
-func (a *ItemRemovedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ItemRemovedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ItemRemovedReply %s", err)
+		log.Printf("unmarshal error: ItemRemovedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ItemRemovedReply returns the FrameID for DOMStorageItemRemoved in the DOMStorage domain.
@@ -117,12 +119,13 @@ func (a *ItemUpdatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ItemUpdatedReply returns whether or not the FrameID matches the reply value for DOMStorageItemUpdated in the DOMStorage domain.
-func (a *ItemUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ItemUpdatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ItemUpdatedReply %s", err)
+		log.Printf("unmarshal error: ItemUpdatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ItemUpdatedReply returns the FrameID for DOMStorageItemUpdated in the DOMStorage domain.
@@ -148,12 +151,13 @@ func (a *ItemsClearedReply) UnmarshalJSON(b []byte) error {
 }
 
 // ItemsClearedReply returns whether or not the FrameID matches the reply value for DOMStorageItemsCleared in the DOMStorage domain.
-func (a *ItemsClearedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ItemsClearedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ItemsClearedReply %s", err)
+		log.Printf("unmarshal error: ItemsClearedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ItemsClearedReply returns the FrameID for DOMStorageItemsCleared in the DOMStorage domain.

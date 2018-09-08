@@ -50,12 +50,13 @@ func (a *CacheStorageContentUpdatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // CacheStorageContentUpdatedReply returns whether or not the FrameID matches the reply value for CacheStorageContentUpdated in the Storage domain.
-func (a *CacheStorageContentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CacheStorageContentUpdatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CacheStorageContentUpdatedReply %s", err)
+		log.Printf("unmarshal error: CacheStorageContentUpdatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CacheStorageContentUpdatedReply returns the FrameID for CacheStorageContentUpdated in the Storage domain.
@@ -81,12 +82,13 @@ func (a *CacheStorageListUpdatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // CacheStorageListUpdatedReply returns whether or not the FrameID matches the reply value for CacheStorageListUpdated in the Storage domain.
-func (a *CacheStorageListUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CacheStorageListUpdatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CacheStorageListUpdatedReply %s", err)
+		log.Printf("unmarshal error: CacheStorageListUpdatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CacheStorageListUpdatedReply returns the FrameID for CacheStorageListUpdated in the Storage domain.
@@ -114,12 +116,13 @@ func (a *IndexedDBContentUpdatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // IndexedDBContentUpdatedReply returns whether or not the FrameID matches the reply value for IndexedDBContentUpdated in the Storage domain.
-func (a *IndexedDBContentUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *IndexedDBContentUpdatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: IndexedDBContentUpdatedReply %s", err)
+		log.Printf("unmarshal error: IndexedDBContentUpdatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // IndexedDBContentUpdatedReply returns the FrameID for IndexedDBContentUpdated in the Storage domain.
@@ -145,12 +148,13 @@ func (a *IndexedDBListUpdatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // IndexedDBListUpdatedReply returns whether or not the FrameID matches the reply value for IndexedDBListUpdated in the Storage domain.
-func (a *IndexedDBListUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *IndexedDBListUpdatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: IndexedDBListUpdatedReply %s", err)
+		log.Printf("unmarshal error: IndexedDBListUpdatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // IndexedDBListUpdatedReply returns the FrameID for IndexedDBListUpdated in the Storage domain.

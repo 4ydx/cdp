@@ -44,12 +44,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Security domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Security domain.
@@ -98,12 +99,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Security domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Security domain.
@@ -153,12 +155,13 @@ type SetIgnoreCertificateErrorsReply struct {
 }
 
 // SetIgnoreCertificateErrorsReply returns whether or not the FrameID matches the reply value for SetIgnoreCertificateErrors in the Security domain.
-func (a *SetIgnoreCertificateErrorsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetIgnoreCertificateErrorsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetIgnoreCertificateErrorsReply %s", err)
+		log.Printf("unmarshal error: SetIgnoreCertificateErrorsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetIgnoreCertificateErrorsReply returns the FrameID value for SetIgnoreCertificateErrors in the Security domain.
@@ -209,12 +212,13 @@ type HandleCertificateErrorReply struct {
 }
 
 // HandleCertificateErrorReply returns whether or not the FrameID matches the reply value for HandleCertificateError in the Security domain.
-func (a *HandleCertificateErrorReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *HandleCertificateErrorReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: HandleCertificateErrorReply %s", err)
+		log.Printf("unmarshal error: HandleCertificateErrorReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // HandleCertificateErrorReply returns the FrameID value for HandleCertificateError in the Security domain.
@@ -264,12 +268,13 @@ type SetOverrideCertificateErrorsReply struct {
 }
 
 // SetOverrideCertificateErrorsReply returns whether or not the FrameID matches the reply value for SetOverrideCertificateErrors in the Security domain.
-func (a *SetOverrideCertificateErrorsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *SetOverrideCertificateErrorsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: SetOverrideCertificateErrorsReply %s", err)
+		log.Printf("unmarshal error: SetOverrideCertificateErrorsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // SetOverrideCertificateErrorsReply returns the FrameID value for SetOverrideCertificateErrors in the Security domain.

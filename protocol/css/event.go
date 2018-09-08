@@ -51,12 +51,13 @@ func (a *FontsUpdatedReply) UnmarshalJSON(b []byte) error {
 }
 
 // FontsUpdatedReply returns whether or not the FrameID matches the reply value for FontsUpdated in the CSS domain.
-func (a *FontsUpdatedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *FontsUpdatedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: FontsUpdatedReply %s", err)
+		log.Printf("unmarshal error: FontsUpdatedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // FontsUpdatedReply returns the FrameID for FontsUpdated in the CSS domain.
@@ -81,12 +82,13 @@ func (a *MediaQueryResultChangedReply) UnmarshalJSON(b []byte) error {
 }
 
 // MediaQueryResultChangedReply returns whether or not the FrameID matches the reply value for MediaQueryResultChanged in the CSS domain.
-func (a *MediaQueryResultChangedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *MediaQueryResultChangedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: MediaQueryResultChangedReply %s", err)
+		log.Printf("unmarshal error: MediaQueryResultChangedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // MediaQueryResultChangedReply returns the FrameID for MediaQueryResultChanged in the CSS domain.
@@ -112,12 +114,13 @@ func (a *StyleSheetAddedReply) UnmarshalJSON(b []byte) error {
 }
 
 // StyleSheetAddedReply returns whether or not the FrameID matches the reply value for StyleSheetAdded in the CSS domain.
-func (a *StyleSheetAddedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StyleSheetAddedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StyleSheetAddedReply %s", err)
+		log.Printf("unmarshal error: StyleSheetAddedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StyleSheetAddedReply returns the FrameID for StyleSheetAdded in the CSS domain.
@@ -143,12 +146,13 @@ func (a *StyleSheetChangedReply) UnmarshalJSON(b []byte) error {
 }
 
 // StyleSheetChangedReply returns whether or not the FrameID matches the reply value for StyleSheetChanged in the CSS domain.
-func (a *StyleSheetChangedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StyleSheetChangedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StyleSheetChangedReply %s", err)
+		log.Printf("unmarshal error: StyleSheetChangedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StyleSheetChangedReply returns the FrameID for StyleSheetChanged in the CSS domain.
@@ -174,12 +178,13 @@ func (a *StyleSheetRemovedReply) UnmarshalJSON(b []byte) error {
 }
 
 // StyleSheetRemovedReply returns whether or not the FrameID matches the reply value for StyleSheetRemoved in the CSS domain.
-func (a *StyleSheetRemovedReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StyleSheetRemovedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StyleSheetRemovedReply %s", err)
+		log.Printf("unmarshal error: StyleSheetRemovedReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StyleSheetRemovedReply returns the FrameID for StyleSheetRemoved in the CSS domain.

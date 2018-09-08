@@ -55,12 +55,13 @@ type AddInspectedHeapObjectReply struct {
 }
 
 // AddInspectedHeapObjectReply returns whether or not the FrameID matches the reply value for AddInspectedHeapObject in the HeapProfiler domain.
-func (a *AddInspectedHeapObjectReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *AddInspectedHeapObjectReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: AddInspectedHeapObjectReply %s", err)
+		log.Printf("unmarshal error: AddInspectedHeapObjectReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // AddInspectedHeapObjectReply returns the FrameID value for AddInspectedHeapObject in the HeapProfiler domain.
@@ -109,12 +110,13 @@ type CollectGarbageReply struct {
 }
 
 // CollectGarbageReply returns whether or not the FrameID matches the reply value for CollectGarbage in the HeapProfiler domain.
-func (a *CollectGarbageReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *CollectGarbageReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: CollectGarbageReply %s", err)
+		log.Printf("unmarshal error: CollectGarbageReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // CollectGarbageReply returns the FrameID value for CollectGarbage in the HeapProfiler domain.
@@ -163,12 +165,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the HeapProfiler domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the HeapProfiler domain.
@@ -217,12 +220,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the HeapProfiler domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the HeapProfiler domain.
@@ -273,12 +277,13 @@ type GetHeapObjectIDReply struct {
 }
 
 // GetHeapObjectIDReply returns whether or not the FrameID matches the reply value for GetHeapObjectID in the HeapProfiler domain.
-func (a *GetHeapObjectIDReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetHeapObjectIDReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetHeapObjectIDReply %s", err)
+		log.Printf("unmarshal error: GetHeapObjectIDReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetHeapObjectIDReply returns the FrameID value for GetHeapObjectID in the HeapProfiler domain.
@@ -330,12 +335,13 @@ type GetObjectByHeapObjectIDReply struct {
 }
 
 // GetObjectByHeapObjectIDReply returns whether or not the FrameID matches the reply value for GetObjectByHeapObjectID in the HeapProfiler domain.
-func (a *GetObjectByHeapObjectIDReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetObjectByHeapObjectIDReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetObjectByHeapObjectIDReply %s", err)
+		log.Printf("unmarshal error: GetObjectByHeapObjectIDReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetObjectByHeapObjectIDReply returns the FrameID value for GetObjectByHeapObjectID in the HeapProfiler domain.
@@ -385,12 +391,13 @@ type GetSamplingProfileReply struct {
 }
 
 // GetSamplingProfileReply returns whether or not the FrameID matches the reply value for GetSamplingProfile in the HeapProfiler domain.
-func (a *GetSamplingProfileReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetSamplingProfileReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetSamplingProfileReply %s", err)
+		log.Printf("unmarshal error: GetSamplingProfileReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetSamplingProfileReply returns the FrameID value for GetSamplingProfile in the HeapProfiler domain.
@@ -440,12 +447,13 @@ type StartSamplingReply struct {
 }
 
 // StartSamplingReply returns whether or not the FrameID matches the reply value for StartSampling in the HeapProfiler domain.
-func (a *StartSamplingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartSamplingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartSamplingReply %s", err)
+		log.Printf("unmarshal error: StartSamplingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartSamplingReply returns the FrameID value for StartSampling in the HeapProfiler domain.
@@ -495,12 +503,13 @@ type StartTrackingHeapObjectsReply struct {
 }
 
 // StartTrackingHeapObjectsReply returns whether or not the FrameID matches the reply value for StartTrackingHeapObjects in the HeapProfiler domain.
-func (a *StartTrackingHeapObjectsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartTrackingHeapObjectsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartTrackingHeapObjectsReply %s", err)
+		log.Printf("unmarshal error: StartTrackingHeapObjectsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartTrackingHeapObjectsReply returns the FrameID value for StartTrackingHeapObjects in the HeapProfiler domain.
@@ -550,12 +559,13 @@ type StopSamplingReply struct {
 }
 
 // StopSamplingReply returns whether or not the FrameID matches the reply value for StopSampling in the HeapProfiler domain.
-func (a *StopSamplingReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopSamplingReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopSamplingReply %s", err)
+		log.Printf("unmarshal error: StopSamplingReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopSamplingReply returns the FrameID value for StopSampling in the HeapProfiler domain.
@@ -605,12 +615,13 @@ type StopTrackingHeapObjectsReply struct {
 }
 
 // StopTrackingHeapObjectsReply returns whether or not the FrameID matches the reply value for StopTrackingHeapObjects in the HeapProfiler domain.
-func (a *StopTrackingHeapObjectsReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopTrackingHeapObjectsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopTrackingHeapObjectsReply %s", err)
+		log.Printf("unmarshal error: StopTrackingHeapObjectsReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopTrackingHeapObjectsReply returns the FrameID value for StopTrackingHeapObjects in the HeapProfiler domain.
@@ -660,12 +671,13 @@ type TakeHeapSnapshotReply struct {
 }
 
 // TakeHeapSnapshotReply returns whether or not the FrameID matches the reply value for TakeHeapSnapshot in the HeapProfiler domain.
-func (a *TakeHeapSnapshotReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *TakeHeapSnapshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: TakeHeapSnapshotReply %s", err)
+		log.Printf("unmarshal error: TakeHeapSnapshotReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // TakeHeapSnapshotReply returns the FrameID value for TakeHeapSnapshot in the HeapProfiler domain.

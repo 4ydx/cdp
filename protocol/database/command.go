@@ -43,12 +43,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Database domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Database domain.
@@ -97,12 +98,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Database domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Database domain.
@@ -156,12 +158,13 @@ type ExecuteSQLReply struct {
 }
 
 // ExecuteSQLReply returns whether or not the FrameID matches the reply value for ExecuteSQL in the Database domain.
-func (a *ExecuteSQLReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ExecuteSQLReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ExecuteSQLReply %s", err)
+		log.Printf("unmarshal error: ExecuteSQLReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ExecuteSQLReply returns the FrameID value for ExecuteSQL in the Database domain.
@@ -212,12 +215,13 @@ type GetDatabaseTableNamesReply struct {
 }
 
 // GetDatabaseTableNamesReply returns whether or not the FrameID matches the reply value for GetDatabaseTableNames in the Database domain.
-func (a *GetDatabaseTableNamesReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *GetDatabaseTableNamesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: GetDatabaseTableNamesReply %s", err)
+		log.Printf("unmarshal error: GetDatabaseTableNamesReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // GetDatabaseTableNamesReply returns the FrameID value for GetDatabaseTableNames in the Database domain.

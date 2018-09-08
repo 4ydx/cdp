@@ -44,12 +44,13 @@ type ClearReply struct {
 }
 
 // ClearReply returns whether or not the FrameID matches the reply value for Clear in the Log domain.
-func (a *ClearReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *ClearReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: ClearReply %s", err)
+		log.Printf("unmarshal error: ClearReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // ClearReply returns the FrameID value for Clear in the Log domain.
@@ -98,12 +99,13 @@ type DisableReply struct {
 }
 
 // DisableReply returns whether or not the FrameID matches the reply value for Disable in the Log domain.
-func (a *DisableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: DisableReply %s", err)
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // DisableReply returns the FrameID value for Disable in the Log domain.
@@ -152,12 +154,13 @@ type EnableReply struct {
 }
 
 // EnableReply returns whether or not the FrameID matches the reply value for Enable in the Log domain.
-func (a *EnableReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: EnableReply %s", err)
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // EnableReply returns the FrameID value for Enable in the Log domain.
@@ -207,12 +210,13 @@ type StartViolationsReportReply struct {
 }
 
 // StartViolationsReportReply returns whether or not the FrameID matches the reply value for StartViolationsReport in the Log domain.
-func (a *StartViolationsReportReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StartViolationsReportReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StartViolationsReportReply %s", err)
+		log.Printf("unmarshal error: StartViolationsReportReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StartViolationsReportReply returns the FrameID value for StartViolationsReport in the Log domain.
@@ -261,12 +265,13 @@ type StopViolationsReportReply struct {
 }
 
 // StopViolationsReportReply returns whether or not the FrameID matches the reply value for StopViolationsReport in the Log domain.
-func (a *StopViolationsReportReply) MatchFrameID(frameID string, m []byte) bool {
+func (a *StopViolationsReportReply) MatchFrameID(frameID string, m []byte) (bool, error) {
 	err := a.UnmarshalJSON(m)
 	if err != nil {
-		log.Fatalf("unmarshal error: StopViolationsReportReply %s", err)
+		log.Printf("unmarshal error: StopViolationsReportReply %s", err)
+		return false, err
 	}
-	return true
+	return true, nil
 }
 
 // StopViolationsReportReply returns the FrameID value for StopViolationsReport in the Log domain.
