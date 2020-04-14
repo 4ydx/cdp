@@ -6,13 +6,126 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/dom"
 )
 
 const (
+	CommandAccessibilityDisable          = "Accessibility.disable"
+	CommandAccessibilityEnable           = "Accessibility.enable"
 	CommandAccessibilityGetPartialAXTree = "Accessibility.getPartialAXTree"
+	CommandAccessibilityGetFullAXTree    = "Accessibility.getFullAXTree"
 )
+
+// DisableArgs represents the arguments for Disable in the Accessibility domain.
+type DisableArgs struct {
+}
+
+// Unmarshal the byte array into a return value for Disable in the Accessibility domain.
+func (a *DisableArgs) UnmarshalJSON(b []byte) error {
+	type Copy DisableArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = DisableArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for Disable in the Accessibility domain.
+func (a *DisableArgs) MarshalJSON() ([]byte, error) {
+	type Copy DisableArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// DisableReply represents the return values for Disable in the Accessibility domain.
+type DisableReply struct {
+}
+
+// DisableReply returns whether or not the FrameID matches the reply value for Disable in the Accessibility domain.
+func (a *DisableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: DisableReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// DisableReply returns the FrameID value for Disable in the Accessibility domain.
+func (a *DisableReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for Disable in the Accessibility domain.
+func (a *DisableReply) UnmarshalJSON(b []byte) error {
+	type Copy DisableReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = DisableReply(*c)
+	return nil
+}
+
+// EnableArgs represents the arguments for Enable in the Accessibility domain.
+type EnableArgs struct {
+}
+
+// Unmarshal the byte array into a return value for Enable in the Accessibility domain.
+func (a *EnableArgs) UnmarshalJSON(b []byte) error {
+	type Copy EnableArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = EnableArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for Enable in the Accessibility domain.
+func (a *EnableArgs) MarshalJSON() ([]byte, error) {
+	type Copy EnableArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// EnableReply represents the return values for Enable in the Accessibility domain.
+type EnableReply struct {
+}
+
+// EnableReply returns whether or not the FrameID matches the reply value for Enable in the Accessibility domain.
+func (a *EnableReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: EnableReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// EnableReply returns the FrameID value for Enable in the Accessibility domain.
+func (a *EnableReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for Enable in the Accessibility domain.
+func (a *EnableReply) UnmarshalJSON(b []byte) error {
+	type Copy EnableReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = EnableReply(*c)
+	return nil
+}
 
 // GetPartialAXTreeArgs represents the arguments for GetPartialAXTree in the Accessibility domain.
 type GetPartialAXTreeArgs struct {
@@ -71,5 +184,61 @@ func (a *GetPartialAXTreeReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = GetPartialAXTreeReply(*c)
+	return nil
+}
+
+// GetFullAXTreeArgs represents the arguments for GetFullAXTree in the Accessibility domain.
+type GetFullAXTreeArgs struct {
+}
+
+// Unmarshal the byte array into a return value for GetFullAXTree in the Accessibility domain.
+func (a *GetFullAXTreeArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetFullAXTreeArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetFullAXTreeArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetFullAXTree in the Accessibility domain.
+func (a *GetFullAXTreeArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetFullAXTreeArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetFullAXTreeReply represents the return values for GetFullAXTree in the Accessibility domain.
+type GetFullAXTreeReply struct {
+	Nodes []AXNode `json:"nodes"` // No description.
+}
+
+// GetFullAXTreeReply returns whether or not the FrameID matches the reply value for GetFullAXTree in the Accessibility domain.
+func (a *GetFullAXTreeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetFullAXTreeReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetFullAXTreeReply returns the FrameID value for GetFullAXTree in the Accessibility domain.
+func (a *GetFullAXTreeReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetFullAXTree in the Accessibility domain.
+func (a *GetFullAXTreeReply) UnmarshalJSON(b []byte) error {
+	type Copy GetFullAXTreeReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetFullAXTreeReply(*c)
 	return nil
 }

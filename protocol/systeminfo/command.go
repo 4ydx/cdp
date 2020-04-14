@@ -8,7 +8,8 @@ import (
 )
 
 const (
-	CommandSystemInfoGetInfo = "SystemInfo.getInfo"
+	CommandSystemInfoGetInfo        = "SystemInfo.getInfo"
+	CommandSystemInfoGetProcessInfo = "SystemInfo.getProcessInfo"
 )
 
 // GetInfoArgs represents the arguments for GetInfo in the SystemInfo domain.
@@ -67,5 +68,61 @@ func (a *GetInfoReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = GetInfoReply(*c)
+	return nil
+}
+
+// GetProcessInfoArgs represents the arguments for GetProcessInfo in the SystemInfo domain.
+type GetProcessInfoArgs struct {
+}
+
+// Unmarshal the byte array into a return value for GetProcessInfo in the SystemInfo domain.
+func (a *GetProcessInfoArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetProcessInfoArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetProcessInfoArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetProcessInfo in the SystemInfo domain.
+func (a *GetProcessInfoArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetProcessInfoArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetProcessInfoReply represents the return values for GetProcessInfo in the SystemInfo domain.
+type GetProcessInfoReply struct {
+	ProcessInfo []ProcessInfo `json:"processInfo"` // An array of process info blocks.
+}
+
+// GetProcessInfoReply returns whether or not the FrameID matches the reply value for GetProcessInfo in the SystemInfo domain.
+func (a *GetProcessInfoReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetProcessInfoReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetProcessInfoReply returns the FrameID value for GetProcessInfo in the SystemInfo domain.
+func (a *GetProcessInfoReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetProcessInfo in the SystemInfo domain.
+func (a *GetProcessInfoReply) UnmarshalJSON(b []byte) error {
+	type Copy GetProcessInfoReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetProcessInfoReply(*c)
 	return nil
 }

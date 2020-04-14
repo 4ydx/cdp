@@ -8,18 +8,21 @@ import (
 )
 
 const (
-	CommandProfilerDisable               = "Profiler.disable"
-	CommandProfilerEnable                = "Profiler.enable"
-	CommandProfilerGetBestEffortCoverage = "Profiler.getBestEffortCoverage"
-	CommandProfilerSetSamplingInterval   = "Profiler.setSamplingInterval"
-	CommandProfilerStart                 = "Profiler.start"
-	CommandProfilerStartPreciseCoverage  = "Profiler.startPreciseCoverage"
-	CommandProfilerStartTypeProfile      = "Profiler.startTypeProfile"
-	CommandProfilerStop                  = "Profiler.stop"
-	CommandProfilerStopPreciseCoverage   = "Profiler.stopPreciseCoverage"
-	CommandProfilerStopTypeProfile       = "Profiler.stopTypeProfile"
-	CommandProfilerTakePreciseCoverage   = "Profiler.takePreciseCoverage"
-	CommandProfilerTakeTypeProfile       = "Profiler.takeTypeProfile"
+	CommandProfilerDisable                 = "Profiler.disable"
+	CommandProfilerEnable                  = "Profiler.enable"
+	CommandProfilerGetBestEffortCoverage   = "Profiler.getBestEffortCoverage"
+	CommandProfilerSetSamplingInterval     = "Profiler.setSamplingInterval"
+	CommandProfilerStart                   = "Profiler.start"
+	CommandProfilerStartPreciseCoverage    = "Profiler.startPreciseCoverage"
+	CommandProfilerStartTypeProfile        = "Profiler.startTypeProfile"
+	CommandProfilerStop                    = "Profiler.stop"
+	CommandProfilerStopPreciseCoverage     = "Profiler.stopPreciseCoverage"
+	CommandProfilerStopTypeProfile         = "Profiler.stopTypeProfile"
+	CommandProfilerTakePreciseCoverage     = "Profiler.takePreciseCoverage"
+	CommandProfilerTakeTypeProfile         = "Profiler.takeTypeProfile"
+	CommandProfilerEnableRuntimeCallStats  = "Profiler.enableRuntimeCallStats"
+	CommandProfilerDisableRuntimeCallStats = "Profiler.disableRuntimeCallStats"
+	CommandProfilerGetRuntimeCallStats     = "Profiler.getRuntimeCallStats"
 )
 
 // DisableArgs represents the arguments for Disable in the Profiler domain.
@@ -301,8 +304,9 @@ func (a *StartReply) UnmarshalJSON(b []byte) error {
 
 // StartPreciseCoverageArgs represents the arguments for StartPreciseCoverage in the Profiler domain.
 type StartPreciseCoverageArgs struct {
-	CallCount bool `json:"callCount,omitempty"` // Collect accurate call counts beyond simple 'covered' or 'not covered'.
-	Detailed  bool `json:"detailed,omitempty"`  // Collect block-based coverage.
+	CallCount             bool `json:"callCount,omitempty"`             // Collect accurate call counts beyond simple 'covered' or 'not covered'.
+	Detailed              bool `json:"detailed,omitempty"`              // Collect block-based coverage.
+	AllowTriggeredUpdates bool `json:"allowTriggeredUpdates,omitempty"` // Allow the backend to send updates on its own initiative
 }
 
 // Unmarshal the byte array into a return value for StartPreciseCoverage in the Profiler domain.
@@ -327,6 +331,7 @@ func (a *StartPreciseCoverageArgs) MarshalJSON() ([]byte, error) {
 
 // StartPreciseCoverageReply represents the return values for StartPreciseCoverage in the Profiler domain.
 type StartPreciseCoverageReply struct {
+	Timestamp float64 `json:"timestamp"` // Monotonically increasing time (in seconds) when the coverage update was taken in the backend.
 }
 
 // StartPreciseCoverageReply returns whether or not the FrameID matches the reply value for StartPreciseCoverage in the Profiler domain.
@@ -603,7 +608,8 @@ func (a *TakePreciseCoverageArgs) MarshalJSON() ([]byte, error) {
 
 // TakePreciseCoverageReply represents the return values for TakePreciseCoverage in the Profiler domain.
 type TakePreciseCoverageReply struct {
-	Result []ScriptCoverage `json:"result"` // Coverage data for the current isolate.
+	Result    []ScriptCoverage `json:"result"`    // Coverage data for the current isolate.
+	Timestamp float64          `json:"timestamp"` // Monotonically increasing time (in seconds) when the coverage update was taken in the backend.
 }
 
 // TakePreciseCoverageReply returns whether or not the FrameID matches the reply value for TakePreciseCoverage in the Profiler domain.
@@ -686,5 +692,171 @@ func (a *TakeTypeProfileReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = TakeTypeProfileReply(*c)
+	return nil
+}
+
+// EnableRuntimeCallStatsArgs represents the arguments for EnableRuntimeCallStats in the Profiler domain.
+type EnableRuntimeCallStatsArgs struct {
+}
+
+// Unmarshal the byte array into a return value for EnableRuntimeCallStats in the Profiler domain.
+func (a *EnableRuntimeCallStatsArgs) UnmarshalJSON(b []byte) error {
+	type Copy EnableRuntimeCallStatsArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = EnableRuntimeCallStatsArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for EnableRuntimeCallStats in the Profiler domain.
+func (a *EnableRuntimeCallStatsArgs) MarshalJSON() ([]byte, error) {
+	type Copy EnableRuntimeCallStatsArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// EnableRuntimeCallStatsReply represents the return values for EnableRuntimeCallStats in the Profiler domain.
+type EnableRuntimeCallStatsReply struct {
+}
+
+// EnableRuntimeCallStatsReply returns whether or not the FrameID matches the reply value for EnableRuntimeCallStats in the Profiler domain.
+func (a *EnableRuntimeCallStatsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: EnableRuntimeCallStatsReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// EnableRuntimeCallStatsReply returns the FrameID value for EnableRuntimeCallStats in the Profiler domain.
+func (a *EnableRuntimeCallStatsReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for EnableRuntimeCallStats in the Profiler domain.
+func (a *EnableRuntimeCallStatsReply) UnmarshalJSON(b []byte) error {
+	type Copy EnableRuntimeCallStatsReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = EnableRuntimeCallStatsReply(*c)
+	return nil
+}
+
+// DisableRuntimeCallStatsArgs represents the arguments for DisableRuntimeCallStats in the Profiler domain.
+type DisableRuntimeCallStatsArgs struct {
+}
+
+// Unmarshal the byte array into a return value for DisableRuntimeCallStats in the Profiler domain.
+func (a *DisableRuntimeCallStatsArgs) UnmarshalJSON(b []byte) error {
+	type Copy DisableRuntimeCallStatsArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = DisableRuntimeCallStatsArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for DisableRuntimeCallStats in the Profiler domain.
+func (a *DisableRuntimeCallStatsArgs) MarshalJSON() ([]byte, error) {
+	type Copy DisableRuntimeCallStatsArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// DisableRuntimeCallStatsReply represents the return values for DisableRuntimeCallStats in the Profiler domain.
+type DisableRuntimeCallStatsReply struct {
+}
+
+// DisableRuntimeCallStatsReply returns whether or not the FrameID matches the reply value for DisableRuntimeCallStats in the Profiler domain.
+func (a *DisableRuntimeCallStatsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: DisableRuntimeCallStatsReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// DisableRuntimeCallStatsReply returns the FrameID value for DisableRuntimeCallStats in the Profiler domain.
+func (a *DisableRuntimeCallStatsReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for DisableRuntimeCallStats in the Profiler domain.
+func (a *DisableRuntimeCallStatsReply) UnmarshalJSON(b []byte) error {
+	type Copy DisableRuntimeCallStatsReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = DisableRuntimeCallStatsReply(*c)
+	return nil
+}
+
+// GetRuntimeCallStatsArgs represents the arguments for GetRuntimeCallStats in the Profiler domain.
+type GetRuntimeCallStatsArgs struct {
+}
+
+// Unmarshal the byte array into a return value for GetRuntimeCallStats in the Profiler domain.
+func (a *GetRuntimeCallStatsArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetRuntimeCallStatsArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetRuntimeCallStatsArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetRuntimeCallStats in the Profiler domain.
+func (a *GetRuntimeCallStatsArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetRuntimeCallStatsArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetRuntimeCallStatsReply represents the return values for GetRuntimeCallStats in the Profiler domain.
+type GetRuntimeCallStatsReply struct {
+	Result []CounterInfo `json:"result"` // Collected counter information.
+}
+
+// GetRuntimeCallStatsReply returns whether or not the FrameID matches the reply value for GetRuntimeCallStats in the Profiler domain.
+func (a *GetRuntimeCallStatsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetRuntimeCallStatsReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetRuntimeCallStatsReply returns the FrameID value for GetRuntimeCallStats in the Profiler domain.
+func (a *GetRuntimeCallStatsReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetRuntimeCallStats in the Profiler domain.
+func (a *GetRuntimeCallStatsReply) UnmarshalJSON(b []byte) error {
+	type Copy GetRuntimeCallStatsReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetRuntimeCallStatsReply(*c)
 	return nil
 }

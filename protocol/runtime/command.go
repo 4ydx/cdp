@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 )
 
 const (
@@ -405,7 +405,8 @@ type EvaluateArgs struct {
 	UserGesture     bool `json:"userGesture,omitempty"`  // Whether execution should be treated as initiated by user in the UI.
 	AwaitPromise    bool `json:"awaitPromise,omitempty"` // Whether execution should `await` for resulting value and return once awaited promise is resolved.
 	// ThrowOnSideEffect Whether to throw an exception if side effect
-	// cannot be ruled out during evaluation.
+	// cannot be ruled out during evaluation. This implies `disableBreaks`
+	// below.
 	//
 	// Note: This property is experimental.
 	ThrowOnSideEffect bool `json:"throwOnSideEffect,omitempty"`
@@ -414,6 +415,16 @@ type EvaluateArgs struct {
 	//
 	// Note: This property is experimental.
 	Timeout *TimeDelta `json:"timeout,omitempty"`
+	// DisableBreaks Disable breakpoints during execution.
+	//
+	// Note: This property is experimental.
+	DisableBreaks bool `json:"disableBreaks,omitempty"`
+	// ReplMode Setting this flag to true enables `let` re-declaration and
+	// top-level `await`. Note that `let` variables can only be re-declared
+	// if they originate from `replMode` themselves.
+	//
+	// Note: This property is experimental.
+	ReplMode bool `json:"replMode,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for Evaluate in the Runtime domain.
@@ -622,7 +633,11 @@ func (a *GetPropertiesArgs) MarshalJSON() ([]byte, error) {
 type GetPropertiesReply struct {
 	Result             []PropertyDescriptor          `json:"result"`                       // Object properties.
 	InternalProperties *[]InternalPropertyDescriptor `json:"internalProperties,omitempty"` // Internal object properties (only of the element itself).
-	ExceptionDetails   *ExceptionDetails             `json:"exceptionDetails,omitempty"`   // Exception details.
+	// PrivateProperties Object private properties.
+	//
+	// Note: This property is experimental.
+	PrivateProperties *[]PrivatePropertyDescriptor `json:"privateProperties,omitempty"`
+	ExceptionDetails  *ExceptionDetails            `json:"exceptionDetails,omitempty"` // Exception details.
 }
 
 // GetPropertiesReply returns whether or not the FrameID matches the reply value for GetProperties in the Runtime domain.

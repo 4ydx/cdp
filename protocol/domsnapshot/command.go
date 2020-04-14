@@ -188,7 +188,9 @@ func (a *GetSnapshotReply) UnmarshalJSON(b []byte) error {
 
 // CaptureSnapshotArgs represents the arguments for CaptureSnapshot in the DOMSnapshot domain.
 type CaptureSnapshotArgs struct {
-	ComputedStyles []string `json:"computedStyles"` // Whitelist of computed styles to return.
+	ComputedStyles    []string `json:"computedStyles"`              // Whitelist of computed styles to return.
+	IncludePaintOrder bool     `json:"includePaintOrder,omitempty"` // Whether to include layout object paint orders into the snapshot.
+	IncludeDOMRects   bool     `json:"includeDOMRects,omitempty"`   // Whether to include DOM rectangles (offsetRects, clientRects, scrollRects) into the snapshot
 }
 
 // Unmarshal the byte array into a return value for CaptureSnapshot in the DOMSnapshot domain.

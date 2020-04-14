@@ -6,11 +6,18 @@ import (
 	"encoding/json"
 	"log"
 
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/target"
 )
 
 const (
+	CommandBrowserSetPermission         = "Browser.setPermission"
+	CommandBrowserGrantPermissions      = "Browser.grantPermissions"
+	CommandBrowserResetPermissions      = "Browser.resetPermissions"
+	CommandBrowserSetDownloadBehavior   = "Browser.setDownloadBehavior"
 	CommandBrowserClose                 = "Browser.close"
+	CommandBrowserCrash                 = "Browser.crash"
+	CommandBrowserCrashGpuProcess       = "Browser.crashGpuProcess"
 	CommandBrowserGetVersion            = "Browser.getVersion"
 	CommandBrowserGetBrowserCommandLine = "Browser.getBrowserCommandLine"
 	CommandBrowserGetHistograms         = "Browser.getHistograms"
@@ -18,7 +25,245 @@ const (
 	CommandBrowserGetWindowBounds       = "Browser.getWindowBounds"
 	CommandBrowserGetWindowForTarget    = "Browser.getWindowForTarget"
 	CommandBrowserSetWindowBounds       = "Browser.setWindowBounds"
+	CommandBrowserSetDockTile           = "Browser.setDockTile"
 )
+
+// SetPermissionArgs represents the arguments for SetPermission in the Browser domain.
+type SetPermissionArgs struct {
+	Origin           string               `json:"origin,omitempty"`           // Origin the permission applies to, all origins if not specified.
+	Permission       PermissionDescriptor `json:"permission"`                 // Descriptor of permission to override.
+	Setting          PermissionSetting    `json:"setting"`                    // Setting of the permission.
+	BrowserContextID shared.ContextID     `json:"browserContextId,omitempty"` // Context to override. When omitted, default browser context is used.
+}
+
+// Unmarshal the byte array into a return value for SetPermission in the Browser domain.
+func (a *SetPermissionArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetPermissionArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetPermissionArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetPermission in the Browser domain.
+func (a *SetPermissionArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetPermissionArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetPermissionReply represents the return values for SetPermission in the Browser domain.
+type SetPermissionReply struct {
+}
+
+// SetPermissionReply returns whether or not the FrameID matches the reply value for SetPermission in the Browser domain.
+func (a *SetPermissionReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetPermissionReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetPermissionReply returns the FrameID value for SetPermission in the Browser domain.
+func (a *SetPermissionReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetPermission in the Browser domain.
+func (a *SetPermissionReply) UnmarshalJSON(b []byte) error {
+	type Copy SetPermissionReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetPermissionReply(*c)
+	return nil
+}
+
+// GrantPermissionsArgs represents the arguments for GrantPermissions in the Browser domain.
+type GrantPermissionsArgs struct {
+	Origin           string           `json:"origin,omitempty"`           // Origin the permission applies to, all origins if not specified.
+	Permissions      []PermissionType `json:"permissions"`                // No description.
+	BrowserContextID shared.ContextID `json:"browserContextId,omitempty"` // BrowserContext to override permissions. When omitted, default browser context is used.
+}
+
+// Unmarshal the byte array into a return value for GrantPermissions in the Browser domain.
+func (a *GrantPermissionsArgs) UnmarshalJSON(b []byte) error {
+	type Copy GrantPermissionsArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GrantPermissionsArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GrantPermissions in the Browser domain.
+func (a *GrantPermissionsArgs) MarshalJSON() ([]byte, error) {
+	type Copy GrantPermissionsArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GrantPermissionsReply represents the return values for GrantPermissions in the Browser domain.
+type GrantPermissionsReply struct {
+}
+
+// GrantPermissionsReply returns whether or not the FrameID matches the reply value for GrantPermissions in the Browser domain.
+func (a *GrantPermissionsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GrantPermissionsReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GrantPermissionsReply returns the FrameID value for GrantPermissions in the Browser domain.
+func (a *GrantPermissionsReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GrantPermissions in the Browser domain.
+func (a *GrantPermissionsReply) UnmarshalJSON(b []byte) error {
+	type Copy GrantPermissionsReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GrantPermissionsReply(*c)
+	return nil
+}
+
+// ResetPermissionsArgs represents the arguments for ResetPermissions in the Browser domain.
+type ResetPermissionsArgs struct {
+	BrowserContextID shared.ContextID `json:"browserContextId,omitempty"` // BrowserContext to reset permissions. When omitted, default browser context is used.
+}
+
+// Unmarshal the byte array into a return value for ResetPermissions in the Browser domain.
+func (a *ResetPermissionsArgs) UnmarshalJSON(b []byte) error {
+	type Copy ResetPermissionsArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ResetPermissionsArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for ResetPermissions in the Browser domain.
+func (a *ResetPermissionsArgs) MarshalJSON() ([]byte, error) {
+	type Copy ResetPermissionsArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// ResetPermissionsReply represents the return values for ResetPermissions in the Browser domain.
+type ResetPermissionsReply struct {
+}
+
+// ResetPermissionsReply returns whether or not the FrameID matches the reply value for ResetPermissions in the Browser domain.
+func (a *ResetPermissionsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: ResetPermissionsReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// ResetPermissionsReply returns the FrameID value for ResetPermissions in the Browser domain.
+func (a *ResetPermissionsReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for ResetPermissions in the Browser domain.
+func (a *ResetPermissionsReply) UnmarshalJSON(b []byte) error {
+	type Copy ResetPermissionsReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ResetPermissionsReply(*c)
+	return nil
+}
+
+// SetDownloadBehaviorArgs represents the arguments for SetDownloadBehavior in the Browser domain.
+type SetDownloadBehaviorArgs struct {
+	// Behavior Whether to allow all or deny all download requests, or use
+	// default Chrome behavior if available (otherwise deny).
+	// |allowAndName| allows download and names files according to their
+	// dowmload guids.
+	//
+	// Values: "deny", "allow", "allowAndName", "default".
+	Behavior         string           `json:"behavior"`
+	BrowserContextID shared.ContextID `json:"browserContextId,omitempty"` // BrowserContext to set download behavior. When omitted, default browser context is used.
+	DownloadPath     string           `json:"downloadPath,omitempty"`     // The default path to save downloaded files to. This is required if behavior is set to 'allow' or 'allowAndName'.
+}
+
+// Unmarshal the byte array into a return value for SetDownloadBehavior in the Browser domain.
+func (a *SetDownloadBehaviorArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetDownloadBehaviorArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetDownloadBehaviorArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetDownloadBehavior in the Browser domain.
+func (a *SetDownloadBehaviorArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetDownloadBehaviorArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetDownloadBehaviorReply represents the return values for SetDownloadBehavior in the Browser domain.
+type SetDownloadBehaviorReply struct {
+}
+
+// SetDownloadBehaviorReply returns whether or not the FrameID matches the reply value for SetDownloadBehavior in the Browser domain.
+func (a *SetDownloadBehaviorReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetDownloadBehaviorReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetDownloadBehaviorReply returns the FrameID value for SetDownloadBehavior in the Browser domain.
+func (a *SetDownloadBehaviorReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetDownloadBehavior in the Browser domain.
+func (a *SetDownloadBehaviorReply) UnmarshalJSON(b []byte) error {
+	type Copy SetDownloadBehaviorReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetDownloadBehaviorReply(*c)
+	return nil
+}
 
 // CloseArgs represents the arguments for Close in the Browser domain.
 type CloseArgs struct {
@@ -72,6 +317,116 @@ func (a *CloseReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = CloseReply(*c)
+	return nil
+}
+
+// CrashArgs represents the arguments for Crash in the Browser domain.
+type CrashArgs struct {
+}
+
+// Unmarshal the byte array into a return value for Crash in the Browser domain.
+func (a *CrashArgs) UnmarshalJSON(b []byte) error {
+	type Copy CrashArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = CrashArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for Crash in the Browser domain.
+func (a *CrashArgs) MarshalJSON() ([]byte, error) {
+	type Copy CrashArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// CrashReply represents the return values for Crash in the Browser domain.
+type CrashReply struct {
+}
+
+// CrashReply returns whether or not the FrameID matches the reply value for Crash in the Browser domain.
+func (a *CrashReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: CrashReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// CrashReply returns the FrameID value for Crash in the Browser domain.
+func (a *CrashReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for Crash in the Browser domain.
+func (a *CrashReply) UnmarshalJSON(b []byte) error {
+	type Copy CrashReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = CrashReply(*c)
+	return nil
+}
+
+// CrashGPUProcessArgs represents the arguments for CrashGPUProcess in the Browser domain.
+type CrashGPUProcessArgs struct {
+}
+
+// Unmarshal the byte array into a return value for CrashGPUProcess in the Browser domain.
+func (a *CrashGPUProcessArgs) UnmarshalJSON(b []byte) error {
+	type Copy CrashGPUProcessArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = CrashGPUProcessArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for CrashGPUProcess in the Browser domain.
+func (a *CrashGPUProcessArgs) MarshalJSON() ([]byte, error) {
+	type Copy CrashGPUProcessArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// CrashGPUProcessReply represents the return values for CrashGPUProcess in the Browser domain.
+type CrashGPUProcessReply struct {
+}
+
+// CrashGPUProcessReply returns whether or not the FrameID matches the reply value for CrashGPUProcess in the Browser domain.
+func (a *CrashGPUProcessReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: CrashGPUProcessReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// CrashGPUProcessReply returns the FrameID value for CrashGPUProcess in the Browser domain.
+func (a *CrashGPUProcessReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for CrashGPUProcess in the Browser domain.
+func (a *CrashGPUProcessReply) UnmarshalJSON(b []byte) error {
+	type Copy CrashGPUProcessReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = CrashGPUProcessReply(*c)
 	return nil
 }
 
@@ -366,7 +721,7 @@ func (a *GetWindowBoundsReply) UnmarshalJSON(b []byte) error {
 
 // GetWindowForTargetArgs represents the arguments for GetWindowForTarget in the Browser domain.
 type GetWindowForTargetArgs struct {
-	TargetID target.ID `json:"targetId"` // Devtools agent host id.
+	TargetID target.ID `json:"targetId,omitempty"` // Devtools agent host id. If called as a part of the session, associated targetId is used.
 }
 
 // Unmarshal the byte array into a return value for GetWindowForTarget in the Browser domain.
@@ -476,5 +831,62 @@ func (a *SetWindowBoundsReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = SetWindowBoundsReply(*c)
+	return nil
+}
+
+// SetDockTileArgs represents the arguments for SetDockTile in the Browser domain.
+type SetDockTileArgs struct {
+	BadgeLabel string `json:"badgeLabel,omitempty"` // No description.
+	Image      string `json:"image,omitempty"`      // Png encoded image.
+}
+
+// Unmarshal the byte array into a return value for SetDockTile in the Browser domain.
+func (a *SetDockTileArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetDockTileArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetDockTileArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetDockTile in the Browser domain.
+func (a *SetDockTileArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetDockTileArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetDockTileReply represents the return values for SetDockTile in the Browser domain.
+type SetDockTileReply struct {
+}
+
+// SetDockTileReply returns whether or not the FrameID matches the reply value for SetDockTile in the Browser domain.
+func (a *SetDockTileReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetDockTileReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetDockTileReply returns the FrameID value for SetDockTile in the Browser domain.
+func (a *SetDockTileReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetDockTile in the Browser domain.
+func (a *SetDockTileReply) UnmarshalJSON(b []byte) error {
+	type Copy SetDockTileReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetDockTileReply(*c)
 	return nil
 }

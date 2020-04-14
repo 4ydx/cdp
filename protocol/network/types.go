@@ -7,7 +7,7 @@ import (
 	"errors"
 	"time"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/runtime"
 	"github.com/4ydx/cdp/protocol/security"
 )
@@ -55,48 +55,6 @@ func (e ErrorReason) Valid() bool {
 func (e ErrorReason) String() string {
 	return string(e)
 }
-
-// TimeSinceEpoch UTC time in seconds, counted from January 1, 1970.
-type TimeSinceEpoch float64
-
-// String calls (time.Time).String().
-func (t TimeSinceEpoch) String() string {
-	return t.Time().String()
-}
-
-// Time parses the Unix time with millisecond accuracy.
-func (t TimeSinceEpoch) Time() time.Time {
-	secs := int64(t)
-	// The Unix time in t only has ms accuracy.
-	ms := int64((float64(t) - float64(secs)) * 1000000)
-	return time.Unix(secs, ms*1000)
-}
-
-// MarshalJSON implements json.Marshaler. Encodes to null if t is zero.
-func (t TimeSinceEpoch) MarshalJSON() ([]byte, error) {
-	if t == 0 {
-		return []byte("null"), nil
-	}
-	f := float64(t)
-	return json.Marshal(&f)
-}
-
-// UnmarshalJSON implements json.Unmarshaler.
-func (t *TimeSinceEpoch) UnmarshalJSON(data []byte) error {
-	*t = 0
-	if len(data) == 0 {
-		return nil
-	}
-	var f float64
-	if err := json.Unmarshal(data, &f); err != nil {
-		return errors.New("network.TimeSinceEpoch: " + err.Error())
-	}
-	*t = TimeSinceEpoch(f)
-	return nil
-}
-
-var _ json.Marshaler = (*TimeSinceEpoch)(nil)
-var _ json.Unmarshaler = (*TimeSinceEpoch)(nil)
 
 // MonotonicTime Monotonically increasing time in seconds since an arbitrary
 // point in the past.
@@ -204,11 +162,12 @@ const (
 	CookieSameSiteNotSet CookieSameSite = ""
 	CookieSameSiteStrict CookieSameSite = "Strict"
 	CookieSameSiteLax    CookieSameSite = "Lax"
+	CookieSameSiteNone   CookieSameSite = "None"
 )
 
 func (e CookieSameSite) Valid() bool {
 	switch e {
-	case "Strict", "Lax":
+	case "Strict", "Lax", "None":
 		return true
 	default:
 		return false
@@ -216,6 +175,33 @@ func (e CookieSameSite) Valid() bool {
 }
 
 func (e CookieSameSite) String() string {
+	return string(e)
+}
+
+// CookiePriority Represents the cookie's 'Priority' status:
+// https://tools.ietf.org/html/draft-west-cookie-priority-00
+//
+// Note: This type is experimental.
+type CookiePriority string
+
+// CookiePriority as enums.
+const (
+	CookiePriorityNotSet CookiePriority = ""
+	CookiePriorityLow    CookiePriority = "Low"
+	CookiePriorityMedium CookiePriority = "Medium"
+	CookiePriorityHigh   CookiePriority = "High"
+)
+
+func (e CookiePriority) Valid() bool {
+	switch e {
+	case "Low", "Medium", "High":
+		return true
+	default:
+		return false
+	}
+}
+
+func (e CookiePriority) String() string {
 	return string(e)
 }
 
@@ -297,14 +283,14 @@ type Request struct {
 
 // SignedCertificateTimestamp Details of a signed certificate timestamp (SCT).
 type SignedCertificateTimestamp struct {
-	Status             string         `json:"status"`             // Validation status.
-	Origin             string         `json:"origin"`             // Origin.
-	LogDescription     string         `json:"logDescription"`     // Log name / description.
-	LogID              string         `json:"logId"`              // Log ID.
-	Timestamp          TimeSinceEpoch `json:"timestamp"`          // Issuance date.
-	HashAlgorithm      string         `json:"hashAlgorithm"`      // Hash algorithm.
-	SignatureAlgorithm string         `json:"signatureAlgorithm"` // Signature algorithm.
-	SignatureData      string         `json:"signatureData"`      // Signature data.
+	Status             string                `json:"status"`             // Validation status.
+	Origin             string                `json:"origin"`             // Origin.
+	LogDescription     string                `json:"logDescription"`     // Log name / description.
+	LogID              string                `json:"logId"`              // Log ID.
+	Timestamp          shared.TimeSinceEpoch `json:"timestamp"`          // Issuance date.
+	HashAlgorithm      string                `json:"hashAlgorithm"`      // Hash algorithm.
+	SignatureAlgorithm string                `json:"signatureAlgorithm"` // Signature algorithm.
+	SignatureData      string                `json:"signatureData"`      // Signature data.
 }
 
 // SecurityDetails Security details about a request.
@@ -318,8 +304,8 @@ type SecurityDetails struct {
 	SubjectName                       string                            `json:"subjectName"`                       // Certificate subject name.
 	SanList                           []string                          `json:"sanList"`                           // Subject Alternative Name (SAN) DNS names and IP addresses.
 	Issuer                            string                            `json:"issuer"`                            // Name of the issuing CA.
-	ValidFrom                         TimeSinceEpoch                    `json:"validFrom"`                         // Certificate valid from date.
-	ValidTo                           TimeSinceEpoch                    `json:"validTo"`                           // Certificate valid to (expiration) date
+	ValidFrom                         shared.TimeSinceEpoch             `json:"validFrom"`                         // Certificate valid from date.
+	ValidTo                           shared.TimeSinceEpoch             `json:"validTo"`                           // Certificate valid to (expiration) date
 	SignedCertificateTimestampList    []SignedCertificateTimestamp      `json:"signedCertificateTimestampList"`    // List of signed certificate timestamps (SCTs).
 	CertificateTransparencyCompliance CertificateTransparencyCompliance `json:"certificateTransparencyCompliance"` // Whether the request complied with Certificate Transparency policy
 }
@@ -354,20 +340,25 @@ type BlockedReason string
 
 // BlockedReason as enums.
 const (
-	BlockedReasonNotSet            BlockedReason = ""
-	BlockedReasonOther             BlockedReason = "other"
-	BlockedReasonCsp               BlockedReason = "csp"
-	BlockedReasonMixedContent      BlockedReason = "mixed-content"
-	BlockedReasonOrigin            BlockedReason = "origin"
-	BlockedReasonInspector         BlockedReason = "inspector"
-	BlockedReasonSubresourceFilter BlockedReason = "subresource-filter"
-	BlockedReasonContentType       BlockedReason = "content-type"
-	BlockedReasonCollapsedByClient BlockedReason = "collapsed-by-client"
+	BlockedReasonNotSet                                            BlockedReason = ""
+	BlockedReasonOther                                             BlockedReason = "other"
+	BlockedReasonCsp                                               BlockedReason = "csp"
+	BlockedReasonMixedContent                                      BlockedReason = "mixed-content"
+	BlockedReasonOrigin                                            BlockedReason = "origin"
+	BlockedReasonInspector                                         BlockedReason = "inspector"
+	BlockedReasonSubresourceFilter                                 BlockedReason = "subresource-filter"
+	BlockedReasonContentType                                       BlockedReason = "content-type"
+	BlockedReasonCollapsedByClient                                 BlockedReason = "collapsed-by-client"
+	BlockedReasonCoepFrameResourceNeedsCoepHeader                  BlockedReason = "coep-frame-resource-needs-coep-header"
+	BlockedReasonCoopSandboxedIframeCannotNavigateToCoopPage       BlockedReason = "coop-sandboxed-iframe-cannot-navigate-to-coop-page"
+	BlockedReasonCorpNotSameOrigin                                 BlockedReason = "corp-not-same-origin"
+	BlockedReasonCorpNotSameOriginAfterDefaultedToSameOriginByCoep BlockedReason = "corp-not-same-origin-after-defaulted-to-same-origin-by-coep"
+	BlockedReasonCorpNotSameSite                                   BlockedReason = "corp-not-same-site"
 )
 
 func (e BlockedReason) Valid() bool {
 	switch e {
-	case "other", "csp", "mixed-content", "origin", "inspector", "subresource-filter", "content-type", "collapsed-by-client":
+	case "other", "csp", "mixed-content", "origin", "inspector", "subresource-filter", "content-type", "collapsed-by-client", "coep-frame-resource-needs-coep-header", "coop-sandboxed-iframe-cannot-navigate-to-coop-page", "corp-not-same-origin", "corp-not-same-origin-after-defaulted-to-same-origin-by-coep", "corp-not-same-site":
 		return true
 	default:
 		return false
@@ -394,6 +385,7 @@ type Response struct {
 	RemotePort         int              `json:"remotePort,omitempty"`         // Remote port.
 	FromDiskCache      bool             `json:"fromDiskCache,omitempty"`      // Specifies that the request was served from the disk cache.
 	FromServiceWorker  bool             `json:"fromServiceWorker,omitempty"`  // Specifies that the request was served from the ServiceWorker.
+	FromPrefetchCache  bool             `json:"fromPrefetchCache,omitempty"`  // Specifies that the request was served from the prefetch cache.
 	EncodedDataLength  float64          `json:"encodedDataLength"`            // Total number of bytes received for this request so far.
 	Timing             *ResourceTiming  `json:"timing,omitempty"`             // Timing information for the given request.
 	Protocol           string           `json:"protocol,omitempty"`           // Protocol used to fetch this request.
@@ -416,11 +408,12 @@ type WebSocketResponse struct {
 	RequestHeadersText string   `json:"requestHeadersText,omitempty"` // HTTP request headers text.
 }
 
-// WebSocketFrame WebSocket frame data.
+// WebSocketFrame WebSocket message data. This represents an entire WebSocket
+// message, not just a fragmented frame as the name suggests.
 type WebSocketFrame struct {
-	Opcode      float64 `json:"opcode"`      // WebSocket frame opcode.
-	Mask        bool    `json:"mask"`        // WebSocke frame mask.
-	PayloadData string  `json:"payloadData"` // WebSocke frame payload data.
+	Opcode      float64 `json:"opcode"`      // WebSocket message opcode.
+	Mask        bool    `json:"mask"`        // WebSocket message mask.
+	PayloadData string  `json:"payloadData"` // WebSocket message payload data. If the opcode is 1, this is a text message and payloadData is a UTF-8 string. If the opcode isn't 1, then payloadData is a base64 encoded string representing binary data.
 }
 
 // CachedResource Information about the cached resource.
@@ -454,19 +447,115 @@ type Cookie struct {
 	Secure   bool            `json:"secure"`             // True if cookie is secure.
 	Session  bool            `json:"session"`            // True in case of session cookie.
 	SameSite *CookieSameSite `json:"sameSite,omitempty"` // Cookie SameSite type.
+	// Priority Cookie Priority
+	//
+	// Note: This property is experimental.
+	Priority CookiePriority `json:"priority"`
+}
+
+// SetCookieBlockedReason Types of reasons why a cookie may not be stored from
+// a response.
+//
+// Note: This type is experimental.
+type SetCookieBlockedReason string
+
+// SetCookieBlockedReason as enums.
+const (
+	SetCookieBlockedReasonNotSet                          SetCookieBlockedReason = ""
+	SetCookieBlockedReasonSecureOnly                      SetCookieBlockedReason = "SecureOnly"
+	SetCookieBlockedReasonSameSiteStrict                  SetCookieBlockedReason = "SameSiteStrict"
+	SetCookieBlockedReasonSameSiteLax                     SetCookieBlockedReason = "SameSiteLax"
+	SetCookieBlockedReasonSameSiteUnspecifiedTreatedAsLax SetCookieBlockedReason = "SameSiteUnspecifiedTreatedAsLax"
+	SetCookieBlockedReasonSameSiteNoneInsecure            SetCookieBlockedReason = "SameSiteNoneInsecure"
+	SetCookieBlockedReasonUserPreferences                 SetCookieBlockedReason = "UserPreferences"
+	SetCookieBlockedReasonSyntaxError                     SetCookieBlockedReason = "SyntaxError"
+	SetCookieBlockedReasonSchemeNotSupported              SetCookieBlockedReason = "SchemeNotSupported"
+	SetCookieBlockedReasonOverwriteSecure                 SetCookieBlockedReason = "OverwriteSecure"
+	SetCookieBlockedReasonInvalidDomain                   SetCookieBlockedReason = "InvalidDomain"
+	SetCookieBlockedReasonInvalidPrefix                   SetCookieBlockedReason = "InvalidPrefix"
+	SetCookieBlockedReasonUnknownError                    SetCookieBlockedReason = "UnknownError"
+)
+
+func (e SetCookieBlockedReason) Valid() bool {
+	switch e {
+	case "SecureOnly", "SameSiteStrict", "SameSiteLax", "SameSiteUnspecifiedTreatedAsLax", "SameSiteNoneInsecure", "UserPreferences", "SyntaxError", "SchemeNotSupported", "OverwriteSecure", "InvalidDomain", "InvalidPrefix", "UnknownError":
+		return true
+	default:
+		return false
+	}
+}
+
+func (e SetCookieBlockedReason) String() string {
+	return string(e)
+}
+
+// CookieBlockedReason Types of reasons why a cookie may not be sent with a
+// request.
+//
+// Note: This type is experimental.
+type CookieBlockedReason string
+
+// CookieBlockedReason as enums.
+const (
+	CookieBlockedReasonNotSet                          CookieBlockedReason = ""
+	CookieBlockedReasonSecureOnly                      CookieBlockedReason = "SecureOnly"
+	CookieBlockedReasonNotOnPath                       CookieBlockedReason = "NotOnPath"
+	CookieBlockedReasonDomainMismatch                  CookieBlockedReason = "DomainMismatch"
+	CookieBlockedReasonSameSiteStrict                  CookieBlockedReason = "SameSiteStrict"
+	CookieBlockedReasonSameSiteLax                     CookieBlockedReason = "SameSiteLax"
+	CookieBlockedReasonSameSiteUnspecifiedTreatedAsLax CookieBlockedReason = "SameSiteUnspecifiedTreatedAsLax"
+	CookieBlockedReasonSameSiteNoneInsecure            CookieBlockedReason = "SameSiteNoneInsecure"
+	CookieBlockedReasonUserPreferences                 CookieBlockedReason = "UserPreferences"
+	CookieBlockedReasonUnknownError                    CookieBlockedReason = "UnknownError"
+)
+
+func (e CookieBlockedReason) Valid() bool {
+	switch e {
+	case "SecureOnly", "NotOnPath", "DomainMismatch", "SameSiteStrict", "SameSiteLax", "SameSiteUnspecifiedTreatedAsLax", "SameSiteNoneInsecure", "UserPreferences", "UnknownError":
+		return true
+	default:
+		return false
+	}
+}
+
+func (e CookieBlockedReason) String() string {
+	return string(e)
+}
+
+// BlockedSetCookieWithReason A cookie which was not stored from a response
+// with the corresponding reason.
+//
+// Note: This type is experimental.
+type BlockedSetCookieWithReason struct {
+	BlockedReasons []SetCookieBlockedReason `json:"blockedReasons"`   // The reason(s) this cookie was blocked.
+	CookieLine     string                   `json:"cookieLine"`       // The string representing this individual cookie as it would appear in the header. This is not the entire "cookie" or "set-cookie" header which could have multiple cookies.
+	Cookie         *Cookie                  `json:"cookie,omitempty"` // The cookie object which represents the cookie which was not stored. It is optional because sometimes complete cookie information is not available, such as in the case of parsing errors.
+}
+
+// BlockedCookieWithReason A cookie with was not sent with a request with the
+// corresponding reason.
+//
+// Note: This type is experimental.
+type BlockedCookieWithReason struct {
+	BlockedReasons []CookieBlockedReason `json:"blockedReasons"` // The reason(s) the cookie was blocked.
+	Cookie         Cookie                `json:"cookie"`         // The cookie object representing the cookie which was not sent.
 }
 
 // CookieParam Cookie parameter object
 type CookieParam struct {
-	Name     string          `json:"name"`               // Cookie name.
-	Value    string          `json:"value"`              // Cookie value.
-	URL      string          `json:"url,omitempty"`      // The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
-	Domain   string          `json:"domain,omitempty"`   // Cookie domain.
-	Path     string          `json:"path,omitempty"`     // Cookie path.
-	Secure   bool            `json:"secure,omitempty"`   // True if cookie is secure.
-	HTTPOnly bool            `json:"httpOnly,omitempty"` // True if cookie is http-only.
-	SameSite *CookieSameSite `json:"sameSite,omitempty"` // Cookie SameSite type.
-	Expires  *TimeSinceEpoch `json:"expires,omitempty"`  // Cookie expiration date, session cookie if not set
+	Name     string                 `json:"name"`               // Cookie name.
+	Value    string                 `json:"value"`              // Cookie value.
+	URL      string                 `json:"url,omitempty"`      // The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
+	Domain   string                 `json:"domain,omitempty"`   // Cookie domain.
+	Path     string                 `json:"path,omitempty"`     // Cookie path.
+	Secure   bool                   `json:"secure,omitempty"`   // True if cookie is secure.
+	HTTPOnly bool                   `json:"httpOnly,omitempty"` // True if cookie is http-only.
+	SameSite *CookieSameSite        `json:"sameSite,omitempty"` // Cookie SameSite type.
+	Expires  *shared.TimeSinceEpoch `json:"expires,omitempty"`  // Cookie expiration date, session cookie if not set
+	// Priority Cookie Priority.
+	//
+	// Note: This property is experimental.
+	Priority *CookiePriority `json:"priority,omitempty"`
 }
 
 // AuthChallenge Authorization challenge for HTTP status code 401 or 407.
@@ -555,10 +644,10 @@ type SignedExchangeSignature struct {
 // Note: This type is experimental.
 type SignedExchangeHeader struct {
 	RequestURL      string                    `json:"requestUrl"`      // Signed exchange request URL.
-	RequestMethod   string                    `json:"requestMethod"`   // Signed exchange request method.
 	ResponseCode    int                       `json:"responseCode"`    // Signed exchange response code.
 	ResponseHeaders Headers                   `json:"responseHeaders"` // Signed exchange response headers.
 	Signatures      []SignedExchangeSignature `json:"signatures"`      // Signed exchange response signature.
+	HeaderIntegrity string                    `json:"headerIntegrity"` // Signed exchange header integrity hash in the form of "sha256-<base64-hash-value>".
 }
 
 // SignedExchangeErrorField Field type for a signed exchange related error.

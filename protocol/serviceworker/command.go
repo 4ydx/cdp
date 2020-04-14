@@ -8,25 +8,26 @@ import (
 )
 
 const (
-	CommandServiceWorkerDeliverPushMessage       = "ServiceWorker.deliverPushMessage"
-	CommandServiceWorkerDisable                  = "ServiceWorker.disable"
-	CommandServiceWorkerDispatchSyncEvent        = "ServiceWorker.dispatchSyncEvent"
-	CommandServiceWorkerEnable                   = "ServiceWorker.enable"
-	CommandServiceWorkerInspectWorker            = "ServiceWorker.inspectWorker"
-	CommandServiceWorkerSetForceUpdateOnPageLoad = "ServiceWorker.setForceUpdateOnPageLoad"
-	CommandServiceWorkerSkipWaiting              = "ServiceWorker.skipWaiting"
-	CommandServiceWorkerStartWorker              = "ServiceWorker.startWorker"
-	CommandServiceWorkerStopAllWorkers           = "ServiceWorker.stopAllWorkers"
-	CommandServiceWorkerStopWorker               = "ServiceWorker.stopWorker"
-	CommandServiceWorkerUnregister               = "ServiceWorker.unregister"
-	CommandServiceWorkerUpdateRegistration       = "ServiceWorker.updateRegistration"
+	CommandServiceWorkerDeliverPushMessage        = "ServiceWorker.deliverPushMessage"
+	CommandServiceWorkerDisable                   = "ServiceWorker.disable"
+	CommandServiceWorkerDispatchSyncEvent         = "ServiceWorker.dispatchSyncEvent"
+	CommandServiceWorkerDispatchPeriodicSyncEvent = "ServiceWorker.dispatchPeriodicSyncEvent"
+	CommandServiceWorkerEnable                    = "ServiceWorker.enable"
+	CommandServiceWorkerInspectWorker             = "ServiceWorker.inspectWorker"
+	CommandServiceWorkerSetForceUpdateOnPageLoad  = "ServiceWorker.setForceUpdateOnPageLoad"
+	CommandServiceWorkerSkipWaiting               = "ServiceWorker.skipWaiting"
+	CommandServiceWorkerStartWorker               = "ServiceWorker.startWorker"
+	CommandServiceWorkerStopAllWorkers            = "ServiceWorker.stopAllWorkers"
+	CommandServiceWorkerStopWorker                = "ServiceWorker.stopWorker"
+	CommandServiceWorkerUnregister                = "ServiceWorker.unregister"
+	CommandServiceWorkerUpdateRegistration        = "ServiceWorker.updateRegistration"
 )
 
 // DeliverPushMessageArgs represents the arguments for DeliverPushMessage in the ServiceWorker domain.
 type DeliverPushMessageArgs struct {
-	Origin         string `json:"origin"`         // No description.
-	RegistrationID string `json:"registrationId"` // No description.
-	Data           string `json:"data"`           // No description.
+	Origin         string         `json:"origin"`         // No description.
+	RegistrationID RegistrationID `json:"registrationId"` // No description.
+	Data           string         `json:"data"`           // No description.
 }
 
 // Unmarshal the byte array into a return value for DeliverPushMessage in the ServiceWorker domain.
@@ -137,10 +138,10 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 
 // DispatchSyncEventArgs represents the arguments for DispatchSyncEvent in the ServiceWorker domain.
 type DispatchSyncEventArgs struct {
-	Origin         string `json:"origin"`         // No description.
-	RegistrationID string `json:"registrationId"` // No description.
-	Tag            string `json:"tag"`            // No description.
-	LastChance     bool   `json:"lastChance"`     // No description.
+	Origin         string         `json:"origin"`         // No description.
+	RegistrationID RegistrationID `json:"registrationId"` // No description.
+	Tag            string         `json:"tag"`            // No description.
+	LastChance     bool           `json:"lastChance"`     // No description.
 }
 
 // Unmarshal the byte array into a return value for DispatchSyncEvent in the ServiceWorker domain.
@@ -191,6 +192,64 @@ func (a *DispatchSyncEventReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = DispatchSyncEventReply(*c)
+	return nil
+}
+
+// DispatchPeriodicSyncEventArgs represents the arguments for DispatchPeriodicSyncEvent in the ServiceWorker domain.
+type DispatchPeriodicSyncEventArgs struct {
+	Origin         string         `json:"origin"`         // No description.
+	RegistrationID RegistrationID `json:"registrationId"` // No description.
+	Tag            string         `json:"tag"`            // No description.
+}
+
+// Unmarshal the byte array into a return value for DispatchPeriodicSyncEvent in the ServiceWorker domain.
+func (a *DispatchPeriodicSyncEventArgs) UnmarshalJSON(b []byte) error {
+	type Copy DispatchPeriodicSyncEventArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = DispatchPeriodicSyncEventArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for DispatchPeriodicSyncEvent in the ServiceWorker domain.
+func (a *DispatchPeriodicSyncEventArgs) MarshalJSON() ([]byte, error) {
+	type Copy DispatchPeriodicSyncEventArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// DispatchPeriodicSyncEventReply represents the return values for DispatchPeriodicSyncEvent in the ServiceWorker domain.
+type DispatchPeriodicSyncEventReply struct {
+}
+
+// DispatchPeriodicSyncEventReply returns whether or not the FrameID matches the reply value for DispatchPeriodicSyncEvent in the ServiceWorker domain.
+func (a *DispatchPeriodicSyncEventReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: DispatchPeriodicSyncEventReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// DispatchPeriodicSyncEventReply returns the FrameID value for DispatchPeriodicSyncEvent in the ServiceWorker domain.
+func (a *DispatchPeriodicSyncEventReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for DispatchPeriodicSyncEvent in the ServiceWorker domain.
+func (a *DispatchPeriodicSyncEventReply) UnmarshalJSON(b []byte) error {
+	type Copy DispatchPeriodicSyncEventReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = DispatchPeriodicSyncEventReply(*c)
 	return nil
 }
 

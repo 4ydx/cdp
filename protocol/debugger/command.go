@@ -6,40 +6,41 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
 const (
-	CommandDebuggerContinueToLocation          = "Debugger.continueToLocation"
-	CommandDebuggerDisable                     = "Debugger.disable"
-	CommandDebuggerEnable                      = "Debugger.enable"
-	CommandDebuggerEvaluateOnCallFrame         = "Debugger.evaluateOnCallFrame"
-	CommandDebuggerGetPossibleBreakpoints      = "Debugger.getPossibleBreakpoints"
-	CommandDebuggerGetScriptSource             = "Debugger.getScriptSource"
-	CommandDebuggerGetStackTrace               = "Debugger.getStackTrace"
-	CommandDebuggerPause                       = "Debugger.pause"
-	CommandDebuggerPauseOnAsyncCall            = "Debugger.pauseOnAsyncCall"
-	CommandDebuggerRemoveBreakpoint            = "Debugger.removeBreakpoint"
-	CommandDebuggerRestartFrame                = "Debugger.restartFrame"
-	CommandDebuggerResume                      = "Debugger.resume"
-	CommandDebuggerScheduleStepIntoAsync       = "Debugger.scheduleStepIntoAsync"
-	CommandDebuggerSearchInContent             = "Debugger.searchInContent"
-	CommandDebuggerSetAsyncCallStackDepth      = "Debugger.setAsyncCallStackDepth"
-	CommandDebuggerSetBlackboxPatterns         = "Debugger.setBlackboxPatterns"
-	CommandDebuggerSetBlackboxedRanges         = "Debugger.setBlackboxedRanges"
-	CommandDebuggerSetBreakpoint               = "Debugger.setBreakpoint"
-	CommandDebuggerSetBreakpointByUrl          = "Debugger.setBreakpointByUrl"
-	CommandDebuggerSetBreakpointOnFunctionCall = "Debugger.setBreakpointOnFunctionCall"
-	CommandDebuggerSetBreakpointsActive        = "Debugger.setBreakpointsActive"
-	CommandDebuggerSetPauseOnExceptions        = "Debugger.setPauseOnExceptions"
-	CommandDebuggerSetReturnValue              = "Debugger.setReturnValue"
-	CommandDebuggerSetScriptSource             = "Debugger.setScriptSource"
-	CommandDebuggerSetSkipAllPauses            = "Debugger.setSkipAllPauses"
-	CommandDebuggerSetVariableValue            = "Debugger.setVariableValue"
-	CommandDebuggerStepInto                    = "Debugger.stepInto"
-	CommandDebuggerStepOut                     = "Debugger.stepOut"
-	CommandDebuggerStepOver                    = "Debugger.stepOver"
+	CommandDebuggerContinueToLocation           = "Debugger.continueToLocation"
+	CommandDebuggerDisable                      = "Debugger.disable"
+	CommandDebuggerEnable                       = "Debugger.enable"
+	CommandDebuggerEvaluateOnCallFrame          = "Debugger.evaluateOnCallFrame"
+	CommandDebuggerGetPossibleBreakpoints       = "Debugger.getPossibleBreakpoints"
+	CommandDebuggerGetScriptSource              = "Debugger.getScriptSource"
+	CommandDebuggerGetWasmBytecode              = "Debugger.getWasmBytecode"
+	CommandDebuggerGetStackTrace                = "Debugger.getStackTrace"
+	CommandDebuggerPause                        = "Debugger.pause"
+	CommandDebuggerPauseOnAsyncCall             = "Debugger.pauseOnAsyncCall"
+	CommandDebuggerRemoveBreakpoint             = "Debugger.removeBreakpoint"
+	CommandDebuggerRestartFrame                 = "Debugger.restartFrame"
+	CommandDebuggerResume                       = "Debugger.resume"
+	CommandDebuggerSearchInContent              = "Debugger.searchInContent"
+	CommandDebuggerSetAsyncCallStackDepth       = "Debugger.setAsyncCallStackDepth"
+	CommandDebuggerSetBlackboxPatterns          = "Debugger.setBlackboxPatterns"
+	CommandDebuggerSetBlackboxedRanges          = "Debugger.setBlackboxedRanges"
+	CommandDebuggerSetBreakpoint                = "Debugger.setBreakpoint"
+	CommandDebuggerSetInstrumentationBreakpoint = "Debugger.setInstrumentationBreakpoint"
+	CommandDebuggerSetBreakpointByUrl           = "Debugger.setBreakpointByUrl"
+	CommandDebuggerSetBreakpointOnFunctionCall  = "Debugger.setBreakpointOnFunctionCall"
+	CommandDebuggerSetBreakpointsActive         = "Debugger.setBreakpointsActive"
+	CommandDebuggerSetPauseOnExceptions         = "Debugger.setPauseOnExceptions"
+	CommandDebuggerSetReturnValue               = "Debugger.setReturnValue"
+	CommandDebuggerSetScriptSource              = "Debugger.setScriptSource"
+	CommandDebuggerSetSkipAllPauses             = "Debugger.setSkipAllPauses"
+	CommandDebuggerSetVariableValue             = "Debugger.setVariableValue"
+	CommandDebuggerStepInto                     = "Debugger.stepInto"
+	CommandDebuggerStepOut                      = "Debugger.stepOut"
+	CommandDebuggerStepOver                     = "Debugger.stepOver"
 )
 
 // ContinueToLocationArgs represents the arguments for ContinueToLocation in the Debugger domain.
@@ -159,6 +160,12 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 
 // EnableArgs represents the arguments for Enable in the Debugger domain.
 type EnableArgs struct {
+	// MaxScriptsCacheSize The maximum size in bytes of collected scripts
+	// (not referenced by other heap objects) the debugger can hold. Puts
+	// no limit if parameter is omitted.
+	//
+	// Note: This property is experimental.
+	MaxScriptsCacheSize float64 `json:"maxScriptsCacheSize,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for Enable in the Debugger domain.
@@ -375,7 +382,8 @@ func (a *GetScriptSourceArgs) MarshalJSON() ([]byte, error) {
 
 // GetScriptSourceReply represents the return values for GetScriptSource in the Debugger domain.
 type GetScriptSourceReply struct {
-	ScriptSource string `json:"scriptSource"` // Script source.
+	ScriptSource string `json:"scriptSource"`       // Script source (empty in case of Wasm bytecode).
+	Bytecode     string `json:"bytecode,omitempty"` // Wasm bytecode.
 }
 
 // GetScriptSourceReply returns whether or not the FrameID matches the reply value for GetScriptSource in the Debugger domain.
@@ -402,6 +410,63 @@ func (a *GetScriptSourceReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = GetScriptSourceReply(*c)
+	return nil
+}
+
+// GetWasmBytecodeArgs represents the arguments for GetWasmBytecode in the Debugger domain.
+type GetWasmBytecodeArgs struct {
+	ScriptID runtime.ScriptID `json:"scriptId"` // Id of the Wasm script to get source for.
+}
+
+// Unmarshal the byte array into a return value for GetWasmBytecode in the Debugger domain.
+func (a *GetWasmBytecodeArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetWasmBytecodeArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetWasmBytecodeArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetWasmBytecode in the Debugger domain.
+func (a *GetWasmBytecodeArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetWasmBytecodeArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetWasmBytecodeReply represents the return values for GetWasmBytecode in the Debugger domain.
+type GetWasmBytecodeReply struct {
+	Bytecode string `json:"bytecode"` // Script source.
+}
+
+// GetWasmBytecodeReply returns whether or not the FrameID matches the reply value for GetWasmBytecode in the Debugger domain.
+func (a *GetWasmBytecodeReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetWasmBytecodeReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetWasmBytecodeReply returns the FrameID value for GetWasmBytecode in the Debugger domain.
+func (a *GetWasmBytecodeReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetWasmBytecode in the Debugger domain.
+func (a *GetWasmBytecodeReply) UnmarshalJSON(b []byte) error {
+	type Copy GetWasmBytecodeReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetWasmBytecodeReply(*c)
 	return nil
 }
 
@@ -693,6 +758,7 @@ func (a *RestartFrameReply) UnmarshalJSON(b []byte) error {
 
 // ResumeArgs represents the arguments for Resume in the Debugger domain.
 type ResumeArgs struct {
+	TerminateOnResume bool `json:"terminateOnResume,omitempty"` // Set to true to terminate execution upon resuming execution. In contrast to Runtime.terminateExecution, this will allows to execute further JavaScript (i.e. via evaluation) until execution of the paused code is actually resumed, at which point termination is triggered. If execution is currently not paused, this parameter has no effect.
 }
 
 // Unmarshal the byte array into a return value for Resume in the Debugger domain.
@@ -743,61 +809,6 @@ func (a *ResumeReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = ResumeReply(*c)
-	return nil
-}
-
-// ScheduleStepIntoAsyncArgs represents the arguments for ScheduleStepIntoAsync in the Debugger domain.
-type ScheduleStepIntoAsyncArgs struct {
-}
-
-// Unmarshal the byte array into a return value for ScheduleStepIntoAsync in the Debugger domain.
-func (a *ScheduleStepIntoAsyncArgs) UnmarshalJSON(b []byte) error {
-	type Copy ScheduleStepIntoAsyncArgs
-	c := &Copy{}
-	err := json.Unmarshal(b, c)
-	if err != nil {
-		return err
-	}
-	*a = ScheduleStepIntoAsyncArgs(*c)
-	return nil
-}
-
-// Marshall the byte array into a return value for ScheduleStepIntoAsync in the Debugger domain.
-func (a *ScheduleStepIntoAsyncArgs) MarshalJSON() ([]byte, error) {
-	type Copy ScheduleStepIntoAsyncArgs
-	c := &Copy{}
-	*c = Copy(*a)
-	return json.Marshal(&c)
-}
-
-// ScheduleStepIntoAsyncReply represents the return values for ScheduleStepIntoAsync in the Debugger domain.
-type ScheduleStepIntoAsyncReply struct {
-}
-
-// ScheduleStepIntoAsyncReply returns whether or not the FrameID matches the reply value for ScheduleStepIntoAsync in the Debugger domain.
-func (a *ScheduleStepIntoAsyncReply) MatchFrameID(frameID string, m []byte) (bool, error) {
-	err := a.UnmarshalJSON(m)
-	if err != nil {
-		log.Printf("unmarshal error: ScheduleStepIntoAsyncReply %s", err)
-		return false, err
-	}
-	return true, nil
-}
-
-// ScheduleStepIntoAsyncReply returns the FrameID value for ScheduleStepIntoAsync in the Debugger domain.
-func (a *ScheduleStepIntoAsyncReply) GetFrameID() string {
-	return ""
-}
-
-// Unmarshal the byte array into a return value for ScheduleStepIntoAsync in the Debugger domain.
-func (a *ScheduleStepIntoAsyncReply) UnmarshalJSON(b []byte) error {
-	type Copy ScheduleStepIntoAsyncReply
-	c := &Copy{}
-	err := json.Unmarshal(b, c)
-	if err != nil {
-		return err
-	}
-	*a = ScheduleStepIntoAsyncReply(*c)
 	return nil
 }
 
@@ -1086,6 +1097,66 @@ func (a *SetBreakpointReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = SetBreakpointReply(*c)
+	return nil
+}
+
+// SetInstrumentationBreakpointArgs represents the arguments for SetInstrumentationBreakpoint in the Debugger domain.
+type SetInstrumentationBreakpointArgs struct {
+	// Instrumentation Instrumentation name.
+	//
+	// Values: "beforeScriptExecution", "beforeScriptWithSourceMapExecution".
+	Instrumentation string `json:"instrumentation"`
+}
+
+// Unmarshal the byte array into a return value for SetInstrumentationBreakpoint in the Debugger domain.
+func (a *SetInstrumentationBreakpointArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetInstrumentationBreakpointArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetInstrumentationBreakpointArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetInstrumentationBreakpoint in the Debugger domain.
+func (a *SetInstrumentationBreakpointArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetInstrumentationBreakpointArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetInstrumentationBreakpointReply represents the return values for SetInstrumentationBreakpoint in the Debugger domain.
+type SetInstrumentationBreakpointReply struct {
+	BreakpointID BreakpointID `json:"breakpointId"` // Id of the created breakpoint for further reference.
+}
+
+// SetInstrumentationBreakpointReply returns whether or not the FrameID matches the reply value for SetInstrumentationBreakpoint in the Debugger domain.
+func (a *SetInstrumentationBreakpointReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetInstrumentationBreakpointReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetInstrumentationBreakpointReply returns the FrameID value for SetInstrumentationBreakpoint in the Debugger domain.
+func (a *SetInstrumentationBreakpointReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetInstrumentationBreakpoint in the Debugger domain.
+func (a *SetInstrumentationBreakpointReply) UnmarshalJSON(b []byte) error {
+	type Copy SetInstrumentationBreakpointReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetInstrumentationBreakpointReply(*c)
 	return nil
 }
 
@@ -1564,8 +1635,8 @@ func (a *SetVariableValueReply) UnmarshalJSON(b []byte) error {
 
 // StepIntoArgs represents the arguments for StepInto in the Debugger domain.
 type StepIntoArgs struct {
-	// BreakOnAsyncCall Debugger will issue additional Debugger.paused
-	// notification if any async task is scheduled before next pause.
+	// BreakOnAsyncCall Debugger will pause on the execution of the first
+	// async task which was scheduled before next pause.
 	//
 	// Note: This property is experimental.
 	BreakOnAsyncCall bool `json:"breakOnAsyncCall,omitempty"`

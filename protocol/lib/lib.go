@@ -7,6 +7,9 @@ import (
 
 	"github.com/4ydx/cdp/protocol/animation"
 	"github.com/4ydx/cdp/protocol/applicationcache"
+	"github.com/4ydx/cdp/protocol/audits"
+	"github.com/4ydx/cdp/protocol/backgroundservice"
+	"github.com/4ydx/cdp/protocol/cast"
 	"github.com/4ydx/cdp/protocol/console"
 	"github.com/4ydx/cdp/protocol/css"
 	"github.com/4ydx/cdp/protocol/database"
@@ -14,11 +17,13 @@ import (
 	"github.com/4ydx/cdp/protocol/dom"
 	"github.com/4ydx/cdp/protocol/domstorage"
 	"github.com/4ydx/cdp/protocol/emulation"
+	"github.com/4ydx/cdp/protocol/fetch"
 	"github.com/4ydx/cdp/protocol/headlessexperimental"
 	"github.com/4ydx/cdp/protocol/heapprofiler"
 	"github.com/4ydx/cdp/protocol/inspector"
 	"github.com/4ydx/cdp/protocol/layertree"
 	"github.com/4ydx/cdp/protocol/log"
+	"github.com/4ydx/cdp/protocol/media"
 	"github.com/4ydx/cdp/protocol/network"
 	"github.com/4ydx/cdp/protocol/overlay"
 	"github.com/4ydx/cdp/protocol/page"
@@ -31,6 +36,7 @@ import (
 	"github.com/4ydx/cdp/protocol/target"
 	"github.com/4ydx/cdp/protocol/tethering"
 	"github.com/4ydx/cdp/protocol/tracing"
+	"github.com/4ydx/cdp/protocol/webaudio"
 )
 
 // GetEventUnmarshaler returns an object that can receive and unmarshal event data.
@@ -45,7 +51,19 @@ func GetEventUnmarshaler(event string) (json.Unmarshaler, bool) {
 	if ok {
 		return o, true
 	}
+	o, ok = audits.GetEventReply(event)
+	if ok {
+		return o, true
+	}
+	o, ok = backgroundservice.GetEventReply(event)
+	if ok {
+		return o, true
+	}
 	o, ok = css.GetEventReply(event)
+	if ok {
+		return o, true
+	}
+	o, ok = cast.GetEventReply(event)
 	if ok {
 		return o, true
 	}
@@ -73,6 +91,10 @@ func GetEventUnmarshaler(event string) (json.Unmarshaler, bool) {
 	if ok {
 		return o, true
 	}
+	o, ok = fetch.GetEventReply(event)
+	if ok {
+		return o, true
+	}
 	o, ok = headlessexperimental.GetEventReply(event)
 	if ok {
 		return o, true
@@ -90,6 +112,10 @@ func GetEventUnmarshaler(event string) (json.Unmarshaler, bool) {
 		return o, true
 	}
 	o, ok = log.GetEventReply(event)
+	if ok {
+		return o, true
+	}
+	o, ok = media.GetEventReply(event)
 	if ok {
 		return o, true
 	}
@@ -138,6 +164,10 @@ func GetEventUnmarshaler(event string) (json.Unmarshaler, bool) {
 		return o, true
 	}
 	o, ok = tracing.GetEventReply(event)
+	if ok {
+		return o, true
+	}
+	o, ok = webaudio.GetEventReply(event)
 	if ok {
 		return o, true
 	}

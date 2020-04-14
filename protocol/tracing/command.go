@@ -184,6 +184,7 @@ func (a *RecordClockSyncMarkerReply) UnmarshalJSON(b []byte) error {
 
 // RequestMemoryDumpArgs represents the arguments for RequestMemoryDump in the Tracing domain.
 type RequestMemoryDumpArgs struct {
+	Deterministic bool `json:"deterministic,omitempty"` // Enables more deterministic results by forcing garbage collection
 }
 
 // Unmarshal the byte array into a return value for RequestMemoryDump in the Tracing domain.
@@ -256,6 +257,7 @@ type StartArgs struct {
 	//
 	// Values: "ReportEvents", "ReturnAsStream".
 	TransferMode      string             `json:"transferMode,omitempty"`
+	StreamFormat      *StreamFormat      `json:"streamFormat,omitempty"`      // Trace data format to use. This only applies when using `ReturnAsStream` transfer mode (defaults to `json`).
 	StreamCompression *StreamCompression `json:"streamCompression,omitempty"` // Compression format to use. This only applies when using `ReturnAsStream` transfer mode (defaults to `none`)
 	TraceConfig       *TraceConfig       `json:"traceConfig,omitempty"`       // No description.
 }

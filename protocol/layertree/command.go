@@ -48,7 +48,12 @@ func (a *CompositingReasonsArgs) MarshalJSON() ([]byte, error) {
 
 // CompositingReasonsReply represents the return values for CompositingReasons in the LayerTree domain.
 type CompositingReasonsReply struct {
-	CompositingReasons []string `json:"compositingReasons"` // A list of strings specifying reasons for the given layer to become composited.
+	// CompositingReasons is deprecated.
+	//
+	// Deprecated: A list of strings specifying reasons for the given
+	// layer to become composited.
+	CompositingReasons   []string `json:"compositingReasons"`
+	CompositingReasonIDs []string `json:"compositingReasonIds"` // A list of strings specifying reason IDs for the given layer to become composited.
 }
 
 // CompositingReasonsReply returns whether or not the FrameID matches the reply value for CompositingReasons in the LayerTree domain.

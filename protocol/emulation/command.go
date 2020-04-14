@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"log"
 
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/dom"
-	"github.com/4ydx/cdp/protocol/network"
 	"github.com/4ydx/cdp/protocol/page"
 )
 
@@ -16,6 +16,7 @@ const (
 	CommandEmulationClearDeviceMetricsOverride        = "Emulation.clearDeviceMetricsOverride"
 	CommandEmulationClearGeolocationOverride          = "Emulation.clearGeolocationOverride"
 	CommandEmulationResetPageScaleFactor              = "Emulation.resetPageScaleFactor"
+	CommandEmulationSetFocusEmulationEnabled          = "Emulation.setFocusEmulationEnabled"
 	CommandEmulationSetCPUThrottlingRate              = "Emulation.setCPUThrottlingRate"
 	CommandEmulationSetDefaultBackgroundColorOverride = "Emulation.setDefaultBackgroundColorOverride"
 	CommandEmulationSetDeviceMetricsOverride          = "Emulation.setDeviceMetricsOverride"
@@ -23,12 +24,15 @@ const (
 	CommandEmulationSetDocumentCookieDisabled         = "Emulation.setDocumentCookieDisabled"
 	CommandEmulationSetEmitTouchEventsForMouse        = "Emulation.setEmitTouchEventsForMouse"
 	CommandEmulationSetEmulatedMedia                  = "Emulation.setEmulatedMedia"
+	CommandEmulationSetEmulatedVisionDeficiency       = "Emulation.setEmulatedVisionDeficiency"
 	CommandEmulationSetGeolocationOverride            = "Emulation.setGeolocationOverride"
 	CommandEmulationSetNavigatorOverrides             = "Emulation.setNavigatorOverrides"
 	CommandEmulationSetPageScaleFactor                = "Emulation.setPageScaleFactor"
 	CommandEmulationSetScriptExecutionDisabled        = "Emulation.setScriptExecutionDisabled"
 	CommandEmulationSetTouchEmulationEnabled          = "Emulation.setTouchEmulationEnabled"
 	CommandEmulationSetVirtualTimePolicy              = "Emulation.setVirtualTimePolicy"
+	CommandEmulationSetLocaleOverride                 = "Emulation.setLocaleOverride"
+	CommandEmulationSetTimezoneOverride               = "Emulation.setTimezoneOverride"
 	CommandEmulationSetVisibleSize                    = "Emulation.setVisibleSize"
 	CommandEmulationSetUserAgentOverride              = "Emulation.setUserAgentOverride"
 )
@@ -251,6 +255,62 @@ func (a *ResetPageScaleFactorReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = ResetPageScaleFactorReply(*c)
+	return nil
+}
+
+// SetFocusEmulationEnabledArgs represents the arguments for SetFocusEmulationEnabled in the Emulation domain.
+type SetFocusEmulationEnabledArgs struct {
+	Enabled bool `json:"enabled"` // Whether to enable to disable focus emulation.
+}
+
+// Unmarshal the byte array into a return value for SetFocusEmulationEnabled in the Emulation domain.
+func (a *SetFocusEmulationEnabledArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetFocusEmulationEnabledArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetFocusEmulationEnabledArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetFocusEmulationEnabled in the Emulation domain.
+func (a *SetFocusEmulationEnabledArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetFocusEmulationEnabledArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetFocusEmulationEnabledReply represents the return values for SetFocusEmulationEnabled in the Emulation domain.
+type SetFocusEmulationEnabledReply struct {
+}
+
+// SetFocusEmulationEnabledReply returns whether or not the FrameID matches the reply value for SetFocusEmulationEnabled in the Emulation domain.
+func (a *SetFocusEmulationEnabledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetFocusEmulationEnabledReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetFocusEmulationEnabledReply returns the FrameID value for SetFocusEmulationEnabled in the Emulation domain.
+func (a *SetFocusEmulationEnabledReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetFocusEmulationEnabled in the Emulation domain.
+func (a *SetFocusEmulationEnabledReply) UnmarshalJSON(b []byte) error {
+	type Copy SetFocusEmulationEnabledReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetFocusEmulationEnabledReply(*c)
 	return nil
 }
 
@@ -636,7 +696,8 @@ func (a *SetEmitTouchEventsForMouseReply) UnmarshalJSON(b []byte) error {
 
 // SetEmulatedMediaArgs represents the arguments for SetEmulatedMedia in the Emulation domain.
 type SetEmulatedMediaArgs struct {
-	Media string `json:"media"` // Media type to emulate. Empty string disables the override.
+	Media    string          `json:"media,omitempty"`    // Media type to emulate. Empty string disables the override.
+	Features *[]MediaFeature `json:"features,omitempty"` // Media features to emulate.
 }
 
 // Unmarshal the byte array into a return value for SetEmulatedMedia in the Emulation domain.
@@ -687,6 +748,65 @@ func (a *SetEmulatedMediaReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = SetEmulatedMediaReply(*c)
+	return nil
+}
+
+// SetEmulatedVisionDeficiencyArgs represents the arguments for SetEmulatedVisionDeficiency in the Emulation domain.
+type SetEmulatedVisionDeficiencyArgs struct {
+	// Type Vision deficiency to emulate.
+	//
+	// Values: "none", "achromatopsia", "blurredVision", "deuteranopia", "protanopia", "tritanopia".
+	Type string `json:"type"`
+}
+
+// Unmarshal the byte array into a return value for SetEmulatedVisionDeficiency in the Emulation domain.
+func (a *SetEmulatedVisionDeficiencyArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetEmulatedVisionDeficiencyArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetEmulatedVisionDeficiencyArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetEmulatedVisionDeficiency in the Emulation domain.
+func (a *SetEmulatedVisionDeficiencyArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetEmulatedVisionDeficiencyArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetEmulatedVisionDeficiencyReply represents the return values for SetEmulatedVisionDeficiency in the Emulation domain.
+type SetEmulatedVisionDeficiencyReply struct {
+}
+
+// SetEmulatedVisionDeficiencyReply returns whether or not the FrameID matches the reply value for SetEmulatedVisionDeficiency in the Emulation domain.
+func (a *SetEmulatedVisionDeficiencyReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetEmulatedVisionDeficiencyReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetEmulatedVisionDeficiencyReply returns the FrameID value for SetEmulatedVisionDeficiency in the Emulation domain.
+func (a *SetEmulatedVisionDeficiencyReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetEmulatedVisionDeficiency in the Emulation domain.
+func (a *SetEmulatedVisionDeficiencyReply) UnmarshalJSON(b []byte) error {
+	type Copy SetEmulatedVisionDeficiencyReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetEmulatedVisionDeficiencyReply(*c)
 	return nil
 }
 
@@ -975,11 +1095,11 @@ func (a *SetTouchEmulationEnabledReply) UnmarshalJSON(b []byte) error {
 
 // SetVirtualTimePolicyArgs represents the arguments for SetVirtualTimePolicy in the Emulation domain.
 type SetVirtualTimePolicyArgs struct {
-	Policy                            VirtualTimePolicy       `json:"policy"`                                      // No description.
-	Budget                            float64                 `json:"budget,omitempty"`                            // If set, after this many virtual milliseconds have elapsed virtual time will be paused and a virtualTimeBudgetExpired event is sent.
-	MaxVirtualTimeTaskStarvationCount int                     `json:"maxVirtualTimeTaskStarvationCount,omitempty"` // If set this specifies the maximum number of tasks that can be run before virtual is forced forwards to prevent deadlock.
-	WaitForNavigation                 bool                    `json:"waitForNavigation,omitempty"`                 // If set the virtual time policy change should be deferred until any frame starts navigating. Note any previous deferred policy change is superseded.
-	InitialVirtualTime                *network.TimeSinceEpoch `json:"initialVirtualTime,omitempty"`                // If set, base::Time::Now will be overridden to initially return this value.
+	Policy                            VirtualTimePolicy      `json:"policy"`                                      // No description.
+	Budget                            float64                `json:"budget,omitempty"`                            // If set, after this many virtual milliseconds have elapsed virtual time will be paused and a virtualTimeBudgetExpired event is sent.
+	MaxVirtualTimeTaskStarvationCount int                    `json:"maxVirtualTimeTaskStarvationCount,omitempty"` // If set this specifies the maximum number of tasks that can be run before virtual is forced forwards to prevent deadlock.
+	WaitForNavigation                 bool                   `json:"waitForNavigation,omitempty"`                 // If set the virtual time policy change should be deferred until any frame starts navigating. Note any previous deferred policy change is superseded.
+	InitialVirtualTime                *shared.TimeSinceEpoch `json:"initialVirtualTime,omitempty"`                // If set, base::Time::Now will be overridden to initially return this value.
 }
 
 // Unmarshal the byte array into a return value for SetVirtualTimePolicy in the Emulation domain.
@@ -1031,6 +1151,118 @@ func (a *SetVirtualTimePolicyReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = SetVirtualTimePolicyReply(*c)
+	return nil
+}
+
+// SetLocaleOverrideArgs represents the arguments for SetLocaleOverride in the Emulation domain.
+type SetLocaleOverrideArgs struct {
+	Locale string `json:"locale,omitempty"` // ICU style C locale (e.g. "en_US"). If not specified or empty, disables the override and restores default host system locale.
+}
+
+// Unmarshal the byte array into a return value for SetLocaleOverride in the Emulation domain.
+func (a *SetLocaleOverrideArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetLocaleOverrideArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetLocaleOverrideArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetLocaleOverride in the Emulation domain.
+func (a *SetLocaleOverrideArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetLocaleOverrideArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetLocaleOverrideReply represents the return values for SetLocaleOverride in the Emulation domain.
+type SetLocaleOverrideReply struct {
+}
+
+// SetLocaleOverrideReply returns whether or not the FrameID matches the reply value for SetLocaleOverride in the Emulation domain.
+func (a *SetLocaleOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetLocaleOverrideReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetLocaleOverrideReply returns the FrameID value for SetLocaleOverride in the Emulation domain.
+func (a *SetLocaleOverrideReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetLocaleOverride in the Emulation domain.
+func (a *SetLocaleOverrideReply) UnmarshalJSON(b []byte) error {
+	type Copy SetLocaleOverrideReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetLocaleOverrideReply(*c)
+	return nil
+}
+
+// SetTimezoneOverrideArgs represents the arguments for SetTimezoneOverride in the Emulation domain.
+type SetTimezoneOverrideArgs struct {
+	TimezoneID string `json:"timezoneId"` // The timezone identifier. If empty, disables the override and restores default host system timezone.
+}
+
+// Unmarshal the byte array into a return value for SetTimezoneOverride in the Emulation domain.
+func (a *SetTimezoneOverrideArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetTimezoneOverrideArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetTimezoneOverrideArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetTimezoneOverride in the Emulation domain.
+func (a *SetTimezoneOverrideArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetTimezoneOverrideArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetTimezoneOverrideReply represents the return values for SetTimezoneOverride in the Emulation domain.
+type SetTimezoneOverrideReply struct {
+}
+
+// SetTimezoneOverrideReply returns whether or not the FrameID matches the reply value for SetTimezoneOverride in the Emulation domain.
+func (a *SetTimezoneOverrideReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetTimezoneOverrideReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetTimezoneOverrideReply returns the FrameID value for SetTimezoneOverride in the Emulation domain.
+func (a *SetTimezoneOverrideReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetTimezoneOverride in the Emulation domain.
+func (a *SetTimezoneOverrideReply) UnmarshalJSON(b []byte) error {
+	type Copy SetTimezoneOverrideReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetTimezoneOverrideReply(*c)
 	return nil
 }
 

@@ -6,21 +6,26 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
+	"github.com/4ydx/cdp/protocol/dom"
 	"github.com/4ydx/cdp/protocol/network"
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
 const (
 	EventPageDomContentEventFired            = "Page.domContentEventFired"
+	EventPageFileChooserOpened               = "Page.fileChooserOpened"
 	EventPageFrameAttached                   = "Page.frameAttached"
 	EventPageFrameClearedScheduledNavigation = "Page.frameClearedScheduledNavigation"
 	EventPageFrameDetached                   = "Page.frameDetached"
 	EventPageFrameNavigated                  = "Page.frameNavigated"
 	EventPageFrameResized                    = "Page.frameResized"
+	EventPageFrameRequestedNavigation        = "Page.frameRequestedNavigation"
 	EventPageFrameScheduledNavigation        = "Page.frameScheduledNavigation"
 	EventPageFrameStartedLoading             = "Page.frameStartedLoading"
 	EventPageFrameStoppedLoading             = "Page.frameStoppedLoading"
+	EventPageDownloadWillBegin               = "Page.downloadWillBegin"
+	EventPageDownloadProgress                = "Page.downloadProgress"
 	EventPageInterstitialHidden              = "Page.interstitialHidden"
 	EventPageInterstitialShown               = "Page.interstitialShown"
 	EventPageJavascriptDialogClosed          = "Page.javascriptDialogClosed"
@@ -38,14 +43,18 @@ type Unmarshaler func() json.Unmarshaler
 
 var EventConstants = map[string]Unmarshaler{
 	EventPageDomContentEventFired:            func() json.Unmarshaler { return &DOMContentEventFiredReply{} },
+	EventPageFileChooserOpened:               func() json.Unmarshaler { return &FileChooserOpenedReply{} },
 	EventPageFrameAttached:                   func() json.Unmarshaler { return &FrameAttachedReply{} },
 	EventPageFrameClearedScheduledNavigation: func() json.Unmarshaler { return &FrameClearedScheduledNavigationReply{} },
 	EventPageFrameDetached:                   func() json.Unmarshaler { return &FrameDetachedReply{} },
 	EventPageFrameNavigated:                  func() json.Unmarshaler { return &FrameNavigatedReply{} },
 	EventPageFrameResized:                    func() json.Unmarshaler { return &FrameResizedReply{} },
+	EventPageFrameRequestedNavigation:        func() json.Unmarshaler { return &FrameRequestedNavigationReply{} },
 	EventPageFrameScheduledNavigation:        func() json.Unmarshaler { return &FrameScheduledNavigationReply{} },
 	EventPageFrameStartedLoading:             func() json.Unmarshaler { return &FrameStartedLoadingReply{} },
 	EventPageFrameStoppedLoading:             func() json.Unmarshaler { return &FrameStoppedLoadingReply{} },
+	EventPageDownloadWillBegin:               func() json.Unmarshaler { return &DownloadWillBeginReply{} },
+	EventPageDownloadProgress:                func() json.Unmarshaler { return &DownloadProgressReply{} },
 	EventPageInterstitialHidden:              func() json.Unmarshaler { return &InterstitialHiddenReply{} },
 	EventPageInterstitialShown:               func() json.Unmarshaler { return &InterstitialShownReply{} },
 	EventPageJavascriptDialogClosed:          func() json.Unmarshaler { return &JavascriptDialogClosedReply{} },
@@ -97,6 +106,54 @@ func (a *DOMContentEventFiredReply) MatchFrameID(frameID string, m []byte) (bool
 // DOMContentEventFiredReply returns the FrameID for DOMContentEventFired in the Page domain.
 func (a *DOMContentEventFiredReply) GetFrameID() string {
 	return ""
+}
+
+// FileChooserOpenedReply is the reply for FileChooserOpened events.
+type FileChooserOpenedReply struct {
+	// FrameID Id of the frame containing input node.
+	//
+	// Note: This property is experimental.
+	FrameID shared.FrameID `json:"frameId"`
+	// BackendNodeID Input node id.
+	//
+	// Note: This property is experimental.
+	BackendNodeID dom.BackendNodeID `json:"backendNodeId"`
+	// Mode Input mode.
+	//
+	// Values: "selectSingle", "selectMultiple".
+	Mode string `json:"mode"`
+}
+
+// Unmarshal the byte array into a return value for FileChooserOpened in the Page domain.
+func (a *FileChooserOpenedReply) UnmarshalJSON(b []byte) error {
+	type Copy FileChooserOpenedReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = FileChooserOpenedReply(*c)
+	return nil
+}
+
+// FileChooserOpenedReply returns whether or not the FrameID matches the reply value for FileChooserOpened in the Page domain.
+func (a *FileChooserOpenedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	v := &FileChooserOpenedReply{}
+	err := v.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: FileChooserOpenedReply %s", err)
+		return false, err
+	}
+	if v.FrameID != shared.FrameID(frameID) {
+		return false, nil
+	}
+	*a = *v
+	return true, nil
+}
+
+// FileChooserOpenedReply returns the FrameID for FileChooserOpened in the Page domain.
+func (a *FileChooserOpenedReply) GetFrameID() string {
+	return string(a.FrameID)
 }
 
 // FrameAttachedReply is the reply for FrameAttached events.
@@ -280,15 +337,51 @@ func (a *FrameResizedReply) GetFrameID() string {
 	return ""
 }
 
+// FrameRequestedNavigationReply is the reply for FrameRequestedNavigation events.
+type FrameRequestedNavigationReply struct {
+	FrameID shared.FrameID         `json:"frameId"` // Id of the frame that is being navigated.
+	Reason  ClientNavigationReason `json:"reason"`  // The reason for the navigation.
+	URL     string                 `json:"url"`     // The destination URL for the requested navigation.
+}
+
+// Unmarshal the byte array into a return value for FrameRequestedNavigation in the Page domain.
+func (a *FrameRequestedNavigationReply) UnmarshalJSON(b []byte) error {
+	type Copy FrameRequestedNavigationReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = FrameRequestedNavigationReply(*c)
+	return nil
+}
+
+// FrameRequestedNavigationReply returns whether or not the FrameID matches the reply value for FrameRequestedNavigation in the Page domain.
+func (a *FrameRequestedNavigationReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	v := &FrameRequestedNavigationReply{}
+	err := v.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: FrameRequestedNavigationReply %s", err)
+		return false, err
+	}
+	if v.FrameID != shared.FrameID(frameID) {
+		return false, nil
+	}
+	*a = *v
+	return true, nil
+}
+
+// FrameRequestedNavigationReply returns the FrameID for FrameRequestedNavigation in the Page domain.
+func (a *FrameRequestedNavigationReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
 // FrameScheduledNavigationReply is the reply for FrameScheduledNavigation events.
 type FrameScheduledNavigationReply struct {
-	FrameID shared.FrameID `json:"frameId"` // Id of the frame that has scheduled a navigation.
-	Delay   float64        `json:"delay"`   // Delay (in seconds) until the navigation is scheduled to begin. The navigation is not guaranteed to start.
-	// Reason The reason for the navigation.
-	//
-	// Values: "formSubmissionGet", "formSubmissionPost", "httpHeaderRefresh", "scriptInitiated", "metaTagRefresh", "pageBlockInterstitial", "reload".
-	Reason string `json:"reason"`
-	URL    string `json:"url"` // The destination URL for the scheduled navigation.
+	FrameID shared.FrameID         `json:"frameId"` // Id of the frame that has scheduled a navigation.
+	Delay   float64                `json:"delay"`   // Delay (in seconds) until the navigation is scheduled to begin. The navigation is not guaranteed to start.
+	Reason  ClientNavigationReason `json:"reason"`  // The reason for the navigation.
+	URL     string                 `json:"url"`     // The destination URL for the scheduled navigation.
 }
 
 // Unmarshal the byte array into a return value for FrameScheduledNavigation in the Page domain.
@@ -395,6 +488,83 @@ func (a *FrameStoppedLoadingReply) MatchFrameID(frameID string, m []byte) (bool,
 // FrameStoppedLoadingReply returns the FrameID for FrameStoppedLoading in the Page domain.
 func (a *FrameStoppedLoadingReply) GetFrameID() string {
 	return string(a.FrameID)
+}
+
+// DownloadWillBeginReply is the reply for DownloadWillBegin events.
+type DownloadWillBeginReply struct {
+	FrameID shared.FrameID `json:"frameId"` // Id of the frame that caused download to begin.
+	GUID    string         `json:"guid"`    // Global unique identifier of the download.
+	URL     string         `json:"url"`     // URL of the resource being downloaded.
+}
+
+// Unmarshal the byte array into a return value for DownloadWillBegin in the Page domain.
+func (a *DownloadWillBeginReply) UnmarshalJSON(b []byte) error {
+	type Copy DownloadWillBeginReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = DownloadWillBeginReply(*c)
+	return nil
+}
+
+// DownloadWillBeginReply returns whether or not the FrameID matches the reply value for DownloadWillBegin in the Page domain.
+func (a *DownloadWillBeginReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	v := &DownloadWillBeginReply{}
+	err := v.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: DownloadWillBeginReply %s", err)
+		return false, err
+	}
+	if v.FrameID != shared.FrameID(frameID) {
+		return false, nil
+	}
+	*a = *v
+	return true, nil
+}
+
+// DownloadWillBeginReply returns the FrameID for DownloadWillBegin in the Page domain.
+func (a *DownloadWillBeginReply) GetFrameID() string {
+	return string(a.FrameID)
+}
+
+// DownloadProgressReply is the reply for DownloadProgress events.
+type DownloadProgressReply struct {
+	GUID          string  `json:"guid"`          // Global unique identifier of the download.
+	TotalBytes    float64 `json:"totalBytes"`    // Total expected bytes to download.
+	ReceivedBytes float64 `json:"receivedBytes"` // Total bytes received.
+	// State Download status.
+	//
+	// Values: "inProgress", "completed", "canceled".
+	State string `json:"state"`
+}
+
+// Unmarshal the byte array into a return value for DownloadProgress in the Page domain.
+func (a *DownloadProgressReply) UnmarshalJSON(b []byte) error {
+	type Copy DownloadProgressReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = DownloadProgressReply(*c)
+	return nil
+}
+
+// DownloadProgressReply returns whether or not the FrameID matches the reply value for DownloadProgress in the Page domain.
+func (a *DownloadProgressReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: DownloadProgressReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// DownloadProgressReply returns the FrameID for DownloadProgress in the Page domain.
+func (a *DownloadProgressReply) GetFrameID() string {
+	return ""
 }
 
 // InterstitialHiddenReply is the reply for InterstitialHidden events.

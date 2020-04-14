@@ -8,15 +8,17 @@ import (
 )
 
 const (
-	EventSecurityCertificateError     = "Security.certificateError"
-	EventSecuritySecurityStateChanged = "Security.securityStateChanged"
+	EventSecurityCertificateError            = "Security.certificateError"
+	EventSecurityVisibleSecurityStateChanged = "Security.visibleSecurityStateChanged"
+	EventSecuritySecurityStateChanged        = "Security.securityStateChanged"
 )
 
 type Unmarshaler func() json.Unmarshaler
 
 var EventConstants = map[string]Unmarshaler{
-	EventSecurityCertificateError:     func() json.Unmarshaler { return &CertificateErrorReply{} },
-	EventSecuritySecurityStateChanged: func() json.Unmarshaler { return &StateChangedReply{} },
+	EventSecurityCertificateError:            func() json.Unmarshaler { return &CertificateErrorReply{} },
+	EventSecurityVisibleSecurityStateChanged: func() json.Unmarshaler { return &VisibleSecurityStateChangedReply{} },
+	EventSecuritySecurityStateChanged:        func() json.Unmarshaler { return &StateChangedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
@@ -61,13 +63,52 @@ func (a *CertificateErrorReply) GetFrameID() string {
 	return ""
 }
 
+// VisibleSecurityStateChangedReply is the reply for VisibleSecurityStateChanged events.
+type VisibleSecurityStateChangedReply struct {
+	VisibleSecurityState VisibleSecurityState `json:"visibleSecurityState"` // Security state information about the page.
+}
+
+// Unmarshal the byte array into a return value for VisibleSecurityStateChanged in the Security domain.
+func (a *VisibleSecurityStateChangedReply) UnmarshalJSON(b []byte) error {
+	type Copy VisibleSecurityStateChangedReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = VisibleSecurityStateChangedReply(*c)
+	return nil
+}
+
+// VisibleSecurityStateChangedReply returns whether or not the FrameID matches the reply value for VisibleSecurityStateChanged in the Security domain.
+func (a *VisibleSecurityStateChangedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: VisibleSecurityStateChangedReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// VisibleSecurityStateChangedReply returns the FrameID for VisibleSecurityStateChanged in the Security domain.
+func (a *VisibleSecurityStateChangedReply) GetFrameID() string {
+	return ""
+}
+
 // StateChangedReply is the reply for SecurityStateChanged events.
 type StateChangedReply struct {
-	SecurityState         State                 `json:"securityState"`         // Security state.
-	SchemeIsCryptographic bool                  `json:"schemeIsCryptographic"` // True if the page was loaded over cryptographic transport such as HTTPS.
-	Explanations          []StateExplanation    `json:"explanations"`          // List of explanations for the security state. If the overall security state is `insecure` or `warning`, at least one corresponding explanation should be included.
-	InsecureContentStatus InsecureContentStatus `json:"insecureContentStatus"` // Information about insecure content on the page.
-	Summary               string                `json:"summary,omitempty"`     // Overrides user-visible description of the state.
+	SecurityState State `json:"securityState"` // Security state.
+	// SchemeIsCryptographic is deprecated.
+	//
+	// Deprecated: True if the page was loaded over cryptographic
+	// transport such as HTTPS.
+	SchemeIsCryptographic bool               `json:"schemeIsCryptographic"`
+	Explanations          []StateExplanation `json:"explanations"` // List of explanations for the security state. If the overall security state is `insecure` or `warning`, at least one corresponding explanation should be included.
+	// InsecureContentStatus is deprecated.
+	//
+	// Deprecated: Information about insecure content on the page.
+	InsecureContentStatus InsecureContentStatus `json:"insecureContentStatus"`
+	Summary               string                `json:"summary,omitempty"` // Overrides user-visible description of the state.
 }
 
 // Unmarshal the byte array into a return value for SecurityStateChanged in the Security domain.

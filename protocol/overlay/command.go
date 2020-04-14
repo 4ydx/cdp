@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/dom"
 )
 
@@ -20,13 +20,15 @@ const (
 	CommandOverlayHighlightQuad                = "Overlay.highlightQuad"
 	CommandOverlayHighlightRect                = "Overlay.highlightRect"
 	CommandOverlaySetInspectMode               = "Overlay.setInspectMode"
+	CommandOverlaySetShowAdHighlights          = "Overlay.setShowAdHighlights"
 	CommandOverlaySetPausedInDebuggerMessage   = "Overlay.setPausedInDebuggerMessage"
 	CommandOverlaySetShowDebugBorders          = "Overlay.setShowDebugBorders"
 	CommandOverlaySetShowFPSCounter            = "Overlay.setShowFPSCounter"
 	CommandOverlaySetShowPaintRects            = "Overlay.setShowPaintRects"
+	CommandOverlaySetShowLayoutShiftRegions    = "Overlay.setShowLayoutShiftRegions"
 	CommandOverlaySetShowScrollBottleneckRects = "Overlay.setShowScrollBottleneckRects"
+	CommandOverlaySetShowHitTestBorders        = "Overlay.setShowHitTestBorders"
 	CommandOverlaySetShowViewportSizeOnResize  = "Overlay.setShowViewportSizeOnResize"
-	CommandOverlaySetSuspended                 = "Overlay.setSuspended"
 )
 
 // DisableArgs represents the arguments for Disable in the Overlay domain.
@@ -141,7 +143,9 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 
 // GetHighlightObjectForTestArgs represents the arguments for GetHighlightObjectForTest in the Overlay domain.
 type GetHighlightObjectForTestArgs struct {
-	NodeID dom.NodeID `json:"nodeId"` // Id of the node to get highlight object for.
+	NodeID          dom.NodeID `json:"nodeId"`                    // Id of the node to get highlight object for.
+	IncludeDistance bool       `json:"includeDistance,omitempty"` // Whether to include distance info.
+	IncludeStyle    bool       `json:"includeStyle,omitempty"`    // Whether to include style info.
 }
 
 // Unmarshal the byte array into a return value for GetHighlightObjectForTest in the Overlay domain.
@@ -315,6 +319,7 @@ type HighlightNodeArgs struct {
 	NodeID          dom.NodeID            `json:"nodeId,omitempty"`        // Identifier of the node to highlight.
 	BackendNodeID   dom.BackendNodeID     `json:"backendNodeId,omitempty"` // Identifier of the backend node to highlight.
 	ObjectID        shared.RemoteObjectID `json:"objectId,omitempty"`      // JavaScript object id of the node to be highlighted.
+	Selector        string                `json:"selector,omitempty"`      // Selectors to highlight relevant nodes.
 }
 
 // Unmarshal the byte array into a return value for HighlightNode in the Overlay domain.
@@ -544,6 +549,62 @@ func (a *SetInspectModeReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// SetShowAdHighlightsArgs represents the arguments for SetShowAdHighlights in the Overlay domain.
+type SetShowAdHighlightsArgs struct {
+	Show bool `json:"show"` // True for showing ad highlights
+}
+
+// Unmarshal the byte array into a return value for SetShowAdHighlights in the Overlay domain.
+func (a *SetShowAdHighlightsArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetShowAdHighlightsArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetShowAdHighlightsArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetShowAdHighlights in the Overlay domain.
+func (a *SetShowAdHighlightsArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetShowAdHighlightsArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetShowAdHighlightsReply represents the return values for SetShowAdHighlights in the Overlay domain.
+type SetShowAdHighlightsReply struct {
+}
+
+// SetShowAdHighlightsReply returns whether or not the FrameID matches the reply value for SetShowAdHighlights in the Overlay domain.
+func (a *SetShowAdHighlightsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetShowAdHighlightsReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetShowAdHighlightsReply returns the FrameID value for SetShowAdHighlights in the Overlay domain.
+func (a *SetShowAdHighlightsReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetShowAdHighlights in the Overlay domain.
+func (a *SetShowAdHighlightsReply) UnmarshalJSON(b []byte) error {
+	type Copy SetShowAdHighlightsReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetShowAdHighlightsReply(*c)
+	return nil
+}
+
 // SetPausedInDebuggerMessageArgs represents the arguments for SetPausedInDebuggerMessage in the Overlay domain.
 type SetPausedInDebuggerMessageArgs struct {
 	Message string `json:"message,omitempty"` // The message to display, also triggers resume and step over controls.
@@ -768,6 +829,62 @@ func (a *SetShowPaintRectsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// SetShowLayoutShiftRegionsArgs represents the arguments for SetShowLayoutShiftRegions in the Overlay domain.
+type SetShowLayoutShiftRegionsArgs struct {
+	Result bool `json:"result"` // True for showing layout shift regions
+}
+
+// Unmarshal the byte array into a return value for SetShowLayoutShiftRegions in the Overlay domain.
+func (a *SetShowLayoutShiftRegionsArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetShowLayoutShiftRegionsArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetShowLayoutShiftRegionsArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetShowLayoutShiftRegions in the Overlay domain.
+func (a *SetShowLayoutShiftRegionsArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetShowLayoutShiftRegionsArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetShowLayoutShiftRegionsReply represents the return values for SetShowLayoutShiftRegions in the Overlay domain.
+type SetShowLayoutShiftRegionsReply struct {
+}
+
+// SetShowLayoutShiftRegionsReply returns whether or not the FrameID matches the reply value for SetShowLayoutShiftRegions in the Overlay domain.
+func (a *SetShowLayoutShiftRegionsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetShowLayoutShiftRegionsReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetShowLayoutShiftRegionsReply returns the FrameID value for SetShowLayoutShiftRegions in the Overlay domain.
+func (a *SetShowLayoutShiftRegionsReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetShowLayoutShiftRegions in the Overlay domain.
+func (a *SetShowLayoutShiftRegionsReply) UnmarshalJSON(b []byte) error {
+	type Copy SetShowLayoutShiftRegionsReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetShowLayoutShiftRegionsReply(*c)
+	return nil
+}
+
 // SetShowScrollBottleneckRectsArgs represents the arguments for SetShowScrollBottleneckRects in the Overlay domain.
 type SetShowScrollBottleneckRectsArgs struct {
 	Show bool `json:"show"` // True for showing scroll bottleneck rects
@@ -824,6 +941,62 @@ func (a *SetShowScrollBottleneckRectsReply) UnmarshalJSON(b []byte) error {
 	return nil
 }
 
+// SetShowHitTestBordersArgs represents the arguments for SetShowHitTestBorders in the Overlay domain.
+type SetShowHitTestBordersArgs struct {
+	Show bool `json:"show"` // True for showing hit-test borders
+}
+
+// Unmarshal the byte array into a return value for SetShowHitTestBorders in the Overlay domain.
+func (a *SetShowHitTestBordersArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetShowHitTestBordersArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetShowHitTestBordersArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetShowHitTestBorders in the Overlay domain.
+func (a *SetShowHitTestBordersArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetShowHitTestBordersArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetShowHitTestBordersReply represents the return values for SetShowHitTestBorders in the Overlay domain.
+type SetShowHitTestBordersReply struct {
+}
+
+// SetShowHitTestBordersReply returns whether or not the FrameID matches the reply value for SetShowHitTestBorders in the Overlay domain.
+func (a *SetShowHitTestBordersReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetShowHitTestBordersReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetShowHitTestBordersReply returns the FrameID value for SetShowHitTestBorders in the Overlay domain.
+func (a *SetShowHitTestBordersReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetShowHitTestBorders in the Overlay domain.
+func (a *SetShowHitTestBordersReply) UnmarshalJSON(b []byte) error {
+	type Copy SetShowHitTestBordersReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetShowHitTestBordersReply(*c)
+	return nil
+}
+
 // SetShowViewportSizeOnResizeArgs represents the arguments for SetShowViewportSizeOnResize in the Overlay domain.
 type SetShowViewportSizeOnResizeArgs struct {
 	Show bool `json:"show"` // Whether to paint size or not.
@@ -877,61 +1050,5 @@ func (a *SetShowViewportSizeOnResizeReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = SetShowViewportSizeOnResizeReply(*c)
-	return nil
-}
-
-// SetSuspendedArgs represents the arguments for SetSuspended in the Overlay domain.
-type SetSuspendedArgs struct {
-	Suspended bool `json:"suspended"` // Whether overlay should be suspended and not consume any resources until resumed.
-}
-
-// Unmarshal the byte array into a return value for SetSuspended in the Overlay domain.
-func (a *SetSuspendedArgs) UnmarshalJSON(b []byte) error {
-	type Copy SetSuspendedArgs
-	c := &Copy{}
-	err := json.Unmarshal(b, c)
-	if err != nil {
-		return err
-	}
-	*a = SetSuspendedArgs(*c)
-	return nil
-}
-
-// Marshall the byte array into a return value for SetSuspended in the Overlay domain.
-func (a *SetSuspendedArgs) MarshalJSON() ([]byte, error) {
-	type Copy SetSuspendedArgs
-	c := &Copy{}
-	*c = Copy(*a)
-	return json.Marshal(&c)
-}
-
-// SetSuspendedReply represents the return values for SetSuspended in the Overlay domain.
-type SetSuspendedReply struct {
-}
-
-// SetSuspendedReply returns whether or not the FrameID matches the reply value for SetSuspended in the Overlay domain.
-func (a *SetSuspendedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
-	err := a.UnmarshalJSON(m)
-	if err != nil {
-		log.Printf("unmarshal error: SetSuspendedReply %s", err)
-		return false, err
-	}
-	return true, nil
-}
-
-// SetSuspendedReply returns the FrameID value for SetSuspended in the Overlay domain.
-func (a *SetSuspendedReply) GetFrameID() string {
-	return ""
-}
-
-// Unmarshal the byte array into a return value for SetSuspended in the Overlay domain.
-func (a *SetSuspendedReply) UnmarshalJSON(b []byte) error {
-	type Copy SetSuspendedReply
-	c := &Copy{}
-	err := json.Unmarshal(b, c)
-	if err != nil {
-		return err
-	}
-	*a = SetSuspendedReply(*c)
 	return nil
 }

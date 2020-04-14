@@ -3,21 +3,26 @@
 package page
 
 import (
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/network"
 )
 
 // Frame Information about the Frame on the page.
 type Frame struct {
-	ID             shared.FrameID   `json:"id"`                 // Frame unique identifier.
-	ParentID       shared.FrameID   `json:"parentId,omitempty"` // Parent frame identifier.
-	LoaderID       network.LoaderID `json:"loaderId"`           // Identifier of the loader associated with this frame.
-	Name           string           `json:"name,omitempty"`     // Frame's name as specified in the tag.
-	URL            string           `json:"url"`                // Frame document's URL.
-	SecurityOrigin string           `json:"securityOrigin"`     // Frame document's security origin.
-	MimeType       string           `json:"mimeType"`           // Frame document's mimeType as determined by the browser.
+	ID       shared.FrameID   `json:"id"`                 // Frame unique identifier.
+	ParentID shared.FrameID   `json:"parentId,omitempty"` // Parent frame identifier.
+	LoaderID network.LoaderID `json:"loaderId"`           // Identifier of the loader associated with this frame.
+	Name     string           `json:"name,omitempty"`     // Frame's name as specified in the tag.
+	URL      string           `json:"url"`                // Frame document's URL without fragment.
+	// URLFragment Frame document's URL fragment including the '#'.
+	//
+	// Note: This property is experimental.
+	URLFragment    string `json:"urlFragment,omitempty"`
+	SecurityOrigin string `json:"securityOrigin"` // Frame document's security origin.
+	MimeType       string `json:"mimeType"`       // Frame document's mimeType as determined by the browser.
 	// UnreachableURL If the frame failed to load, this contains the URL
-	// that could not be loaded.
+	// that could not be loaded. Note that unlike url above, this URL may
+	// contain a fragment.
 	//
 	// Note: This property is experimental.
 	UnreachableURL string `json:"unreachableUrl,omitempty"`
@@ -27,13 +32,13 @@ type Frame struct {
 //
 // Note: This type is experimental.
 type FrameResource struct {
-	URL          string                  `json:"url"`                    // Resource URL.
-	Type         shared.ResourceType     `json:"type"`                   // Type of this resource.
-	MimeType     string                  `json:"mimeType"`               // Resource mimeType as determined by the browser.
-	LastModified *network.TimeSinceEpoch `json:"lastModified,omitempty"` // last-modified timestamp as reported by server.
-	ContentSize  float64                 `json:"contentSize,omitempty"`  // Resource content size.
-	Failed       bool                    `json:"failed,omitempty"`       // True if the resource failed to load.
-	Canceled     bool                    `json:"canceled,omitempty"`     // True if the resource was canceled during loading.
+	URL          string                 `json:"url"`                    // Resource URL.
+	Type         shared.ResourceType    `json:"type"`                   // Type of this resource.
+	MimeType     string                 `json:"mimeType"`               // Resource mimeType as determined by the browser.
+	LastModified *shared.TimeSinceEpoch `json:"lastModified,omitempty"` // last-modified timestamp as reported by server.
+	ContentSize  float64                `json:"contentSize,omitempty"`  // Resource content size.
+	Failed       bool                   `json:"failed,omitempty"`       // True if the resource failed to load.
+	Canceled     bool                   `json:"canceled,omitempty"`     // True if the resource was canceled during loading.
 }
 
 // FrameResourceTree Information about the Frame hierarchy along with their
@@ -63,6 +68,7 @@ const (
 	TransitionTypeNotSet           TransitionType = ""
 	TransitionTypeLink             TransitionType = "link"
 	TransitionTypeTyped            TransitionType = "typed"
+	TransitionTypeAddressBar       TransitionType = "address_bar"
 	TransitionTypeAutoBookmark     TransitionType = "auto_bookmark"
 	TransitionTypeAutoSubframe     TransitionType = "auto_subframe"
 	TransitionTypeManualSubframe   TransitionType = "manual_subframe"
@@ -77,7 +83,7 @@ const (
 
 func (e TransitionType) Valid() bool {
 	switch e {
-	case "link", "typed", "auto_bookmark", "auto_subframe", "manual_subframe", "generated", "auto_toplevel", "form_submit", "reload", "keyword", "keyword_generated", "other":
+	case "link", "typed", "address_bar", "auto_bookmark", "auto_subframe", "manual_subframe", "generated", "auto_toplevel", "form_submit", "reload", "keyword", "keyword_generated", "other":
 		return true
 	default:
 		return false
@@ -101,13 +107,13 @@ type NavigationEntry struct {
 //
 // Note: This type is experimental.
 type ScreencastFrameMetadata struct {
-	OffsetTop       float64                 `json:"offsetTop"`           // Top offset in DIP.
-	PageScaleFactor float64                 `json:"pageScaleFactor"`     // Page scale factor.
-	DeviceWidth     float64                 `json:"deviceWidth"`         // Device screen width in DIP.
-	DeviceHeight    float64                 `json:"deviceHeight"`        // Device screen height in DIP.
-	ScrollOffsetX   float64                 `json:"scrollOffsetX"`       // Position of horizontal scroll in CSS pixels.
-	ScrollOffsetY   float64                 `json:"scrollOffsetY"`       // Position of vertical scroll in CSS pixels.
-	Timestamp       *network.TimeSinceEpoch `json:"timestamp,omitempty"` // Frame swap timestamp.
+	OffsetTop       float64                `json:"offsetTop"`           // Top offset in DIP.
+	PageScaleFactor float64                `json:"pageScaleFactor"`     // Page scale factor.
+	DeviceWidth     float64                `json:"deviceWidth"`         // Device screen width in DIP.
+	DeviceHeight    float64                `json:"deviceHeight"`        // Device screen height in DIP.
+	ScrollOffsetX   float64                `json:"scrollOffsetX"`       // Position of horizontal scroll in CSS pixels.
+	ScrollOffsetY   float64                `json:"scrollOffsetY"`       // Position of vertical scroll in CSS pixels.
+	Timestamp       *shared.TimeSinceEpoch `json:"timestamp,omitempty"` // Frame swap timestamp.
 }
 
 // DialogType Javascript dialog type.
@@ -143,6 +149,13 @@ type AppManifestError struct {
 	Column   int    `json:"column"`   // Error column.
 }
 
+// AppManifestParsedProperties Parsed app manifest properties.
+//
+// Note: This type is experimental.
+type AppManifestParsedProperties struct {
+	Scope string `json:"scope"` // Computed scope value
+}
+
 // LayoutViewport Layout viewport position and dimensions.
 type LayoutViewport struct {
 	PageX        int `json:"pageX"`        // Horizontal offset relative to the document (CSS pixels).
@@ -153,21 +166,22 @@ type LayoutViewport struct {
 
 // VisualViewport Visual viewport position, dimensions, and scale.
 type VisualViewport struct {
-	OffsetX      float64 `json:"offsetX"`      // Horizontal offset relative to the layout viewport (CSS pixels).
-	OffsetY      float64 `json:"offsetY"`      // Vertical offset relative to the layout viewport (CSS pixels).
-	PageX        float64 `json:"pageX"`        // Horizontal offset relative to the document (CSS pixels).
-	PageY        float64 `json:"pageY"`        // Vertical offset relative to the document (CSS pixels).
-	ClientWidth  float64 `json:"clientWidth"`  // Width (CSS pixels), excludes scrollbar if present.
-	ClientHeight float64 `json:"clientHeight"` // Height (CSS pixels), excludes scrollbar if present.
-	Scale        float64 `json:"scale"`        // Scale relative to the ideal viewport (size at width=device-width).
+	OffsetX      float64 `json:"offsetX"`        // Horizontal offset relative to the layout viewport (CSS pixels).
+	OffsetY      float64 `json:"offsetY"`        // Vertical offset relative to the layout viewport (CSS pixels).
+	PageX        float64 `json:"pageX"`          // Horizontal offset relative to the document (CSS pixels).
+	PageY        float64 `json:"pageY"`          // Vertical offset relative to the document (CSS pixels).
+	ClientWidth  float64 `json:"clientWidth"`    // Width (CSS pixels), excludes scrollbar if present.
+	ClientHeight float64 `json:"clientHeight"`   // Height (CSS pixels), excludes scrollbar if present.
+	Scale        float64 `json:"scale"`          // Scale relative to the ideal viewport (size at width=device-width).
+	Zoom         float64 `json:"zoom,omitempty"` // Page zoom factor (CSS to device independent pixels ratio).
 }
 
 // Viewport Viewport for capturing screenshot.
 type Viewport struct {
-	X      float64 `json:"x"`      // X offset in CSS pixels.
-	Y      float64 `json:"y"`      // Y offset in CSS pixels
-	Width  float64 `json:"width"`  // Rectangle width in CSS pixels
-	Height float64 `json:"height"` // Rectangle height in CSS pixels
+	X      float64 `json:"x"`      // X offset in device independent pixels (dip).
+	Y      float64 `json:"y"`      // Y offset in device independent pixels (dip).
+	Width  float64 `json:"width"`  // Rectangle width in device independent pixels (dip).
+	Height float64 `json:"height"` // Rectangle height in device independent pixels (dip).
 	Scale  float64 `json:"scale"`  // Page scale factor.
 }
 
@@ -190,4 +204,82 @@ type FontFamilies struct {
 type FontSizes struct {
 	Standard int `json:"standard,omitempty"` // Default standard font size.
 	Fixed    int `json:"fixed,omitempty"`    // Default fixed font size.
+}
+
+// ClientNavigationReason
+//
+// Note: This type is experimental.
+type ClientNavigationReason string
+
+// ClientNavigationReason as enums.
+const (
+	ClientNavigationReasonNotSet                ClientNavigationReason = ""
+	ClientNavigationReasonFormSubmissionGet     ClientNavigationReason = "formSubmissionGet"
+	ClientNavigationReasonFormSubmissionPost    ClientNavigationReason = "formSubmissionPost"
+	ClientNavigationReasonHTTPHeaderRefresh     ClientNavigationReason = "httpHeaderRefresh"
+	ClientNavigationReasonScriptInitiated       ClientNavigationReason = "scriptInitiated"
+	ClientNavigationReasonMetaTagRefresh        ClientNavigationReason = "metaTagRefresh"
+	ClientNavigationReasonPageBlockInterstitial ClientNavigationReason = "pageBlockInterstitial"
+	ClientNavigationReasonReload                ClientNavigationReason = "reload"
+	ClientNavigationReasonAnchorClick           ClientNavigationReason = "anchorClick"
+)
+
+func (e ClientNavigationReason) Valid() bool {
+	switch e {
+	case "formSubmissionGet", "formSubmissionPost", "httpHeaderRefresh", "scriptInitiated", "metaTagRefresh", "pageBlockInterstitial", "reload", "anchorClick":
+		return true
+	default:
+		return false
+	}
+}
+
+func (e ClientNavigationReason) String() string {
+	return string(e)
+}
+
+// InstallabilityErrorArgument
+//
+// Note: This type is experimental.
+type InstallabilityErrorArgument struct {
+	Name  string `json:"name"`  // Argument name (e.g. name:'minimum-icon-size-in-pixels').
+	Value string `json:"value"` // Argument value (e.g. value:'64').
+}
+
+// InstallabilityError The installability error
+//
+// Note: This type is experimental.
+type InstallabilityError struct {
+	ErrorID        string                        `json:"errorId"`        // The error id (e.g. 'manifest-missing-suitable-icon').
+	ErrorArguments []InstallabilityErrorArgument `json:"errorArguments"` // The list of error arguments (e.g. {name:'minimum-icon-size-in-pixels', value:'64'}).
+}
+
+// ReferrerPolicy The referring-policy used for the navigation.
+//
+// Note: This type is experimental.
+type ReferrerPolicy string
+
+// ReferrerPolicy as enums.
+const (
+	ReferrerPolicyNotSet                      ReferrerPolicy = ""
+	ReferrerPolicyNoReferrer                  ReferrerPolicy = "noReferrer"
+	ReferrerPolicyNoReferrerWhenDowngrade     ReferrerPolicy = "noReferrerWhenDowngrade"
+	ReferrerPolicyOrigin                      ReferrerPolicy = "origin"
+	ReferrerPolicyOriginWhenCrossOrigin       ReferrerPolicy = "originWhenCrossOrigin"
+	ReferrerPolicySameOrigin                  ReferrerPolicy = "sameOrigin"
+	ReferrerPolicyStrictOrigin                ReferrerPolicy = "strictOrigin"
+	ReferrerPolicyStrictOriginWhenCrossOrigin ReferrerPolicy = "strictOriginWhenCrossOrigin"
+	ReferrerPolicyUnsafeURL                   ReferrerPolicy = "unsafeUrl"
+)
+
+func (e ReferrerPolicy) Valid() bool {
+	switch e {
+	case "noReferrer", "noReferrerWhenDowngrade", "origin", "originWhenCrossOrigin", "sameOrigin", "strictOrigin", "strictOriginWhenCrossOrigin", "unsafeUrl":
+		return true
+	default:
+		return false
+	}
+}
+
+func (e ReferrerPolicy) String() string {
+	return string(e)
 }

@@ -4,11 +4,14 @@ package serviceworker
 
 import "github.com/4ydx/cdp/protocol/target"
 
+// RegistrationID
+type RegistrationID string
+
 // Registration ServiceWorker registration.
 type Registration struct {
-	RegistrationID string `json:"registrationId"` // No description.
-	ScopeURL       string `json:"scopeURL"`       // No description.
-	IsDeleted      bool   `json:"isDeleted"`      // No description.
+	RegistrationID RegistrationID `json:"registrationId"` // No description.
+	ScopeURL       string         `json:"scopeURL"`       // No description.
+	IsDeleted      bool           `json:"isDeleted"`      // No description.
 }
 
 // VersionRunningStatus
@@ -66,7 +69,7 @@ func (e VersionStatus) String() string {
 // Version ServiceWorker version.
 type Version struct {
 	VersionID          string               `json:"versionId"`                    // No description.
-	RegistrationID     string               `json:"registrationId"`               // No description.
+	RegistrationID     RegistrationID       `json:"registrationId"`               // No description.
 	ScriptURL          string               `json:"scriptURL"`                    // No description.
 	RunningStatus      VersionRunningStatus `json:"runningStatus"`                // No description.
 	Status             VersionStatus        `json:"status"`                       // No description.
@@ -78,10 +81,10 @@ type Version struct {
 
 // ErrorMessage ServiceWorker error message.
 type ErrorMessage struct {
-	ErrorMessage   string `json:"errorMessage"`   // No description.
-	RegistrationID string `json:"registrationId"` // No description.
-	VersionID      string `json:"versionId"`      // No description.
-	SourceURL      string `json:"sourceURL"`      // No description.
-	LineNumber     int    `json:"lineNumber"`     // No description.
-	ColumnNumber   int    `json:"columnNumber"`   // No description.
+	ErrorMessage   string         `json:"errorMessage"`   // No description.
+	RegistrationID RegistrationID `json:"registrationId"` // No description.
+	VersionID      string         `json:"versionId"`      // No description.
+	SourceURL      string         `json:"sourceURL"`      // No description.
+	LineNumber     int            `json:"lineNumber"`     // No description.
+	ColumnNumber   int            `json:"columnNumber"`   // No description.
 }

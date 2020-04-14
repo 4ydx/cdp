@@ -14,6 +14,7 @@ const (
 	EventOverlayInspectNodeRequested   = "Overlay.inspectNodeRequested"
 	EventOverlayNodeHighlightRequested = "Overlay.nodeHighlightRequested"
 	EventOverlayScreenshotRequested    = "Overlay.screenshotRequested"
+	EventOverlayInspectModeCanceled    = "Overlay.inspectModeCanceled"
 )
 
 type Unmarshaler func() json.Unmarshaler
@@ -22,6 +23,7 @@ var EventConstants = map[string]Unmarshaler{
 	EventOverlayInspectNodeRequested:   func() json.Unmarshaler { return &InspectNodeRequestedReply{} },
 	EventOverlayNodeHighlightRequested: func() json.Unmarshaler { return &NodeHighlightRequestedReply{} },
 	EventOverlayScreenshotRequested:    func() json.Unmarshaler { return &ScreenshotRequestedReply{} },
+	EventOverlayInspectModeCanceled:    func() json.Unmarshaler { return &InspectModeCanceledReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
@@ -98,7 +100,7 @@ func (a *NodeHighlightRequestedReply) GetFrameID() string {
 
 // ScreenshotRequestedReply is the reply for ScreenshotRequested events.
 type ScreenshotRequestedReply struct {
-	Viewport page.Viewport `json:"viewport"` // Viewport to capture, in CSS.
+	Viewport page.Viewport `json:"viewport"` // Viewport to capture, in device independent pixels (dip).
 }
 
 // Unmarshal the byte array into a return value for ScreenshotRequested in the Overlay domain.
@@ -125,5 +127,36 @@ func (a *ScreenshotRequestedReply) MatchFrameID(frameID string, m []byte) (bool,
 
 // ScreenshotRequestedReply returns the FrameID for ScreenshotRequested in the Overlay domain.
 func (a *ScreenshotRequestedReply) GetFrameID() string {
+	return ""
+}
+
+// InspectModeCanceledReply is the reply for InspectModeCanceled events.
+type InspectModeCanceledReply struct {
+}
+
+// Unmarshal the byte array into a return value for InspectModeCanceled in the Overlay domain.
+func (a *InspectModeCanceledReply) UnmarshalJSON(b []byte) error {
+	type Copy InspectModeCanceledReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = InspectModeCanceledReply(*c)
+	return nil
+}
+
+// InspectModeCanceledReply returns whether or not the FrameID matches the reply value for InspectModeCanceled in the Overlay domain.
+func (a *InspectModeCanceledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: InspectModeCanceledReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// InspectModeCanceledReply returns the FrameID for InspectModeCanceled in the Overlay domain.
+func (a *InspectModeCanceledReply) GetFrameID() string {
 	return ""
 }

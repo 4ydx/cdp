@@ -2,9 +2,7 @@
 
 package applicationcache
 
-import (
-	"github.com/4ydx/cdp/protocol"
-)
+import shared "github.com/4ydx/cdp/protocol"
 
 // Resource Detailed application cache resource information.
 type Resource struct {

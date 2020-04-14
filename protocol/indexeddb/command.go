@@ -14,6 +14,7 @@ const (
 	CommandIndexedDBDisable                  = "IndexedDB.disable"
 	CommandIndexedDBEnable                   = "IndexedDB.enable"
 	CommandIndexedDBRequestData              = "IndexedDB.requestData"
+	CommandIndexedDBGetMetadata              = "IndexedDB.getMetadata"
 	CommandIndexedDBRequestDatabase          = "IndexedDB.requestDatabase"
 	CommandIndexedDBRequestDatabaseNames     = "IndexedDB.requestDatabaseNames"
 )
@@ -363,6 +364,66 @@ func (a *RequestDataReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = RequestDataReply(*c)
+	return nil
+}
+
+// GetMetadataArgs represents the arguments for GetMetadata in the IndexedDB domain.
+type GetMetadataArgs struct {
+	SecurityOrigin  string `json:"securityOrigin"`  // Security origin.
+	DatabaseName    string `json:"databaseName"`    // Database name.
+	ObjectStoreName string `json:"objectStoreName"` // Object store name.
+}
+
+// Unmarshal the byte array into a return value for GetMetadata in the IndexedDB domain.
+func (a *GetMetadataArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetMetadataArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetMetadataArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetMetadata in the IndexedDB domain.
+func (a *GetMetadataArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetMetadataArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetMetadataReply represents the return values for GetMetadata in the IndexedDB domain.
+type GetMetadataReply struct {
+	EntriesCount      float64 `json:"entriesCount"`      // the entries count
+	KeyGeneratorValue float64 `json:"keyGeneratorValue"` // the current value of key generator, to become the next inserted key into the object store. Valid if objectStore.autoIncrement is true.
+}
+
+// GetMetadataReply returns whether or not the FrameID matches the reply value for GetMetadata in the IndexedDB domain.
+func (a *GetMetadataReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetMetadataReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetMetadataReply returns the FrameID value for GetMetadata in the IndexedDB domain.
+func (a *GetMetadataReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetMetadata in the IndexedDB domain.
+func (a *GetMetadataReply) UnmarshalJSON(b []byte) error {
+	type Copy GetMetadataReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetMetadataReply(*c)
 	return nil
 }
 

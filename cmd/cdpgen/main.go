@@ -104,6 +104,8 @@ func main() {
 		"FrameID":        true,
 		"RemoteObjectID": true,
 		"ResourceType":   true,
+		"TimeSinceEpoch": true,
+		"ContextID":      true,
 	}
 	g.PackageHeader("")
 	for _, d := range protocol.Domains {
@@ -189,7 +191,7 @@ func main() {
 	goinstall := exec.CommandContext(ctx, "go", "install", path.Join(destPkg, "..."))
 	out, err = goinstall.CombinedOutput()
 	if err != nil {
-		log.Printf("install failed: %s", out)
+		log.Printf("install failed: %s %s", destPkg, out)
 		log.Println(err)
 		os.Exit(1)
 	}
@@ -357,7 +359,7 @@ func (g *Generator) DomainEventUnmarshaler(domains []proto.Domain) {
 
 	g.Printf(`
 	// GetEventUnmarshaler returns an object that can receive and unmarshal event data.
-	func GetEventUnmarshaler(event string) (json.Unmarshaler, bool) { 
+	func GetEventUnmarshaler(event string) (json.Unmarshaler, bool) {
 		var o json.Unmarshaler
 		var ok bool
 		`)

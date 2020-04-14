@@ -8,9 +8,10 @@ import (
 )
 
 const (
-	CommandPerformanceDisable    = "Performance.disable"
-	CommandPerformanceEnable     = "Performance.enable"
-	CommandPerformanceGetMetrics = "Performance.getMetrics"
+	CommandPerformanceDisable       = "Performance.disable"
+	CommandPerformanceEnable        = "Performance.enable"
+	CommandPerformanceSetTimeDomain = "Performance.setTimeDomain"
+	CommandPerformanceGetMetrics    = "Performance.getMetrics"
 )
 
 // DisableArgs represents the arguments for Disable in the Performance domain.
@@ -70,6 +71,11 @@ func (a *DisableReply) UnmarshalJSON(b []byte) error {
 
 // EnableArgs represents the arguments for Enable in the Performance domain.
 type EnableArgs struct {
+	// TimeDomain Time domain to use for collecting and reporting duration
+	// metrics.
+	//
+	// Values: "timeTicks", "threadTicks".
+	TimeDomain string `json:"timeDomain,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for Enable in the Performance domain.
@@ -120,6 +126,65 @@ func (a *EnableReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = EnableReply(*c)
+	return nil
+}
+
+// SetTimeDomainArgs represents the arguments for SetTimeDomain in the Performance domain.
+type SetTimeDomainArgs struct {
+	// TimeDomain Time domain
+	//
+	// Values: "timeTicks", "threadTicks".
+	TimeDomain string `json:"timeDomain"`
+}
+
+// Unmarshal the byte array into a return value for SetTimeDomain in the Performance domain.
+func (a *SetTimeDomainArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetTimeDomainArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetTimeDomainArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetTimeDomain in the Performance domain.
+func (a *SetTimeDomainArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetTimeDomainArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetTimeDomainReply represents the return values for SetTimeDomain in the Performance domain.
+type SetTimeDomainReply struct {
+}
+
+// SetTimeDomainReply returns whether or not the FrameID matches the reply value for SetTimeDomain in the Performance domain.
+func (a *SetTimeDomainReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetTimeDomainReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetTimeDomainReply returns the FrameID value for SetTimeDomain in the Performance domain.
+func (a *SetTimeDomainReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetTimeDomain in the Performance domain.
+func (a *SetTimeDomainReply) UnmarshalJSON(b []byte) error {
+	type Copy SetTimeDomainReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetTimeDomainReply(*c)
 	return nil
 }
 

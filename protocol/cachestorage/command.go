@@ -187,8 +187,9 @@ func (a *RequestCacheNamesReply) UnmarshalJSON(b []byte) error {
 
 // RequestCachedResponseArgs represents the arguments for RequestCachedResponse in the CacheStorage domain.
 type RequestCachedResponseArgs struct {
-	CacheID    CacheID `json:"cacheId"`    // Id of cache that contains the enty.
-	RequestURL string  `json:"requestURL"` // URL spec of the request.
+	CacheID        CacheID  `json:"cacheId"`        // Id of cache that contains the entry.
+	RequestURL     string   `json:"requestURL"`     // URL spec of the request.
+	RequestHeaders []Header `json:"requestHeaders"` // headers of the request.
 }
 
 // Unmarshal the byte array into a return value for RequestCachedResponse in the CacheStorage domain.
@@ -245,9 +246,10 @@ func (a *RequestCachedResponseReply) UnmarshalJSON(b []byte) error {
 
 // RequestEntriesArgs represents the arguments for RequestEntries in the CacheStorage domain.
 type RequestEntriesArgs struct {
-	CacheID   CacheID `json:"cacheId"`   // ID of cache to get entries from.
-	SkipCount int     `json:"skipCount"` // Number of records to skip.
-	PageSize  int     `json:"pageSize"`  // Number of records to fetch.
+	CacheID    CacheID `json:"cacheId"`              // ID of cache to get entries from.
+	SkipCount  int     `json:"skipCount,omitempty"`  // Number of records to skip.
+	PageSize   int     `json:"pageSize,omitempty"`   // Number of records to fetch.
+	PathFilter string  `json:"pathFilter,omitempty"` // If present, only return the entries containing this substring in the path
 }
 
 // Unmarshal the byte array into a return value for RequestEntries in the CacheStorage domain.
@@ -273,7 +275,7 @@ func (a *RequestEntriesArgs) MarshalJSON() ([]byte, error) {
 // RequestEntriesReply represents the return values for RequestEntries in the CacheStorage domain.
 type RequestEntriesReply struct {
 	CacheDataEntries []DataEntry `json:"cacheDataEntries"` // Array of object store data entries.
-	HasMore          bool        `json:"hasMore"`          // If true, there are more entries to fetch in the given range.
+	ReturnCount      float64     `json:"returnCount"`      // Count of returned entries from this storage. If pathFilter is empty, it is the count of all entries from this storage.
 }
 
 // RequestEntriesReply returns whether or not the FrameID matches the reply value for RequestEntries in the CacheStorage domain.

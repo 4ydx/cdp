@@ -10,6 +10,7 @@ import (
 const (
 	CommandMemoryGetDOMCounters                     = "Memory.getDOMCounters"
 	CommandMemoryPrepareForLeakDetection            = "Memory.prepareForLeakDetection"
+	CommandMemoryForciblyPurgeJavaScriptMemory      = "Memory.forciblyPurgeJavaScriptMemory"
 	CommandMemorySetPressureNotificationsSuppressed = "Memory.setPressureNotificationsSuppressed"
 	CommandMemorySimulatePressureNotification       = "Memory.simulatePressureNotification"
 	CommandMemoryStartSampling                      = "Memory.startSampling"
@@ -129,6 +130,61 @@ func (a *PrepareForLeakDetectionReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = PrepareForLeakDetectionReply(*c)
+	return nil
+}
+
+// ForciblyPurgeJavaScriptMemoryArgs represents the arguments for ForciblyPurgeJavaScriptMemory in the Memory domain.
+type ForciblyPurgeJavaScriptMemoryArgs struct {
+}
+
+// Unmarshal the byte array into a return value for ForciblyPurgeJavaScriptMemory in the Memory domain.
+func (a *ForciblyPurgeJavaScriptMemoryArgs) UnmarshalJSON(b []byte) error {
+	type Copy ForciblyPurgeJavaScriptMemoryArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ForciblyPurgeJavaScriptMemoryArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for ForciblyPurgeJavaScriptMemory in the Memory domain.
+func (a *ForciblyPurgeJavaScriptMemoryArgs) MarshalJSON() ([]byte, error) {
+	type Copy ForciblyPurgeJavaScriptMemoryArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// ForciblyPurgeJavaScriptMemoryReply represents the return values for ForciblyPurgeJavaScriptMemory in the Memory domain.
+type ForciblyPurgeJavaScriptMemoryReply struct {
+}
+
+// ForciblyPurgeJavaScriptMemoryReply returns whether or not the FrameID matches the reply value for ForciblyPurgeJavaScriptMemory in the Memory domain.
+func (a *ForciblyPurgeJavaScriptMemoryReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: ForciblyPurgeJavaScriptMemoryReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// ForciblyPurgeJavaScriptMemoryReply returns the FrameID value for ForciblyPurgeJavaScriptMemory in the Memory domain.
+func (a *ForciblyPurgeJavaScriptMemoryReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for ForciblyPurgeJavaScriptMemory in the Memory domain.
+func (a *ForciblyPurgeJavaScriptMemoryReply) UnmarshalJSON(b []byte) error {
+	type Copy ForciblyPurgeJavaScriptMemoryReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ForciblyPurgeJavaScriptMemoryReply(*c)
 	return nil
 }
 

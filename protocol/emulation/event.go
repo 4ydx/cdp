@@ -8,17 +8,13 @@ import (
 )
 
 const (
-	EventEmulationVirtualTimeAdvanced      = "Emulation.virtualTimeAdvanced"
 	EventEmulationVirtualTimeBudgetExpired = "Emulation.virtualTimeBudgetExpired"
-	EventEmulationVirtualTimePaused        = "Emulation.virtualTimePaused"
 )
 
 type Unmarshaler func() json.Unmarshaler
 
 var EventConstants = map[string]Unmarshaler{
-	EventEmulationVirtualTimeAdvanced:      func() json.Unmarshaler { return &VirtualTimeAdvancedReply{} },
 	EventEmulationVirtualTimeBudgetExpired: func() json.Unmarshaler { return &VirtualTimeBudgetExpiredReply{} },
-	EventEmulationVirtualTimePaused:        func() json.Unmarshaler { return &VirtualTimePausedReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
@@ -27,38 +23,6 @@ func GetEventReply(event string) (json.Unmarshaler, bool) {
 		return e(), ok
 	}
 	return nil, ok
-}
-
-// VirtualTimeAdvancedReply is the reply for VirtualTimeAdvanced events.
-type VirtualTimeAdvancedReply struct {
-	VirtualTimeElapsed float64 `json:"virtualTimeElapsed"` // The amount of virtual time that has elapsed in milliseconds since virtual time was first enabled.
-}
-
-// Unmarshal the byte array into a return value for VirtualTimeAdvanced in the Emulation domain.
-func (a *VirtualTimeAdvancedReply) UnmarshalJSON(b []byte) error {
-	type Copy VirtualTimeAdvancedReply
-	c := &Copy{}
-	err := json.Unmarshal(b, c)
-	if err != nil {
-		return err
-	}
-	*a = VirtualTimeAdvancedReply(*c)
-	return nil
-}
-
-// VirtualTimeAdvancedReply returns whether or not the FrameID matches the reply value for VirtualTimeAdvanced in the Emulation domain.
-func (a *VirtualTimeAdvancedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
-	err := a.UnmarshalJSON(m)
-	if err != nil {
-		log.Printf("unmarshal error: VirtualTimeAdvancedReply %s", err)
-		return false, err
-	}
-	return true, nil
-}
-
-// VirtualTimeAdvancedReply returns the FrameID for VirtualTimeAdvanced in the Emulation domain.
-func (a *VirtualTimeAdvancedReply) GetFrameID() string {
-	return ""
 }
 
 // VirtualTimeBudgetExpiredReply is the reply for VirtualTimeBudgetExpired events.
@@ -89,37 +53,5 @@ func (a *VirtualTimeBudgetExpiredReply) MatchFrameID(frameID string, m []byte) (
 
 // VirtualTimeBudgetExpiredReply returns the FrameID for VirtualTimeBudgetExpired in the Emulation domain.
 func (a *VirtualTimeBudgetExpiredReply) GetFrameID() string {
-	return ""
-}
-
-// VirtualTimePausedReply is the reply for VirtualTimePaused events.
-type VirtualTimePausedReply struct {
-	VirtualTimeElapsed float64 `json:"virtualTimeElapsed"` // The amount of virtual time that has elapsed in milliseconds since virtual time was first enabled.
-}
-
-// Unmarshal the byte array into a return value for VirtualTimePaused in the Emulation domain.
-func (a *VirtualTimePausedReply) UnmarshalJSON(b []byte) error {
-	type Copy VirtualTimePausedReply
-	c := &Copy{}
-	err := json.Unmarshal(b, c)
-	if err != nil {
-		return err
-	}
-	*a = VirtualTimePausedReply(*c)
-	return nil
-}
-
-// VirtualTimePausedReply returns whether or not the FrameID matches the reply value for VirtualTimePaused in the Emulation domain.
-func (a *VirtualTimePausedReply) MatchFrameID(frameID string, m []byte) (bool, error) {
-	err := a.UnmarshalJSON(m)
-	if err != nil {
-		log.Printf("unmarshal error: VirtualTimePausedReply %s", err)
-		return false, err
-	}
-	return true, nil
-}
-
-// VirtualTimePausedReply returns the FrameID for VirtualTimePaused in the Emulation domain.
-func (a *VirtualTimePausedReply) GetFrameID() string {
 	return ""
 }

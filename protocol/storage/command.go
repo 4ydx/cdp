@@ -5,10 +5,15 @@ package storage
 import (
 	"encoding/json"
 	"log"
+
+	"github.com/4ydx/cdp/protocol/network"
 )
 
 const (
 	CommandStorageClearDataForOrigin           = "Storage.clearDataForOrigin"
+	CommandStorageGetCookies                   = "Storage.getCookies"
+	CommandStorageSetCookies                   = "Storage.setCookies"
+	CommandStorageClearCookies                 = "Storage.clearCookies"
 	CommandStorageGetUsageAndQuota             = "Storage.getUsageAndQuota"
 	CommandStorageTrackCacheStorageForOrigin   = "Storage.trackCacheStorageForOrigin"
 	CommandStorageTrackIndexedDBForOrigin      = "Storage.trackIndexedDBForOrigin"
@@ -19,7 +24,7 @@ const (
 // ClearDataForOriginArgs represents the arguments for ClearDataForOrigin in the Storage domain.
 type ClearDataForOriginArgs struct {
 	Origin       string `json:"origin"`       // Security origin.
-	StorageTypes string `json:"storageTypes"` // Comma separated origin names.
+	StorageTypes string `json:"storageTypes"` // Comma separated list of StorageType to clear.
 }
 
 // Unmarshal the byte array into a return value for ClearDataForOrigin in the Storage domain.
@@ -70,6 +75,176 @@ func (a *ClearDataForOriginReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = ClearDataForOriginReply(*c)
+	return nil
+}
+
+// GetCookiesArgs represents the arguments for GetCookies in the Storage domain.
+type GetCookiesArgs struct {
+	BrowserContextID browser.ContextID `json:"browserContextId,omitempty"` // Browser context to use when called on the browser endpoint.
+}
+
+// Unmarshal the byte array into a return value for GetCookies in the Storage domain.
+func (a *GetCookiesArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetCookiesArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetCookiesArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetCookies in the Storage domain.
+func (a *GetCookiesArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetCookiesArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetCookiesReply represents the return values for GetCookies in the Storage domain.
+type GetCookiesReply struct {
+	Cookies []network.Cookie `json:"cookies"` // Array of cookie objects.
+}
+
+// GetCookiesReply returns whether or not the FrameID matches the reply value for GetCookies in the Storage domain.
+func (a *GetCookiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetCookiesReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetCookiesReply returns the FrameID value for GetCookies in the Storage domain.
+func (a *GetCookiesReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetCookies in the Storage domain.
+func (a *GetCookiesReply) UnmarshalJSON(b []byte) error {
+	type Copy GetCookiesReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetCookiesReply(*c)
+	return nil
+}
+
+// SetCookiesArgs represents the arguments for SetCookies in the Storage domain.
+type SetCookiesArgs struct {
+	Cookies          []network.CookieParam `json:"cookies"`                    // Cookies to be set.
+	BrowserContextID browser.ContextID     `json:"browserContextId,omitempty"` // Browser context to use when called on the browser endpoint.
+}
+
+// Unmarshal the byte array into a return value for SetCookies in the Storage domain.
+func (a *SetCookiesArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetCookiesArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetCookiesArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetCookies in the Storage domain.
+func (a *SetCookiesArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetCookiesArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetCookiesReply represents the return values for SetCookies in the Storage domain.
+type SetCookiesReply struct {
+}
+
+// SetCookiesReply returns whether or not the FrameID matches the reply value for SetCookies in the Storage domain.
+func (a *SetCookiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetCookiesReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetCookiesReply returns the FrameID value for SetCookies in the Storage domain.
+func (a *SetCookiesReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetCookies in the Storage domain.
+func (a *SetCookiesReply) UnmarshalJSON(b []byte) error {
+	type Copy SetCookiesReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetCookiesReply(*c)
+	return nil
+}
+
+// ClearCookiesArgs represents the arguments for ClearCookies in the Storage domain.
+type ClearCookiesArgs struct {
+	BrowserContextID browser.ContextID `json:"browserContextId,omitempty"` // Browser context to use when called on the browser endpoint.
+}
+
+// Unmarshal the byte array into a return value for ClearCookies in the Storage domain.
+func (a *ClearCookiesArgs) UnmarshalJSON(b []byte) error {
+	type Copy ClearCookiesArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ClearCookiesArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for ClearCookies in the Storage domain.
+func (a *ClearCookiesArgs) MarshalJSON() ([]byte, error) {
+	type Copy ClearCookiesArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// ClearCookiesReply represents the return values for ClearCookies in the Storage domain.
+type ClearCookiesReply struct {
+}
+
+// ClearCookiesReply returns whether or not the FrameID matches the reply value for ClearCookies in the Storage domain.
+func (a *ClearCookiesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: ClearCookiesReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// ClearCookiesReply returns the FrameID value for ClearCookies in the Storage domain.
+func (a *ClearCookiesReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for ClearCookies in the Storage domain.
+func (a *ClearCookiesReply) UnmarshalJSON(b []byte) error {
+	type Copy ClearCookiesReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ClearCookiesReply(*c)
 	return nil
 }
 

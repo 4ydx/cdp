@@ -84,12 +84,8 @@ func (a *ActivateTargetReply) UnmarshalJSON(b []byte) error {
 
 // AttachToTargetArgs represents the arguments for AttachToTarget in the Target domain.
 type AttachToTargetArgs struct {
-	TargetID ID `json:"targetId"` // No description.
-	// Flatten Enables "flat" access to the session via specifying
-	// sessionId attribute in the commands.
-	//
-	// Note: This property is experimental.
-	Flatten bool `json:"flatten,omitempty"`
+	TargetID ID   `json:"targetId"`          // No description.
+	Flatten  bool `json:"flatten,omitempty"` // Enables "flat" access to the session via specifying sessionId attribute in the commands. We plan to make this the default, deprecate non-flattened mode, and eventually retire it. See crbug.com/991325.
 }
 
 // Unmarshal the byte array into a return value for AttachToTarget in the Target domain.
@@ -316,6 +312,7 @@ func (a *ExposeDevToolsProtocolReply) UnmarshalJSON(b []byte) error {
 
 // CreateBrowserContextArgs represents the arguments for CreateBrowserContext in the Target domain.
 type CreateBrowserContextArgs struct {
+	DisposeOnDetach bool `json:"disposeOnDetach,omitempty"` // If specified, disposes this context when debugging session disconnects.
 }
 
 // Unmarshal the byte array into a return value for CreateBrowserContext in the Target domain.
@@ -340,7 +337,7 @@ func (a *CreateBrowserContextArgs) MarshalJSON() ([]byte, error) {
 
 // CreateBrowserContextReply represents the return values for CreateBrowserContext in the Target domain.
 type CreateBrowserContextReply struct {
-	BrowserContextID BrowserContextID `json:"browserContextId"` // The id of the context created.
+	BrowserContextID browser.ContextID `json:"browserContextId"` // The id of the context created.
 }
 
 // CreateBrowserContextReply returns whether or not the FrameID matches the reply value for CreateBrowserContext in the Target domain.
@@ -396,7 +393,7 @@ func (a *GetBrowserContextsArgs) MarshalJSON() ([]byte, error) {
 
 // GetBrowserContextsReply represents the return values for GetBrowserContexts in the Target domain.
 type GetBrowserContextsReply struct {
-	BrowserContextIDs []BrowserContextID `json:"browserContextIds"` // An array of browser context ids.
+	BrowserContextIDs []browser.ContextID `json:"browserContextIds"` // An array of browser context ids.
 }
 
 // GetBrowserContextsReply returns whether or not the FrameID matches the reply value for GetBrowserContexts in the Target domain.
@@ -428,16 +425,18 @@ func (a *GetBrowserContextsReply) UnmarshalJSON(b []byte) error {
 
 // CreateTargetArgs represents the arguments for CreateTarget in the Target domain.
 type CreateTargetArgs struct {
-	URL              string           `json:"url"`                        // The initial URL the page will be navigated to.
-	Width            int              `json:"width,omitempty"`            // Frame width in DIP (headless chrome only).
-	Height           int              `json:"height,omitempty"`           // Frame height in DIP (headless chrome only).
-	BrowserContextID BrowserContextID `json:"browserContextId,omitempty"` // The browser context to create the page in.
+	URL              string            `json:"url"`                        // The initial URL the page will be navigated to.
+	Width            int               `json:"width,omitempty"`            // Frame width in DIP (headless chrome only).
+	Height           int               `json:"height,omitempty"`           // Frame height in DIP (headless chrome only).
+	BrowserContextID browser.ContextID `json:"browserContextId,omitempty"` // The browser context to create the page in.
 	// EnableBeginFrameControl Whether BeginFrames for this target will be
 	// controlled via DevTools (headless chrome only, not supported on
 	// MacOS yet, false by default).
 	//
 	// Note: This property is experimental.
 	EnableBeginFrameControl bool `json:"enableBeginFrameControl,omitempty"`
+	NewWindow               bool `json:"newWindow,omitempty"`  // Whether to create a new Window or Tab (chrome-only, false by default).
+	Background              bool `json:"background,omitempty"` // Whether to create the target in background or foreground (chrome-only, false by default).
 }
 
 // Unmarshal the byte array into a return value for CreateTarget in the Target domain.
@@ -554,7 +553,7 @@ func (a *DetachFromTargetReply) UnmarshalJSON(b []byte) error {
 
 // DisposeBrowserContextArgs represents the arguments for DisposeBrowserContext in the Target domain.
 type DisposeBrowserContextArgs struct {
-	BrowserContextID BrowserContextID `json:"browserContextId"` // No description.
+	BrowserContextID browser.ContextID `json:"browserContextId"` // No description.
 }
 
 // Unmarshal the byte array into a return value for DisposeBrowserContext in the Target domain.
@@ -786,11 +785,7 @@ func (a *SendMessageToTargetReply) UnmarshalJSON(b []byte) error {
 type SetAutoAttachArgs struct {
 	AutoAttach             bool `json:"autoAttach"`             // Whether to auto-attach to related targets.
 	WaitForDebuggerOnStart bool `json:"waitForDebuggerOnStart"` // Whether to pause new targets when attaching to them. Use `Runtime.runIfWaitingForDebugger` to run paused targets.
-	// Flatten Enables "flat" access to the session via specifying
-	// sessionId attribute in the commands.
-	//
-	// Note: This property is experimental.
-	Flatten bool `json:"flatten,omitempty"`
+	Flatten                bool `json:"flatten,omitempty"`      // Enables "flat" access to the session via specifying sessionId attribute in the commands. We plan to make this the default, deprecate non-flattened mode, and eventually retire it. See crbug.com/991325.
 }
 
 // Unmarshal the byte array into a return value for SetAutoAttach in the Target domain.

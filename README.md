@@ -24,5 +24,6 @@ go get -u github.com/4ydx/cdp
 ### Updating protocol definitions
 
 ```console
+cd cmd/cdpgen/
 $ ./update.sh
 ```

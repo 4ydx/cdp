@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
@@ -14,6 +14,7 @@ const (
 	CommandDOMCollectClassNamesFromSubtree    = "DOM.collectClassNamesFromSubtree"
 	CommandDOMCopyTo                          = "DOM.copyTo"
 	CommandDOMDescribeNode                    = "DOM.describeNode"
+	CommandDOMScrollIntoViewIfNeeded          = "DOM.scrollIntoViewIfNeeded"
 	CommandDOMDisable                         = "DOM.disable"
 	CommandDOMDiscardSearchResults            = "DOM.discardSearchResults"
 	CommandDOMEnable                          = "DOM.enable"
@@ -46,6 +47,9 @@ const (
 	CommandDOMSetAttributeValue               = "DOM.setAttributeValue"
 	CommandDOMSetAttributesAsText             = "DOM.setAttributesAsText"
 	CommandDOMSetFileInputFiles               = "DOM.setFileInputFiles"
+	CommandDOMSetNodeStackTracesEnabled       = "DOM.setNodeStackTracesEnabled"
+	CommandDOMGetNodeStackTraces              = "DOM.getNodeStackTraces"
+	CommandDOMGetFileInfo                     = "DOM.getFileInfo"
 	CommandDOMSetInspectedNode                = "DOM.setInspectedNode"
 	CommandDOMSetNodeName                     = "DOM.setNodeName"
 	CommandDOMSetNodeValue                    = "DOM.setNodeValue"
@@ -233,6 +237,65 @@ func (a *DescribeNodeReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = DescribeNodeReply(*c)
+	return nil
+}
+
+// ScrollIntoViewIfNeededArgs represents the arguments for ScrollIntoViewIfNeeded in the DOM domain.
+type ScrollIntoViewIfNeededArgs struct {
+	NodeID        NodeID                `json:"nodeId,omitempty"`        // Identifier of the node.
+	BackendNodeID BackendNodeID         `json:"backendNodeId,omitempty"` // Identifier of the backend node.
+	ObjectID      shared.RemoteObjectID `json:"objectId,omitempty"`      // JavaScript object id of the node wrapper.
+	Rect          *Rect                 `json:"rect,omitempty"`          // The rect to be scrolled into view, relative to the node's border box, in CSS pixels. When omitted, center of the node will be used, similar to Element.scrollIntoView.
+}
+
+// Unmarshal the byte array into a return value for ScrollIntoViewIfNeeded in the DOM domain.
+func (a *ScrollIntoViewIfNeededArgs) UnmarshalJSON(b []byte) error {
+	type Copy ScrollIntoViewIfNeededArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ScrollIntoViewIfNeededArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for ScrollIntoViewIfNeeded in the DOM domain.
+func (a *ScrollIntoViewIfNeededArgs) MarshalJSON() ([]byte, error) {
+	type Copy ScrollIntoViewIfNeededArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// ScrollIntoViewIfNeededReply represents the return values for ScrollIntoViewIfNeeded in the DOM domain.
+type ScrollIntoViewIfNeededReply struct {
+}
+
+// ScrollIntoViewIfNeededReply returns whether or not the FrameID matches the reply value for ScrollIntoViewIfNeeded in the DOM domain.
+func (a *ScrollIntoViewIfNeededReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: ScrollIntoViewIfNeededReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// ScrollIntoViewIfNeededReply returns the FrameID value for ScrollIntoViewIfNeeded in the DOM domain.
+func (a *ScrollIntoViewIfNeededReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for ScrollIntoViewIfNeeded in the DOM domain.
+func (a *ScrollIntoViewIfNeededReply) UnmarshalJSON(b []byte) error {
+	type Copy ScrollIntoViewIfNeededReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ScrollIntoViewIfNeededReply(*c)
 	return nil
 }
 
@@ -773,6 +836,7 @@ type GetNodeForLocationArgs struct {
 	X                         int  `json:"x"`                                   // X coordinate.
 	Y                         int  `json:"y"`                                   // Y coordinate.
 	IncludeUserAgentShadowDOM bool `json:"includeUserAgentShadowDOM,omitempty"` // False to skip to the nearest non-UA shadow root ancestor (default: false).
+	IgnorePointerEventsNone   bool `json:"ignorePointerEventsNone,omitempty"`   // Whether to ignore pointer-events: none on elements and hit test them.
 }
 
 // Unmarshal the byte array into a return value for GetNodeForLocation in the DOM domain.
@@ -797,22 +861,29 @@ func (a *GetNodeForLocationArgs) MarshalJSON() ([]byte, error) {
 
 // GetNodeForLocationReply represents the return values for GetNodeForLocation in the DOM domain.
 type GetNodeForLocationReply struct {
-	NodeID NodeID `json:"nodeId"` // Id of the node at given coordinates.
+	BackendNodeID BackendNodeID  `json:"backendNodeId"`    // Resulting node.
+	FrameID       shared.FrameID `json:"frameId"`          // Frame this node belongs to.
+	NodeID        NodeID         `json:"nodeId,omitempty"` // Id of the node at given coordinates, only when enabled and requested document.
 }
 
 // GetNodeForLocationReply returns whether or not the FrameID matches the reply value for GetNodeForLocation in the DOM domain.
 func (a *GetNodeForLocationReply) MatchFrameID(frameID string, m []byte) (bool, error) {
-	err := a.UnmarshalJSON(m)
+	v := &GetNodeForLocationReply{}
+	err := v.UnmarshalJSON(m)
 	if err != nil {
 		log.Printf("unmarshal error: GetNodeForLocationReply %s", err)
 		return false, err
 	}
+	if v.FrameID != shared.FrameID(frameID) {
+		return false, nil
+	}
+	*a = *v
 	return true, nil
 }
 
-// GetNodeForLocationReply returns the FrameID value for GetNodeForLocation in the DOM domain.
+// GetNodeForLocationReply returns the FrameID for GetNodeForLocation in the DOM domain.
 func (a *GetNodeForLocationReply) GetFrameID() string {
-	return ""
+	return string(a.FrameID)
 }
 
 // Unmarshal the byte array into a return value for GetNodeForLocation in the DOM domain.
@@ -1690,9 +1761,10 @@ func (a *RequestNodeReply) UnmarshalJSON(b []byte) error {
 
 // ResolveNodeArgs represents the arguments for ResolveNode in the DOM domain.
 type ResolveNodeArgs struct {
-	NodeID        NodeID        `json:"nodeId,omitempty"`        // Id of the node to resolve.
-	BackendNodeID BackendNodeID `json:"backendNodeId,omitempty"` // Backend identifier of the node to resolve.
-	ObjectGroup   string        `json:"objectGroup,omitempty"`   // Symbolic group name that can be used to release multiple objects.
+	NodeID             NodeID                     `json:"nodeId,omitempty"`             // Id of the node to resolve.
+	BackendNodeID      BackendNodeID              `json:"backendNodeId,omitempty"`      // Backend identifier of the node to resolve.
+	ObjectGroup        string                     `json:"objectGroup,omitempty"`        // Symbolic group name that can be used to release multiple objects.
+	ExecutionContextID runtime.ExecutionContextID `json:"executionContextId,omitempty"` // Execution context in which to resolve the node.
 }
 
 // Unmarshal the byte array into a return value for ResolveNode in the DOM domain.
@@ -1919,6 +1991,176 @@ func (a *SetFileInputFilesReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = SetFileInputFilesReply(*c)
+	return nil
+}
+
+// SetNodeStackTracesEnabledArgs represents the arguments for SetNodeStackTracesEnabled in the DOM domain.
+type SetNodeStackTracesEnabledArgs struct {
+	Enable bool `json:"enable"` // Enable or disable.
+}
+
+// Unmarshal the byte array into a return value for SetNodeStackTracesEnabled in the DOM domain.
+func (a *SetNodeStackTracesEnabledArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetNodeStackTracesEnabledArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetNodeStackTracesEnabledArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetNodeStackTracesEnabled in the DOM domain.
+func (a *SetNodeStackTracesEnabledArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetNodeStackTracesEnabledArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetNodeStackTracesEnabledReply represents the return values for SetNodeStackTracesEnabled in the DOM domain.
+type SetNodeStackTracesEnabledReply struct {
+}
+
+// SetNodeStackTracesEnabledReply returns whether or not the FrameID matches the reply value for SetNodeStackTracesEnabled in the DOM domain.
+func (a *SetNodeStackTracesEnabledReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetNodeStackTracesEnabledReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetNodeStackTracesEnabledReply returns the FrameID value for SetNodeStackTracesEnabled in the DOM domain.
+func (a *SetNodeStackTracesEnabledReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetNodeStackTracesEnabled in the DOM domain.
+func (a *SetNodeStackTracesEnabledReply) UnmarshalJSON(b []byte) error {
+	type Copy SetNodeStackTracesEnabledReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetNodeStackTracesEnabledReply(*c)
+	return nil
+}
+
+// GetNodeStackTracesArgs represents the arguments for GetNodeStackTraces in the DOM domain.
+type GetNodeStackTracesArgs struct {
+	NodeID NodeID `json:"nodeId"` // Id of the node to get stack traces for.
+}
+
+// Unmarshal the byte array into a return value for GetNodeStackTraces in the DOM domain.
+func (a *GetNodeStackTracesArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetNodeStackTracesArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetNodeStackTracesArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetNodeStackTraces in the DOM domain.
+func (a *GetNodeStackTracesArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetNodeStackTracesArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetNodeStackTracesReply represents the return values for GetNodeStackTraces in the DOM domain.
+type GetNodeStackTracesReply struct {
+	Creation *runtime.StackTrace `json:"creation,omitempty"` // Creation stack trace, if available.
+}
+
+// GetNodeStackTracesReply returns whether or not the FrameID matches the reply value for GetNodeStackTraces in the DOM domain.
+func (a *GetNodeStackTracesReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetNodeStackTracesReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetNodeStackTracesReply returns the FrameID value for GetNodeStackTraces in the DOM domain.
+func (a *GetNodeStackTracesReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetNodeStackTraces in the DOM domain.
+func (a *GetNodeStackTracesReply) UnmarshalJSON(b []byte) error {
+	type Copy GetNodeStackTracesReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetNodeStackTracesReply(*c)
+	return nil
+}
+
+// GetFileInfoArgs represents the arguments for GetFileInfo in the DOM domain.
+type GetFileInfoArgs struct {
+	ObjectID shared.RemoteObjectID `json:"objectId"` // JavaScript object id of the node wrapper.
+}
+
+// Unmarshal the byte array into a return value for GetFileInfo in the DOM domain.
+func (a *GetFileInfoArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetFileInfoArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetFileInfoArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetFileInfo in the DOM domain.
+func (a *GetFileInfoArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetFileInfoArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetFileInfoReply represents the return values for GetFileInfo in the DOM domain.
+type GetFileInfoReply struct {
+	Path string `json:"path"` // No description.
+}
+
+// GetFileInfoReply returns whether or not the FrameID matches the reply value for GetFileInfo in the DOM domain.
+func (a *GetFileInfoReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetFileInfoReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetFileInfoReply returns the FrameID value for GetFileInfo in the DOM domain.
+func (a *GetFileInfoReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetFileInfo in the DOM domain.
+func (a *GetFileInfoReply) UnmarshalJSON(b []byte) error {
+	type Copy GetFileInfoReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetFileInfoReply(*c)
 	return nil
 }
 
@@ -2232,7 +2474,8 @@ func (a *GetFrameOwnerArgs) MarshalJSON() ([]byte, error) {
 
 // GetFrameOwnerReply represents the return values for GetFrameOwner in the DOM domain.
 type GetFrameOwnerReply struct {
-	NodeID NodeID `json:"nodeId"` // No description.
+	BackendNodeID BackendNodeID `json:"backendNodeId"`    // Resulting node.
+	NodeID        NodeID        `json:"nodeId,omitempty"` // Id of the node at given coordinates, only when enabled and requested document.
 }
 
 // GetFrameOwnerReply returns whether or not the FrameID matches the reply value for GetFrameOwner in the DOM domain.

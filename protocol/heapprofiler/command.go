@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/runtime"
 )
 
@@ -587,7 +587,8 @@ func (a *StopSamplingReply) UnmarshalJSON(b []byte) error {
 
 // StopTrackingHeapObjectsArgs represents the arguments for StopTrackingHeapObjects in the HeapProfiler domain.
 type StopTrackingHeapObjectsArgs struct {
-	ReportProgress bool `json:"reportProgress,omitempty"` // If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken when the tracking is stopped.
+	ReportProgress            bool `json:"reportProgress,omitempty"`            // If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken when the tracking is stopped.
+	TreatGlobalObjectsAsRoots bool `json:"treatGlobalObjectsAsRoots,omitempty"` // No description.
 }
 
 // Unmarshal the byte array into a return value for StopTrackingHeapObjects in the HeapProfiler domain.
@@ -643,7 +644,8 @@ func (a *StopTrackingHeapObjectsReply) UnmarshalJSON(b []byte) error {
 
 // TakeHeapSnapshotArgs represents the arguments for TakeHeapSnapshot in the HeapProfiler domain.
 type TakeHeapSnapshotArgs struct {
-	ReportProgress bool `json:"reportProgress,omitempty"` // If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken.
+	ReportProgress            bool `json:"reportProgress,omitempty"`            // If true 'reportHeapSnapshotProgress' events will be generated while snapshot is being taken.
+	TreatGlobalObjectsAsRoots bool `json:"treatGlobalObjectsAsRoots,omitempty"` // If true, a raw snapshot without artificial roots will be generated
 }
 
 // Unmarshal the byte array into a return value for TakeHeapSnapshot in the HeapProfiler domain.

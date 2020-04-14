@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"log"
 
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/debugger"
 	"github.com/4ydx/cdp/protocol/io"
 )
@@ -877,7 +878,7 @@ func (a *GetRequestPostDataArgs) MarshalJSON() ([]byte, error) {
 
 // GetRequestPostDataReply represents the return values for GetRequestPostData in the Network domain.
 type GetRequestPostDataReply struct {
-	PostData []byte `json:"postData"` // Base64-encoded request body.
+	PostData string `json:"postData"` // Request body string, omitting files from multipart requests
 }
 
 // GetRequestPostDataReply returns whether or not the FrameID matches the reply value for GetRequestPostData in the Network domain.
@@ -1308,15 +1309,19 @@ func (a *SetCacheDisabledReply) UnmarshalJSON(b []byte) error {
 
 // SetCookieArgs represents the arguments for SetCookie in the Network domain.
 type SetCookieArgs struct {
-	Name     string          `json:"name"`               // Cookie name.
-	Value    string          `json:"value"`              // Cookie value.
-	URL      string          `json:"url,omitempty"`      // The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
-	Domain   string          `json:"domain,omitempty"`   // Cookie domain.
-	Path     string          `json:"path,omitempty"`     // Cookie path.
-	Secure   bool            `json:"secure,omitempty"`   // True if cookie is secure.
-	HTTPOnly bool            `json:"httpOnly,omitempty"` // True if cookie is http-only.
-	SameSite *CookieSameSite `json:"sameSite,omitempty"` // Cookie SameSite type.
-	Expires  *TimeSinceEpoch `json:"expires,omitempty"`  // Cookie expiration date, session cookie if not set
+	Name     string                 `json:"name"`               // Cookie name.
+	Value    string                 `json:"value"`              // Cookie value.
+	URL      string                 `json:"url,omitempty"`      // The request-URI to associate with the setting of the cookie. This value can affect the default domain and path values of the created cookie.
+	Domain   string                 `json:"domain,omitempty"`   // Cookie domain.
+	Path     string                 `json:"path,omitempty"`     // Cookie path.
+	Secure   bool                   `json:"secure,omitempty"`   // True if cookie is secure.
+	HTTPOnly bool                   `json:"httpOnly,omitempty"` // True if cookie is http-only.
+	SameSite *CookieSameSite        `json:"sameSite,omitempty"` // Cookie SameSite type.
+	Expires  *shared.TimeSinceEpoch `json:"expires,omitempty"`  // Cookie expiration date, session cookie if not set
+	// Priority Cookie Priority type.
+	//
+	// Note: This property is experimental.
+	Priority *CookiePriority `json:"priority,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for SetCookie in the Network domain.

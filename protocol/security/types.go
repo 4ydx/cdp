@@ -2,6 +2,10 @@
 
 package security
 
+import (
+	shared "github.com/4ydx/cdp/protocol"
+)
+
 // CertificateID An internal certificate ID value.
 type CertificateID int
 
@@ -35,17 +39,18 @@ type State string
 
 // State as enums.
 const (
-	StateNotSet   State = ""
-	StateUnknown  State = "unknown"
-	StateNeutral  State = "neutral"
-	StateInsecure State = "insecure"
-	StateSecure   State = "secure"
-	StateInfo     State = "info"
+	StateNotSet         State = ""
+	StateUnknown        State = "unknown"
+	StateNeutral        State = "neutral"
+	StateInsecure       State = "insecure"
+	StateSecure         State = "secure"
+	StateInfo           State = "info"
+	StateInsecureBroken State = "insecure-broken"
 )
 
 func (e State) Valid() bool {
 	switch e {
-	case "unknown", "neutral", "insecure", "secure", "info":
+	case "unknown", "neutral", "insecure", "secure", "info", "insecure-broken":
 		return true
 	default:
 		return false
@@ -56,26 +61,97 @@ func (e State) String() string {
 	return string(e)
 }
 
+// CertificateSecurityState Details about the security state of the page
+// certificate.
+//
+// Note: This type is experimental.
+type CertificateSecurityState struct {
+	Protocol                    string                `json:"protocol"`                          // Protocol name (e.g. "TLS 1.2" or "QUIC").
+	KeyExchange                 string                `json:"keyExchange"`                       // Key Exchange used by the connection, or the empty string if not applicable.
+	KeyExchangeGroup            string                `json:"keyExchangeGroup,omitempty"`        // (EC)DH group used by the connection, if applicable.
+	Cipher                      string                `json:"cipher"`                            // Cipher name.
+	MAC                         string                `json:"mac,omitempty"`                     // TLS MAC. Note that AEAD ciphers do not have separate MACs.
+	Certificate                 []string              `json:"certificate"`                       // Page certificate.
+	SubjectName                 string                `json:"subjectName"`                       // Certificate subject name.
+	Issuer                      string                `json:"issuer"`                            // Name of the issuing CA.
+	ValidFrom                   shared.TimeSinceEpoch `json:"validFrom"`                         // Certificate valid from date.
+	ValidTo                     shared.TimeSinceEpoch `json:"validTo"`                           // Certificate valid to (expiration) date
+	CertificateNetworkError     string                `json:"certificateNetworkError,omitempty"` // The highest priority network error code, if the certificate has an error.
+	CertificateHasWeakSignature bool                  `json:"certificateHasWeakSignature"`       // True if the certificate uses a weak signature aglorithm.
+	CertificateHasSha1Signature bool                  `json:"certificateHasSha1Signature"`       // True if the certificate has a SHA1 signature in the chain.
+	ModernSSL                   bool                  `json:"modernSSL"`                         // True if modern SSL
+	ObsoleteSSLProtocol         bool                  `json:"obsoleteSslProtocol"`               // True if the connection is using an obsolete SSL protocol.
+	ObsoleteSSLKeyExchange      bool                  `json:"obsoleteSslKeyExchange"`            // True if the connection is using an obsolete SSL key exchange.
+	ObsoleteSSLCipher           bool                  `json:"obsoleteSslCipher"`                 // True if the connection is using an obsolete SSL cipher.
+	ObsoleteSSLSignature        bool                  `json:"obsoleteSslSignature"`              // True if the connection is using an obsolete SSL signature.
+}
+
+// SafetyTipStatus
+//
+// Note: This type is experimental.
+type SafetyTipStatus string
+
+// SafetyTipStatus as enums.
+const (
+	SafetyTipStatusNotSet        SafetyTipStatus = ""
+	SafetyTipStatusBadReputation SafetyTipStatus = "badReputation"
+	SafetyTipStatusLookalike     SafetyTipStatus = "lookalike"
+)
+
+func (e SafetyTipStatus) Valid() bool {
+	switch e {
+	case "badReputation", "lookalike":
+		return true
+	default:
+		return false
+	}
+}
+
+func (e SafetyTipStatus) String() string {
+	return string(e)
+}
+
+// SafetyTipInfo
+//
+// Note: This type is experimental.
+type SafetyTipInfo struct {
+	SafetyTipStatus SafetyTipStatus `json:"safetyTipStatus"`   // Describes whether the page triggers any safety tips or reputation warnings. Default is unknown.
+	SafeURL         string          `json:"safeUrl,omitempty"` // The URL the safety tip suggested ("Did you mean?"). Only filled in for lookalike matches.
+}
+
+// VisibleSecurityState Security state information about the page.
+//
+// Note: This type is experimental.
+type VisibleSecurityState struct {
+	SecurityState            State                     `json:"securityState"`                      // The security level of the page.
+	CertificateSecurityState *CertificateSecurityState `json:"certificateSecurityState,omitempty"` // Security state details about the page certificate.
+	SafetyTipInfo            *SafetyTipInfo            `json:"safetyTipInfo,omitempty"`            // The type of Safety Tip triggered on the page. Note that this field will be set even if the Safety Tip UI was not actually shown.
+	SecurityStateIssueIDs    []string                  `json:"securityStateIssueIds"`              // Array of security state issues ids.
+}
+
 // StateExplanation An explanation of an factor contributing to the security
 // state.
 type StateExplanation struct {
-	SecurityState    State            `json:"securityState"`    // Security state representing the severity of the factor being explained.
-	Title            string           `json:"title"`            // Title describing the type of factor.
-	Summary          string           `json:"summary"`          // Short phrase describing the type of factor.
-	Description      string           `json:"description"`      // Full text explanation of the factor.
-	MixedContentType MixedContentType `json:"mixedContentType"` // The type of mixed content described by the explanation.
-	Certificate      []string         `json:"certificate"`      // Page certificate.
+	SecurityState    State            `json:"securityState"`             // Security state representing the severity of the factor being explained.
+	Title            string           `json:"title"`                     // Title describing the type of factor.
+	Summary          string           `json:"summary"`                   // Short phrase describing the type of factor.
+	Description      string           `json:"description"`               // Full text explanation of the factor.
+	MixedContentType MixedContentType `json:"mixedContentType"`          // The type of mixed content described by the explanation.
+	Certificate      []string         `json:"certificate"`               // Page certificate.
+	Recommendations  *[]string        `json:"recommendations,omitempty"` // Recommendations to fix any issues.
 }
 
-// InsecureContentStatus Information about insecure content on the page.
+// InsecureContentStatus
+//
+// Deprecated: Information about insecure content on the page.
 type InsecureContentStatus struct {
-	RanMixedContent                bool  `json:"ranMixedContent"`                // True if the page was loaded over HTTPS and ran mixed (HTTP) content such as scripts.
-	DisplayedMixedContent          bool  `json:"displayedMixedContent"`          // True if the page was loaded over HTTPS and displayed mixed (HTTP) content such as images.
-	ContainedMixedForm             bool  `json:"containedMixedForm"`             // True if the page was loaded over HTTPS and contained a form targeting an insecure url.
-	RanContentWithCertErrors       bool  `json:"ranContentWithCertErrors"`       // True if the page was loaded over HTTPS without certificate errors, and ran content such as scripts that were loaded with certificate errors.
-	DisplayedContentWithCertErrors bool  `json:"displayedContentWithCertErrors"` // True if the page was loaded over HTTPS without certificate errors, and displayed content such as images that were loaded with certificate errors.
-	RanInsecureContentStyle        State `json:"ranInsecureContentStyle"`        // Security state representing a page that ran insecure content.
-	DisplayedInsecureContentStyle  State `json:"displayedInsecureContentStyle"`  // Security state representing a page that displayed insecure content.
+	RanMixedContent                bool  `json:"ranMixedContent"`                // Always false.
+	DisplayedMixedContent          bool  `json:"displayedMixedContent"`          // Always false.
+	ContainedMixedForm             bool  `json:"containedMixedForm"`             // Always false.
+	RanContentWithCertErrors       bool  `json:"ranContentWithCertErrors"`       // Always false.
+	DisplayedContentWithCertErrors bool  `json:"displayedContentWithCertErrors"` // Always false.
+	RanInsecureContentStyle        State `json:"ranInsecureContentStyle"`        // Always set to unknown.
+	DisplayedInsecureContentStyle  State `json:"displayedInsecureContentStyle"`  // Always set to unknown.
 }
 
 // CertificateErrorAction The action to take when a certificate error occurs.

@@ -6,7 +6,7 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 )
 
 const (
@@ -27,6 +27,8 @@ const (
 	EventNetworkWebSocketFrameSent                 = "Network.webSocketFrameSent"
 	EventNetworkWebSocketHandshakeResponseReceived = "Network.webSocketHandshakeResponseReceived"
 	EventNetworkWebSocketWillSendHandshakeRequest  = "Network.webSocketWillSendHandshakeRequest"
+	EventNetworkRequestWillBeSentExtraInfo         = "Network.requestWillBeSentExtraInfo"
+	EventNetworkResponseReceivedExtraInfo          = "Network.responseReceivedExtraInfo"
 )
 
 type Unmarshaler func() json.Unmarshaler
@@ -49,6 +51,8 @@ var EventConstants = map[string]Unmarshaler{
 	EventNetworkWebSocketFrameSent:                 func() json.Unmarshaler { return &WebSocketFrameSentReply{} },
 	EventNetworkWebSocketHandshakeResponseReceived: func() json.Unmarshaler { return &WebSocketHandshakeResponseReceivedReply{} },
 	EventNetworkWebSocketWillSendHandshakeRequest:  func() json.Unmarshaler { return &WebSocketWillSendHandshakeRequestReply{} },
+	EventNetworkRequestWillBeSentExtraInfo:         func() json.Unmarshaler { return &RequestWillBeSentExtraInfoReply{} },
+	EventNetworkResponseReceivedExtraInfo:          func() json.Unmarshaler { return &ResponseReceivedExtraInfoReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
@@ -215,6 +219,7 @@ type RequestInterceptedReply struct {
 	ResponseErrorReason *ErrorReason        `json:"responseErrorReason,omitempty"` // Response error if intercepted at response stage or if redirect occurred while intercepting request.
 	ResponseStatusCode  int                 `json:"responseStatusCode,omitempty"`  // Response code if intercepted at response stage or if redirect occurred while intercepting request or auth retry occurred.
 	ResponseHeaders     *Headers            `json:"responseHeaders,omitempty"`     // Response headers if intercepted at the response stage or if redirect occurred while intercepting request or auth retry occurred.
+	RequestID           RequestID           `json:"requestId,omitempty"`           // If the intercepted request had a corresponding requestWillBeSent event fired for it, then this requestId will be the same as the requestId present in the requestWillBeSent event.
 }
 
 // Unmarshal the byte array into a return value for RequestIntercepted in the Network domain.
@@ -283,17 +288,17 @@ func (a *RequestServedFromCacheReply) GetFrameID() string {
 
 // RequestWillBeSentReply is the reply for RequestWillBeSent events.
 type RequestWillBeSentReply struct {
-	RequestID        RequestID            `json:"requestId"`                  // Request identifier.
-	LoaderID         LoaderID             `json:"loaderId"`                   // Loader identifier. Empty string if the request is fetched from worker.
-	DocumentURL      string               `json:"documentURL"`                // URL of the document this request is loaded for.
-	Request          Request              `json:"request"`                    // Request data.
-	Timestamp        MonotonicTime        `json:"timestamp"`                  // Timestamp.
-	WallTime         TimeSinceEpoch       `json:"wallTime"`                   // Timestamp.
-	Initiator        Initiator            `json:"initiator"`                  // Request initiator.
-	RedirectResponse *Response            `json:"redirectResponse,omitempty"` // Redirect response data.
-	Type             *shared.ResourceType `json:"type,omitempty"`             // Type of this resource.
-	FrameID          shared.FrameID       `json:"frameId,omitempty"`          // Frame identifier.
-	HasUserGesture   bool                 `json:"hasUserGesture,omitempty"`   // Whether the request is initiated by a user gesture. Defaults to false.
+	RequestID        RequestID             `json:"requestId"`                  // Request identifier.
+	LoaderID         LoaderID              `json:"loaderId"`                   // Loader identifier. Empty string if the request is fetched from worker.
+	DocumentURL      string                `json:"documentURL"`                // URL of the document this request is loaded for.
+	Request          Request               `json:"request"`                    // Request data.
+	Timestamp        MonotonicTime         `json:"timestamp"`                  // Timestamp.
+	WallTime         shared.TimeSinceEpoch `json:"wallTime"`                   // Timestamp.
+	Initiator        Initiator             `json:"initiator"`                  // Request initiator.
+	RedirectResponse *Response             `json:"redirectResponse,omitempty"` // Redirect response data.
+	Type             *shared.ResourceType  `json:"type,omitempty"`             // Type of this resource.
+	FrameID          shared.FrameID        `json:"frameId,omitempty"`          // Frame identifier.
+	HasUserGesture   bool                  `json:"hasUserGesture,omitempty"`   // Whether the request is initiated by a user gesture. Defaults to false.
 }
 
 // Unmarshal the byte array into a return value for RequestWillBeSent in the Network domain.
@@ -508,7 +513,7 @@ func (a *WebSocketCreatedReply) GetFrameID() string {
 type WebSocketFrameErrorReply struct {
 	RequestID    RequestID     `json:"requestId"`    // Request identifier.
 	Timestamp    MonotonicTime `json:"timestamp"`    // Timestamp.
-	ErrorMessage string        `json:"errorMessage"` // WebSocket frame error message.
+	ErrorMessage string        `json:"errorMessage"` // WebSocket error message.
 }
 
 // Unmarshal the byte array into a return value for WebSocketFrameError in the Network domain.
@@ -642,10 +647,10 @@ func (a *WebSocketHandshakeResponseReceivedReply) GetFrameID() string {
 
 // WebSocketWillSendHandshakeRequestReply is the reply for WebSocketWillSendHandshakeRequest events.
 type WebSocketWillSendHandshakeRequestReply struct {
-	RequestID RequestID        `json:"requestId"` // Request identifier.
-	Timestamp MonotonicTime    `json:"timestamp"` // Timestamp.
-	WallTime  TimeSinceEpoch   `json:"wallTime"`  // UTC Timestamp.
-	Request   WebSocketRequest `json:"request"`   // WebSocket request data.
+	RequestID RequestID             `json:"requestId"` // Request identifier.
+	Timestamp MonotonicTime         `json:"timestamp"` // Timestamp.
+	WallTime  shared.TimeSinceEpoch `json:"wallTime"`  // UTC Timestamp.
+	Request   WebSocketRequest      `json:"request"`   // WebSocket request data.
 }
 
 // Unmarshal the byte array into a return value for WebSocketWillSendHandshakeRequest in the Network domain.
@@ -672,5 +677,74 @@ func (a *WebSocketWillSendHandshakeRequestReply) MatchFrameID(frameID string, m 
 
 // WebSocketWillSendHandshakeRequestReply returns the FrameID for WebSocketWillSendHandshakeRequest in the Network domain.
 func (a *WebSocketWillSendHandshakeRequestReply) GetFrameID() string {
+	return ""
+}
+
+// RequestWillBeSentExtraInfoReply is the reply for RequestWillBeSentExtraInfo events.
+type RequestWillBeSentExtraInfoReply struct {
+	RequestID      RequestID                 `json:"requestId"`      // Request identifier. Used to match this information to an existing requestWillBeSent event.
+	BlockedCookies []BlockedCookieWithReason `json:"blockedCookies"` // A list of cookies which will not be sent with this request along with corresponding reasons for blocking.
+	Headers        Headers                   `json:"headers"`        // Raw request headers as they will be sent over the wire.
+}
+
+// Unmarshal the byte array into a return value for RequestWillBeSentExtraInfo in the Network domain.
+func (a *RequestWillBeSentExtraInfoReply) UnmarshalJSON(b []byte) error {
+	type Copy RequestWillBeSentExtraInfoReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = RequestWillBeSentExtraInfoReply(*c)
+	return nil
+}
+
+// RequestWillBeSentExtraInfoReply returns whether or not the FrameID matches the reply value for RequestWillBeSentExtraInfo in the Network domain.
+func (a *RequestWillBeSentExtraInfoReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: RequestWillBeSentExtraInfoReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// RequestWillBeSentExtraInfoReply returns the FrameID for RequestWillBeSentExtraInfo in the Network domain.
+func (a *RequestWillBeSentExtraInfoReply) GetFrameID() string {
+	return ""
+}
+
+// ResponseReceivedExtraInfoReply is the reply for ResponseReceivedExtraInfo events.
+type ResponseReceivedExtraInfoReply struct {
+	RequestID      RequestID                    `json:"requestId"`             // Request identifier. Used to match this information to another responseReceived event.
+	BlockedCookies []BlockedSetCookieWithReason `json:"blockedCookies"`        // A list of cookies which were not stored from the response along with the corresponding reasons for blocking. The cookies here may not be valid due to syntax errors, which are represented by the invalid cookie line string instead of a proper cookie.
+	Headers        Headers                      `json:"headers"`               // Raw response headers as they were received over the wire.
+	HeadersText    string                       `json:"headersText,omitempty"` // Raw response header text as it was received over the wire. The raw text may not always be available, such as in the case of HTTP/2 or QUIC.
+}
+
+// Unmarshal the byte array into a return value for ResponseReceivedExtraInfo in the Network domain.
+func (a *ResponseReceivedExtraInfoReply) UnmarshalJSON(b []byte) error {
+	type Copy ResponseReceivedExtraInfoReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ResponseReceivedExtraInfoReply(*c)
+	return nil
+}
+
+// ResponseReceivedExtraInfoReply returns whether or not the FrameID matches the reply value for ResponseReceivedExtraInfo in the Network domain.
+func (a *ResponseReceivedExtraInfoReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: ResponseReceivedExtraInfoReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// ResponseReceivedExtraInfoReply returns the FrameID for ResponseReceivedExtraInfo in the Network domain.
+func (a *ResponseReceivedExtraInfoReply) GetFrameID() string {
 	return ""
 }

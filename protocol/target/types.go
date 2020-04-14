@@ -8,11 +8,6 @@ type ID string
 // SessionID Unique identifier of attached debugging session.
 type SessionID string
 
-// BrowserContextID
-//
-// Note: This type is experimental.
-type BrowserContextID string
-
 // Info
 type Info struct {
 	TargetID ID     `json:"targetId"`           // No description.
@@ -24,7 +19,7 @@ type Info struct {
 	// BrowserContextID
 	//
 	// Note: This property is experimental.
-	BrowserContextID BrowserContextID `json:"browserContextId,omitempty"`
+	BrowserContextID browser.ContextID `json:"browserContextId,omitempty"`
 }
 
 // RemoteLocation

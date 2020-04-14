@@ -10,15 +10,17 @@ import (
 )
 
 const (
-	EventProfilerConsoleProfileFinished = "Profiler.consoleProfileFinished"
-	EventProfilerConsoleProfileStarted  = "Profiler.consoleProfileStarted"
+	EventProfilerConsoleProfileFinished     = "Profiler.consoleProfileFinished"
+	EventProfilerConsoleProfileStarted      = "Profiler.consoleProfileStarted"
+	EventProfilerPreciseCoverageDeltaUpdate = "Profiler.preciseCoverageDeltaUpdate"
 )
 
 type Unmarshaler func() json.Unmarshaler
 
 var EventConstants = map[string]Unmarshaler{
-	EventProfilerConsoleProfileFinished: func() json.Unmarshaler { return &ConsoleProfileFinishedReply{} },
-	EventProfilerConsoleProfileStarted:  func() json.Unmarshaler { return &ConsoleProfileStartedReply{} },
+	EventProfilerConsoleProfileFinished:     func() json.Unmarshaler { return &ConsoleProfileFinishedReply{} },
+	EventProfilerConsoleProfileStarted:      func() json.Unmarshaler { return &ConsoleProfileStartedReply{} },
+	EventProfilerPreciseCoverageDeltaUpdate: func() json.Unmarshaler { return &PreciseCoverageDeltaUpdateReply{} },
 }
 
 func GetEventReply(event string) (json.Unmarshaler, bool) {
@@ -95,5 +97,39 @@ func (a *ConsoleProfileStartedReply) MatchFrameID(frameID string, m []byte) (boo
 
 // ConsoleProfileStartedReply returns the FrameID for ConsoleProfileStarted in the Profiler domain.
 func (a *ConsoleProfileStartedReply) GetFrameID() string {
+	return ""
+}
+
+// PreciseCoverageDeltaUpdateReply is the reply for PreciseCoverageDeltaUpdate events.
+type PreciseCoverageDeltaUpdateReply struct {
+	Timestamp float64          `json:"timestamp"` // Monotonically increasing time (in seconds) when the coverage update was taken in the backend.
+	Occassion string           `json:"occassion"` // Identifier for distinguishing coverage events.
+	Result    []ScriptCoverage `json:"result"`    // Coverage data for the current isolate.
+}
+
+// Unmarshal the byte array into a return value for PreciseCoverageDeltaUpdate in the Profiler domain.
+func (a *PreciseCoverageDeltaUpdateReply) UnmarshalJSON(b []byte) error {
+	type Copy PreciseCoverageDeltaUpdateReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = PreciseCoverageDeltaUpdateReply(*c)
+	return nil
+}
+
+// PreciseCoverageDeltaUpdateReply returns whether or not the FrameID matches the reply value for PreciseCoverageDeltaUpdate in the Profiler domain.
+func (a *PreciseCoverageDeltaUpdateReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: PreciseCoverageDeltaUpdateReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// PreciseCoverageDeltaUpdateReply returns the FrameID for PreciseCoverageDeltaUpdate in the Profiler domain.
+func (a *PreciseCoverageDeltaUpdateReply) GetFrameID() string {
 	return ""
 }

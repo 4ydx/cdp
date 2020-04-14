@@ -6,9 +6,10 @@ import (
 	"encoding/json"
 	"log"
 
-	"github.com/4ydx/cdp/protocol"
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/debugger"
 	"github.com/4ydx/cdp/protocol/dom"
+	"github.com/4ydx/cdp/protocol/io"
 	"github.com/4ydx/cdp/protocol/network"
 	"github.com/4ydx/cdp/protocol/runtime"
 )
@@ -18,6 +19,7 @@ const (
 	CommandPageAddScriptToEvaluateOnNewDocument    = "Page.addScriptToEvaluateOnNewDocument"
 	CommandPageBringToFront                        = "Page.bringToFront"
 	CommandPageCaptureScreenshot                   = "Page.captureScreenshot"
+	CommandPageCaptureSnapshot                     = "Page.captureSnapshot"
 	CommandPageClearDeviceMetricsOverride          = "Page.clearDeviceMetricsOverride"
 	CommandPageClearDeviceOrientationOverride      = "Page.clearDeviceOrientationOverride"
 	CommandPageClearGeolocationOverride            = "Page.clearGeolocationOverride"
@@ -26,10 +28,13 @@ const (
 	CommandPageDisable                             = "Page.disable"
 	CommandPageEnable                              = "Page.enable"
 	CommandPageGetAppManifest                      = "Page.getAppManifest"
+	CommandPageGetInstallabilityErrors             = "Page.getInstallabilityErrors"
+	CommandPageGetManifestIcons                    = "Page.getManifestIcons"
 	CommandPageGetCookies                          = "Page.getCookies"
 	CommandPageGetFrameTree                        = "Page.getFrameTree"
 	CommandPageGetLayoutMetrics                    = "Page.getLayoutMetrics"
 	CommandPageGetNavigationHistory                = "Page.getNavigationHistory"
+	CommandPageResetNavigationHistory              = "Page.resetNavigationHistory"
 	CommandPageGetResourceContent                  = "Page.getResourceContent"
 	CommandPageGetResourceTree                     = "Page.getResourceTree"
 	CommandPageHandleJavaScriptDialog              = "Page.handleJavaScriptDialog"
@@ -39,7 +44,6 @@ const (
 	CommandPageReload                              = "Page.reload"
 	CommandPageRemoveScriptToEvaluateOnLoad        = "Page.removeScriptToEvaluateOnLoad"
 	CommandPageRemoveScriptToEvaluateOnNewDocument = "Page.removeScriptToEvaluateOnNewDocument"
-	CommandPageRequestAppBanner                    = "Page.requestAppBanner"
 	CommandPageScreencastFrameAck                  = "Page.screencastFrameAck"
 	CommandPageSearchInResource                    = "Page.searchInResource"
 	CommandPageSetAdBlockingEnabled                = "Page.setAdBlockingEnabled"
@@ -62,6 +66,9 @@ const (
 	CommandPageSetProduceCompilationCache          = "Page.setProduceCompilationCache"
 	CommandPageAddCompilationCache                 = "Page.addCompilationCache"
 	CommandPageClearCompilationCache               = "Page.clearCompilationCache"
+	CommandPageGenerateTestReport                  = "Page.generateTestReport"
+	CommandPageWaitForDebugger                     = "Page.waitForDebugger"
+	CommandPageSetInterceptFileChooserDialog       = "Page.setInterceptFileChooserDialog"
 )
 
 // AddScriptToEvaluateOnLoadArgs represents the arguments for AddScriptToEvaluateOnLoad in the Page domain.
@@ -124,6 +131,13 @@ func (a *AddScriptToEvaluateOnLoadReply) UnmarshalJSON(b []byte) error {
 // AddScriptToEvaluateOnNewDocumentArgs represents the arguments for AddScriptToEvaluateOnNewDocument in the Page domain.
 type AddScriptToEvaluateOnNewDocumentArgs struct {
 	Source string `json:"source"` // No description.
+	// WorldName If specified, creates an isolated world with the given
+	// name and evaluates given script in it. This world name will be used
+	// as the ExecutionContextDescription::name when the corresponding
+	// event is emitted.
+	//
+	// Note: This property is experimental.
+	WorldName string `json:"worldName,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for AddScriptToEvaluateOnNewDocument in the Page domain.
@@ -297,6 +311,66 @@ func (a *CaptureScreenshotReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = CaptureScreenshotReply(*c)
+	return nil
+}
+
+// CaptureSnapshotArgs represents the arguments for CaptureSnapshot in the Page domain.
+type CaptureSnapshotArgs struct {
+	// Format Format (defaults to mhtml).
+	//
+	// Values: "mhtml".
+	Format string `json:"format,omitempty"`
+}
+
+// Unmarshal the byte array into a return value for CaptureSnapshot in the Page domain.
+func (a *CaptureSnapshotArgs) UnmarshalJSON(b []byte) error {
+	type Copy CaptureSnapshotArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = CaptureSnapshotArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for CaptureSnapshot in the Page domain.
+func (a *CaptureSnapshotArgs) MarshalJSON() ([]byte, error) {
+	type Copy CaptureSnapshotArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// CaptureSnapshotReply represents the return values for CaptureSnapshot in the Page domain.
+type CaptureSnapshotReply struct {
+	Data string `json:"data"` // Serialized page data.
+}
+
+// CaptureSnapshotReply returns whether or not the FrameID matches the reply value for CaptureSnapshot in the Page domain.
+func (a *CaptureSnapshotReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: CaptureSnapshotReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// CaptureSnapshotReply returns the FrameID value for CaptureSnapshot in the Page domain.
+func (a *CaptureSnapshotReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for CaptureSnapshot in the Page domain.
+func (a *CaptureSnapshotReply) UnmarshalJSON(b []byte) error {
+	type Copy CaptureSnapshotReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = CaptureSnapshotReply(*c)
 	return nil
 }
 
@@ -498,6 +572,10 @@ type GetAppManifestReply struct {
 	URL    string             `json:"url"`            // Manifest location.
 	Errors []AppManifestError `json:"errors"`         // No description.
 	Data   string             `json:"data,omitempty"` // Manifest content.
+	// Parsed Parsed manifest properties
+	//
+	// Note: This property is experimental.
+	Parsed *AppManifestParsedProperties `json:"parsed,omitempty"`
 }
 
 // GetAppManifestReply returns whether or not the FrameID matches the reply value for GetAppManifest in the Page domain.
@@ -524,6 +602,118 @@ func (a *GetAppManifestReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = GetAppManifestReply(*c)
+	return nil
+}
+
+// GetInstallabilityErrorsArgs represents the arguments for GetInstallabilityErrors in the Page domain.
+type GetInstallabilityErrorsArgs struct {
+}
+
+// Unmarshal the byte array into a return value for GetInstallabilityErrors in the Page domain.
+func (a *GetInstallabilityErrorsArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetInstallabilityErrorsArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetInstallabilityErrorsArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetInstallabilityErrors in the Page domain.
+func (a *GetInstallabilityErrorsArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetInstallabilityErrorsArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetInstallabilityErrorsReply represents the return values for GetInstallabilityErrors in the Page domain.
+type GetInstallabilityErrorsReply struct {
+	InstallabilityErrors []InstallabilityError `json:"installabilityErrors"` // No description.
+}
+
+// GetInstallabilityErrorsReply returns whether or not the FrameID matches the reply value for GetInstallabilityErrors in the Page domain.
+func (a *GetInstallabilityErrorsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetInstallabilityErrorsReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetInstallabilityErrorsReply returns the FrameID value for GetInstallabilityErrors in the Page domain.
+func (a *GetInstallabilityErrorsReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetInstallabilityErrors in the Page domain.
+func (a *GetInstallabilityErrorsReply) UnmarshalJSON(b []byte) error {
+	type Copy GetInstallabilityErrorsReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetInstallabilityErrorsReply(*c)
+	return nil
+}
+
+// GetManifestIconsArgs represents the arguments for GetManifestIcons in the Page domain.
+type GetManifestIconsArgs struct {
+}
+
+// Unmarshal the byte array into a return value for GetManifestIcons in the Page domain.
+func (a *GetManifestIconsArgs) UnmarshalJSON(b []byte) error {
+	type Copy GetManifestIconsArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetManifestIconsArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GetManifestIcons in the Page domain.
+func (a *GetManifestIconsArgs) MarshalJSON() ([]byte, error) {
+	type Copy GetManifestIconsArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GetManifestIconsReply represents the return values for GetManifestIcons in the Page domain.
+type GetManifestIconsReply struct {
+	PrimaryIcon string `json:"primaryIcon,omitempty"` // No description.
+}
+
+// GetManifestIconsReply returns whether or not the FrameID matches the reply value for GetManifestIcons in the Page domain.
+func (a *GetManifestIconsReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GetManifestIconsReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GetManifestIconsReply returns the FrameID value for GetManifestIcons in the Page domain.
+func (a *GetManifestIconsReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GetManifestIcons in the Page domain.
+func (a *GetManifestIconsReply) UnmarshalJSON(b []byte) error {
+	type Copy GetManifestIconsReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GetManifestIconsReply(*c)
 	return nil
 }
 
@@ -695,6 +885,61 @@ func (a *GetNavigationHistoryReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = GetNavigationHistoryReply(*c)
+	return nil
+}
+
+// ResetNavigationHistoryArgs represents the arguments for ResetNavigationHistory in the Page domain.
+type ResetNavigationHistoryArgs struct {
+}
+
+// Unmarshal the byte array into a return value for ResetNavigationHistory in the Page domain.
+func (a *ResetNavigationHistoryArgs) UnmarshalJSON(b []byte) error {
+	type Copy ResetNavigationHistoryArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ResetNavigationHistoryArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for ResetNavigationHistory in the Page domain.
+func (a *ResetNavigationHistoryArgs) MarshalJSON() ([]byte, error) {
+	type Copy ResetNavigationHistoryArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// ResetNavigationHistoryReply represents the return values for ResetNavigationHistory in the Page domain.
+type ResetNavigationHistoryReply struct {
+}
+
+// ResetNavigationHistoryReply returns whether or not the FrameID matches the reply value for ResetNavigationHistory in the Page domain.
+func (a *ResetNavigationHistoryReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: ResetNavigationHistoryReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// ResetNavigationHistoryReply returns the FrameID value for ResetNavigationHistory in the Page domain.
+func (a *ResetNavigationHistoryReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for ResetNavigationHistory in the Page domain.
+func (a *ResetNavigationHistoryReply) UnmarshalJSON(b []byte) error {
+	type Copy ResetNavigationHistoryReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = ResetNavigationHistoryReply(*c)
 	return nil
 }
 
@@ -876,6 +1121,10 @@ type NavigateArgs struct {
 	Referrer       string          `json:"referrer,omitempty"`       // Referrer URL.
 	TransitionType *TransitionType `json:"transitionType,omitempty"` // Intended transition type.
 	FrameID        shared.FrameID  `json:"frameId,omitempty"`        // Frame id to navigate, if not specified navigates the top frame.
+	// ReferrerPolicy Referrer-policy used for the navigation.
+	//
+	// Note: This property is experimental.
+	ReferrerPolicy *ReferrerPolicy `json:"referrerPolicy,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for Navigate in the Page domain.
@@ -1010,6 +1259,12 @@ type PrintToPDFArgs struct {
 	HeaderTemplate          string  `json:"headerTemplate,omitempty"`          // HTML template for the print header. Should be valid HTML markup with following classes used to inject printing values into them: - `date`: formatted print date - `title`: document title - `url`: document location - `pageNumber`: current page number - `totalPages`: total pages in the document For example, `<span class=title></span>` would generate span containing the title.
 	FooterTemplate          string  `json:"footerTemplate,omitempty"`          // HTML template for the print footer. Should use the same format as the `headerTemplate`.
 	PreferCSSPageSize       bool    `json:"preferCSSPageSize,omitempty"`       // Whether or not to prefer page size as defined by css. Defaults to false, in which case the content will be scaled to fit the paper size.
+	// TransferMode return as stream
+	//
+	// Values: "ReturnAsBase64", "ReturnAsStream".
+	//
+	// Note: This property is experimental.
+	TransferMode string `json:"transferMode,omitempty"`
 }
 
 // Unmarshal the byte array into a return value for PrintToPDF in the Page domain.
@@ -1034,7 +1289,11 @@ func (a *PrintToPDFArgs) MarshalJSON() ([]byte, error) {
 
 // PrintToPDFReply represents the return values for PrintToPDF in the Page domain.
 type PrintToPDFReply struct {
-	Data []byte `json:"data"` // Base64-encoded pdf data.
+	Data []byte `json:"data"` // Base64-encoded pdf data. Empty if |returnAsStream| is specified.
+	// Stream A handle of the stream that holds resulting PDF data.
+	//
+	// Note: This property is experimental.
+	Stream *io.StreamHandle `json:"stream,omitempty"`
 }
 
 // PrintToPDFReply returns whether or not the FrameID matches the reply value for PrintToPDF in the Page domain.
@@ -1230,61 +1489,6 @@ func (a *RemoveScriptToEvaluateOnNewDocumentReply) UnmarshalJSON(b []byte) error
 		return err
 	}
 	*a = RemoveScriptToEvaluateOnNewDocumentReply(*c)
-	return nil
-}
-
-// RequestAppBannerArgs represents the arguments for RequestAppBanner in the Page domain.
-type RequestAppBannerArgs struct {
-}
-
-// Unmarshal the byte array into a return value for RequestAppBanner in the Page domain.
-func (a *RequestAppBannerArgs) UnmarshalJSON(b []byte) error {
-	type Copy RequestAppBannerArgs
-	c := &Copy{}
-	err := json.Unmarshal(b, c)
-	if err != nil {
-		return err
-	}
-	*a = RequestAppBannerArgs(*c)
-	return nil
-}
-
-// Marshall the byte array into a return value for RequestAppBanner in the Page domain.
-func (a *RequestAppBannerArgs) MarshalJSON() ([]byte, error) {
-	type Copy RequestAppBannerArgs
-	c := &Copy{}
-	*c = Copy(*a)
-	return json.Marshal(&c)
-}
-
-// RequestAppBannerReply represents the return values for RequestAppBanner in the Page domain.
-type RequestAppBannerReply struct {
-}
-
-// RequestAppBannerReply returns whether or not the FrameID matches the reply value for RequestAppBanner in the Page domain.
-func (a *RequestAppBannerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
-	err := a.UnmarshalJSON(m)
-	if err != nil {
-		log.Printf("unmarshal error: RequestAppBannerReply %s", err)
-		return false, err
-	}
-	return true, nil
-}
-
-// RequestAppBannerReply returns the FrameID value for RequestAppBanner in the Page domain.
-func (a *RequestAppBannerReply) GetFrameID() string {
-	return ""
-}
-
-// Unmarshal the byte array into a return value for RequestAppBanner in the Page domain.
-func (a *RequestAppBannerReply) UnmarshalJSON(b []byte) error {
-	type Copy RequestAppBannerReply
-	c := &Copy{}
-	err := json.Unmarshal(b, c)
-	if err != nil {
-		return err
-	}
-	*a = RequestAppBannerReply(*c)
 	return nil
 }
 
@@ -2310,5 +2514,173 @@ func (a *ClearCompilationCacheReply) UnmarshalJSON(b []byte) error {
 		return err
 	}
 	*a = ClearCompilationCacheReply(*c)
+	return nil
+}
+
+// GenerateTestReportArgs represents the arguments for GenerateTestReport in the Page domain.
+type GenerateTestReportArgs struct {
+	Message string `json:"message"`         // Message to be displayed in the report.
+	Group   string `json:"group,omitempty"` // Specifies the endpoint group to deliver the report to.
+}
+
+// Unmarshal the byte array into a return value for GenerateTestReport in the Page domain.
+func (a *GenerateTestReportArgs) UnmarshalJSON(b []byte) error {
+	type Copy GenerateTestReportArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GenerateTestReportArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for GenerateTestReport in the Page domain.
+func (a *GenerateTestReportArgs) MarshalJSON() ([]byte, error) {
+	type Copy GenerateTestReportArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// GenerateTestReportReply represents the return values for GenerateTestReport in the Page domain.
+type GenerateTestReportReply struct {
+}
+
+// GenerateTestReportReply returns whether or not the FrameID matches the reply value for GenerateTestReport in the Page domain.
+func (a *GenerateTestReportReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: GenerateTestReportReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// GenerateTestReportReply returns the FrameID value for GenerateTestReport in the Page domain.
+func (a *GenerateTestReportReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for GenerateTestReport in the Page domain.
+func (a *GenerateTestReportReply) UnmarshalJSON(b []byte) error {
+	type Copy GenerateTestReportReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = GenerateTestReportReply(*c)
+	return nil
+}
+
+// WaitForDebuggerArgs represents the arguments for WaitForDebugger in the Page domain.
+type WaitForDebuggerArgs struct {
+}
+
+// Unmarshal the byte array into a return value for WaitForDebugger in the Page domain.
+func (a *WaitForDebuggerArgs) UnmarshalJSON(b []byte) error {
+	type Copy WaitForDebuggerArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = WaitForDebuggerArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for WaitForDebugger in the Page domain.
+func (a *WaitForDebuggerArgs) MarshalJSON() ([]byte, error) {
+	type Copy WaitForDebuggerArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// WaitForDebuggerReply represents the return values for WaitForDebugger in the Page domain.
+type WaitForDebuggerReply struct {
+}
+
+// WaitForDebuggerReply returns whether or not the FrameID matches the reply value for WaitForDebugger in the Page domain.
+func (a *WaitForDebuggerReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: WaitForDebuggerReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// WaitForDebuggerReply returns the FrameID value for WaitForDebugger in the Page domain.
+func (a *WaitForDebuggerReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for WaitForDebugger in the Page domain.
+func (a *WaitForDebuggerReply) UnmarshalJSON(b []byte) error {
+	type Copy WaitForDebuggerReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = WaitForDebuggerReply(*c)
+	return nil
+}
+
+// SetInterceptFileChooserDialogArgs represents the arguments for SetInterceptFileChooserDialog in the Page domain.
+type SetInterceptFileChooserDialogArgs struct {
+	Enabled bool `json:"enabled"` // No description.
+}
+
+// Unmarshal the byte array into a return value for SetInterceptFileChooserDialog in the Page domain.
+func (a *SetInterceptFileChooserDialogArgs) UnmarshalJSON(b []byte) error {
+	type Copy SetInterceptFileChooserDialogArgs
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetInterceptFileChooserDialogArgs(*c)
+	return nil
+}
+
+// Marshall the byte array into a return value for SetInterceptFileChooserDialog in the Page domain.
+func (a *SetInterceptFileChooserDialogArgs) MarshalJSON() ([]byte, error) {
+	type Copy SetInterceptFileChooserDialogArgs
+	c := &Copy{}
+	*c = Copy(*a)
+	return json.Marshal(&c)
+}
+
+// SetInterceptFileChooserDialogReply represents the return values for SetInterceptFileChooserDialog in the Page domain.
+type SetInterceptFileChooserDialogReply struct {
+}
+
+// SetInterceptFileChooserDialogReply returns whether or not the FrameID matches the reply value for SetInterceptFileChooserDialog in the Page domain.
+func (a *SetInterceptFileChooserDialogReply) MatchFrameID(frameID string, m []byte) (bool, error) {
+	err := a.UnmarshalJSON(m)
+	if err != nil {
+		log.Printf("unmarshal error: SetInterceptFileChooserDialogReply %s", err)
+		return false, err
+	}
+	return true, nil
+}
+
+// SetInterceptFileChooserDialogReply returns the FrameID value for SetInterceptFileChooserDialog in the Page domain.
+func (a *SetInterceptFileChooserDialogReply) GetFrameID() string {
+	return ""
+}
+
+// Unmarshal the byte array into a return value for SetInterceptFileChooserDialog in the Page domain.
+func (a *SetInterceptFileChooserDialogReply) UnmarshalJSON(b []byte) error {
+	type Copy SetInterceptFileChooserDialogReply
+	c := &Copy{}
+	err := json.Unmarshal(b, c)
+	if err != nil {
+		return err
+	}
+	*a = SetInterceptFileChooserDialogReply(*c)
 	return nil
 }
