@@ -5,6 +5,8 @@ package target
 import (
 	"encoding/json"
 	"log"
+
+	shared "github.com/4ydx/cdp/protocol"
 )
 
 const (
@@ -337,7 +339,7 @@ func (a *CreateBrowserContextArgs) MarshalJSON() ([]byte, error) {
 
 // CreateBrowserContextReply represents the return values for CreateBrowserContext in the Target domain.
 type CreateBrowserContextReply struct {
-	BrowserContextID browser.ContextID `json:"browserContextId"` // The id of the context created.
+	BrowserContextID shared.ContextID `json:"browserContextId"` // The id of the context created.
 }
 
 // CreateBrowserContextReply returns whether or not the FrameID matches the reply value for CreateBrowserContext in the Target domain.
@@ -393,7 +395,7 @@ func (a *GetBrowserContextsArgs) MarshalJSON() ([]byte, error) {
 
 // GetBrowserContextsReply represents the return values for GetBrowserContexts in the Target domain.
 type GetBrowserContextsReply struct {
-	BrowserContextIDs []browser.ContextID `json:"browserContextIds"` // An array of browser context ids.
+	BrowserContextIDs []shared.ContextID `json:"browserContextIds"` // An array of browser context ids.
 }
 
 // GetBrowserContextsReply returns whether or not the FrameID matches the reply value for GetBrowserContexts in the Target domain.
@@ -425,10 +427,10 @@ func (a *GetBrowserContextsReply) UnmarshalJSON(b []byte) error {
 
 // CreateTargetArgs represents the arguments for CreateTarget in the Target domain.
 type CreateTargetArgs struct {
-	URL              string            `json:"url"`                        // The initial URL the page will be navigated to.
-	Width            int               `json:"width,omitempty"`            // Frame width in DIP (headless chrome only).
-	Height           int               `json:"height,omitempty"`           // Frame height in DIP (headless chrome only).
-	BrowserContextID browser.ContextID `json:"browserContextId,omitempty"` // The browser context to create the page in.
+	URL              string           `json:"url"`                        // The initial URL the page will be navigated to.
+	Width            int              `json:"width,omitempty"`            // Frame width in DIP (headless chrome only).
+	Height           int              `json:"height,omitempty"`           // Frame height in DIP (headless chrome only).
+	BrowserContextID shared.ContextID `json:"browserContextId,omitempty"` // The browser context to create the page in.
 	// EnableBeginFrameControl Whether BeginFrames for this target will be
 	// controlled via DevTools (headless chrome only, not supported on
 	// MacOS yet, false by default).
@@ -553,7 +555,7 @@ func (a *DetachFromTargetReply) UnmarshalJSON(b []byte) error {
 
 // DisposeBrowserContextArgs represents the arguments for DisposeBrowserContext in the Target domain.
 type DisposeBrowserContextArgs struct {
-	BrowserContextID browser.ContextID `json:"browserContextId"` // No description.
+	BrowserContextID shared.ContextID `json:"browserContextId"` // No description.
 }
 
 // Unmarshal the byte array into a return value for DisposeBrowserContext in the Target domain.

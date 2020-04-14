@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"log"
 
+	shared "github.com/4ydx/cdp/protocol"
 	"github.com/4ydx/cdp/protocol/network"
 )
 
@@ -80,7 +81,7 @@ func (a *ClearDataForOriginReply) UnmarshalJSON(b []byte) error {
 
 // GetCookiesArgs represents the arguments for GetCookies in the Storage domain.
 type GetCookiesArgs struct {
-	BrowserContextID browser.ContextID `json:"browserContextId,omitempty"` // Browser context to use when called on the browser endpoint.
+	BrowserContextID shared.ContextID `json:"browserContextId,omitempty"` // Browser context to use when called on the browser endpoint.
 }
 
 // Unmarshal the byte array into a return value for GetCookies in the Storage domain.
@@ -138,7 +139,7 @@ func (a *GetCookiesReply) UnmarshalJSON(b []byte) error {
 // SetCookiesArgs represents the arguments for SetCookies in the Storage domain.
 type SetCookiesArgs struct {
 	Cookies          []network.CookieParam `json:"cookies"`                    // Cookies to be set.
-	BrowserContextID browser.ContextID     `json:"browserContextId,omitempty"` // Browser context to use when called on the browser endpoint.
+	BrowserContextID shared.ContextID      `json:"browserContextId,omitempty"` // Browser context to use when called on the browser endpoint.
 }
 
 // Unmarshal the byte array into a return value for SetCookies in the Storage domain.
@@ -194,7 +195,7 @@ func (a *SetCookiesReply) UnmarshalJSON(b []byte) error {
 
 // ClearCookiesArgs represents the arguments for ClearCookies in the Storage domain.
 type ClearCookiesArgs struct {
-	BrowserContextID browser.ContextID `json:"browserContextId,omitempty"` // Browser context to use when called on the browser endpoint.
+	BrowserContextID shared.ContextID `json:"browserContextId,omitempty"` // Browser context to use when called on the browser endpoint.
 }
 
 // Unmarshal the byte array into a return value for ClearCookies in the Storage domain.

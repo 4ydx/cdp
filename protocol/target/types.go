@@ -2,6 +2,10 @@
 
 package target
 
+import (
+	shared "github.com/4ydx/cdp/protocol"
+)
+
 // ID
 type ID string
 
@@ -19,7 +23,7 @@ type Info struct {
 	// BrowserContextID
 	//
 	// Note: This property is experimental.
-	BrowserContextID browser.ContextID `json:"browserContextId,omitempty"`
+	BrowserContextID shared.ContextID `json:"browserContextId,omitempty"`
 }
 
 // RemoteLocation
